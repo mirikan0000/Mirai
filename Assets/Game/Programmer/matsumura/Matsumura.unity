@@ -177,9 +177,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 260348093311216616, guid: 37e3b849b0e7f844ca3e4842977cad46, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1696014870}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37e3b849b0e7f844ca3e4842977cad46, type: 3}
+--- !u!4 &1663097085 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 260348093311216616, guid: 37e3b849b0e7f844ca3e4842977cad46, type: 3}
+  m_PrefabInstance: {fileID: 1355299052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1696014867
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,6 +199,7 @@ GameObject:
   - component: {fileID: 1696014870}
   - component: {fileID: 1696014869}
   - component: {fileID: 1696014868}
+  - component: {fileID: 1696014871}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -265,13 +274,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696014867}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1663097085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1696014871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696014867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a5f485ed0e444468ba1c23ba3b355c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 2
+  player: {fileID: 1663097085}
 --- !u!1 &2015589545
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +450,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1696014870}
   - {fileID: 2015589547}
   - {fileID: 2092343096}
   - {fileID: 1355299052}

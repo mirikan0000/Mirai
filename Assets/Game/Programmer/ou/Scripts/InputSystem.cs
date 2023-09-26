@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MyInput : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
     bool is_start;
     bool is_aiming;
@@ -15,10 +15,12 @@ public class MyInput : MonoBehaviour
     float gun_rotAngle = 0.0f;
 
     public float Bullet_RangeOffset = 0;
+    float BulletPosOffset = 1.0f;
 
     public GameObject Buttet;
     public GameObject PredictionLine;
 
+    public int PredictionLineNumber = 66;
     List<GameObject> PredictionLine_List = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -53,17 +55,17 @@ public class MyInput : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                //予測線
-                //二つ方法(重力、三角関数で模擬放物線)
-                //重力
+                //梊應慄
+                //擇偮曽朄(廳椡丄嶰妏娭悢偱柾媅曻暔慄)
+                //廳椡
                 is_moveable = false;
                 is_aiming = true;
             }
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                //発射
-                //二つ方法(重力、三角関数で模擬放物線)
-                //重力
+                //敪幩
+                //擇偮曽朄(廳椡丄嶰妏娭悢偱柾媅曻暔慄)
+                //廳椡
                 is_moveable = true;
                 is_aiming = false;
 
@@ -75,6 +77,7 @@ public class MyInput : MonoBehaviour
 
                 GameObject buttle = Instantiate(Buttet, transform.position, transform.rotation);
                 buttle.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
+                buttle.transform.Translate(new Vector3(0, 0, BulletPosOffset));
             }
             if (is_aiming)
             {
@@ -105,20 +108,20 @@ public class MyInput : MonoBehaviour
 
         float Bullet_Speed = PlayerPrefs.GetFloat("Bullet_Speed");
 
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < PredictionLineNumber; i++)
         {
             float t = i * 0.05f;
-            float X = Bullet_Speed * t * Mathf.Cos(angle_y);
+            float X = (BulletPosOffset + Bullet_Speed * t) * Mathf.Cos(angle_y);
             float x = X * Mathf.Sin(angle_xz) + transform.position.x;
             float z = X * Mathf.Cos(angle_xz) + transform.position.z;
 
-            float Bullet_Gravity = 0.0f;
+            float Bullet_Gravity = Physics2D.gravity.y;
             if ((Physics2D.gravity.y + Bullet_RangeOffset) <= 0)
             {
-                Bullet_Gravity = Physics2D.gravity.y + Bullet_RangeOffset;
+                Bullet_Gravity += Bullet_RangeOffset;
                 PlayerPrefs.SetFloat("Bullet_RangeOffset", Bullet_RangeOffset);
             }
-            float y = Bullet_Speed * t * Mathf.Sin(angle_y) + 0.5f * Bullet_Gravity * t * t + transform.position.y;
+            float y = (BulletPosOffset + Bullet_Speed * t) * Mathf.Sin(angle_y) + 0.5f * Bullet_Gravity * t * t + transform.position.y;
 
             GameObject gb = Instantiate(PredictionLine, new Vector3(x, y, z), transform.rotation);
             PredictionLine_List.Add(gb);

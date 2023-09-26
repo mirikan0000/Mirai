@@ -18,15 +18,17 @@ public class Bullet : MonoBehaviour
 
         PlayerPrefs.SetFloat("Bullet_Speed", Move_Speed);
 
-        Destroy(this.gameObject, 2f);
+        Destroy(this.gameObject, 3f);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (RangeOffset != 0.0f)
-            rb.AddForce(new Vector3(0, RangeOffset, 0));
+        {
+            rb.AddForce(new Vector3(0, RangeOffset * Time.deltaTime, 0));
+        }
+
         transform.Translate(new Vector3(0, 0, Move_Speed * Time.deltaTime));
-        //Rigidbody.AddForce(new Vector3(0, 0.5f, move_speed));
     }
 }

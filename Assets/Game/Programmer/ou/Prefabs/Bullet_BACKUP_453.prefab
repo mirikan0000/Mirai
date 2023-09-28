@@ -146,4 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd691f88a5da2b64c9f828bfbbbae48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Game/Programmer/ou/Prefabs/Bullet.prefab
   Move_Speed: 100
+=======
+  Move_Speed: 15
+>>>>>>> origin/Ouseijyun:Assets/Prefabs/Bullet.prefab

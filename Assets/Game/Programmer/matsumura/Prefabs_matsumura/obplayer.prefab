@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3364738577161450220}
   - component: {fileID: -5524458239406037705}
   - component: {fileID: -1399163583923971706}
+  - component: {fileID: 2535098907287009556}
   m_Layer: 0
   m_Name: obplayer
   m_TagString: Player
@@ -162,3 +163,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
+  Dieflg: 0
+--- !u!114 &2535098907287009556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270741816858921305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c257e770a7cce3c4e9fc5e38d5123ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet_RangeOffset: 0
+  bulletCreatePosOffset: 1
+  Buttet: {fileID: 9184420584360872255, guid: 3b4635d41d61ca149841265115d75589, type: 3}
+  PredictionLine: {fileID: 6184309812734207406, guid: 8153391b8a9aa3d40a885b43c8eb3881, type: 3}
+  PredictionLineNumber: 66

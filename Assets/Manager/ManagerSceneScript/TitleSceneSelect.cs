@@ -88,48 +88,48 @@ public class TitleSceneSelect : MonoBehaviour
                 // シーン変更
                 SceneManager.Instance.ChangeScene();
             }
-            //if (InputManager.Instance.GetButtonDown("UI", "Click"))
-            //{
-            //    Debug.Log("読み込み出来た");
-            //    // シーン読み込み
-            //    SceneManager.Instance.LoadScene(cautionSceneName);
-            //    // シーン変更
-            //    SceneManager.Instance.ChangeScene();
-            //}
-            // ステージ決定
             if (InputManager.Instance.GetButtonDown("UI", "Click"))
             {
                 Debug.Log("読み込み出来た");
                 // シーン読み込み
-                SceneManager.Instance.LoadScene(CautionSceneName);
+                SceneManager.Instance.LoadScene("GameScene");
                 // シーン変更
                 SceneManager.Instance.ChangeScene();
-                // ゲーム終了
-                //if (ButtonNo == 4)
-                //    {
-                //        // シーン読み込み
-                //        SceneManager.Instance.LoadScene(cautionSceneName);
-                //        // シーン変更
-                //        SceneManager.Instance.ChangeScene();
-                //        isLoad = true;
-               
-                //    }
-                //    else
-                //    {
-                //        if (ButtonNo == 0)
-                //        {
-                //            BGMManager.Instance.Stop();
-                //        }
-
-                //        loadSceneName = loadSceneNameList[ButtonNo];
-                //        SceneManager.Instance.LoadScene(loadSceneName);
-                    
-                //        isLoad = true;
-                //        isPlayOtherScene = true;
-          
-                //    }
-                
             }
+            // ステージ決定
+            //if (InputManager.Instance.GetButtonDown("UI", "Click"))
+            //{
+            //    Debug.Log("読み込み出来た");
+            //    // シーン読み込み
+            //    SceneManager.Instance.LoadScene(CautionSceneName);
+            //    // シーン変更
+            //    SceneManager.Instance.ChangeScene();
+            // ゲーム終了
+            //if (ButtonNo == 4)
+            //    {
+            //        // シーン読み込み
+            //        SceneManager.Instance.LoadScene(cautionSceneName);
+            //        // シーン変更
+            //        SceneManager.Instance.ChangeScene();
+            //        isLoad = true;
+
+            //    }
+            //    else
+            //    {
+            //        if (ButtonNo == 0)
+            //        {
+            //            BGMManager.Instance.Stop();
+            //        }
+
+            //        loadSceneName = loadSceneNameList[ButtonNo];
+            //        SceneManager.Instance.LoadScene(loadSceneName);
+
+            //        isLoad = true;
+            //        isPlayOtherScene = true;
+
+            //    }
+
+            // }
             if (!isLoadChange)
             {
                 // シーン変更

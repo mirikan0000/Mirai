@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Game/Programmer/takatori/Stage/Script/Hit.cs.meta
 guid: 9cf7b69a75d58e34282595c469c75f2b
+=======
+guid: 4a0b6f91060771443b30c70c0745da72
+>>>>>>> origin/Takeuchi_MiniMap:Assets/Game/Programmer/Takeuchi/MiniMap/move.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

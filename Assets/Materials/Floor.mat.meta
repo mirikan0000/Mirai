@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Materials/Floor.mat.meta
 guid: 492f2d93719d11540a774b28cce0a3eb
+=======
+guid: df7be14a8e2331441884a9a4449ad28d
+>>>>>>> origin/Takeuchi_MiniMap:Assets/Game/Programmer/Takeuchi/MiniMap/M_Player2Icon.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000

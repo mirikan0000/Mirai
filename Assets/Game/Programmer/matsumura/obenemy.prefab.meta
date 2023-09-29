@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Game/Programmer/matsumura/obenemy.prefab.meta
 guid: e052875ee24ee1d4bb7e0c766e3a7461
+=======
+guid: 8b457046848707142835ec890859a81c
+>>>>>>> origin/Takeuchi_MiniMap:Assets/Game/Programmer/Takeuchi/MiniMap/Player1.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

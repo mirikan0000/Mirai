@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3079891031228657920}
   - component: {fileID: 1710643807380296828}
   - component: {fileID: 8765089045053351817}
+  - component: {fileID: 106486933700805406}
   m_Layer: 0
   m_Name: MiniMapCamera
   m_TagString: Untagged
@@ -92,3 +93,15 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2986510544960989763}
   m_Enabled: 1
+--- !u!114 &106486933700805406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2986510544960989763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b21edc6a83cfe49bd6f7ea9fa32359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

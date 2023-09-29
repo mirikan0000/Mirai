@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class MapArea : MonoBehaviour
 {
-
     [SerializeField]
     [Header("マップ番号を指定")]
     public AreaNum areaNum;
     public enum AreaNum
     {
-        Area1,Area2,Area3,Area4,Area5,Area6,Area7,Area8,Area9
+        Area1, Area2, Area3, Area4, Area5, Area6, Area7, Area8, Area9
     }
 
     void Start()
@@ -18,6 +17,7 @@ public class MapArea : MonoBehaviour
         
     }
 
+    // Update is called once per frame
     void Update()
     {
         

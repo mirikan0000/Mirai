@@ -4,31 +4,40 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    float RangeOffset = 0.0f;
-    public float Move_Speed = 15.0f;
+    //”­Ë‹——£‚ğ’²®‚·‚é‚½‚ß
+    float rangeOffset = 0.0f;
+    //’eŠÛ‚ÌˆÚ“®‘¬“x
+    public float move_Speed = 15.0f;
+    //’eŠÛ‚Ì„‘Ì
     Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
+        //„‘Ì‚ğæ“¾‚·‚é
         rb = GetComponent<Rigidbody>();
 
-        if(PlayerPrefs.HasKey("Bullet_RangeOffset"))
-            RangeOffset = PlayerPrefs.GetFloat("Bullet_RangeOffset");
+        //”­Ë‹——£‚ğæ“¾‚·‚é(’eŠÛ—\‘ªü‚ğŒvZ‚·‚é‚É•Û‘¶‚·‚é)
+        if (PlayerPrefs.HasKey("Bullet_RangeOffset"))
+            rangeOffset = PlayerPrefs.GetFloat("Bullet_RangeOffset");
 
-        PlayerPrefs.SetFloat("Bullet_Speed", Move_Speed);
+        //’eŠÛ‘¬“x‚ğ•Û‘¶‚·‚é
+        PlayerPrefs.SetFloat("Bullet_Speed", move_Speed);
 
+        //3•bŒã‚Å©•ª‚ğ”j‰ó‚·‚é
         Destroy(this.gameObject, 3f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (RangeOffset != 0.0f)
+        //”­Ë‹——£‚ğ‡‚í‚¹‚éˆ×‚É©•ª‚ğ—Í‚ğ‚ ‚°‚é
+        if (rangeOffset != 0.0f)
         {
-            rb.AddForce(new Vector3(0, RangeOffset * Time.deltaTime, 0));
+            rb.AddForce(new Vector3(0, rangeOffset * Time.deltaTime, 0));
         }
 
-        transform.Translate(new Vector3(0, 0, Move_Speed * Time.deltaTime));
+        //’eŠÛ”­Ë‚ÌˆÚ“®
+        transform.Translate(new Vector3(0, 0, move_Speed * Time.deltaTime));
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class ParentPlayer : MonoBehaviour
+public class ParentPlayer : MonoBehaviour
 {
     [SerializeField]
     [Header("プレイヤー識別用")]
@@ -11,7 +11,7 @@ public partial class ParentPlayer : MonoBehaviour
     {
         Player1,Player2
     }
-    //[Header("現在位置のマップ番号")]
+    [Header("現在位置のマップ番号")]
     public int playerMapNum;
 
     public void ParentPlayerInitialize()
@@ -23,6 +23,27 @@ public partial class ParentPlayer : MonoBehaviour
     {
         //操作用関数
         PlayerMove();
+    }
+
+    //プレイヤー操作用関数(オーバーライドする)
+    public virtual void PlayerMove()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))  //上
+        {
+            transform.position += new Vector3(0, 0, 3) * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.DownArrow))  //下
+        {
+            transform.position -= new Vector3(0, 0, 3) * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.LeftArrow))  //左
+        {
+            transform.position -= new Vector3(3, 0, 0) * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.RightArrow))  //右
+        {
+            transform.position += new Vector3(3, 0, 0) * Time.deltaTime;
+        }
     }
 
     //特定のエリアに入ったら
@@ -73,27 +94,6 @@ public partial class ParentPlayer : MonoBehaviour
 
                 //Debug.Log(nowMapNum);
             }
-        }
-    }
-
-    //プレイヤー操作用関数(オーバーライドする)
-    public virtual void PlayerMove()
-    {
-        if (Input.GetKey(KeyCode.UpArrow))  //上
-        {
-            transform.position += new Vector3(0, 0, 3) * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.DownArrow))  //下
-        {
-            transform.position -= new Vector3(0, 0, 3) * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))  //左
-        {
-            transform.position -= new Vector3(3, 0, 0) * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.RightArrow))  //右
-        {
-            transform.position += new Vector3(3, 0, 0) * Time.deltaTime;
         }
     }
 }

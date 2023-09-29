@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,7 +123,10 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD:Assets/Game/Programmer/matsumura/Matsumura.unity
+=======
+>>>>>>> origin/Takatori
 --- !u!1001 &520054037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -247,6 +250,7 @@ Transform:
   m_PrefabInstance: {fileID: 1355299052}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1696014867
+<<<<<<< HEAD
 =======
 --- !u!1 &205135398
 GameObject:
@@ -1502,6 +1506,8 @@ Rigidbody:
   m_CollisionDetection: 0
 --- !u!1 &1151844451
 >>>>>>> origin/Takeuchi_MminiMap:Assets/Game/Programmer/Takeuchi/Takeuchi.unity
+=======
+>>>>>>> origin/Takatori
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1697,12 +1703,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015589545}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD:Assets/Game/Programmer/matsumura/Matsumura.unity
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &2092343096
@@ -2914,6 +2921,10 @@ Rigidbody:
   m_CollisionDetection: 0
 --- !u!1001 &3804713741174990715
 >>>>>>> origin/Takeuchi_MminiMap:Assets/Game/Programmer/Takeuchi/Takeuchi.unity
+=======
+  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &2092343096
+>>>>>>> origin/Takatori
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2927,16 +2938,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4397113815004419319, guid: e4227c616673af342a489582217baad8, type: 3}
       propertyPath: m_LocalPosition.y
+<<<<<<< HEAD
 <<<<<<< HEAD:Assets/Game/Programmer/matsumura/Matsumura.unity
       value: -2.02
 =======
       value: 25
 >>>>>>> origin/Takeuchi_MminiMap:Assets/Game/Programmer/Takeuchi/Takeuchi.unity
+=======
+      value: -2.02
+>>>>>>> origin/Takatori
       objectReference: {fileID: 0}
     - target: {fileID: 4397113815004419319, guid: e4227c616673af342a489582217baad8, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD:Assets/Game/Programmer/matsumura/Matsumura.unity
     - target: {fileID: 4397113815004419319, guid: e4227c616673af342a489582217baad8, type: 3}
 =======
@@ -3015,6 +3031,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1243547623927501074, guid: c175c9a3b4221cb48903b97b0b2f6ce3, type: 3}
 >>>>>>> origin/Takeuchi_MminiMap:Assets/Game/Programmer/Takeuchi/Takeuchi.unity
+=======
+    - target: {fileID: 4397113815004419319, guid: e4227c616673af342a489582217baad8, type: 3}
+>>>>>>> origin/Takatori
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
@@ -3042,6 +3061,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD:Assets/Game/Programmer/matsumura/Matsumura.unity
     - target: {fileID: 6743469937805813762, guid: e4227c616673af342a489582217baad8, type: 3}
 =======
@@ -3163,10 +3183,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+=======
+    - target: {fileID: 6743469937805813762, guid: e4227c616673af342a489582217baad8, type: 3}
+      propertyPath: m_Name
+      value: yuka
+      objectReference: {fileID: 0}
+>>>>>>> origin/Takatori
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
+<<<<<<< HEAD
   m_SourcePrefab: {fileID: 100100000, guid: 40bb67e425f7f0d4ca2df187fa8f68a4, type: 3}
 --- !u!1001 &8590841881121151875
 PrefabInstance:
@@ -3267,15 +3294,22 @@ PrefabInstance:
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 738cbb27d85ba014c8b204986474daf5, type: 3}
 >>>>>>> origin/Takeuchi_MminiMap:Assets/Game/Programmer/Takeuchi/Takeuchi.unity
+=======
+  m_SourcePrefab: {fileID: 100100000, guid: e4227c616673af342a489582217baad8, type: 3}
+>>>>>>> origin/Takatori
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+<<<<<<< HEAD
 <<<<<<< HEAD:Assets/Game/Programmer/matsumura/Matsumura.unity
+=======
+>>>>>>> origin/Takatori
   - {fileID: 2015589547}
   - {fileID: 2092343096}
   - {fileID: 1355299052}
   - {fileID: 520054037}
+<<<<<<< HEAD
 =======
   - {fileID: 1155362315}
   - {fileID: 1151844453}
@@ -3290,3 +3324,5 @@ SceneRoots:
   - {fileID: 320758840}
   - {fileID: 1366935387}
 >>>>>>> origin/Takeuchi_MminiMap:Assets/Game/Programmer/Takeuchi/Takeuchi.unity
+=======
+>>>>>>> origin/Takatori

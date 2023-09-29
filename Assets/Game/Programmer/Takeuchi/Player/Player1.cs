@@ -13,10 +13,8 @@ public class Player1 : ParentPlayer
         base.ParentPlayerInitialize();
 
         //現在位置のマップ番号を初期化
-        //p1NowMapNum = playerMapNum;
-        //Debug.Log(p1NowMapNum);
+        p1NowMapNum = playerMapNum;
     }
-
 
     void FixedUpdate()
     {

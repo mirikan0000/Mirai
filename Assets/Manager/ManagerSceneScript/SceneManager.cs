@@ -28,7 +28,7 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
     // Update is called once per frame
     void Update()
     {
-        if (!isLoad)
+        if (isLoad)
         {
             foreach (string destroySceneName in destroySceneNameList)
             {
@@ -60,6 +60,7 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
     {
         if (sceneName == "")
         {
+            Debug.Log("ì«Ç›çûÇ›é∏îs");
             return;
         }
 
@@ -68,6 +69,7 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
         {
             if (scene.name == sceneName)
             {
+                Debug.Log("ì«Ç›çûÇ›é∏îs");
                 return;
             }
         }
@@ -110,7 +112,7 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
     /// </summary>
     public void DestroyScene(string sceneName)
     {
-        SoundManager.Instance.SoundDataClear();
+      //  SoundManager.Instance.SoundDataClear();
         destroySceneNameList.Add(sceneName);
     }
     /// <summary>

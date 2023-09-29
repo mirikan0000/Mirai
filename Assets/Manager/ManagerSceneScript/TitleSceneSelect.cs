@@ -11,14 +11,9 @@ public class TitleSceneSelect : MonoBehaviour
     public List<string> loadSceneNameList;
     //[Header("ローディングテキスト")]
     public Text loadText;
-    [Header("ボタンリスト")]
-    public List<GameObject> ButtonList;
-    [Header("ボタンナンバー")]
-    private int ButtonNo;
-    public float SelectMark = 0.42f;
 
     [Header("ゲーム終了確認シーン名")]
-    public string cautionSceneName;
+    public string CautionSceneName;
     private bool isLoadCautionScene;
 
 
@@ -85,16 +80,28 @@ public class TitleSceneSelect : MonoBehaviour
             //}
             if (Input.GetMouseButtonDown(0))
             {
+                Debug.Log("読み込み出来た");
                 // シーン読み込み
-                SceneManager.Instance.LoadScene(cautionSceneName);
+                SceneManager.Instance.LoadScene("GameScene");
+                isLoad = true;
+                isPlayOtherScene = true;
                 // シーン変更
                 SceneManager.Instance.ChangeScene();
             }
+            //if (InputManager.Instance.GetButtonDown("UI", "Click"))
+            //{
+            //    Debug.Log("読み込み出来た");
+            //    // シーン読み込み
+            //    SceneManager.Instance.LoadScene(cautionSceneName);
+            //    // シーン変更
+            //    SceneManager.Instance.ChangeScene();
+            //}
             // ステージ決定
             if (InputManager.Instance.GetButtonDown("UI", "Click"))
             {
+                Debug.Log("読み込み出来た");
                 // シーン読み込み
-                SceneManager.Instance.LoadScene(cautionSceneName);
+                SceneManager.Instance.LoadScene(CautionSceneName);
                 // シーン変更
                 SceneManager.Instance.ChangeScene();
                 // ゲーム終了
@@ -123,6 +130,13 @@ public class TitleSceneSelect : MonoBehaviour
                 //    }
                 
             }
+            if (!isLoadChange)
+            {
+                // シーン変更
+                SceneManager.Instance.ChangeScene();
+                    isDestroyScene = true;
+                isLoadChange = true;
+            }
         }
         
 
@@ -134,7 +148,7 @@ public class TitleSceneSelect : MonoBehaviour
             if (!isLoad)
             {
                 // シーン読み込み
-                SceneManager.Instance.LoadScene(cautionSceneName);
+                SceneManager.Instance.LoadScene(CautionSceneName);
                 // シーン変更
                 SceneManager.Instance.ChangeScene();
                 isLoad = true;

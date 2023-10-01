@@ -327,6 +327,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 399209193}
     - target: {fileID: 8211813330390306771, guid: da17aa34c2261fd4d93d24608a260153, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211813330390306771, guid: da17aa34c2261fd4d93d24608a260153, type: 3}
       propertyPath: loadSceneNameList.Array.data[0]
       value: TitleScene
       objectReference: {fileID: 0}

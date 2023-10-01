@@ -115,6 +115,8 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
       //  SoundManager.Instance.SoundDataClear();
         destroySceneNameList.Add(sceneName);
     }
+
+   
     /// <summary>
     /// シーン読み込みコルーチン
     /// </summary>
@@ -132,7 +134,7 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
                     if (isChange)
                     {
                         asyncOperation.allowSceneActivation = true;
-
+                 
                         if (addSceneNameList.Count > 0)
                         {
                             addSceneNameList.RemoveAt(0);

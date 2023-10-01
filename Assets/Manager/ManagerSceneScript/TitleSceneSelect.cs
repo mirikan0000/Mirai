@@ -15,8 +15,8 @@ public class TitleSceneSelect : MonoBehaviour
     [Header("ゲーム終了確認シーン名")]
     public string CautionSceneName;
     private bool isLoadCautionScene;
-
-
+    [Header("フェードアウトパネル")]
+    public GameObject panel;
 
 
     public bool isLoad;
@@ -24,11 +24,12 @@ public class TitleSceneSelect : MonoBehaviour
     string loadSceneName;
     private bool isLoadChange;
     private bool isDestroyScene;
-
+    private bool fadeout;
 
   
     void Start()
     {
+        fadeout = false;
     }
 
     private void Awake()
@@ -64,8 +65,11 @@ public class TitleSceneSelect : MonoBehaviour
         //入力を受け付けるかどうか
         if (!isPlayOtherScene)
         {
-
-
+            if (fadeout)
+            {
+                panel.GetComponent<FadeOut>().Fadeout();
+            }
+          
             // 次のステージ(下)に移動
             //if (InputManager.Instance.GetButtonDown("UI", "Down") && !isLoad)
             //{
@@ -81,20 +85,36 @@ public class TitleSceneSelect : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 Debug.Log("読み込み出来た");
-                // シーン読み込み
-                SceneManager.Instance.LoadScene("GameScene");
-                isLoad = true;
-                isPlayOtherScene = true;
-                // シーン変更
-                SceneManager.Instance.ChangeScene();
+                fadeout = true;
+                if (panel.GetComponent<Image>().color.a>=1.0f)
+                {
+                    // シーン読み込み
+                    SceneManager.Instance.LoadScene("GameScene");
+                    isLoad = true;
+                    isPlayOtherScene = true;
+                    // シーン変更
+                    SceneManager.Instance.ChangeScene();
+                }
+             
+
+                
             }
             if (InputManager.Instance.GetButtonDown("UI", "Click"))
             {
                 Debug.Log("読み込み出来た");
-                // シーン読み込み
-                SceneManager.Instance.LoadScene("GameScene");
-                // シーン変更
-                SceneManager.Instance.ChangeScene();
+                fadeout = true;
+                panel.GetComponent<FadeOut>().Fadeout();
+                if (panel.GetComponent<Image>().color.a >= 1.0f)
+                {
+                    // シーン読み込み
+                    SceneManager.Instance.LoadScene("GameScene");
+                    isLoad = true;
+                    isPlayOtherScene = true;
+                    // シーン変更
+                    SceneManager.Instance.ChangeScene();
+                }
+
+
             }
             // ステージ決定
             //if (InputManager.Instance.GetButtonDown("UI", "Click"))

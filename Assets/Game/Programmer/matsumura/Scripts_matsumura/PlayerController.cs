@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
         // マウスの左クリックで弾発射
         if (Input.GetButtonDown("Fire1")) // "Fire1"はデフォルトでマウスの左クリックにマッピングされています
         {
-            Shoot();
+         //   Shoot();
         }
     }
 

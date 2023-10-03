@@ -24,12 +24,14 @@ public class TitleSceneSelect : MonoBehaviour
     string loadSceneName;
     private bool isLoadChange;
     private bool isDestroyScene;
-    private bool fadeout;
+    private bool fade;
 
   
     void Start()
     {
-        fadeout = false;
+        fade = false;
+        isLoadChange = false;
+        isDestroyScene = false;
     }
 
     private void Awake()
@@ -65,9 +67,9 @@ public class TitleSceneSelect : MonoBehaviour
         //入力を受け付けるかどうか
         if (!isPlayOtherScene)
         {
-            if (fadeout)
+            if (fade)
             {
-                panel.GetComponent<FadeOut>().Fadeout();
+                panel.GetComponentInChildren<FadeOut>().Fadeout();
             }
           
             // 次のステージ(下)に移動
@@ -85,11 +87,11 @@ public class TitleSceneSelect : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 Debug.Log("読み込み出来た");
-                fadeout = true;
-                if (panel.GetComponent<Image>().color.a>=1.0f)
+                fade = true;
+                if (!panel.GetComponentInChildren<FadeOut>().fadeout)
                 {
                     // シーン読み込み
-                    SceneManager.Instance.LoadScene("GameScene");
+                    SceneManager.Instance.LoadScene(loadSceneNameList[0]);
                     isLoad = true;
                     isPlayOtherScene = true;
                     // シーン変更
@@ -102,10 +104,20 @@ public class TitleSceneSelect : MonoBehaviour
             if (InputManager.Instance.GetButtonDown("UI", "Click"))
             {
                 Debug.Log("読み込み出来た");
-                fadeout = true;
+                fade = true;
                 panel.GetComponent<FadeOut>().Fadeout();
-                if (panel.GetComponent<Image>().color.a >= 1.0f)
+                if (!panel.GetComponentInChildren<FadeOut>().fadeout)
                 {
+                    Image imageComponent = panel.GetComponent<Image>();
+
+                    // 現在の色情報を取得
+                    Color color = imageComponent.color;
+
+                    // アルファチャンネルを設定
+                    color.a = 0;
+
+                    // 色情報を設定し直す
+                    imageComponent.color = color;
                     // シーン読み込み
                     SceneManager.Instance.LoadScene("GameScene");
                     isLoad = true;
@@ -153,8 +165,8 @@ public class TitleSceneSelect : MonoBehaviour
             if (!isLoadChange)
             {
                 // シーン変更
-                SceneManager.Instance.ChangeScene();
-                    isDestroyScene = true;
+              //  SceneManager.Instance.ChangeScene();
+                 isDestroyScene = true;
                 isLoadChange = true;
             }
         }

@@ -13,8 +13,9 @@ public class FadeOut : MonoBehaviour
     Image fadealpha;               //フェードパネルのイメージ取得変数
 
     private float alpha;           //パネルのalpha値取得変数
-
-    private bool fadeout;          //フェードアウトのフラグ変数
+    [SerializeField, Range(0.0f, 1.0f)]
+    public float alphaSpeed;
+     public bool fadeout;          //フェードアウトのフラグ変数
 
 
     // Use this for initialization
@@ -28,7 +29,7 @@ public class FadeOut : MonoBehaviour
   
     public void Fadeout()
     {
-        alpha += 0.01f;
+        alpha += alphaSpeed;
         fadealpha.color = new Color(0, 0, 0, alpha);
         if (alpha >= 1)
         {

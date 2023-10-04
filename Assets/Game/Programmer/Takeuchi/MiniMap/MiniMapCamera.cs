@@ -12,12 +12,19 @@ public class MiniMapCamera : MonoBehaviour
     public float miniMapCameraMoveSpeed;  //ミニマップカメラの移動スピード
 
     [Header("各プレイヤーのマップ番号用")]
-    public int player1MapNum;
-    public int player2MapNum;
+    public int player1MapNum;  //Player1の現在位置
+    public int player2MapNum;  //Player2の現在位置
 
     [Header("プレイヤー同士の位置比較用")]
     public bool checkMapNum = false;  //Player同士のマップ番号が同じかどうか
     public int bothPlayersNum;  //Player同士のマップ番号が同じ時のマップ番号
+
+    [Header("表示オブジェクトの拡縮用")]
+    public float objScaleX;// = 1.0f;  //表示オブジェクトの大きさX方向
+    public float objScaleY;// = 0.2f;  //表示オブジェクトの大きさY方向
+    public float objScaleZ;// = 1.0f;  //表示オブジェクトの大きさZ方向
+    private GameObject p1FakeObj;  //ミニマップに表示するPlayer1のオブジェクト
+    private GameObject p2FakeObj;  //ミニマップに表示するPlayer2のオブジェクト
 
     //Player1の現在のマップ番号を取得する用
     Player1 player1Script;          //Player2のスクリプトを入れる用
@@ -41,7 +48,8 @@ public class MiniMapCamera : MonoBehaviour
 
         //ミニマップカメラの位置情報を取得
         miniMapCameraTransform = this.GetComponent<Transform>();
-        Debug.Log(miniMapCameraTransform);
+        //Debug.Log(miniMapCameraTransform);
+
         //ミニマップカメラのデフォルト位置を設定
         miniMapCameraDefaultPos = new Vector3(0, 25, 0);
     }
@@ -57,11 +65,17 @@ public class MiniMapCamera : MonoBehaviour
         if (checkMapNum == true)
         {
             MoveMiniMapCamera();  //カメラを移動させる
+
+            //表示オブジェクトを縮小
+            ChangePlayerFakeObjScaleShrink();
         }
         else
         {
             //フラグがfalseならミニマップカメラをデフォルトの位置に戻す
             miniMapCameraTransform.position = Vector3.MoveTowards(miniMapCameraTransform.position, miniMapCameraDefaultPos, miniMapCameraMoveSpeed * Time.deltaTime);
+
+            //表示オブジェクトを拡大
+            ChangePlayerFakeObjScaleExpand();
         }
     }
 
@@ -112,7 +126,13 @@ public class MiniMapCamera : MonoBehaviour
     {
         //Player1のオブジェクトを取得
         player1Obj = GameObject.FindWithTag("Player1");
-        //Debug.Log(player1Obj);
+
+        //Player1のミニマップに表示するオブジェクトを取得
+        p1FakeObj = GameObject.Find("Player1FakeObj");
+        objScaleX = p1FakeObj.transform.localScale.x;
+        objScaleY = p1FakeObj.transform.localScale.y;
+        objScaleZ = p1FakeObj.transform.localScale.z;
+        Debug.Log(p1FakeObj.transform.localScale);
 
         //player1ObjNullチェック
         if (player1Obj != null)
@@ -143,7 +163,9 @@ public class MiniMapCamera : MonoBehaviour
     {
         //Player2のオブジェクトを取得
         player2Obj = GameObject.FindWithTag("Player2");
-        //Debug.Log(player2Obj);
+
+        //Player2のミニマップに表示するオブジェクトを取得
+        p2FakeObj = GameObject.Find("Player2FakeObj");
 
         //Player2ObjNullチェック
         if (player2Obj != null)
@@ -176,12 +198,43 @@ public class MiniMapCamera : MonoBehaviour
         {
             checkMapNum = true;
             bothPlayersNum = player1MapNum;
-            Debug.Log(bothPlayersNum);
+            //Debug.Log(bothPlayersNum);
         }
         else
         {
             checkMapNum = false;
-            Debug.Log(checkMapNum);
+            ChangePlayerFakeObjScaleShrink();
+            //Debug.Log(checkMapNum);
         }
+    }
+
+    //カメラの位置によってミニマップに表示するプレイヤーのオブジェクトを拡大する
+    private void ChangePlayerFakeObjScaleExpand()
+    {
+        //オブジェクトのサイズを拡大
+        if (objScaleX < 2.0f && objScaleZ < 2.0f)
+        {
+            objScaleX += 1.0f; // * Time.deltaTime;
+            objScaleZ += 1.0f; // * Time.deltaTime;
+        }
+
+        //オブジェクトのサイズを変更
+        p1FakeObj.transform.localScale = new Vector3(objScaleX, objScaleY, objScaleZ);
+        p2FakeObj.transform.localScale = new Vector3(objScaleX, objScaleY, objScaleZ);
+    }
+
+    //カメラの位置によってミニマップに表示するプレイヤーのオブジェクトを拡大する
+    private void ChangePlayerFakeObjScaleShrink()
+    {
+        //オブジェクトのサイズを縮小
+        if (objScaleX > 1.0f && objScaleZ > 1.0f)
+        {
+            objScaleX -= 1.0f; // * Time.deltaTime;
+            objScaleZ -= 1.0f; // * Time.deltaTime;
+        }
+
+        //オブジェクトのサイズを変更
+        p1FakeObj.transform.localScale = new Vector3(objScaleX, objScaleY, objScaleZ);
+        p2FakeObj.transform.localScale = new Vector3(objScaleX, objScaleY, objScaleZ);
     }
 }

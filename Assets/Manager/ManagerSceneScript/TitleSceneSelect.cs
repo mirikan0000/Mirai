@@ -84,31 +84,31 @@ public class TitleSceneSelect : MonoBehaviour
             //    ButtonNo--;
             //    //SE_Select.Play();
             //}
-            if (Input.GetMouseButtonDown(0))
-            {
-                Debug.Log("読み込み出来た");
-                fade = true;
-                if (!panel.GetComponentInChildren<FadeOut>().fadeout)
-                {
-                    // シーン読み込み
-                    SceneManager.Instance.LoadScene(loadSceneNameList[0]);
-                    isLoad = true;
-                    isPlayOtherScene = true;
-                    // シーン変更
-                    SceneManager.Instance.ChangeScene();
-                }
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    Debug.Log("読み込み出来た");
+            //    fade = true;
+            //    if (!panel.GetComponentInChildren<FadeOut>().fadeout)
+            //    {
+            //        // シーン読み込み
+            //        SceneManager.Instance.LoadScene(loadSceneNameList[0]);
+            //        isLoad = true;
+            //        isPlayOtherScene = true;
+            //        // シーン変更
+            //        SceneManager.Instance.ChangeScene();
+            //    }
              
 
                 
-            }
+            //}
             if (InputManager.Instance.GetButtonDown("UI", "Click"))
             {
                 Debug.Log("読み込み出来た");
                 fade = true;
-                panel.GetComponent<FadeOut>().Fadeout();
+                panel.GetComponentInChildren<FadeOut>().Fadeout();
                 if (!panel.GetComponentInChildren<FadeOut>().fadeout)
                 {
-                    Image imageComponent = panel.GetComponent<Image>();
+                    Image imageComponent = panel.GetComponentInChildren<Image>();
 
                     // 現在の色情報を取得
                     Color color = imageComponent.color;

@@ -22,7 +22,7 @@ public class Player2 : ParentPlayer
         p2NowMapNum = playerMapNum;
         //Debug.Log(p2NowMapNum);
         //移動用
-        PlayerMove();
+      //  PlayerMove();
     }
 
     //プレイヤー操作

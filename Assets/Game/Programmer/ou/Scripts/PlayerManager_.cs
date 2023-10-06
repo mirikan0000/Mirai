@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerManager_ : MonoBehaviour
 {
@@ -13,11 +14,11 @@ public class PlayerManager_ : MonoBehaviour
     //発射、リロードは移動できないため
     bool is_moveable = true;
 
-    //プレイヤーの移動速度
-    float move_speed = 5.0f;
+  
+    [Header("プレイヤーの移動速度")]
+    public float move_speed = 5.0f;
 
-    //プレイヤーの回転速度
-    float rot_angle = 0.1f;
+  [SerializeField] float rot_angle = 0.1f;
 
     //発射角度の調整速度(回転)
     float gunBarrel_rotSpeed = 0.5f;
@@ -42,37 +43,174 @@ public class PlayerManager_ : MonoBehaviour
 
     //弾丸予測線の計算結果リスト(描画位置を保存する)
     List<GameObject> PredictionLine_List = new List<GameObject>();
+    
+    //ローカルマルチ設定
+    private Dictionary<string, PlayerInput> playerInputDictionary = new Dictionary<string, PlayerInput>();
+    //
+    public PlayerInput[] playerInputArray;
+    // 振動////////////////////////////////////
+    [System.Serializable]
+    public struct VibrationStruct
+    {
+        public string name;
+        public AnimationCurve valueLeft;
+        public AnimationCurve valueRight;
+        public float speed;
+    }
+    [Header("振動構造体配列")]
+    public VibrationStruct[] vibrationStructArray;
+    private VibrationStruct vibrationStructNow;
+    // 振動時間
+    private float vibrationTime;
+
+    public bool isVibrationCannot;
+
+    //animation
+    public Animator animator;  // アニメーターコンポーネント取得用
+   public FootSteps footSteps;
+
+
+// サウンドが再生中かどうかを示すフラグ
+private bool isSoundPlaying = false;
+
+// 前回の足音再生時刻
+private float lastFootstepTime = 0f;
+    private float footstepInterval=0.5f;
 
     // Start is called before the first frame update
     void Start()
     {
         //ゲーム開始(更新を許可する)
         is_start = true;
-    }
 
+        foreach (PlayerInput playerInput in playerInputArray)
+        {
+            playerInputDictionary[playerInput.currentActionMap.name] = playerInput;
+        }
+
+        if (animator) animator.SetBool("Walk", false);
+        
+        //振動時間
+        vibrationTime = 99;
+
+    }
+  
+    /// <summary>
+    /// ボタンを押した瞬間
+    /// ※ActionMaps名,Actions名は「InputActionControls」を確認
+    /// </summary>
+    public bool GetButtonDown(string actionMapsName, string actionsName)
+    {
+   
+
+        if (playerInputDictionary.TryGetValue(actionMapsName, out PlayerInput playerInput))
+        {
+            return playerInput.actions[actionsName].WasPressedThisFrame();
+        }
+
+        Debug.Log("入力受付失敗" + actionMapsName + actionsName);
+        return false;
+    }
+    public bool GetButton(string actionMapsName, string actionsName)
+    {
+
+
+        if (playerInputDictionary.TryGetValue(actionMapsName, out PlayerInput playerInput))
+        {
+            return playerInput.actions[actionsName].IsPressed();
+        }
+
+        Debug.Log("ActionMapが存在しない" + actionMapsName + actionsName);
+        return false;
+    }
+    /// <summary>
+    /// ボタンを離した瞬間 
+    /// ※ActionMaps名,Actions名は「InputActionControls」を確認
+    /// </summary>
+    public bool GetButtonUp(string actionMapsName, string actionsName)
+    {
+        if (playerInputDictionary.TryGetValue(actionMapsName, out PlayerInput playerInput))
+        {
+            return playerInput.actions[actionsName].WasReleasedThisFrame();
+        }
+
+        Debug.Log("ActionMapが存在しない" + actionMapsName + actionsName);
+        return false;
+    }
+    // サウンド再生が終了したことを通知するメソッド
+    //public void OnSoundFinished()
+    //{
+    //    isSoundPlaying = false; // サウンド再生中フラグをクリア
+    //}
     // Update is called once per frame
+
+    void EndOfWalk()
+    {
+        if (animator) animator.SetBool("Walk", false);
+    }
     void Update()
     {
+        EndOfWalk();
         if (is_start)
         {
+            // 振動処理
+            Gamepad gamepad = Gamepad.current;
+            if (gamepad == null)
+            {
+                return;
+            }
+            //if ((vibrationTime <= 1.0f && !isVibrationCannot) && !PauseManager.Instance.isPause)
+            //{
+            //    gamepad.SetMotorSpeeds(vibrationStructNow.valueLeft.Evaluate(vibrationTime), vibrationStructNow.valueRight.Evaluate(vibrationTime));
+            //    vibrationTime += Time.deltaTime * vibrationStructNow.speed;
+            //}
+            //else
+            //{
+            //    InputManager.Instance.StopVibration();
+            //}
             //仮
             //プレイヤー移動
             if (is_moveable)
             {
                 //Keyboard
-                if (Input.GetKey(KeyCode.W))
+                if (GetButton("Player","MoveForward"))
                 {
+               //     Debug.Log("クリア");
                     transform.Translate(new Vector3(0, 0, move_speed * Time.deltaTime));
+                    if (animator)
+                    {
+                        animator.SetBool("Walk",true);
+                        if (Time.time - lastFootstepTime >= footstepInterval)
+                        {
+                            footSteps.FootStep(); // 足音再生
+                            lastFootstepTime = Time.time; // 前回の再生時刻を更新
+                                                          // isSoundPlaying = true; // サウンド再生中フラグを立てる
+                        }
+                    } // アニメーション切り替え
+                      //if (!isSoundPlaying)
+                      //{
+                      // 前回の足音から一定時間以上経っているか確認
+                   
+                       
+                   // }
+             
                 }
-                if (Input.GetKey(KeyCode.S))
+         
+                if (GetButton("Player", "MoveBack"))
                 {
                     transform.Translate(new Vector3(0, 0, -move_speed * Time.deltaTime));
+                    if (animator)
+                    {
+                        animator.SetBool("Walk", true);
+      
+                    } // アニメーション切り替え
                 }
-                if (Input.GetKey(KeyCode.A))
+              
+                if (GetButton("Player", "MoveLeft"))
                 {
                     transform.Rotate(new Vector3(0, -rot_angle, 0));
                 }
-                if (Input.GetKey(KeyCode.D))
+                if (GetButton("Player", "MoveRight"))
                 {
                     transform.Rotate(new Vector3(0, rot_angle, 0));
                 }
@@ -80,7 +218,7 @@ public class PlayerManager_ : MonoBehaviour
 
             //弾丸予測線
             //Spaceキーを押し続けると弾丸予測線を描画する
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (GetButtonDown("Player","Fire"))
             {
                 //予測線
                 //二つ方法(重力、三角関数で模擬放物線)
@@ -92,7 +230,7 @@ public class PlayerManager_ : MonoBehaviour
             }
 
             //弾丸発射
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (GetButtonUp("Player","Fire"))
             {
                 //発射
                 //二つ方法(重力、三角関数で模擬放物線)
@@ -122,11 +260,11 @@ public class PlayerManager_ : MonoBehaviour
             {
                 //発射角度を調整する
                 //仮設定 発射角度の範囲:0°~90°
-                if (Input.GetKey(KeyCode.UpArrow))
+                if (GetButton("Player", "MoveForward"))
                 {
                     gun_rotAngle = (gun_rotAngle + gunBarrel_rotSpeed) <= 90.0f ? (gun_rotAngle + gunBarrel_rotSpeed) : 90.0f;
                 }
-                else if (Input.GetKey(KeyCode.DownArrow))
+                else if (GetButton("Player", "MoveBack"))
                 {
                     gun_rotAngle = (gun_rotAngle - gunBarrel_rotSpeed) > 0 ? (gun_rotAngle - gunBarrel_rotSpeed) : 0.0f;
                 }

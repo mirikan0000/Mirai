@@ -10,9 +10,10 @@ public class Bulletkari : MonoBehaviour
         {
             // プレイヤーにダメージを与える
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+            // 弾丸を消す
+            Destroy(gameObject);
         }
 
-        // 弾丸を消す
-        Destroy(gameObject);
+      
     }
 }

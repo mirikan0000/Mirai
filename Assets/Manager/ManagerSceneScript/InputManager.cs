@@ -50,8 +50,6 @@ public class InputManager : SingletonMonoBehaviour<InputManager>
 
         vibrationTime = 99;
 
-        // カーソル非表示
-        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -68,135 +66,55 @@ public class InputManager : SingletonMonoBehaviour<InputManager>
         }
 
         //bool isStageTransition = false;
-        //GameObject[] stageTransitionMaskObjArray = GameObject.FindGameObjectsWithTag("StageTransitionMask");
-        //GameObject[] transitionMaskObjArray = GameObject.FindGameObjectsWithTag("transitionMask");
-        //GameObject[] outgameTransitionMaskObjArray = GameObject.FindGameObjectsWithTag("OutGameTransitionMask");
-        //GameObject[] spriteTransitionMaskObjArray = GameObject.FindGameObjectsWithTag("spriteTransitionMask");
-        //GameObject[] goalObjArray = GameObject.FindGameObjectsWithTag("Goal");
+
         //GameObject[] playerObjArray = GameObject.FindGameObjectsWithTag("Player");
         //UnityEngine.SceneManagement.Scene[] nowSceneArray = UnityEngine.SceneManagement.SceneManager.GetAllScenes();
-        //bool isSceneChangeEnd = false;
-        //bool isStartLogo = false;
-        //for (int i = 0; i < nowSceneArray.Length; i++)
-        //{
-        //    if (nowSceneArray[i].name == "s_StartLogo" || nowSceneArray[i].name == "s_OpMV" || nowSceneArray[i].name == "s_EndMV")
-        //    {
-        //        isStartLogo = true;
-        //    }
 
-        //    if (nowSceneArray[i].name == "s_Start" || nowSceneArray[i].name == "s_Title" || nowSceneArray[i].name == "s_StageSelect")
-        //    {
-        //        foreach (GameObject stageTransitionMaskObj in stageTransitionMaskObjArray)
-        //        {
-        //            if (!stageTransitionMaskObj.GetComponent<StageTransitionMask>().maskDogAnimator.GetBool("isEnd"))
-        //            {
-        //                isStageTransition = true;
-        //            }
-        //        }
-        //    }
-
-        //    foreach (string lightSceneName in LightSceneChange.Instance.lightSceneNameArray)
-        //    {
-        //        if (nowSceneArray[i].name == lightSceneName)
-        //        {
-        //            if (!isSceneChangeEnd)
-        //            {
-        //                isSceneChangeEnd = true;
-        //            }
-        //            else
-        //            {
-        //                isStageTransition = true;
-        //            }
-        //        }
-        //    }
-        //}
-        //foreach (GameObject transitionMaskObj in transitionMaskObjArray)
-        //{
-        //    if (transitionMaskObj.transform.Find("MaskDog").GetComponent<Animator>().GetBool("isMask"))
-        //    {
-        //        isStageTransition = true;
-        //    }
-        //}
-        //foreach (GameObject outgameTransitionMaskObj in outgameTransitionMaskObjArray)
-        //{
-        //    if (outgameTransitionMaskObj.GetComponent<Animator>().GetBool("isMask"))
-        //    {
-        //        isStageTransition = true;
-        //    }
-        //}
-        //foreach (GameObject spriteTransitionMaskObj in spriteTransitionMaskObjArray)
-        //{
-        //    if (spriteTransitionMaskObj.GetComponent<Animator>().GetBool("isMask"))
-        //    {
-        //        isStageTransition = true;
-        //    }
-        //}
-        //foreach (GameObject goalObj in goalObjArray)
-        //{
-        //    if (goalObj.name != "NextSceneBoss")
-        //    {
-        //        if (goalObj.GetComponent<ParentScript>().isGoal)
-        //        {
-        //            isStageTransition = true;
-        //        }
-        //    }
-        //}
-        //foreach (GameObject playerObj in playerObjArray)
-        //{
-        //    if (playerObj.GetComponent<PlayerMover6>().gameStartTime <= 100)
-        //    {
-        //        isStageTransition = true;
-        //    }
-        //}
-
-        // トランジションしてない場合
-        //if (!isStageTransition && !isStartLogo)
-        //{
             // コントローラーを使ってる時,キーボード入力があった場合
-            if (isUseGamepad)
-            {
-                if (GetButtonDown("Judge", "AnyKeyboard") || MathF.Abs(GetStick("Judge", "MoveMouse").x) >= 20.0f || MathF.Abs(GetStick("Judge", "MoveMouse").y) >= 20.0f)
-                {
-                    UnityEngine.SceneManagement.Scene[] sceneArray = UnityEngine.SceneManagement.SceneManager.GetAllScenes();
-                    bool isSceneChange = true;
-                    foreach (UnityEngine.SceneManagement.Scene scene in sceneArray)
-                    {
-                        if (scene.name == "s_Operate")
-                        {
-                            isSceneChange = false;
-                        }
-                    }
-                    if (isSceneChange)
-                    {
-                        SceneManager.Instance.LoadScene("s_Operate");
-                        SceneManager.Instance.ChangeScene();
-                    }
-                }
-            }
-            // キーボードを使ってる時,コントローラー入力があった場合
-            else
-            {
-                if (GetButtonDown("Judge", "AnyGamepad") || MathF.Abs(GetStick("Judge", "MoveGamepad").x) >= 0.5f || MathF.Abs(GetStick("Judge", "MoveGamepad").y) >= 0.5f)
-                {
-                    UnityEngine.SceneManagement.Scene[] sceneArray = UnityEngine.SceneManagement.SceneManager.GetAllScenes();
-                    bool isSceneChange = true;
-                    foreach (UnityEngine.SceneManagement.Scene scene in sceneArray)
-                    {
-                        if (scene.name == "s_Operate")
-                        {
-                            isSceneChange = false;
-                        }
-                    }
-                    if (isSceneChange)
-                    {
-                        SceneManager.Instance.LoadScene("s_Operate");
-                        SceneManager.Instance.ChangeScene();
-                    }
-                }
-            }
+            //if (isUseGamepad)
+            //{
+            //    if (GetButtonDown("Judge", "AnyKeyboard") || MathF.Abs(GetStick("Judge", "MoveMouse").x) >= 20.0f || MathF.Abs(GetStick("Judge", "MoveMouse").y) >= 20.0f)
+            //    {
+            //        UnityEngine.SceneManagement.Scene[] sceneArray = UnityEngine.SceneManagement.SceneManager.GetAllScenes();
+            //        bool isSceneChange = true;
+            //        foreach (UnityEngine.SceneManagement.Scene scene in sceneArray)
+            //        {
+            //            if (scene.name == "s_Operate")
+            //            {
+            //                isSceneChange = false;
+            //            }
+            //        }
+            //        if (isSceneChange)
+            //        {
+            //            SceneManager.Instance.LoadScene("s_Operate");
+            //            SceneManager.Instance.ChangeScene();
+            //        }
+            //    }
+            //}
+            //// キーボードを使ってる時,コントローラー入力があった場合
+            //else
+            //{
+            //    if (GetButtonDown("Judge", "AnyGamepad") || MathF.Abs(GetStick("Judge", "MoveGamepad").x) >= 0.5f || MathF.Abs(GetStick("Judge", "MoveGamepad").y) >= 0.5f)
+            //    {
+            //        UnityEngine.SceneManagement.Scene[] sceneArray = UnityEngine.SceneManagement.SceneManager.GetAllScenes();
+            //        bool isSceneChange = true;
+            //        foreach (UnityEngine.SceneManagement.Scene scene in sceneArray)
+            //        {
+            //            if (scene.name == "s_Operate")
+            //            {
+            //                isSceneChange = false;
+            //            }
+            //        }
+            //        if (isSceneChange)
+            //        {
+            //            SceneManager.Instance.LoadScene("s_Operate");
+            //            SceneManager.Instance.ChangeScene();
+            //        }
+            //    }
+            //}
        // }
 
-        Debug.Log("isVibrationCannot" + isVibrationCannot);
+      //  Debug.Log("isVibrationCannot" + isVibrationCannot);
 
         // 振動処理
         Gamepad gamepad = Gamepad.current;

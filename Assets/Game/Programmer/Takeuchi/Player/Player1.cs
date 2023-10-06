@@ -24,7 +24,7 @@ public class Player1 : ParentPlayer
         //Debug.Log(p1NowMapNum);
 
         //操作用
-        PlayerMove();
+      //  PlayerMove();
     }
 
     //プレイヤー操作

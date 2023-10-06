@@ -18,7 +18,11 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
     private List<string> destroySceneNameList = new List<string>();
 
     private bool isLoad = false;
-
+    private float loadingProgress = 0.0f;
+    public float LoadingProgress
+    {
+        get { return loadingProgress; }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -115,6 +119,8 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
       //  SoundManager.Instance.SoundDataClear();
         destroySceneNameList.Add(sceneName);
     }
+
+   
     /// <summary>
     /// シーン読み込みコルーチン
     /// </summary>
@@ -127,12 +133,13 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
 
             while (!asyncOperation.isDone)
             {
+                loadingProgress = asyncOperation.progress; // 進行状況を更新
                 if (asyncOperation.progress >= 0.9f)
                 {
                     if (isChange)
                     {
                         asyncOperation.allowSceneActivation = true;
-
+                 
                         if (addSceneNameList.Count > 0)
                         {
                             addSceneNameList.RemoveAt(0);
@@ -163,6 +170,9 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
             }
         }
     }
+
+
+
     /// <summary>
     /// LoadSceneにセットしたシーンが読み込まれているか
     /// </summary>

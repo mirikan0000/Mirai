@@ -280,7 +280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1361986254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,13 +288,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361986253}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 0164f6724e034bd4bb62772baa3e9fdb, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -358,8 +358,8 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 70c369e8-7935-4a2f-8cd2-c2bab7d81819
     m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Gamepad
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -388,6 +388,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1529455968}
   - component: {fileID: 1529455969}
+  - component: {fileID: 1529455970}
   m_Layer: 0
   m_Name: BGMManager
   m_TagString: Untagged
@@ -424,6 +425,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmSettingStructList: []
   fadeBgmSpeed: 0
+--- !u!81 &1529455970
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529455967}
+  m_Enabled: 0
 --- !u!1 &1586438675
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,6 +443,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1586438677}
   - component: {fileID: 1586438676}
+  - component: {fileID: 1586438678}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -454,260 +464,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInputArray:
-  - {fileID: 1361986254}
   - {fileID: 1893902284}
   inputActionControls: {fileID: -944628639613478452, guid: 0164f6724e034bd4bb62772baa3e9fdb, type: 3}
-  vibrationStructArray:
-  - name: SampleRight
-    valueLeft:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: -0.32728657
-        value: -0.008843899
-        inSlope: -0.0037197701
-        outSlope: -0.0037197701
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 3.7077484
-        value: -0.023853302
-        inSlope: -0.0037197701
-        outSlope: -0.0037197701
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    valueRight:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: -6.6192226
-        value: 1.0034226
-        inSlope: -0.000020565063
-        outSlope: -0.000020565063
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 13.083725
-        value: 1.0030174
-        inSlope: -0.000020565063
-        outSlope: -0.000020565063
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    speed: 1
-  - name: BubbleStickDown
-    valueLeft:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0.00047850187
-        outSlope: 0.00047850187
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.996521
-        value: 0.00047683716
-        inSlope: 0.00047850187
-        outSlope: 0.00047850187
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    valueRight:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.000039753504
-        value: 0.013041432
-        inSlope: 0.00022735387
-        outSlope: 0.00022735387
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1.0006199
-        value: 0.013268918
-        inSlope: 0.00022735387
-        outSlope: 0.00022735387
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    speed: 2
-  - name: SampleLeft
-    valueLeft:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: -6.6192226
-        value: 1.0034226
-        inSlope: -0.000020565063
-        outSlope: -0.000020565063
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 13.083725
-        value: 1.0030174
-        inSlope: -0.000020565063
-        outSlope: -0.000020565063
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    valueRight:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0.00047850187
-        outSlope: 0.00047850187
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.996521
-        value: 0.00047683716
-        inSlope: 0.00047850187
-        outSlope: 0.00047850187
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    speed: 1
-  - name: KingAngry
-    valueLeft:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    valueRight:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1.1602783
-        value: 0.994339
-        inSlope: 0.15319476
-        outSlope: 0.15319476
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.15161566
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    speed: 2
-  - name: KingName
-    valueLeft:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: -6.6192226
-        value: 1.0034226
-        inSlope: 0.000884829
-        outSlope: 0.000884829
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 12.892441
-        value: 1.0206871
-        inSlope: 0.000884829
-        outSlope: 0.000884829
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    valueRight:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0.00047850187
-        outSlope: 0.00047850187
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.996521
-        value: 0.00047683716
-        inSlope: 0.00047850187
-        outSlope: 0.00047850187
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    speed: 1
+  vibrationStructArray: []
   isVibrationCannot: 0
   isUseGamepad: 1
 --- !u!4 &1586438677
@@ -727,6 +486,98 @@ Transform:
   - {fileID: 1893902285}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1586438678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586438675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NotificationBehavior: 2
+  m_MaxPlayerCount: -1
+  m_AllowJoining: 0
+  m_JoinBehavior: 1
+  m_PlayerJoinedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5428456739957870289, guid: 39ba071bbc30ef24d9f35260b10aa447, type: 3}
+        m_TargetAssemblyTypeName: ReceiveNotificationExample, Assembly-CSharp
+        m_MethodName: OnPlayerJoined
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7682443805102573252, guid: 0c15a9b2d37fb8541b2ca5ba62b3bf01, type: 3}
+        m_TargetAssemblyTypeName: ReceiveNotificationExample, Assembly-CSharp
+        m_MethodName: OnPlayerJoined
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_PlayerLeftEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5428456739957870289, guid: 39ba071bbc30ef24d9f35260b10aa447, type: 3}
+        m_TargetAssemblyTypeName: ReceiveNotificationExample, Assembly-CSharp
+        m_MethodName: OnPlayerLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7682443805102573252, guid: 0c15a9b2d37fb8541b2ca5ba62b3bf01, type: 3}
+        m_TargetAssemblyTypeName: ReceiveNotificationExample, Assembly-CSharp
+        m_MethodName: OnPlayerLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_JoinAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Join
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 464db3f6-9507-4d79-8595-0443295a95ca
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_PlayerPrefab: {fileID: 0}
+  m_SplitScreen: 0
+  m_MaintainAspectRatioInSplitScreen: 0
+  m_FixedNumberOfSplitScreens: 0
+  m_SplitScreenRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &1893902283
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,7 +608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 0164f6724e034bd4bb62772baa3e9fdb, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -822,7 +673,7 @@ MonoBehaviour:
     m_ActionId: 70c369e8-7935-4a2f-8cd2-c2bab7d81819
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Gamepad
+  m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

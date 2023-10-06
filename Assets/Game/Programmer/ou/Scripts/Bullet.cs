@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     float rangeOffset = 0.0f;
     //’eŠÛ‚ÌˆÚ“®‘¬“x
     public float move_Speed = 15.0f;
+    public float BulletLifeTime;
     //’eŠÛ‚Ì„‘Ì
     Rigidbody rb;
 
@@ -25,7 +26,7 @@ public class Bullet : MonoBehaviour
         PlayerPrefs.SetFloat("Bullet_Speed", move_Speed);
 
         //3•bŒã‚Å©•ª‚ğ”j‰ó‚·‚é
-        Destroy(this.gameObject, 3f);
+        Destroy(this.gameObject, BulletLifeTime);
     }
 
     // Update is called once per frame

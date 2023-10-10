@@ -16,7 +16,7 @@ public class CameraSwitch : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             TPSCamera.gameObject.SetActive(FPSCamera.gameObject.activeSelf);
             FPSCamera.gameObject.SetActive(!TPSCamera.gameObject.activeSelf);

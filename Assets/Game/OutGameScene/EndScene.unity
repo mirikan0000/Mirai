@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 368482754}
   - component: {fileID: 368482753}
-  - component: {fileID: 368482752}
+  - component: {fileID: 368482755}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -141,26 +141,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &368482752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 368482751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &368482753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +171,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &368482755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368482751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 0164f6724e034bd4bb62772baa3e9fdb, type: 3}
+  m_PointAction: {fileID: 8604047217526402088, guid: 0164f6724e034bd4bb62772baa3e9fdb, type: 3}
+  m_MoveAction: {fileID: 1938273636198398453, guid: 0164f6724e034bd4bb62772baa3e9fdb, type: 3}
+  m_SubmitAction: {fileID: -9182230274784586083, guid: 0164f6724e034bd4bb62772baa3e9fdb, type: 3}
+  m_CancelAction: {fileID: 7428933837286088123, guid: 0164f6724e034bd4bb62772baa3e9fdb, type: 3}
+  m_LeftClickAction: {fileID: 3231363276063981823, guid: 0164f6724e034bd4bb62772baa3e9fdb, type: 3}
+  m_MiddleClickAction: {fileID: -3691821115114794549, guid: 0164f6724e034bd4bb62772baa3e9fdb, type: 3}
+  m_RightClickAction: {fileID: -2355803710599635835, guid: 0164f6724e034bd4bb62772baa3e9fdb, type: 3}
+  m_ScrollWheelAction: {fileID: -8451722554827160728, guid: 0164f6724e034bd4bb62772baa3e9fdb, type: 3}
+  m_TrackedDevicePositionAction: {fileID: -6894108436933296387, guid: 0164f6724e034bd4bb62772baa3e9fdb, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 3378818248557947367, guid: 0164f6724e034bd4bb62772baa3e9fdb, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1 &1216459541
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,6 +349,18 @@ PrefabInstance:
       propertyPath: loadText
       value: 
       objectReference: {fileID: 2009071608}
+    - target: {fileID: 4853128490687385698, guid: 76cdbd1cf94fadb45ae67f642159740f, type: 3}
+      propertyPath: CautionSceneName
+      value: GameScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853128490687385698, guid: 76cdbd1cf94fadb45ae67f642159740f, type: 3}
+      propertyPath: LoadSceneNameList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853128490687385698, guid: 76cdbd1cf94fadb45ae67f642159740f, type: 3}
+      propertyPath: LoadSceneNameList.Array.data[0]
+      value: TitleScene
+      objectReference: {fileID: 0}
     - target: {fileID: 7105306193375322924, guid: 76cdbd1cf94fadb45ae67f642159740f, type: 3}
       propertyPath: m_Name
       value: EndScene
@@ -367,6 +389,14 @@ PrefabInstance:
     - target: {fileID: 514503761556820493, guid: e161eb847ed22e8448f87466eb636995, type: 3}
       propertyPath: m_Color.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642057497875957004, guid: e161eb847ed22e8448f87466eb636995, type: 3}
+      propertyPath: m_Name
+      value: FadeOutPanelEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642057497875957004, guid: e161eb847ed22e8448f87466eb636995, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3996049947574570575, guid: e161eb847ed22e8448f87466eb636995, type: 3}
       propertyPath: m_Pivot.x
@@ -459,14 +489,6 @@ PrefabInstance:
     - target: {fileID: 8888478497247529614, guid: e161eb847ed22e8448f87466eb636995, type: 3}
       propertyPath: m_Text
       value: EndScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 3642057497875957004, guid: e161eb847ed22e8448f87466eb636995, type: 3}
-      propertyPath: m_Name
-      value: FadeOutPanelEnd
-      objectReference: {fileID: 0}
-    - target: {fileID: 3642057497875957004, guid: e161eb847ed22e8448f87466eb636995, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

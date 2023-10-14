@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerManager_ : MonoBehaviour
+public class PlayerManager_2 : MonoBehaviour
 {
     //ゲームは更新しているか(例えば：開始画面、クリア画面などではない状態)
     bool is_start;
@@ -14,11 +14,11 @@ public class PlayerManager_ : MonoBehaviour
     //発射、リロードは移動できないため
     bool is_moveable = true;
 
-  
+    Vector2 grid;
     [Header("プレイヤーの移動速度")]
     public float move_speed = 5.0f;
 
-  [SerializeField] float rot_angle = 0.1f;
+    [SerializeField] float rot_angle = 0.1f;
 
     //発射角度の調整速度(回転)
     float gunBarrel_rotSpeed = 0.5f;
@@ -37,13 +37,18 @@ public class PlayerManager_ : MonoBehaviour
     public GameObject Buttet;
     //弾丸予測線(Public型)
     public GameObject PredictionLine;
+    //フィールドにあるステージの枚数
+    List<GameObject> Fields;
+    [Header("マス間の距離")]
+    private float gridDistance = 150f;
 
+    private Vector3 targetPosition; // キャラクターが移動しようとしている目標位置
     //弾丸予測線を構成するための描画数
     public int PredictionLineNumber = 66;
 
     //弾丸予測線の計算結果リスト(描画位置を保存する)
     List<GameObject> PredictionLine_List = new List<GameObject>();
-    
+
     //ローカルマルチ設定
     private Dictionary<string, PlayerInput> playerInputDictionary = new Dictionary<string, PlayerInput>();
     //
@@ -67,15 +72,15 @@ public class PlayerManager_ : MonoBehaviour
 
     //animation
     public Animator animator;  // アニメーターコンポーネント取得用
-   public FootSteps footSteps;
+    public FootSteps footSteps;
 
 
-// サウンドが再生中かどうかを示すフラグ
-private bool isSoundPlaying = false;
+    // サウンドが再生中かどうかを示すフラグ
+    private bool isSoundPlaying = false;
 
-// 前回の足音再生時刻
-private float lastFootstepTime = 0f;
-    private float footstepInterval=0.5f;
+    // 前回の足音再生時刻
+    private float lastFootstepTime = 0f;
+    private float footstepInterval = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -89,19 +94,19 @@ private float lastFootstepTime = 0f;
         }
 
         if (animator) animator.SetBool("Walk", false);
-        
+
         //振動時間
         vibrationTime = 99;
 
     }
-  
+
     /// <summary>
     /// ボタンを押した瞬間
     /// ※ActionMaps名,Actions名は「InputActionControls」を確認
     /// </summary>
     public bool GetButtonDown(string actionMapsName, string actionsName)
     {
-   
+
 
         if (playerInputDictionary.TryGetValue(actionMapsName, out PlayerInput playerInput))
         {
@@ -201,44 +206,42 @@ private float lastFootstepTime = 0f;
     {
         if (is_moveable)
         {
-            //Keyboard
-            if (GetButton("Player", "MoveForward"))
+            // マス移動
+            if (GetButtonDown("Player", "MoveForward"))
             {
-                //     Debug.Log("クリア");
-                transform.Translate(new Vector3(0, 0, move_speed * Time.deltaTime));
-                if (animator)
-                {
-                    animator.SetBool("Walk", true);
-                    if (Time.time - lastFootstepTime >= footstepInterval)
-                    {
-                        footSteps.FootStep(); // 足音再生
-                        lastFootstepTime = Time.time; // 前回の再生時刻を更新
-
-                    }
-                }
-
+                SetTargetPosition(transform.position + Vector3.forward * gridDistance);
             }
 
-            if (GetButton("Player", "MoveBack"))
+            if (GetButtonDown("Player", "MoveBack"))
             {
-                transform.Translate(new Vector3(0, 0, -move_speed * Time.deltaTime));
-                if (animator)
-                {
-                    animator.SetBool("Walk", true);
-
-                } // アニメーション切り替え
+                SetTargetPosition(transform.position + Vector3.back * gridDistance);
             }
 
-            if (GetButton("Player", "MoveLeft"))
+            if (GetButtonDown("Player", "MoveLeft"))
             {
-                transform.Rotate(new Vector3(0, -rot_angle, 0));
+                SetTargetPosition(transform.position + Vector3.left * gridDistance);
             }
-            if (GetButton("Player", "MoveRight"))
+
+            if (GetButtonDown("Player", "MoveRight"))
             {
-                transform.Rotate(new Vector3(0, rot_angle, 0));
+                SetTargetPosition(transform.position + Vector3.right * gridDistance);
             }
         }
 
+        // キャラクターが目的地に向かって移動
+        MoveCharacter();
+    }
+    void SetTargetPosition(Vector3 position)
+    {
+        targetPosition = position;
+    }
+
+    void MoveCharacter()
+    {
+        if (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, move_speed * Time.deltaTime);
+        }
     }
     void ShotStep()
     {
@@ -310,8 +313,9 @@ private float lastFootstepTime = 0f;
 
     void DamageStep()
     {
-       
-       
+
+
     }
- 
+
+
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     //発射距離を調整するため
-    float rangeOffset = 0.0f;
+    public float rangeOffset = 0.0f;
     //弾丸の移動速度
     public float move_Speed = 15.0f;
     public float BulletLifeTime;
@@ -40,5 +40,21 @@ public class Bullet : MonoBehaviour
 
         //弾丸発射の移動
         transform.Translate(new Vector3(0, 0, move_Speed * Time.deltaTime));
+
+      
+    }
+    public int damage = 20; // 弾のダメージ
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player1")|| collision.gameObject.CompareTag("Player2"))
+        {
+            // プレイヤーにダメージを与える
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+            // 弾丸を消す
+            Destroy(gameObject);
+        }
+
+
     }
 }

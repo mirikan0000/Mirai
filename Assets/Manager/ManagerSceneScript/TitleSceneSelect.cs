@@ -7,8 +7,8 @@ public class TitleSceneSelect : MonoBehaviour
 {
     [Header("次シーン遷移時_削除シーンリスト")]
     public List<string> unLoadSceneNameList;
-    [Header("次シーン遷移時_読み込みシーンリスト")]
-    public List<string> loadSceneNameList;
+    [Header("次シーン遷移時_読み込みシーン")]
+    public List<string> LoadSceneNameList;
     //[Header("ローディングテキスト")]
     public Text loadText;
 
@@ -21,7 +21,7 @@ public class TitleSceneSelect : MonoBehaviour
 
     public bool isLoad;
     private bool isPlayOtherScene;
-    string loadSceneName;
+    
     private bool isLoadChange;
     private bool isDestroyScene;
     private bool fade;
@@ -32,6 +32,7 @@ public class TitleSceneSelect : MonoBehaviour
         fade = false;
         isLoadChange = false;
         isDestroyScene = false;
+        isPlayOtherScene = false;
     }
 
     private void Awake()
@@ -50,7 +51,7 @@ public class TitleSceneSelect : MonoBehaviour
             // シーン削除
             foreach (string unLoadSceneName in unLoadSceneNameList)
             {
-                if (unLoadSceneName != loadSceneName)
+                if (unLoadSceneName != LoadSceneNameList[0])
                 {
                     foreach (UnityEngine.SceneManagement.Scene scene in UnityEngine.SceneManagement.SceneManager.GetAllScenes())
                     {
@@ -63,46 +64,20 @@ public class TitleSceneSelect : MonoBehaviour
             }
             isDestroyScene = false;
         }
-
+    
         //入力を受け付けるかどうか
         if (!isPlayOtherScene)
         {
+          
             if (fade)
             {
+         
                 panel.GetComponentInChildren<FadeOut>().Fadeout();
             }
-          
-            // 次のステージ(下)に移動
-            //if (InputManager.Instance.GetButtonDown("UI", "Down") && !isLoad)
-            //{
-            //    ButtonNo++;
-            //    //SE_Select.Play();
-            //}
-            //// 前のステージ(上)に移動
-            //if (InputManager.Instance.GetButtonDown("UI", "Up") && !isLoad)
-            //{
-            //    ButtonNo--;
-            //    //SE_Select.Play();
-            //}
-            //if (Input.GetMouseButtonDown(0))
-            //{
-            //    Debug.Log("読み込み出来た");
-            //    fade = true;
-            //    if (!panel.GetComponentInChildren<FadeOut>().fadeout)
-            //    {
-            //        // シーン読み込み
-            //        SceneManager.Instance.LoadScene(loadSceneNameList[0]);
-            //        isLoad = true;
-            //        isPlayOtherScene = true;
-            //        // シーン変更
-            //        SceneManager.Instance.ChangeScene();
-            //    }
-             
 
-                
-            //}
             if (InputManager.Instance.GetButtonDown("UI", "Click"))
             {
+               
                 Debug.Log("読み込み出来た");
                 fade = true;
                 panel.GetComponentInChildren<FadeOut>().Fadeout();
@@ -119,7 +94,7 @@ public class TitleSceneSelect : MonoBehaviour
                     // 色情報を設定し直す
                     imageComponent.color = color;
                     // シーン読み込み
-                    SceneManager.Instance.LoadScene("GameScene");
+                    SceneManager.Instance.LoadScene(LoadSceneNameList[0]);
                     isLoad = true;
                     isPlayOtherScene = true;
                     // シーン変更

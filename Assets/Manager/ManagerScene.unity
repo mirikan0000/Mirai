@@ -468,7 +468,7 @@ MonoBehaviour:
   inputActionControls: {fileID: -944628639613478452, guid: 0164f6724e034bd4bb62772baa3e9fdb, type: 3}
   vibrationStructArray: []
   isVibrationCannot: 0
-  isUseGamepad: 1
+  isUseGamepad: 0
 --- !u!4 &1586438677
 Transform:
   m_ObjectHideFlags: 0
@@ -672,8 +672,8 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 70c369e8-7935-4a2f-8cd2-c2bab7d81819
     m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard&Mouse
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: 
   m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

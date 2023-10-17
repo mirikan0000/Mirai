@@ -14,16 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 7.2000003
     y: 50.4
     width: 1521.6
     height: 758.4
   m_ShowMode: 4
   m_Title: "\u30D2\u30A8\u30E9\u30EB\u30AD\u30FC"
+=======
+    x: 0
+    y: 43.2
+    width: 1536
+    height: 820.8
+  m_ShowMode: 4
+  m_Title: Scene
+>>>>>>> origin/Takatori
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
-  m_Maximized: 0
+  m_Maximized: 1
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -44,8 +53,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1521.6
     height: 758.4
+=======
+    width: 1536
+    height: 820.8
+>>>>>>> origin/Takatori
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
@@ -69,7 +83,11 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1521.6
+=======
+    width: 1536
+>>>>>>> origin/Takatori
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -90,8 +108,13 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 738.4
     width: 1521.6
+=======
+    y: 800.8
+    width: 1536
+>>>>>>> origin/Takatori
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -114,12 +137,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
+<<<<<<< HEAD
     width: 1521.6
     height: 708.4
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
   controlID: 53
+=======
+    width: 1536
+    height: 770.8
+  m_MinSize: {x: 300, y: 100}
+  m_MaxSize: {x: 24288, y: 16192}
+  vertical: 0
+  controlID: 256
+>>>>>>> origin/Takatori
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,12 +171,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1079.2
     height: 708.4
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
   controlID: 54
+=======
+    width: 1045.6
+    height: 770.8
+  m_MinSize: {x: 200, y: 100}
+  m_MaxSize: {x: 16192, y: 16192}
+  vertical: 1
+  controlID: 257
+>>>>>>> origin/Takatori
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,12 +205,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1079.2
     height: 492
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
   controlID: 55
+=======
+    width: 1045.6
+    height: 519.2
+  m_MinSize: {x: 200, y: 50}
+  m_MaxSize: {x: 16192, y: 8096}
+  vertical: 0
+  controlID: 258
+>>>>>>> origin/Takatori
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -187,8 +237,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 218.4
     height: 492
+=======
+    width: 256.8
+    height: 519.2
+>>>>>>> origin/Takatori
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
@@ -211,10 +266,17 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 218.4
     y: 0
     width: 860.7999
     height: 492
+=======
+    x: 256.8
+    y: 0
+    width: 788.8
+    height: 519.2
+>>>>>>> origin/Takatori
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 14}
@@ -222,6 +284,10 @@ MonoBehaviour:
   - {fileID: 14}
   - {fileID: 15}
   - {fileID: 16}
+<<<<<<< HEAD
+=======
+  - {fileID: 17}
+>>>>>>> origin/Takatori
   m_Selected: 0
   m_LastSelected: 1
 --- !u!114 &10
@@ -240,15 +306,21 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 492
     width: 1079.2
     height: 216.40002
+=======
+    y: 519.2
+    width: 1045.6
+    height: 251.59998
+>>>>>>> origin/Takatori
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
-  - {fileID: 17}
+  - {fileID: 18}
   m_Selected: 0
   m_LastSelected: 1
 --- !u!114 &11
@@ -266,6 +338,7 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1079.2
     y: 0
     width: 442.40002
@@ -273,8 +346,17 @@ MonoBehaviour:
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 18}
+=======
+    x: 1045.6
+    y: 0
+    width: 490.40002
+    height: 770.8
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 19}
+>>>>>>> origin/Takatori
   m_Panes:
-  - {fileID: 18}
+  - {fileID: 19}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &12
@@ -297,10 +379,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 7.2000003
     y: 572.8
     width: 1078.2
     height: 195.40002
+=======
+    x: 0
+    y: 592.8
+    width: 1044.6
+    height: 230.59998
+>>>>>>> origin/Takatori
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -312,7 +401,7 @@ MonoBehaviour:
     m_SaveData: []
     m_OverlaysVisible: 1
   m_SearchFilter:
-    m_NameFilter: 
+    m_NameFilter: title
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -322,24 +411,39 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets
+=======
+    - Assets/Manager/ManagerSceneScript
+>>>>>>> origin/Takatori
     m_Globs: []
-    m_OriginalText: 
+    m_OriginalText: title
     m_ImportLogFlags: 0
     m_FilterByTypeIntersection: 0
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
+<<<<<<< HEAD
   - Assets
+=======
+  - Assets/Manager/ManagerSceneScript
+>>>>>>> origin/Takatori
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "C:\\Users\\fukut\\OneDrive\\\u30C7\u30B9\u30AF\u30C8\u30C3\u30D7\\\u672A\u6765\u5275\u9020\u5C55"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< HEAD
     scrollPos: {x: 0, y: 79}
     m_SelectedIDs: 7c6a0000
     m_LastClickedID: 27260
     m_ExpandedIDs: 00000000786a00007a6a00007c6a00007e6a0000806a0000826a00000a6b00000e6b000000ca9a3b
+=======
+    scrollPos: {x: 0, y: 301.40002}
+    m_SelectedIDs: 14610000
+    m_LastClickedID: 24852
+    m_ExpandedIDs: 00000000ec5f0000ee5f0000f05f0000f25f0000f45f0000f65f0000f85f0000fa5f0000fc5f0000fe5f000000600000026000000460000006600000086000000a6000000c60000000ca9a3b
+>>>>>>> origin/Takatori
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -367,7 +471,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000786a00007a6a00007c6a00007e6a0000806a0000826a0000
+=======
+    m_ExpandedIDs: 00000000ec5f0000ee5f0000f05f0000f25f0000f45f0000f65f0000f85f0000fa5f0000fc5f0000fe5f000000600000026000000460000006600000086000000a6000000c600000
+>>>>>>> origin/Takatori
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -443,10 +551,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 7.2000003
     y: 80.8
     width: 217.4
     height: 471
+=======
+    x: 0
+    y: 73.6
+    width: 255.79999
+    height: 498.2
+>>>>>>> origin/Takatori
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -460,23 +575,29 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
       m_SelectedIDs: 68a8ffff
       m_LastClickedID: -22424
       m_ExpandedIDs: 68a8ffffd6b1ffffd8ccffff24e6ffff76e6ffff
+=======
+      m_SelectedIDs: a25f0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 7cdfffff58f0ffff52f1ffffa2f1ffff10fbffff585f0000
+>>>>>>> origin/Takatori
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Stage8
+        m_OriginalName: Stage8
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 25124
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -506,10 +627,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 225.6
     y: 80.8
     width: 858.7999
     height: 471
+=======
+    x: -25343.201
+    y: -25569.6
+    width: 786.8
+    height: 498.2
+>>>>>>> origin/Takatori
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -907,9 +1035,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 486.69977, y: 289.60315, z: 149.61453}
     speed: 2
     m_Value: {x: 486.69977, y: 289.60315, z: 149.61453}
+=======
+    m_Target: {x: 341.94046, y: 221.71577, z: 36.71588}
+    speed: 2
+    m_Value: {x: 341.94046, y: 221.71577, z: 36.71588}
+>>>>>>> origin/Takatori
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -955,6 +1089,7 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
+<<<<<<< HEAD
     m_Target: {x: 0.09387086, y: 0.56122345, z: -0.06425478, w: 0.8198338}
     speed: 2
     m_Value: {x: 0.09367582, y: 0.56366926, z: -0.06453483, w: 0.8181302}
@@ -962,6 +1097,15 @@ MonoBehaviour:
     m_Target: 343.93332
     speed: 2
     m_Value: 329.1228
+=======
+    m_Target: {x: -0.014108117, y: 0.011391642, z: -0.00004670523, w: -0.9999218}
+    speed: 2
+    m_Value: {x: -0.014106954, y: 0.009890894, z: -0.000025540809, w: -0.9998516}
+  m_Size:
+    m_Target: 268.27335
+    speed: 2
+    m_Value: 256.72092
+>>>>>>> origin/Takatori
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1006,10 +1150,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 225.6
     y: 80.8
     width: 858.7999
     height: 471
+=======
+    x: 256.80002
+    y: 73.6
+    width: 786.8
+    height: 498.2
+>>>>>>> origin/Takatori
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1026,7 +1177,11 @@ MonoBehaviour:
   m_ShowGizmos: 1
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
+<<<<<<< HEAD
   m_TargetSize: {x: 1073.4999, y: 562.5}
+=======
+  m_TargetSize: {x: 983.5, y: 596.5}
+>>>>>>> origin/Takatori
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -1041,10 +1196,17 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
+<<<<<<< HEAD
     m_HBaseRangeMin: -429.39996
     m_HBaseRangeMax: 429.39996
     m_VBaseRangeMin: -225
     m_VBaseRangeMax: 225
+=======
+    m_HBaseRangeMin: -393.4
+    m_HBaseRangeMax: 393.4
+    m_VBaseRangeMin: -238.6
+    m_VBaseRangeMax: 238.6
+>>>>>>> origin/Takatori
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -1062,16 +1224,24 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
+<<<<<<< HEAD
       width: 858.7999
       height: 450
     m_Scale: {x: 1, y: 1}
     m_Translation: {x: 429.39996, y: 225}
+=======
+      width: 786.8
+      height: 477.2
+    m_Scale: {x: 1, y: 1}
+    m_Translation: {x: 393.4, y: 238.6}
+>>>>>>> origin/Takatori
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
+<<<<<<< HEAD
       x: -429.39996
       y: -225
       width: 858.7999
@@ -1079,6 +1249,15 @@ MonoBehaviour:
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1073.4999, y: 588.75}
+=======
+      x: -393.4
+      y: -238.6
+      width: 786.8
+      height: 477.2
+    m_MinimalGUI: 1
+  m_defaultScale: 1
+  m_LastWindowPixelSize: {x: 983.5, y: 622.75}
+>>>>>>> origin/Takatori
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 00000000000000000000
@@ -1104,10 +1283,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 244.8
-    y: 80.8
-    width: 898
-    height: 514.2
+    x: 246.40001
+    y: 73.6
+    width: 314.00003
+    height: 517.4
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1162,22 +1341,27 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12003, guid: 0000000000000000e000000000000000, type: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12111, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MinSize: {x: 100, y: 100}
+  m_MinSize: {x: 455, y: 354}
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
+<<<<<<< HEAD
     m_Text: "\u30B3\u30F3\u30BD\u30FC\u30EB"
     m_Image: {fileID: -4950941429401207979, guid: 0000000000000000d000000000000000, type: 0}
+=======
+    m_Text: Asset Store
+    m_Image: {fileID: -7444545952099596278, guid: 0000000000000000d000000000000000, type: 0}
+>>>>>>> origin/Takatori
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 192
-    y: 611.2
-    width: 937.4
-    height: 211.39996
+    x: 430.4
+    y: 99.200005
+    width: 746
+    height: 508.59998
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1197,6 +1381,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
+  m_Script: {fileID: 12003, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Console
+    m_Image: {fileID: -4950941429401207979, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 23.2
+    y: 608.8
+    width: 1038.2
+    height: 207.40002
+  m_SerializedDataModeController:
+    m_DataMode: 0
+    m_PreferredDataMode: 0
+    m_SupportedDataModes: 
+    isAutomatic: 1
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+    m_OverlaysVisible: 1
+--- !u!114 &19
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
   m_Script: {fileID: 12019, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1208,10 +1426,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1086.4
     y: 80.8
     width: 441.40002
     height: 687.4
+=======
+    x: 1045.6
+    y: 73.6
+    width: 489.40002
+    height: 749.8
+>>>>>>> origin/Takatori
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0

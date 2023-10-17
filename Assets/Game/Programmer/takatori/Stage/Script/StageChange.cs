@@ -5,39 +5,34 @@ using UnityEngine;
 public class StageChange : MonoBehaviour
 {
     [SerializeField]
-    List<GameObject> objects;
+   private List<GameObject> objects;
     [SerializeField]
-    Vector3[] StagePos;
+    private Vector3[] StagePos;
  
     void Start()
     {
         ChangeStage();
     }
 
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.L))
-        {
-            ChangeStage();
-        }
-    }
+
     void ChangeStage()
     {
         Sfuffle(StagePos);
         for (int i = 0; i < objects.Count; ++i)
         {
             objects[i].transform.position = StagePos[i];
-            Debug.Log(StagePos[i]);
         }
     }
-    void Sfuffle(Vector3[] num)
+    void Sfuffle(Vector3[] StagePos)
     {
-        for (int i=0;i<num.Length;++i)
+        for (int i=0;i< StagePos.Length;++i)
         {
-            Vector3 temp = num[i];
-            int randamIndex = Random.Range(0,num.Length);
-            num[i] = num[randamIndex];
-            num[randamIndex] = temp;
+            Vector3 temp = StagePos[i];
+            int randamIndex = Random.Range(0, StagePos.Length);
+            StagePos[i] = StagePos[randamIndex];
+            StagePos[randamIndex] = temp;
+
         }
+
     }
 }

@@ -68,10 +68,10 @@ public class PlayerManager_ : MonoBehaviour
     //animation
     public Animator animator;  // アニメーターコンポーネント取得用
    public FootSteps footSteps;
+    private Rigidbody rb; // Rigidbodyコンポーネント
 
-
-// サウンドが再生中かどうかを示すフラグ
-private bool isSoundPlaying = false;
+    // サウンドが再生中かどうかを示すフラグ
+    private bool isSoundPlaying = false;
 
 // 前回の足音再生時刻
 private float lastFootstepTime = 0f;
@@ -92,7 +92,7 @@ private float lastFootstepTime = 0f;
         
         //振動時間
         vibrationTime = 99;
-
+        rb = GetComponent<Rigidbody>(); // Rigidbodyコンポーネントを取得
     }
   
     /// <summary>
@@ -201,50 +201,74 @@ private float lastFootstepTime = 0f;
     {
         if (is_moveable)
         {
-            //Keyboard
-            if (GetButton("Player", "MoveForward"))
+            // 移動方向ベクトルを初期化
+            Vector3 moveDirection = Vector3.zero;
+
+            if (GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward"))
             {
-                //     Debug.Log("クリア");
-                transform.Translate(new Vector3(0, 0, move_speed * Time.deltaTime));
-                if (animator)
-                {
-                    animator.SetBool("Walk", true);
-                    if (Time.time - lastFootstepTime >= footstepInterval)
-                    {
-                        footSteps.FootStep(); // 足音再生
-                        lastFootstepTime = Time.time; // 前回の再生時刻を更新
-
-                    }
-                }
-
+                moveDirection = transform.forward * move_speed * Time.deltaTime;
             }
 
-            if (GetButton("Player", "MoveBack"))
+            if (GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack"))
             {
-                transform.Translate(new Vector3(0, 0, -move_speed * Time.deltaTime));
-                if (animator)
-                {
-                    animator.SetBool("Walk", true);
-
-                } // アニメーション切り替え
+                moveDirection = -transform.forward * move_speed * Time.deltaTime;
             }
 
-            if (GetButton("Player", "MoveLeft"))
+            if (GetButton("Player", "MoveLeft") || GetButton("Player1", "MoveLeft"))
             {
                 transform.Rotate(new Vector3(0, -rot_angle, 0));
             }
-            if (GetButton("Player", "MoveRight"))
+
+            if (GetButton("Player", "MoveRight") || GetButton("Player1", "MoveRight"))
             {
                 transform.Rotate(new Vector3(0, rot_angle, 0));
             }
+
+            // Rigidbodyのvelocityプロパティを設定して移動
+            rb.velocity = new Vector3(moveDirection.x, rb.velocity.y, moveDirection.z);
+
+            if (animator)
+            {
+                if (moveDirection != Vector3.zero)
+                {
+                    animator.SetBool("Walk", true);
+                }
+                else
+                {
+                    animator.SetBool("Walk", false);
+                }
+            }
+        }
+    }
+
+    bool CanMove(Vector3 moveDirection)
+    {
+        // プレイヤーの現在位置から移動先を計算
+        Vector3 newPosition = transform.position + moveDirection;
+
+        // Rayを可視化するために、Rayの開始点と終点を計算
+        Vector3 rayStart = transform.position;
+        Vector3 rayEnd = newPosition;
+
+        // Raycastを使用して移動先に壁があるかどうかをチェック
+        Ray ray = new Ray(rayStart, moveDirection);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, moveDirection.magnitude))
+        {
+            // 移動先に壁がある場合、移動を許可しない
+            Debug.DrawLine(rayStart, hit.point, Color.red); // Rayが衝突した部分を赤い線で表示
+            return false;
         }
 
+        // Rayが衝突しない場合、移動を許可
+        Debug.DrawLine(rayStart, rayEnd, Color.green); // Rayの方向を緑の線で表示
+        return true;
     }
     void ShotStep()
     {
         //弾丸予測線
         //Spaceキーを押し続けると弾丸予測線を描画する
-        if (GetButtonDown("Player", "Fire"))
+        if (GetButtonDown("Player", "Fire") || GetButtonDown("Player1", "Fire"))
         {
             //予測線
             //二つ方法(重力、三角関数で模擬放物線)
@@ -256,7 +280,7 @@ private float lastFootstepTime = 0f;
         }
 
         //弾丸発射
-        if (GetButtonUp("Player", "Fire"))
+        if (GetButtonUp("Player", "Fire") || GetButtonUp("Player1", "Fire"))
         {
             //発射
             //二つ方法(重力、三角関数で模擬放物線)
@@ -286,11 +310,11 @@ private float lastFootstepTime = 0f;
         {
             //発射角度を調整する
             //仮設定 発射角度の範囲:0°~90°
-            if (GetButton("Player", "MoveForward"))
+            if (GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward"))
             {
                 gun_rotAngle = (gun_rotAngle + gunBarrel_rotSpeed) <= 90.0f ? (gun_rotAngle + gunBarrel_rotSpeed) : 90.0f;
             }
-            else if (GetButton("Player", "MoveBack"))
+            else if (GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack"))
             {
                 gun_rotAngle = (gun_rotAngle - gunBarrel_rotSpeed) > 0 ? (gun_rotAngle - gunBarrel_rotSpeed) : 0.0f;
             }

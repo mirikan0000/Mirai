@@ -14,10 +14,9 @@ GameObject:
   - component: {fileID: 4484942503462155764}
   - component: {fileID: 6053145556419060715}
   - component: {fileID: 7457614188605471436}
-  - component: {fileID: 3846303714314963093}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Bullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,9 +30,9 @@ Transform:
   m_GameObject: {fileID: 9184420584360872255}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 15}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0.06, y: 0.053795815, z: 0.23}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -116,7 +115,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9184420584360872255}
   serializedVersion: 4
-  m_Mass: 1.87
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -128,12 +127,12 @@ Rigidbody:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 0
-  m_ImplicitTensor: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &7457614188605471436
 MonoBehaviour:
@@ -147,22 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd691f88a5da2b64c9f828bfbbbae48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeOffset: 0
-  move_Speed: 74.6
-  BulletLifeTime: 30
-  damage: 20
---- !u!114 &3846303714314963093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9184420584360872255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92291d71645b6c94c97e7454b6c3c6dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounciness: 1
-  speed: 100
-  useContactOffset: 1
+  move_Speed: 15
+  Image_Bullet: {fileID: 6599643969727365114, guid: 6026886966c19b748b97e415061ce468, type: 3}

@@ -5,12 +5,13 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     //”­Ë‹——£‚ğ’²®‚·‚é‚½‚ß
-    public float rangeOffset = 0.0f;
+    float rangeOffset = 0.0f;
     //’eŠÛ‚ÌˆÚ“®‘¬“x
     public float move_Speed = 15.0f;
-    public float BulletLifeTime;
     //’eŠÛ‚Ì„‘Ì
     Rigidbody rb;
+    //’eŠÛ‚Ì‰æ‘œ
+    public GameObject Image_Bullet;
 
     // Start is called before the first frame update
     void Start()
@@ -19,14 +20,18 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         //”­Ë‹——£‚ğæ“¾‚·‚é(’eŠÛ—\‘ªü‚ğŒvZ‚·‚é‚É•Û‘¶‚·‚é)
-        if (PlayerPrefs.HasKey("Bullet_RangeOffset"))
+        if(PlayerPrefs.HasKey("Bullet_RangeOffset"))
             rangeOffset = PlayerPrefs.GetFloat("Bullet_RangeOffset");
 
         //’eŠÛ‘¬“x‚ğ•Û‘¶‚·‚é
         PlayerPrefs.SetFloat("Bullet_Speed", move_Speed);
 
         //3•bŒã‚Å©•ª‚ğ”j‰ó‚·‚é
-        Destroy(this.gameObject, BulletLifeTime);
+        Destroy(this.gameObject, 3f);
+
+        //’eŠÛ‚Ì‰æ‘œ‚ğì¬
+        GameObject image = Instantiate(Image_Bullet, transform.position, Quaternion.identity);
+        image.transform.parent = this.transform;
     }
 
     // Update is called once per frame
@@ -40,21 +45,5 @@ public class Bullet : MonoBehaviour
 
         //’eŠÛ”­Ë‚ÌˆÚ“®
         transform.Translate(new Vector3(0, 0, move_Speed * Time.deltaTime));
-
-      
-    }
-    public int damage = 20; // ’e‚Ìƒ_ƒ[ƒW
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player1")|| collision.gameObject.CompareTag("Player2"))
-        {
-            // ƒvƒŒƒCƒ„[‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚é
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
-            // ’eŠÛ‚ğÁ‚·
-            Destroy(gameObject);
-        }
-
-
     }
 }

@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageChange : MonoBehaviour
+public class StageManager : MonoBehaviour
 {
     [SerializeField]
-   private List<GameObject> objects;
+    private List<GameObject> objects;
     [SerializeField]
     private Vector3[] StagePos;
- 
+
     void Start()
     {
         ChangeStage();
@@ -20,12 +20,12 @@ public class StageChange : MonoBehaviour
         Sfuffle(StagePos);
         for (int i = 0; i < objects.Count; ++i)
         {
-            objects[i].transform.localPosition = StagePos[i];
+            objects[i].transform.position = StagePos[i];
         }
     }
     void Sfuffle(Vector3[] StagePos)
     {
-        for (int i=0;i< StagePos.Length;++i)
+        for (int i = 0; i < StagePos.Length; ++i)
         {
             Vector3 temp = StagePos[i];
             int randamIndex = Random.Range(0, StagePos.Length);

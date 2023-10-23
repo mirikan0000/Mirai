@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangeOffset: 0
   move_Speed: 74.6
-  BulletLifeTime: 30
+  BulletLifeTime: 10
   damage: 20
 --- !u!114 &3846303714314963093
 MonoBehaviour:

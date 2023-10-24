@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destoy : MonoBehaviour
+public class Destroy : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision collision)
     {
 
         // 地面に衝突したら自オブジェクト削除
-        if (other.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground")
         {
             Destroy(gameObject);
         }
         // Playerと衝突したら、自オブジェクトを削除
-        else if (other.gameObject.tag == "Player")
+        else if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
         }

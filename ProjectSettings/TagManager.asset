@@ -9,6 +9,7 @@ TagManager:
   - Area
   - Bullet
   - Anti
+  - Item
   layers:
   - Default
   - TransparentFX

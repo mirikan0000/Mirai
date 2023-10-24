@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayAudio : MonoBehaviour
+public class PlayAudio2 : MonoBehaviour
 {
     // 音データの再生装置を格納する変数
     private AudioSource audio;
@@ -26,7 +26,7 @@ public class PlayAudio : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // 衝突した相手にPlayer1タグが付いているとき
-        if (collision.gameObject.tag == "Player1")
+        if (collision.gameObject.tag == "Player2")
         {
             // 音（sound）を一度だけ（PlayOneShot）再生する
             audio.PlayOneShot(sound);

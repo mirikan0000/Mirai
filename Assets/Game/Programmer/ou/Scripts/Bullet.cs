@@ -12,6 +12,14 @@ public class Bullet : MonoBehaviour
     Rigidbody rb;
     //’eŠÛ‚Ì‰æ‘œ
     public GameObject Image_Bullet;
+<<<<<<< HEAD
+=======
+
+    //“–‚½‚é‚©‚Ç‚¤‚©
+    private bool IsCollision;
+    //ˆÚ“®•ûŒü
+    private Vector3 direction;
+>>>>>>> origin/Ouseijyun_BulletReflection
 
     // Start is called before the first frame update
     void Start()
@@ -29,9 +37,19 @@ public class Bullet : MonoBehaviour
         //3•bŒã‚ÅŽ©•ª‚ð”j‰ó‚·‚é
         Destroy(this.gameObject, 3f);
 
+<<<<<<< HEAD
         //’eŠÛ‚Ì‰æ‘œ‚ðì¬
         GameObject image = Instantiate(Image_Bullet, transform.position, Quaternion.identity);
         image.transform.parent = this.transform;
+=======
+        //’eŠÛ‚Ì‰æ‘œ‚ðì¬‚·‚é
+        GameObject image = Instantiate(Image_Bullet, transform.position, Quaternion.identity);
+        //eŽqŠÖŒW‚ðÝ’è‚·‚é
+        image.transform.parent = this.transform;
+
+        //ˆÚ“®•ûŒü‚ð‰Šú‰»‚·‚é
+        IsCollision = false;
+>>>>>>> origin/Ouseijyun_BulletReflection
     }
 
     // Update is called once per frame
@@ -44,6 +62,30 @@ public class Bullet : MonoBehaviour
         }
 
         //’eŠÛ”­ŽË‚ÌˆÚ“®
+<<<<<<< HEAD
         transform.Translate(new Vector3(0, 0, move_Speed * Time.deltaTime));
+=======
+        //•Ç‚Æ‚ ‚Á‚½‚çˆÚ“®•ûŒü‚ÖˆÚ“®‚·‚é
+        if (IsCollision)
+        {
+            //transform.Translate(new Vector3(direction));
+
+            transform.position += direction * move_Speed * Time.deltaTime;
+            return;
+        }
+        transform.Translate(new Vector3(0, 0, move_Speed * Time.deltaTime));
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //•Ç‚Æ‚ ‚Á‚½‚çˆÚ“®•ûŒü‚ðÝ’è‚·‚é
+        if (collision.gameObject.tag.Equals("Wall"))
+        {
+            Vector3 dir = Vector3.Reflect(transform.forward, collision.GetContact(0).normal);
+            direction = dir;
+
+            IsCollision = true;
+        }
+>>>>>>> origin/Ouseijyun_BulletReflection
     }
 }

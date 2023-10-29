@@ -10,14 +10,15 @@ public class PlayerManager_ : MonoBehaviour
 
     //照準を合わせている(予測線)
     bool is_aiming;
-
+    public bool energyballFlug;
     //発射、リロードは移動できないため
     bool is_moveable = true;
-
-  
+    //カメラのアングル
+    public float x_angle=1000;
     [Header("プレイヤーの移動速度")]
     public float move_speed = 5.0f;
-
+    //プレイヤーの立つマップ番号
+    public int CurrentMap;
   [SerializeField] float rot_angle = 0.1f;
 
     //発射角度の調整速度(回転)
@@ -76,6 +77,9 @@ public class PlayerManager_ : MonoBehaviour
 // 前回の足音再生時刻
 private float lastFootstepTime = 0f;
     private float footstepInterval=0.5f;
+
+    //Playerの視点カメラ
+    public GameObject Playercamera;
 
     // Start is called before the first frame update
     void Start()
@@ -277,6 +281,7 @@ private float lastFootstepTime = 0f;
             is_moveable = false;
             //照準中(予測線を描画するため)
             is_aiming = true;
+            energyballFlug = true;
         }
 
         //弾丸発射
@@ -313,12 +318,14 @@ private float lastFootstepTime = 0f;
             if (GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward"))
             {
                 gun_rotAngle = (gun_rotAngle + gunBarrel_rotSpeed) <= 90.0f ? (gun_rotAngle + gunBarrel_rotSpeed) : 90.0f;
+                  if(90.0f> gun_rotAngle)Playercamera.transform.Rotate(new Vector3(-gun_rotAngle/x_angle, 0, 0));
             }
             else if (GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack"))
             {
                 gun_rotAngle = (gun_rotAngle - gunBarrel_rotSpeed) > 0 ? (gun_rotAngle - gunBarrel_rotSpeed) : 0.0f;
+                if (0f < gun_rotAngle) Playercamera.transform.Rotate(new Vector3(gun_rotAngle / x_angle, 0, 0));
             }
-
+           
             //発射角度を調整したため、
             //弾丸予測線の計算結果リストをクリアして再計算する必要
             for (int i = PredictionLine_List.Count - 1; i >= 0; i--)
@@ -337,5 +344,14 @@ private float lastFootstepTime = 0f;
        
        
     }
- 
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Area"))
+        {
+                int AreaNumber=collision.gameObject.GetComponent<EreaNumbers>().AreaNumber;
+
+            CurrentMap = AreaNumber;
+        }
+    }
 }

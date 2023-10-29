@@ -9,6 +9,8 @@ TagManager:
   - Area
   - Bullet
   - Anti
+  - EnergyS
+  - Energy
   layers:
   - Default
   - TransparentFX

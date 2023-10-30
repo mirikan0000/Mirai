@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
     //’eŠÛ‚Ì‰æ‘œ
     public GameObject Image_Bullet;
 
+
     //“–‚½‚é‚©‚Ç‚¤‚©
     private bool IsCollision;
     //ˆÚ“®•ûŒü
@@ -34,6 +35,9 @@ public class Bullet : MonoBehaviour
         //3•bŒã‚Å©•ª‚ğ”j‰ó‚·‚é
         Destroy(this.gameObject, 3f);
 
+        //’eŠÛ‚Ì‰æ‘œ‚ğì¬
+     //   GameObject image = Instantiate(Image_Bullet, transform.position, Quaternion.identity);
+     //   image.transform.parent = this.transform;
         //’eŠÛ‚Ì‰æ‘œ‚ğì¬‚·‚é
         GameObject image = Instantiate(Image_Bullet, transform.position, Quaternion.identity);
         //eqŠÖŒW‚ğİ’è‚·‚é
@@ -53,6 +57,7 @@ public class Bullet : MonoBehaviour
         }
 
         //’eŠÛ”­Ë‚ÌˆÚ“®
+        transform.Translate(new Vector3(0, 0, move_Speed * Time.deltaTime));
         //•Ç‚Æ‚ ‚Á‚½‚çˆÚ“®•ûŒü‚ÖˆÚ“®‚·‚é
         if (IsCollision)
         {

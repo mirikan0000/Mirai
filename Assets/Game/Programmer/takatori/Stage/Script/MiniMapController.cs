@@ -58,7 +58,8 @@ public class MiniMapController : MonoBehaviour
     {
         if (playersInSameMap)
         {
-           
+            Vector3 targetPosition = CalculateCameraTargetPosition(player1Controller.CurrentMap);
+            miniMapCameraTransform.position = new Vector3(targetPosition.x,targetPosition.y, targetPosition.z);
         }
         else
         {

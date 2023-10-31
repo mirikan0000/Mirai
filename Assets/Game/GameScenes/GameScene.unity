@@ -1168,7 +1168,7 @@ GameObject:
   - component: {fileID: 469673304}
   - component: {fileID: 469673303}
   m_Layer: 3
-  m_Name: Cube
+  m_Name: WorldFlorr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4896,7 +4896,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8934142278417972233, guid: 3fad7e62461d58e49a5f7072d1cf2b58, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8934142278417972233, guid: 3fad7e62461d58e49a5f7072d1cf2b58, type: 3}
       propertyPath: p1FakeObj
@@ -4913,6 +4913,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1856238729286018660, guid: 3fad7e62461d58e49a5f7072d1cf2b58, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1282348968}
+    - targetCorrespondingSourceObject: {fileID: 1856238729286018660, guid: 3fad7e62461d58e49a5f7072d1cf2b58, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1282348969}
   m_SourcePrefab: {fileID: 100100000, guid: 3fad7e62461d58e49a5f7072d1cf2b58, type: 3}
 --- !u!1 &1282348967 stripped
 GameObject:
@@ -4963,6 +4966,30 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &1282348969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282348967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee23f8b70f49c84cb91e2aa7a26f6f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniMapCameraTransform: {fileID: 1282348973}
+  defaultMiniMapCameraPosition: {x: 0, y: 0, z: 0}
+  miniMapCameraMoveSpeed: 0
+  player1Object: {fileID: 3270741815905861782}
+  player2Object: {fileID: 3270741815190322771}
+  player1FakeObject: {fileID: 1504922932}
+  player2FakeObject: {fileID: 699935308}
+--- !u!4 &1282348973 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2705894883327659434, guid: 3fad7e62461d58e49a5f7072d1cf2b58, type: 3}
+  m_PrefabInstance: {fileID: 1282348966}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1282916981
 GameObject:
   m_ObjectHideFlags: 0

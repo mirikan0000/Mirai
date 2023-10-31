@@ -23,17 +23,19 @@ public class MiniMapController : MonoBehaviour
     List<GameObject> MapList;
     private void Start()
     {
-        defaultMiniMapCameraPosition = new Vector3(0, 25, 0);
+        defaultMiniMapCameraPosition = gameObject.transform.position;
         miniMapCameraTransform.position = defaultMiniMapCameraPosition;
         miniMapCameraMoveSpeed = 10f;
     }
 
     private void Update()
     {
+        Debug.Log(player1Controller.CurrentMap);
+        Debug.Log(player2Controller.CurrentMap);
         GetPlayerControllers();
         ComparePlayerMaps();
         MoveMiniMapCamera();
-        UpdatePlayerFakeObjectScale();
+        //UpdatePlayerFakeObjectScale();
     }
 
     private void GetPlayerControllers()
@@ -60,12 +62,12 @@ public class MiniMapController : MonoBehaviour
         {
             Vector3 targetPosition = CalculateCameraTargetPosition(player1Controller.CurrentMap);
             miniMapCameraTransform.position = Vector3.MoveTowards(
-                miniMapCameraTransform.position, targetPosition, miniMapCameraMoveSpeed * Time.deltaTime);
+                miniMapCameraTransform.position, targetPosition, miniMapCameraMoveSpeed );
         }
         else
         {
             miniMapCameraTransform.position = Vector3.MoveTowards(
-                miniMapCameraTransform.position, defaultMiniMapCameraPosition, miniMapCameraMoveSpeed * Time.deltaTime);
+                miniMapCameraTransform.position, defaultMiniMapCameraPosition, miniMapCameraMoveSpeed );
         }
     }
 

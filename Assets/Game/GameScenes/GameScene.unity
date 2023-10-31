@@ -4985,6 +4985,45 @@ MonoBehaviour:
   player2Object: {fileID: 3270741815190322771}
   player1FakeObject: {fileID: 1504922932}
   player2FakeObject: {fileID: 699935308}
+  player1Controller: {fileID: 8150969197131227502}
+  player2Controller: {fileID: 6543601556174368170}
+  MapList:
+  - {fileID: 1343622117}
+  - {fileID: 228569547}
+  - {fileID: 1379456255}
+  - {fileID: 178849500}
+  - {fileID: 1716454178}
+  - {fileID: 140977677}
+  - {fileID: 2123310945}
+  - {fileID: 1635022999}
+  - {fileID: 979449649}
+  - {fileID: 1343622117}
+  - {fileID: 228569547}
+  - {fileID: 1379456255}
+  - {fileID: 178849500}
+  - {fileID: 1716454178}
+  - {fileID: 935977423}
+  - {fileID: 935977422}
+  - {fileID: 935977421}
+  - {fileID: 935977420}
+  - {fileID: 935977419}
+  - {fileID: 935977418}
+  - {fileID: 935977417}
+  - {fileID: 935977416}
+  - {fileID: 935977415}
+  - {fileID: 1143104450}
+  - {fileID: 717982957}
+  - {fileID: 1822592773}
+  - {fileID: 208489566}
+  - {fileID: 1231843446}
+  - {fileID: 849066685}
+  - {fileID: 1078449724}
+  - {fileID: 604157189}
+  - {fileID: 1952880352}
+  - {fileID: 57448868}
+  - {fileID: 149565773}
+  - {fileID: 1833125088}
+  - {fileID: 627824507}
 --- !u!4 &1282348973 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2705894883327659434, guid: 3fad7e62461d58e49a5f7072d1cf2b58, type: 3}
@@ -9313,6 +9352,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 924950634165655581, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
   m_PrefabInstance: {fileID: 6543601556174368161}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6543601556174368170 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8801580595636730087, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+  m_PrefabInstance: {fileID: 6543601556174368161}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270741815190322771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c257e770a7cce3c4e9fc5e38d5123ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8150969197131227485 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5056042764670011464, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
@@ -9345,6 +9395,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 924950634172626897, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
   m_PrefabInstance: {fileID: 5264104993213495858}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8150969197131227502 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8801580595636730087, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+  m_PrefabInstance: {fileID: 5264104993213495858}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270741815905861782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c257e770a7cce3c4e9fc5e38d5123ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

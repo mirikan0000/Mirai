@@ -9,12 +9,8 @@ TagManager:
   - Area
   - Bullet
   - Anti
-<<<<<<< HEAD
-  - Item
-=======
   - EnergyS
   - Energy
->>>>>>> Takatori
   layers:
   - Default
   - TransparentFX

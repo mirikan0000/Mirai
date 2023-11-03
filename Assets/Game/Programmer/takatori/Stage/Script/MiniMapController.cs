@@ -4,82 +4,35 @@ using UnityEngine;
 
 public class MiniMapController : MonoBehaviour
 {
-    [Header("Mini Map Camera")]
-    [SerializeField] private Transform miniMapCameraTransform;
-    [SerializeField] private Vector3 defaultMiniMapCameraPosition;
-    [SerializeField] private float miniMapCameraMoveSpeed;
+    public Transform target1; // プレイヤー1の位置
+    public Transform target2; // プレイヤー2の位置
+    public Camera miniMapCamera; // ミニマップ用のカメラ
 
-    [Header("Player Objects")]
-    [SerializeField] private GameObject player1Object;
-    [SerializeField] private GameObject player2Object;
-    [SerializeField] private GameObject player1FakeObject;
-    [SerializeField] private GameObject player2FakeObject;
-
-    private PlayerManager_ player1Controller;
-    private PlayerManager_ player2Controller;
-
-    private bool playersInSameMap;
-
-    List<GameObject> MapList;
-    private void Start()
+    public Vector3 offset = new Vector3(0, 20, 0); // カメラの高さと位置調整
+    public float minZoomLevel = 80.0f; // 最小より
+    public float maxZoomLevel = 475.0f; // 最大引き
+    public float zoomSpeed = 5.0f; // ズームの速度
+    private float zoomLevel; // ズームレベル
+    public float distance;
+    void Start()
     {
-        defaultMiniMapCameraPosition = new Vector3(0, 25, 0);
-        miniMapCameraTransform.position = defaultMiniMapCameraPosition;
-        miniMapCameraMoveSpeed = 10f;
+        zoomLevel = minZoomLevel; // 初期ズームレベルを最大値に設定
     }
 
-    private void Update()
+    void LateUpdate()
     {
-        GetPlayerControllers();
-        ComparePlayerMaps();
-        MoveMiniMapCamera();
-        UpdatePlayerFakeObjectScale();
-    }
+        // プレイヤー間の距離を計算
+        distance = Vector3.Distance(target1.position, target2.position);
 
-    private void GetPlayerControllers()
-    {
-        player1Controller = player1Object.GetComponent<PlayerManager_>();
-        player2Controller = player2Object.GetComponent<PlayerManager_>();
-    }
+        // カメラの位置を設定
+        Vector3 targetPosition = (target1.position + target2.position) / 2;
+        miniMapCamera.transform.position = new Vector3(targetPosition.x, offset.y, targetPosition.z);
 
-    private void ComparePlayerMaps()
-    {
-        if (player1Controller.CurrentMap == player2Controller.CurrentMap)
-        {
-            playersInSameMap = true;
-        }
-        else
-        {
-            playersInSameMap = false;
-        }
-    }
+        // カメラの角度を調整
+        miniMapCamera.transform.rotation = Quaternion.Euler(90, 0, 0);
 
-    private void MoveMiniMapCamera()
-    {
-        if (playersInSameMap)
-        {
-            Vector3 targetPosition = CalculateCameraTargetPosition(player1Controller.CurrentMap);
-            miniMapCameraTransform.position = Vector3.MoveTowards(
-                miniMapCameraTransform.position, targetPosition, miniMapCameraMoveSpeed * Time.deltaTime);
-        }
-        else
-        {
-            miniMapCameraTransform.position = Vector3.MoveTowards(
-                miniMapCameraTransform.position, defaultMiniMapCameraPosition, miniMapCameraMoveSpeed * Time.deltaTime);
-        }
-    }
-
-    private Vector3 CalculateCameraTargetPosition(int mapNumber)
-    {
-        return MapList[mapNumber].transform.position;
-
-
-    }
-
-    private void UpdatePlayerFakeObjectScale()
-    {
-        float scaleFactor = playersInSameMap ? 2.0f : 1.0f;
-        player1FakeObject.transform.localScale = new Vector3(scaleFactor, 0.2f, scaleFactor);
-        player2FakeObject.transform.localScale = new Vector3(scaleFactor, 0.2f, scaleFactor);
+        // 距離に応じてズームレベルを調整
+        float newZoomLevel = Mathf.Clamp(zoomLevel + distance,minZoomLevel,maxZoomLevel);
+        miniMapCamera.orthographicSize = newZoomLevel;
     }
 }

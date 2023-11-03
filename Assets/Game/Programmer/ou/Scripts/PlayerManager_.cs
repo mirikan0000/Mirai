@@ -80,7 +80,7 @@ private float lastFootstepTime = 0f;
 
     //Player‚Ì‹“_ƒJƒƒ‰
     public GameObject Playercamera;
-
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -344,14 +344,15 @@ private float lastFootstepTime = 0f;
        
        
     }
-
+    int AreaNumber;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Area"))
         {
-                int AreaNumber=collision.gameObject.GetComponent<EreaNumbers>().AreaNumber;
+            AreaNumber = collision.gameObject.GetComponent<EreaNumbers>().AreaNumber;
 
             CurrentMap = AreaNumber;
         }
+        
     }
 }

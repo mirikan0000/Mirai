@@ -11,6 +11,7 @@ TagManager:
   - Anti
   - EnergyS
   - Energy
+  - Missile
   layers:
   - Default
   - TransparentFX

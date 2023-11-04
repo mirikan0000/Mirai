@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 5770600178301455432}
   m_Layer: 0
   m_Name: Missile
-  m_TagString: Untagged
+  m_TagString: Missile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -366,7 +366,6 @@ MonoBehaviour:
   missileHomingTime: 0
   missileMode: 1
   missileFireCheck: 0
-  missileBottomObj: {fileID: 0}
   player1Obj: {fileID: 0}
   player2Obj: {fileID: 0}
   targetObj: {fileID: 0}

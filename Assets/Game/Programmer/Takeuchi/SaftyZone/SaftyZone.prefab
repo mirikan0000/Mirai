@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2454404539449574317}
   m_Layer: 0
   m_Name: ChildSaftyZone1
-  m_TagString: Untagged
+  m_TagString: Anti
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 5876981285877119908}
   m_Layer: 0
   m_Name: ChildSaftyZone2
-  m_TagString: Untagged
+  m_TagString: Anti
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 6229141282582035589}
   m_Layer: 0
   m_Name: ChildSaftyZone4
-  m_TagString: Untagged
+  m_TagString: Anti
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 5448257482014780676}
   m_Layer: 0
   m_Name: SaftyZone
-  m_TagString: Untagged
+  m_TagString: Anti
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -452,6 +452,8 @@ MonoBehaviour:
   zone3mag: 0
   zone4redu: 0
   zone4mag: 0
+  bug: 0
+  bugTimer: 0
 --- !u!1 &8039477507802090749
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,7 +469,7 @@ GameObject:
   - component: {fileID: 921874457150371477}
   m_Layer: 0
   m_Name: ChildSaftyZone3
-  m_TagString: Untagged
+  m_TagString: Anti
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

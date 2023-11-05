@@ -159,7 +159,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: -876546973899608171, guid: 4db2b449ee2975a47b6e48d5997179fe, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -366,7 +366,6 @@ MonoBehaviour:
   missileHomingTime: 0
   missileMode: 1
   missileFireCheck: 0
-  missileBottomObj: {fileID: 0}
   player1Obj: {fileID: 0}
   player2Obj: {fileID: 0}
   targetObj: {fileID: 0}

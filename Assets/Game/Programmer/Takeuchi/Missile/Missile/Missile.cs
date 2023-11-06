@@ -148,7 +148,7 @@ public class Missile : MonoBehaviour
                     Debug.Log("ミサイルが出現しました");
                     break;
                 case 4:  //テスト用
-                    targetObj = GameObject.Find("target");
+                    targetObj = GameObject.Find("TargetObj(Clone)");
                     break;
             }
         }

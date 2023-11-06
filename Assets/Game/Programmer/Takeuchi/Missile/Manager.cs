@@ -24,6 +24,9 @@ public class Manager : MonoBehaviour
         //各数値の初期化
         missileCnt = 0;
         targetHP = 0;
+
+        //ターゲット生成
+        Instantiate(targetObj, target_point.transform.position, Quaternion.identity);
     }
 
     void Update()

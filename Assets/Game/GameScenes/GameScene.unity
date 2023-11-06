@@ -9148,6 +9148,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8150969197131227485}
     - target: {fileID: 8801580595636730087, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: moveGauge
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801580595636730087, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: rot_angle
       value: 1
       objectReference: {fileID: 0}
@@ -9160,8 +9164,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 454357841}
     - target: {fileID: 8801580595636730087, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: moveGaugeRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801580595636730087, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: Bullet_RangeOffset
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801580595636730087, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: moveGaugeThreshold
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8801580595636730087, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: bulletCreatePosOffset

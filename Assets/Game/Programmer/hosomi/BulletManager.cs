@@ -84,17 +84,17 @@ public class BulletManager : MonoBehaviour
     // フィールドにある弾の数を取得する関数
     public int GetBulletCount()
     {
-        Debug.Log("弾の数: " + bulletCount);
+        //Debug.Log("弾の数: " + bulletCount);
         return bulletCount;
     }
 
     // 弾の情報を取得し、ログに表示する関数
     public void LogBulletInfo()
     {
-        Debug.Log("弾の情報:");
+        //Debug.Log("弾の情報:");
         foreach (var bulletInfo in bulletInfoList)
         {
-            Debug.Log("位置: " + bulletInfo.position/* + ", 種類: " + bulletInfo.bulletType*/);
+            //Debug.Log("位置: " + bulletInfo.position/* + ", 種類: " + bulletInfo.bulletType*/);
         }
     }
 

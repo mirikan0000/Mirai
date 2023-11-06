@@ -80,7 +80,15 @@ private float lastFootstepTime = 0f;
 
     //Playerの視点カメラ
     public GameObject Playercamera;
-   
+
+    //Playerの移動ゲージ
+    public float moveGauge = 100.0f;  // 移動ゲージの初期値
+    public float moveGaugeRate = 10.0f;  // 移動ゲージの充電速度
+    public float moveGaugeThreshold = 20.0f;  // 移動ゲージがゼロに近づいたときに停止する閾値
+    private float moveGaugeConsumptionRate = 10.0f;  // 移動中にゲージから消費する速度
+    private bool isMoving = false;  // プレイヤーが移動中かどうかを示すフラグ
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -138,7 +146,7 @@ private float lastFootstepTime = 0f;
             return playerInput.actions[actionsName].WasReleasedThisFrame();
         }
 
-        Debug.Log("ActionMapが存在しない" + actionMapsName + actionsName);
+       Debug.Log("ActionMapが存在しない" + actionMapsName + actionsName);
         return false;
     }
 
@@ -147,14 +155,47 @@ private float lastFootstepTime = 0f;
     {
         if (is_start)
         {
-            //ダメージ
+            // プレイヤーが移動中でない場合、移動ゲージが一定量以下になると停止する
+            if (!isMoving && moveGauge <= moveGaugeThreshold)
+            {
+                rb.velocity = Vector3.zero;  // プレイヤーの速度をゼロに設定して停止
+            }
+
+            // 移動ボタンが押されているかチェック
+            bool isMoveButtonDown = GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward") ||
+                                   GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack") ||
+                                   GetButton("Player", "MoveLeft") || GetButton("Player1", "MoveLeft") ||
+                                   GetButton("Player", "MoveRight") || GetButton("Player1", "MoveRight");
+
+            // 移動中の場合、ゲージから消費
+            if (isMoving)
+            {
+                moveGauge -= moveGaugeConsumptionRate * Time.deltaTime;
+                moveGauge = Mathf.Max(moveGauge, moveGaugeThreshold);  // 最低値を1に制限
+            }
+            else if (isMoveButtonDown && moveGauge > moveGaugeThreshold)  // 移動ボタンが押されていてゲージが最低値以上の場合
+            {
+                isMoving = true;  // プレイヤーが移動中
+            }
+            else
+            {
+                isMoving = false;  // プレイヤーが移動中でない
+            }
+
+            // 移動ゲージの充電
+            if (!isMoving && moveGauge < 100.0f)  // 最大値が30
+            {
+                moveGauge += moveGaugeRate * Time.deltaTime;
+                moveGauge = Mathf.Clamp(moveGauge, moveGaugeThreshold, 100.0f);  // 最低値を1に制限
+            }
+
+            // デバッグログで移動ゲージの値を表示
+            Debug.Log("Move Gauge: " + moveGauge);
+
+            // 他のステップ（ダメージ、移動、攻撃）の処理はそのままで残しておきます。
             DamageStep();
-            //移動
             MoveStep();
-            //攻撃
             ShotStep();
-
-
         }
     }
 
@@ -205,6 +246,28 @@ private float lastFootstepTime = 0f;
     {
         if (is_moveable)
         {
+            // 移動ゲージの消費
+            if (GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward") ||
+                GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack") ||
+                GetButton("Player", "MoveLeft") || GetButton("Player1", "MoveLeft") ||
+                GetButton("Player", "MoveRight") || GetButton("Player1", "MoveRight"))
+            {
+                isMoving = true;
+                moveGauge -= Time.deltaTime;  // 移動ゲージを減少
+                moveGauge = Mathf.Clamp(moveGauge, 0.0f, 100.0f);
+               
+                if (moveGauge == 0.0f)
+                {
+                    // 移動ゲージがゼロになったら移動を禁止
+                    is_moveable = false;
+                    isMoving = false;
+                }
+            }
+            else
+            {
+                isMoving = false;
+            }
+
             // 移動方向ベクトルを初期化
             Vector3 moveDirection = Vector3.zero;
 
@@ -228,8 +291,12 @@ private float lastFootstepTime = 0f;
                 transform.Rotate(new Vector3(0, rot_angle, 0));
             }
 
-            // Rigidbodyのvelocityプロパティを設定して移動
-            rb.velocity = new Vector3(moveDirection.x, rb.velocity.y, moveDirection.z);
+            // 移動ゲージが一定量以上ある場合のみ移動を許可
+            if (moveGauge > moveGaugeThreshold)
+            {
+                rb.velocity = new Vector3(moveDirection.x, rb.velocity.y, moveDirection.z);
+               
+            }
 
             if (animator)
             {

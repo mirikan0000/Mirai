@@ -55,11 +55,13 @@ public class Bullet : MonoBehaviour
     }
 
     int count = 0;
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("ヒットしたゲームオブジェクト:" + collision.gameObject.name);
         //壁とあったら移動方向を設定する
-        if (collision.gameObject.tag.Equals("Wall"))
+        if (collision.gameObject.tag.Equals("Area"))
         {
+            Debug.Log("ヒットしたゲームオブジェクト2:" + collision.gameObject.name);
             Vector3 dir = Vector3.Reflect(direction, collision.GetContact(0).normal);
             direction = dir;
         }

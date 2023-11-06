@@ -35,7 +35,9 @@ public class PlayerManager_ : MonoBehaviour
     public float bulletCreatePosOffset = 1.0f;
 
     //弾丸(Public型)
-    public GameObject Buttet;
+    public GameObject Bullet;
+    //チャージショット(Public)
+    public GameObject ChageShot;
     //弾丸予測線(Public型)
     public GameObject PredictionLine;
 
@@ -303,7 +305,7 @@ private float lastFootstepTime = 0f;
             PredictionLine_List = new List<GameObject>();
 
             //弾丸生成
-            GameObject buttle = Instantiate(Buttet, transform.position, transform.rotation);
+            GameObject buttle = Instantiate(Bullet, transform.position, transform.rotation);
             //弾丸の角度をプレイヤーと一致する
             buttle.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
             //弾丸位置はプレイヤーの前にする

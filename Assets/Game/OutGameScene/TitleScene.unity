@@ -562,6 +562,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4261380647680433482, guid: f44c68d87a88a1d49ba368cf564d08ae, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261380647680433482, guid: f44c68d87a88a1d49ba368cf564d08ae, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261380647680433482, guid: f44c68d87a88a1d49ba368cf564d08ae, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261380647680433482, guid: f44c68d87a88a1d49ba368cf564d08ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -616,6 +628,30 @@ PrefabInstance:
     - target: {fileID: 7141651502411946233, guid: f44c68d87a88a1d49ba368cf564d08ae, type: 3}
       propertyPath: alphaSpeed
       value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675318938560610024, guid: f44c68d87a88a1d49ba368cf564d08ae, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9089567773709758008, guid: f44c68d87a88a1d49ba368cf564d08ae, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9089567773709758008, guid: f44c68d87a88a1d49ba368cf564d08ae, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9089567773709758008, guid: f44c68d87a88a1d49ba368cf564d08ae, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9089567773709758008, guid: f44c68d87a88a1d49ba368cf564d08ae, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9089567773709758008, guid: f44c68d87a88a1d49ba368cf564d08ae, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 800
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

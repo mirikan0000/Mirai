@@ -6,13 +6,11 @@ using Cinemachine;
 public class CubeMovement : MonoBehaviour
 {
     public float moveSpeed = 5.0f; // Cubeの移動速度
-    [SerializeField] CinemachineVirtualCameraBase FPSCamera;
-    [SerializeField] CinemachineVirtualCameraBase TPSCamera;
+    public float rotationSpeed = 90.0f; // 回転速度
 
     private void Start()
     {
-        FPSCamera.gameObject.SetActive(true);
-        TPSCamera.gameObject.SetActive(false);
+
     }
 
     void Update()
@@ -25,10 +23,15 @@ public class CubeMovement : MonoBehaviour
 
         transform.Translate(movement);
 
-        if (Input.GetKeyDown(KeyCode.M))
+        // Qキーを押すと左に回転
+        if (Input.GetKey(KeyCode.Q))
         {
-            TPSCamera.gameObject.SetActive(FPSCamera.gameObject.activeSelf);
-            FPSCamera.gameObject.SetActive(!TPSCamera.gameObject.activeSelf);
+            transform.Rotate(Vector3.up, -rotationSpeed * Time.deltaTime);
+        }
+        // Eキーを押すと右に回転
+        if (Input.GetKey(KeyCode.E))
+        {
+            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
         }
     }
 }

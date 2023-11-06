@@ -37,4 +37,15 @@ public class TextPrefab : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    // テキストを設定する
+    public void SetText(string text)
+    {
+        // UnityのUI Textコンポーネントを取得し、テキストを設定する
+        Text textComponent = GetComponent<Text>();
+        if (textComponent != null)
+        {
+            textComponent.text = text;
+        }
+    }
 }

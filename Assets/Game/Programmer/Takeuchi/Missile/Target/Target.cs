@@ -26,7 +26,7 @@ public class Target : MonoBehaviour
 
         if (hitObj != null)
         {
-            if (hitObj.gameObject.name == "TestBullet(Clone)")
+            if (hitObj.gameObject.tag == "Missile")
             {
                 GetComponent<Renderer>().material.color = Color.blue;
                 Debug.Log(hitObj.name);

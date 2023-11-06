@@ -11,8 +11,8 @@ public class Bussi : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player1")
         {
-            Instantiate(PrefabCube1, transform.position, Quaternion.identity);
-            Instantiate(PrefabCube2, transform.position, Quaternion.identity);
+            Instantiate(PrefabCube1, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
+            Instantiate(PrefabCube2, transform.position + new Vector3(-0.5f, 0, 0), Quaternion.identity);
         }
     }
 }

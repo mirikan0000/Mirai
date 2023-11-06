@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class StageManager : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> objects;
     [SerializeField]
     private Vector3[] StagePos;
-
+    public GameObject Panel;
     void Start()
     {
+        Panel.GetComponent<FadeOut>().fadein=true;   
         ChangeStage();
     }
 

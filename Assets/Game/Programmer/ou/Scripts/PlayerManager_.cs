@@ -7,6 +7,7 @@ public class PlayerManager_ : MonoBehaviour
 {
     //ゲームは更新しているか(例えば：開始画面、クリア画面などではない状態)
     bool is_start;
+<<<<<<< HEAD
 
     //照準を合わせている(予測線)
     bool is_aiming;
@@ -20,12 +21,34 @@ public class PlayerManager_ : MonoBehaviour
     //プレイヤーの立つマップ番号
     public int CurrentMap;
   [SerializeField] float rot_angle = 0.1f;
+=======
+
+    //照準を合わせている(予測線)
+    bool is_aiming;
+
+    //発射、リロードは移動できないため
+    bool is_moveable = true;
+
+    //予測線の描画モード
+    public bool predictionLine_RayMode = true;
+
+    //プレイヤーの移動速度
+    float move_speed = 5.0f;
+
+    //プレイヤーの回転速度
+    float rot_angle = 0.1f;
+    float rotation_Y = 0.0f;
+>>>>>>> 8022e562945de1ca8c9e09b0e6779f8c9dcabddc
 
     //発射角度の調整速度(回転)
     float gunBarrel_rotSpeed = 0.5f;
 
     //今の発射角度(砲塔アセットがないため、一旦記録する)
+<<<<<<< HEAD
     public float gun_rotAngle = 0.0f;
+=======
+    float gun_rotAngle = 0.0f;
+>>>>>>> 8022e562945de1ca8c9e09b0e6779f8c9dcabddc
 
     //発射距離の調整変数(Public型)
     public float Bullet_RangeOffset = 0;
@@ -35,12 +58,25 @@ public class PlayerManager_ : MonoBehaviour
     public float bulletCreatePosOffset = 1.0f;
 
     //弾丸(Public型)
+<<<<<<< HEAD
     public GameObject Bullet;
     //チャージショット(Public)
     public GameObject ChageShot;
     //弾丸予測線(Public型)
+=======
+    public GameObject Buttet;
+    //弾丸予測線(重力を使う)
+>>>>>>> 8022e562945de1ca8c9e09b0e6779f8c9dcabddc
     public GameObject PredictionLine;
+    //弾丸予測線(重力を使わず)
+    public GameObject PredictionRay;
 
+<<<<<<< HEAD
+=======
+    //予測線GameObjectを保存する
+    GameObject pRay;
+
+>>>>>>> 8022e562945de1ca8c9e09b0e6779f8c9dcabddc
     //弾丸予測線を構成するための描画数
     public int PredictionLineNumber = 66;
 
@@ -97,6 +133,7 @@ private float lastFootstepTime = 0f;
         //ゲーム開始(更新を許可する)
         is_start = true;
 
+<<<<<<< HEAD
         foreach (PlayerInput playerInput in playerInputArray)
         {
             playerInputDictionary[playerInput.currentActionMap.name] = playerInput;
@@ -150,6 +187,9 @@ private float lastFootstepTime = 0f;
 
        Debug.Log("ActionMapが存在しない" + actionMapsName + actionsName);
         return false;
+=======
+        pRay = null;
+>>>>>>> 8022e562945de1ca8c9e09b0e6779f8c9dcabddc
     }
 
 
@@ -157,6 +197,7 @@ private float lastFootstepTime = 0f;
     {
         if (is_start)
         {
+<<<<<<< HEAD
             // プレイヤーが移動中でない場合、移動ゲージが一定量以下になると停止する
             if (!isMoving && moveGauge <= moveGaugeThreshold)
             {
@@ -182,6 +223,119 @@ private float lastFootstepTime = 0f;
             else
             {
                 isMoving = false;  // プレイヤーが移動中でない
+=======
+            //仮
+            //プレイヤー移動
+            if (is_moveable)
+            {
+                //Keyboard
+                if (Input.GetKey(KeyCode.W))
+                {
+                    transform.Translate(new Vector3(0, 0, move_speed * Time.deltaTime));
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    transform.Translate(new Vector3(0, 0, -move_speed * Time.deltaTime));
+                }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    transform.Rotate(new Vector3(0, -rot_angle, 0));
+                    rotation_Y -= rot_angle;
+                    PlayerPrefs.SetFloat("Rot_Angle", rotation_Y);
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    transform.Rotate(new Vector3(0, rot_angle, 0));
+                    rotation_Y += rot_angle;
+                    PlayerPrefs.SetFloat("Rot_Angle", rotation_Y);
+                }
+
+                if (pRay != null)
+                {
+                    Destroy(pRay);
+                    pRay = null;
+                }
+            }
+
+            //弾丸予測線
+            //Spaceキーを押し続けると弾丸予測線を描画する
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //予測線
+                //二つ方法(重力、三角関数で模擬放物線)
+                //重力
+                //移動禁止
+                is_moveable = false;
+                //照準中(予測線を描画するため)
+                is_aiming = true;
+            }
+
+            //弾丸発射
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                //発射
+                //二つ方法(重力、三角関数で模擬放物線)
+                //重力
+                //発射した後で移動を許可する
+                is_moveable = true;
+                //照準済み
+                is_aiming = false;
+
+                //弾丸予測線の計算結果リストをクリア
+                for (int i = PredictionLine_List.Count - 1; i >= 0; i--)
+                {
+                    Destroy(PredictionLine_List[i]);
+                }
+                PredictionLine_List = new List<GameObject>();
+
+                //弾丸生成
+                GameObject buttle = Instantiate(Buttet, transform.position, transform.rotation);
+                //弾丸の角度をプレイヤーと一致する
+                buttle.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
+                //弾丸位置はプレイヤーの前にする
+                buttle.transform.Translate(new Vector3(0, 0, bulletCreatePosOffset));
+            }
+            //照準中のため、弾丸予測線を描画する
+            //発射角度も調整できる
+            if (is_aiming)
+            {
+                //発射角度を調整する
+                //仮設定 発射角度の範囲:0°~90°
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    gun_rotAngle = (gun_rotAngle + gunBarrel_rotSpeed) <= 90.0f ? (gun_rotAngle + gunBarrel_rotSpeed) : 90.0f;
+                }
+                else if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    gun_rotAngle = (gun_rotAngle - gunBarrel_rotSpeed) > 0 ? (gun_rotAngle - gunBarrel_rotSpeed) : 0.0f;
+                }
+
+                //発射角度を保存する
+                PlayerPrefs.SetFloat("Bullet_Angle", gun_rotAngle);
+
+                //発射角度を調整したため、
+                //弾丸予測線の計算結果リストをクリアして再計算する必要
+                for (int i = PredictionLine_List.Count - 1; i >= 0; i--)
+                {
+                    Destroy(PredictionLine_List[i]);
+                }
+                PredictionLine_List = new List<GameObject>();
+
+                //弾丸予測線の計算と描画する
+                //LineRenderモード(重力使わず)
+                if (predictionLine_RayMode)
+                {
+                    if (pRay == null)
+                    {
+                        DrewPredictionRay();
+                    }
+                }
+                else
+                {
+                    //(重力を使う)
+                    DrewPredictionLine();
+                }
+>>>>>>> 8022e562945de1ca8c9e09b0e6779f8c9dcabddc
             }
 
             // 移動ゲージの充電
@@ -239,11 +393,16 @@ private float lastFootstepTime = 0f;
 
             //弾丸予測線を描画する
             GameObject gb = Instantiate(PredictionLine, new Vector3(x, y, z), transform.rotation);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8022e562945de1ca8c9e09b0e6779f8c9dcabddc
             //弾丸予測線の計算結果リストに保存する
             PredictionLine_List.Add(gb);
         }
     }
 
+<<<<<<< HEAD
     void MoveStep()
     {
         if (is_moveable)
@@ -423,5 +582,13 @@ private float lastFootstepTime = 0f;
             CurrentMap = AreaNumber;
         }
         
+=======
+    //弾丸予測線の計算と描画(Ray型)
+    void DrewPredictionRay()
+    {
+        pRay = Instantiate(PredictionRay, transform.position, transform.rotation);
+
+        pRay.transform.parent = this.transform;
+>>>>>>> 8022e562945de1ca8c9e09b0e6779f8c9dcabddc
     }
 }

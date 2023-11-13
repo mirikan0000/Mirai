@@ -1,0 +1,13 @@
+歩行時エフェクト実装
+
+Pleyer側
+　1.AudioSourceComponentの追加
+　2.TestCube.csの内容をコピペ
+        　→Start()の32行目、64~77行目(75行目は必要ない)
+　    インスペクターで必要なオブジェクトと変数を設定
+　    　 walkEffectObj　←　VisualEffectのPrefab
+　　　 EffectSpawnPos　←　エフェクトが発生する位置を設定
+　　　 Source1　←　足が地面に当たった時の音声
+
+VisualEffectのPrefab側
+　 1.TimerLimit　←　エフェクトが消えるまでの時間を設定

@@ -1,0 +1,19 @@
+ミサイルの実装
+
+Player側
+　1.ミサイルを発射するタイミングでミサイルを子オブジェクトとして生成する
+　　　→Manager.csの52~54行目
+
+ミサイル側(MissilePrefab）
+　1.インスペクターで各変数の値を設定
+　　　FlyingSpeed　←　ミサイルの飛行速度
+　　　MissileMaxLifeTime　←　ミサイルが飛んでいられる時間
+　　　MissileMaxHomingTime　←　ミサイルが追尾していられる時間
+　　　MissileMode　←　ミサイルの飛行モードを設定(1.追尾モード、0.追尾しないモード）
+　　　ExplosionEffect　←　爆発エフェクトのオブジェクト(PS_ExplosionEffectPrefab)
+　　　ExplosionSE　←　爆発時の音声
+
+ステージ側
+　1.NavMeshSurfaceComponentの追加
+　2.ステージ生成用のスクリプトの中に追加
+　　　CreateMap.csの17行目、30~31行目　←　ナビメッシュ生成用

@@ -1,0 +1,12 @@
+安置の実装
+
+SaftyZoneSpawnerPrefabを配置
+　インスペクターで設定
+　　DelayTime　←　安置を再生成するまでの待ち時間　
+
+SaftyZonePrefabの変数を設定
+　インスペクターで設定
+　　DelayTime　←　縮小後拡大開始までの待ち時間
+　　DestroyTime　←　拡大後消滅までの待ち時間
+　ChildSaftyZone1~4の変数をインスペクターで設定
+　　Zone1~４MoveSpeed　←　安置の移動スピード

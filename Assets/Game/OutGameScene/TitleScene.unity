@@ -1018,6 +1018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadingUI: {fileID: 1452515034}
   _slider: {fileID: 2731956762466126271}
+  NextSceneName: GameScene
 --- !u!224 &8362584812798828862
 RectTransform:
   m_ObjectHideFlags: 0

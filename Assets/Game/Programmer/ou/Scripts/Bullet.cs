@@ -12,10 +12,12 @@ public class Bullet : MonoBehaviour
     Rigidbody rb;
     //’eŠÛ‚Ì‰æ‘œ
     public GameObject Image_Bullet;
-
+    
     //ˆÚ“®•ûŒü
     private Vector3 direction;
-
+    //©‰ó‚Ü‚Å‚ÌŠÔ
+    public float DestroyTime;
+    public int damage = 20; // ’e‚Ìƒ_ƒ[ƒW
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +32,7 @@ public class Bullet : MonoBehaviour
         PlayerPrefs.SetFloat("Bullet_Speed", move_Speed);
 
         //3•bŒã‚Å©•ª‚ğ”j‰ó‚·‚é
-        Destroy(this.gameObject, 3f);
+        Destroy(this.gameObject,DestroyTime);
 
         //’eŠÛ‚Ì‰æ‘œ‚ğì¬‚·‚é
         GameObject image = Instantiate(Image_Bullet, transform.position, Quaternion.identity);
@@ -38,6 +40,7 @@ public class Bullet : MonoBehaviour
         image.transform.parent = this.transform;
 
         direction = transform.forward;
+      
     }
 
     // Update is called once per frame
@@ -58,10 +61,18 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //•Ç‚Æ‚ ‚Á‚½‚çˆÚ“®•ûŒü‚ğİ’è‚·‚é
-        if (collision.gameObject.tag.Equals("Wall"))
+        if (collision.gameObject.tag.Equals("Area"))
         {
             Vector3 dir = Vector3.Reflect(direction, collision.GetContact(0).normal);
             direction = dir;
         }
+        if (collision.gameObject.CompareTag("Player1") || collision.gameObject.CompareTag("Player2"))
+        {
+            // ƒvƒŒƒCƒ„[‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚é
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+            // ’eŠÛ‚ğÁ‚·
+            Destroy(gameObject);
+        }
     }
+   
 }

@@ -7,15 +7,19 @@ public class LoadingScene : MonoBehaviour
 {
     [SerializeField] private GameObject _loadingUI;
     [SerializeField] private Slider _slider;
+    [SerializeField] private string NextSceneName;
     public void LoadNextScene()
     {
-        _loadingUI.SetActive(true);
+        if (_loadingUI==null&& _loadingUI.activeSelf==false)
+        {
+            _loadingUI.SetActive(true);
+        }
         StartCoroutine(LoadScene());
     }
     
    IEnumerator LoadScene()
     {
-        AsyncOperation async = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("GameScene");
+        AsyncOperation async = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(NextSceneName);
         while (!async.isDone)
         {
             _slider.value = async.progress;

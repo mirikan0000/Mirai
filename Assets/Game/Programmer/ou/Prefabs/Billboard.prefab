@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRotation: 1
   isZoom: 1
-  size: 0.1
+  size: 0.01
 --- !u!1 &6794986658884340550
 GameObject:
   m_ObjectHideFlags: 0

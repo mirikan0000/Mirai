@@ -107,6 +107,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9102039771214713624}
+  - {fileID: 4921400155469446401}
   - {fileID: 7607678326889561908}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -203,13 +204,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3566970909240121686}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5321117875081492694}
-  m_Father: {fileID: 7607678326889561908}
+  m_Father: {fileID: 2736802347482924331}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -265,7 +266,6 @@ GameObject:
   - component: {fileID: 7607678326889561908}
   - component: {fileID: 4647891169431459766}
   - component: {fileID: 7709953570572606104}
-  - component: {fileID: 2700494478583572693}
   m_Layer: 5
   m_Name: jiku
   m_TagString: Untagged
@@ -284,8 +284,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4921400155469446401}
+  m_Children: []
   m_Father: {fileID: 2736802347482924331}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -331,20 +330,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2700494478583572693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7328844606735077506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf529dcbac2fd4d43b647e31ae97a1ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 10
-  targetRotation: {x: 0, y: 0, z: 180}
 --- !u!1 &7838321005184861708
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +341,6 @@ GameObject:
   - component: {fileID: 5321117875081492694}
   - component: {fileID: 458295773760659954}
   - component: {fileID: 8577055613183468701}
-  - component: {fileID: 8477287381644340738}
   m_Layer: 5
   m_Name: weather
   m_TagString: Untagged
@@ -421,18 +405,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8477287381644340738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7838321005184861708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb33fcc5d17463f42a93014ee5d94976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  images:
-  - {fileID: 21300000, guid: 411ee3ff6f964d14c85a77a0e7cdc391, type: 3}
-  - {fileID: 21300000, guid: 2b50621582e9b114dbf64ceb98331141, type: 3}

@@ -66,7 +66,7 @@ public class NextScene : MonoBehaviour
         {
             hasLoadedScene = true;
             Debug.Log("once!!!");
-            SceneManager.Instance.LoadScene(loadSceneName);
+           // SceneManager.Instance.LoadScene(loadSceneName);
             FadeOutPanel.GetComponent<LoadingScene>().LoadNextScene();
             isDestroyScene = true;
             SceneManager.Instance.ChangeScene();

@@ -14,7 +14,7 @@ public class Zone4 : MonoBehaviour
     public Vector3 preZone4pos;            //自身の初期位置
     public Vector3 postZone4Pos;           //自身の移動後の目標位置
     public Vector3 nowZone4Pos;            //自身の現在位置
-    public int zone4MoveSpeed;           //移動速度
+    public float zone4MoveSpeed = 0.0001f;           //移動速度
 
     public Vector3 pre4Pos;                //初期位置用(小数点以下切り捨て
     float pre4Posx, pre4Posy, pre4Posz;    
@@ -40,7 +40,7 @@ public class Zone4 : MonoBehaviour
         childSaftyZone4Obj = this.gameObject;
         childSaftyZone4ObjName = childSaftyZone4Obj.name;
         preZone4pos = childSaftyZone4Obj.transform.position;
-
+        zone4MoveSpeed = 0.01f;
         //親オブジェクトのスクリプト取得
         parentSaftyZoneObj = transform.parent.gameObject;
         parentSaftyZoneScript = parentSaftyZoneObj.GetComponent<SaftyZone>();

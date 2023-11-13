@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: e047a116251f46d459e1a89160c4daa5, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -3405,6 +3405,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3917273870834212363, guid: efb36adb8f6364640a7809eaa80e8353, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4503025045534204704, guid: efb36adb8f6364640a7809eaa80e8353, type: 3}
       propertyPath: player1
       value: 
@@ -3416,6 +3420,14 @@ PrefabInstance:
     - target: {fileID: 5526492372288800411, guid: efb36adb8f6364640a7809eaa80e8353, type: 3}
       propertyPath: m_Name
       value: BulletManagerUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5526492372288800411, guid: efb36adb8f6364640a7809eaa80e8353, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283714549895436889, guid: efb36adb8f6364640a7809eaa80e8353, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4861,6 +4873,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 921874457150371477, guid: a03fec64e95bdba4a815a94d94945b88, type: 3}
+      propertyPath: zone3MoveSpeed
+      value: 0.000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454404539449574317, guid: a03fec64e95bdba4a815a94d94945b88, type: 3}
+      propertyPath: setReduPosFlag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454404539449574317, guid: a03fec64e95bdba4a815a94d94945b88, type: 3}
+      propertyPath: zone1MoveSpeed
+      value: 0.000001
+      objectReference: {fileID: 0}
     - target: {fileID: 4519891403990973443, guid: a03fec64e95bdba4a815a94d94945b88, type: 3}
       propertyPath: m_Name
       value: SaftyZone
@@ -4908,6 +4932,14 @@ PrefabInstance:
     - target: {fileID: 5448257482014780676, guid: a03fec64e95bdba4a815a94d94945b88, type: 3}
       propertyPath: zone1redu
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5876981285877119908, guid: a03fec64e95bdba4a815a94d94945b88, type: 3}
+      propertyPath: zone2MoveSpeed
+      value: 0.000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6229141282582035589, guid: a03fec64e95bdba4a815a94d94945b88, type: 3}
+      propertyPath: zone4MoveSpeed
+      value: 0.000001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

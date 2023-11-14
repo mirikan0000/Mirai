@@ -14,7 +14,13 @@ public class SaftyZone : MonoBehaviour
     public bool delayFlag = true;           //待ち時間用フラグ
     public float delayTime;                 //待ち時間
     public float destroyTime;               //破壊までの時間
-                                            
+
+    [Header("縮小段階ごとの変数")]
+    public float redu1DelayTime;            //一段階目の時の待ち時間
+    public float redu2DelayTime;
+    public float redu3DelayTime;
+    public float redu4DelayTime;
+
     [Header("各子オブジェクト移動完了用")]
     public bool zone1redu = false;
     public bool zone1mag = false;
@@ -24,6 +30,20 @@ public class SaftyZone : MonoBehaviour
     public bool zone3mag = false;
     public bool zone4redu = false;
     public bool zone4mag = false;
+
+    [Header("各子オブジェクト縮小段階判定用")]
+    public int reduStageNum = 1;                 //何段階目か
+    public bool zone1reduStage = false;
+    public bool zone2reduStage = false;
+    public bool zone3reduStage = false;
+    public bool zone4reduStage = false;
+
+    [Header("各子オブジェクト拡大段階判定用")]
+    public int magStageNum = 0;                  //何段階目か
+    public bool zone1magStage = false;
+    public bool zone2magStage = false;
+    public bool zone3magStage = false;
+    public bool zone4magStage = false;
 
     [Header("バグチェック用")]
     public bool bug = false;                //移動終了時にバグったらTrueにする
@@ -48,6 +68,22 @@ public class SaftyZone : MonoBehaviour
     {
         if (bug == false)
         {
+            //安置の縮小段階判定
+            CheckReducationStage();
+
+            //安置の拡大段階判定
+
+            //縮小完了時(各段階まで移動したとき）
+            switch (reduStageNum)
+            {
+                case 0:  //初期状態(何もしない）
+                    break;
+                case 1:  //第一安置
+                    redu1DelayTime += Time.deltaTime;
+                    break;
+
+            }
+            //縮小完了時(完全に縮小仕切った時）
             if (zone1redu == true && zone2redu == true && zone3redu == true && zone4redu == true)
             {
                 if (delayFlag == true)
@@ -61,6 +97,7 @@ public class SaftyZone : MonoBehaviour
                 }
             }
 
+            //拡大完了時(完全に拡大しきった時）
             if (zone1mag == true && zone2mag == true && zone3mag == true && zone4mag == true)
             {
                 destroyFlag = true;
@@ -94,6 +131,25 @@ public class SaftyZone : MonoBehaviour
         saftyZoneSpwnerScript.spawnCheck = true;
         Destroy(this.gameObject);
     }
+
+    //安置の縮小段階判定
+    private void CheckReducationStage()
+    {
+        if (zone1reduStage == true && zone2reduStage == true && zone3reduStage == true && zone4reduStage == true)
+        {
+            //各子オブジェクトが１段階分の縮小完了してたら段階を進める
+            reduStageNum++;
+
+            //各子オブジェクトの縮小段階フラグをFalseにする
+            zone1reduStage = false;
+            zone2reduStage = false;
+            zone3reduStage = false;
+            zone4reduStage = false;
+        }
+    }
+
+    //安置の拡大段階判定
+
 
     //バグった時用
     private void OccurredBug()

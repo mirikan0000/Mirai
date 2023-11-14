@@ -6,27 +6,28 @@ public class Zone1 : MonoBehaviour
 {
     [SerializeField]
     [Header("オブジェクト取得用")]
-    public GameObject childSaftyZone1Obj;  //自身のゲームオブジェクト
-    public string childSaftyZone1ObjName;  //自身の名前
+    GameObject childSaftyZone1Obj;         //自身のゲームオブジェクト
+    string childSaftyZone1ObjName;         //自身の名前
     GameObject parentSaftyZoneObj;         //親オブジェクト
     SaftyZone parentSaftyZoneScript;       //親オブジェクトのスクリプト
+
     [Header("移動用")]
-    public Vector3 preZone1pos;            //自身の初期位置
-    public Vector3 postZone1Pos;           //自身の移動後の目標位置
-    public Vector3 nowZone1Pos;            //自身の現在位置
-    public float zone1MoveSpeed = 0.0001f;             //移動速度
-
-    public Vector3 pre1Pos;                //初期位置用(小数点以下切り捨て
+    public Vector3 preZone1pos,            //自身の初期位置
+                   postZone1Pos,           //自身の移動後の目標位置
+                   nowZone1Pos;            //自身の現在位置
+    public float zone1MoveSpeed = 0.0001f; //移動速度
+    Vector3 pre1Pos;                       //初期位置用(小数点以下切り捨て
     float pre1Posx, pre1Posy, pre1Posz;    
-
-    public Vector3 now1Pos;          　　　//現在位置用(小数点以下切り捨て
+    Vector3 now1Pos;                 　　　//現在位置用(小数点以下切り捨て
     float now1Posx, now1Posy, now1Posz;
-
     private float dis;                     //誤差が出た時用
 
     [Header("縮小用")]
     public bool setReduPosFlag = true;     //縮小後の位置をセットするためのフラグ
     public bool endReduFlag = false;       //縮小完了したか
+
+    public int reduStage;                  //安置の縮小段階
+
     [Header("拡大用")]
     public bool setMagPosFlag = false;     //拡大後の位置をセットするためのフラグ
     public bool endMagFlag = false;        //拡大完了したか

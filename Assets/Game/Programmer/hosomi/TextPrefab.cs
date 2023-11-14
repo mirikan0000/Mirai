@@ -18,7 +18,7 @@ public class TextPrefab : MonoBehaviour
 
         // 最初の位置を親オブジェクトのImageの右端にする
         float parentImageWidth = parentImage.rectTransform.sizeDelta.x;
-        float textWidth = rectTransform.sizeDelta.x;
+        float textWidth = rectTransform.sizeDelta.x * rectTransform.localScale.x;  // スケールを考慮
         float startPosX = parentImageWidth / 2 + textWidth / 2;
         float startPosY = Random.Range(-parentImage.rectTransform.sizeDelta.y / 2 + textHeight / 2, parentImage.rectTransform.sizeDelta.y / 2 - textHeight / 2);
 
@@ -32,7 +32,8 @@ public class TextPrefab : MonoBehaviour
         transform.Translate(-speed * Time.deltaTime, 0, 0);
 
         // 画面外に出た場合は自身を削除する
-        if (rectTransform.localPosition.x + rectTransform.sizeDelta.x / 2 < -parentImage.rectTransform.sizeDelta.x / 2)
+        float textWidth = rectTransform.sizeDelta.x * rectTransform.localScale.x;  // スケールを考慮
+        if (rectTransform.localPosition.x + textWidth / 2 < -parentImage.rectTransform.sizeDelta.x / 2)
         {
             Destroy(this.gameObject);
         }

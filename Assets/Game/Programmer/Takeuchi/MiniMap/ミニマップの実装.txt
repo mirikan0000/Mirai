@@ -1,0 +1,8 @@
+ミニマップの実装
+
+MinimapCameraのPrefabを配置
+ミニマップに映したいものにはMiniMapのLayerを設定する
+
+１マスごとに番号を振ってそれを比較し、フォーカスできるようにする
+　→MiniMapCamera.csのMoveMiniMapCamera()に追記する
+　　どうやってPlyerのいるマップ番号を取得するかは要相談

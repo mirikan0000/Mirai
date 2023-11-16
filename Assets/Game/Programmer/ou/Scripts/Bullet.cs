@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+
+public class Bullet : Weapon
 {
     //”­Ë‹——£‚ğ’²®‚·‚é‚½‚ß
     float rangeOffset = 0.0f;
@@ -12,20 +13,21 @@ public class Bullet : MonoBehaviour
     Rigidbody rb;
     //’eŠÛ‚Ì‰æ‘œ
     public GameObject Image_Bullet;
-    
+ 
+
     //ˆÚ“®•ûŒü
     private Vector3 direction;
     //©‰ó‚Ü‚Å‚ÌŠÔ
     public float DestroyTime;
     public int damage = 20; // ’e‚Ìƒ_ƒ[ƒW
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         //„‘Ì‚ğæ“¾‚·‚é
         rb = GetComponent<Rigidbody>();
-
+      
         //”­Ë‹——£‚ğæ“¾‚·‚é(’eŠÛ—\‘ªü‚ğŒvZ‚·‚é‚É•Û‘¶‚·‚é)
-        if(PlayerPrefs.HasKey("Bullet_RangeOffset"))
+        if (PlayerPrefs.HasKey("Bullet_RangeOffset"))
             rangeOffset = PlayerPrefs.GetFloat("Bullet_RangeOffset");
 
         //’eŠÛ‘¬“x‚ğ•Û‘¶‚·‚é
@@ -44,8 +46,9 @@ public class Bullet : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+   private void Update()
     {
+       
         //”­Ë‹——£‚ğ‡‚í‚¹‚éˆ×‚É©•ª‚ğ—Í‚ğ‚ ‚°‚é
         if (rangeOffset != 0.0f)
         {
@@ -68,11 +71,12 @@ public class Bullet : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Player1") || collision.gameObject.CompareTag("Player2"))
         {
+          
             // ƒvƒŒƒCƒ„[‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚é
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage, collision.gameObject.GetComponent<PlayerHealth>().armorflog);
             // ’eŠÛ‚ğÁ‚·
             Destroy(gameObject);
         }
     }
-   
+  
 }

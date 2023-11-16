@@ -5,73 +5,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager_ : MonoBehaviour
 {
-    //ゲームは更新しているか(例えば：開始画面、クリア画面などではない状態)
+    // ゲームは更新しているか（例：開始画面、クリア画面などではない状態）
     bool is_start;
-   
-    //照準を合わせている(予測線)
-    bool is_aiming;
-    public bool energyballFlug;
-    //発射、リロードは移動できないため
-    bool is_moveable = true;
-    //カメラのアングル
-    public float x_angle=1000;
+
     [Header("プレイヤーの移動速度")]
     public float move_speed = 5.0f;
-    //プレイヤーの立つマップ番号
     public int CurrentMap;
-  [SerializeField] float rot_angle = 0.1f;
-
-   
+    [SerializeField] float rot_angle = 0.1f;
     public Camera camera;
-    //予測線の描画モード
-    public bool predictionLine_RayMode = true;
+    bool is_moveable = true;
 
-    float rotation_Y = 0.0f;
-
-    //発射角度の調整速度(回転)
-    float gunBarrel_rotSpeed = 0.5f;
-
-    //今の発射角度(砲塔アセットがないため、一旦記録する)
-
-    public float gun_rotAngle = 0.0f;
-
- 
-    //発射距離の調整変数(Public型)
-    public float Bullet_RangeOffset = 0;
-
-    //発射位置を調整する変数(プレイヤーの中ではなくて、前で発射するため)
-    //弾丸とプレイヤーを被ったら(当たったら)、弾丸は変な方向になるため。
-    public float bulletCreatePosOffset = 1.0f;
-    public float bulletCreatePosOffsetY = 25.0f;
-    //弾丸(Public型)
-
-    public GameObject Bullet;
-    //チャージショット(Public)
-    public GameObject ChageShot;
-    //弾丸予測線(Public型)
-
-   
-    //弾丸予測線(重力を使う)
-
-    public GameObject PredictionLine;
-    //弾丸予測線(重力を使わず)
-    public GameObject PredictionRay;
-
-
-    //予測線GameObjectを保存する
-    GameObject pRay;
-
-    //弾丸予測線を構成するための描画数
-    public int PredictionLineNumber = 66;
-
-    //弾丸予測線の計算結果リスト(描画位置を保存する)
-    List<GameObject> PredictionLine_List = new List<GameObject>();
-    
-    //ローカルマルチ設定
+    // ローカルマルチ設定
     private Dictionary<string, PlayerInput> playerInputDictionary = new Dictionary<string, PlayerInput>();
-    //
     public PlayerInput[] playerInputArray;
-    // 振動////////////////////////////////////
+
+    // 振動
     [System.Serializable]
     public struct VibrationStruct
     {
@@ -83,40 +31,34 @@ public class PlayerManager_ : MonoBehaviour
     [Header("振動構造体配列")]
     public VibrationStruct[] vibrationStructArray;
     private VibrationStruct vibrationStructNow;
-    // 振動時間
     private float vibrationTime;
-
     public bool isVibrationCannot;
+    int AreaNumber;
 
-    //animation
-    public Animator animator;  // アニメーターコンポーネント取得用
-   public FootSteps footSteps;
-    private Rigidbody rb; // Rigidbodyコンポーネント
-
-    // サウンドが再生中かどうかを示すフラグ
+    // アニメーション
+    public Animator animator;
+    public FootSteps footSteps;
+    private Rigidbody rb;
     private bool isSoundPlaying = false;
+    private float lastFootstepTime = 0f;
+    private float footstepInterval = 0.5f;
 
-// 前回の足音再生時刻
-private float lastFootstepTime = 0f;
-    private float footstepInterval=0.5f;
-
-    //Playerの視点カメラ
+    // Playerの視点カメラ
     public GameObject Playercamera;
 
-    //Playerの移動ゲージ
-    public float moveGauge = 100.0f;  // 移動ゲージの初期値
-    public float moveGaugeRate = 10.0f;  // 移動ゲージの充電速度
-    public float moveGaugeThreshold = 20.0f;  // 移動ゲージがゼロに近づいたときに停止する閾値
-    private float moveGaugeConsumptionRate = 10.0f;  // 移動中にゲージから消費する速度
-    private bool isMoving = false;  // プレイヤーが移動中かどうかを示すフラグ
-
-
-    // Start is called before the first frame update
+    // Playerの移動ゲージ
+    public float moveGauge = 100.0f;
+    public float moveGaugeRate = 10.0f;
+    public float moveGaugeThreshold = 20.0f;
+    private float moveGaugeConsumptionRate = 10.0f;
+    private bool isMoving = false;
+    public void SetisMoving(bool ismoveing)
+    {
+        isMoving = ismoveing;
+    }
     void Start()
     {
-        //ゲーム開始(更新を許可する)
         is_start = true;
-
 
         foreach (PlayerInput playerInput in playerInputArray)
         {
@@ -124,20 +66,13 @@ private float lastFootstepTime = 0f;
         }
 
         if (animator) animator.SetBool("Walk", false);
-        
-        //振動時間
+
         vibrationTime = 99;
-        rb = GetComponent<Rigidbody>(); // Rigidbodyコンポーネントを取得
+        rb = GetComponent<Rigidbody>();
     }
-  
-    /// <summary>
-    /// ボタンを押した瞬間
-    /// ※ActionMaps名,Actions名は「InputActionControls」を確認
-    /// </summary>
+
     public bool GetButtonDown(string actionMapsName, string actionsName)
     {
-   
-
         if (playerInputDictionary.TryGetValue(actionMapsName, out PlayerInput playerInput))
         {
             return playerInput.actions[actionsName].WasPressedThisFrame();
@@ -146,10 +81,9 @@ private float lastFootstepTime = 0f;
         Debug.Log("入力受付失敗" + actionMapsName + actionsName);
         return false;
     }
+
     public bool GetButton(string actionMapsName, string actionsName)
     {
-
-
         if (playerInputDictionary.TryGetValue(actionMapsName, out PlayerInput playerInput))
         {
             return playerInput.actions[actionsName].IsPressed();
@@ -158,10 +92,7 @@ private float lastFootstepTime = 0f;
         Debug.Log("ActionMapが存在しない" + actionMapsName + actionsName);
         return false;
     }
-    /// <summary>
-    /// ボタンを離した瞬間 
-    /// ※ActionMaps名,Actions名は「InputActionControls」を確認
-    /// </summary>
+
     public bool GetButtonUp(string actionMapsName, string actionsName)
     {
         if (playerInputDictionary.TryGetValue(actionMapsName, out PlayerInput playerInput))
@@ -169,439 +100,124 @@ private float lastFootstepTime = 0f;
             return playerInput.actions[actionsName].WasReleasedThisFrame();
         }
 
-       Debug.Log("ActionMapが存在しない" + actionMapsName + actionsName);
+        Debug.Log("ActionMapが存在しない" + actionMapsName + actionsName);
         return false;
-
     }
-  
 
     void Update()
     {
-      
         if (is_start)
         {
+            MoveStep();
+        }
+    }
 
-            // プレイヤーが移動中でない場合、移動ゲージが一定量以下になると停止する
-            if (!isMoving && moveGauge <= moveGaugeThreshold)
-            {
-                rb.velocity = Vector3.zero;  // プレイヤーの速度をゼロに設定して停止
-            }
+    void MoveStep()
+    {
+        if (!isMoving && moveGauge <= moveGaugeThreshold)
+        {
+            rb.velocity = Vector3.zero;
+        }
 
-            // 移動ボタンが押されているかチェック
-            bool isMoveButtonDown = GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward") ||
-                                   GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack") ||
-                                   GetButton("Player", "MoveLeft") || GetButton("Player1", "MoveLeft") ||
-                                   GetButton("Player", "MoveRight") || GetButton("Player1", "MoveRight");
+        bool isMoveButtonDown = GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward") ||
+                                GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack") ||
+                                GetButton("Player", "MoveLeft") || GetButton("Player1", "MoveLeft") ||
+                                GetButton("Player", "MoveRight") || GetButton("Player1", "MoveRight");
 
-            // 移動中の場合、ゲージから消費
-            if (isMoving)
+        if (isMoving)
+        {
+            moveGauge -= moveGaugeConsumptionRate * Time.deltaTime;
+            moveGauge = Mathf.Max(moveGauge, moveGaugeThreshold);
+        }
+        else if (isMoveButtonDown && moveGauge > moveGaugeThreshold)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
+
+        if (!isMoving && moveGauge < 100.0f)
+        {
+            moveGauge += moveGaugeRate * Time.deltaTime;
+            moveGauge = Mathf.Clamp(moveGauge, moveGaugeThreshold, 100.0f);
+        }
+
+        if (is_moveable)
+        {
+            if (GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward") ||
+                GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack") ||
+                GetButton("Player", "MoveLeft") || GetButton("Player1", "MoveLeft") ||
+                GetButton("Player", "MoveRight") || GetButton("Player1", "MoveRight"))
             {
-                moveGauge -= moveGaugeConsumptionRate * Time.deltaTime;
-                moveGauge = Mathf.Max(moveGauge, moveGaugeThreshold);  // 最低値を1に制限
-            }
-            else if (isMoveButtonDown && moveGauge > moveGaugeThreshold)  // 移動ボタンが押されていてゲージが最低値以上の場合
-            {
-                isMoving = true;  // プレイヤーが移動中
+                isMoving = true;
+                moveGauge -= Time.deltaTime;
+                moveGauge = Mathf.Clamp(moveGauge, 0.0f, 100.0f);
+
+                if (moveGauge == 0.0f)
+                {
+                    is_moveable = false;
+                    isMoving = false;
+                }
             }
             else
             {
-                isMoving = false;  // プレイヤーが移動中でない
-            }
-            // 移動ゲージの充電
-            if (!isMoving && moveGauge < 100.0f)  // 最大値が30
-            {
-                moveGauge += moveGaugeRate * Time.deltaTime;
-                moveGauge = Mathf.Clamp(moveGauge, moveGaugeThreshold, 100.0f);  // 最低値を1に制限
+                isMoving = false;
             }
 
-            // デバッグログで移動ゲージの値を表示
-            Debug.Log("Move Gauge: " + moveGauge);
-         
-            // 他のステップ（ダメージ、移動、攻撃）の処理はそのままで残しておきます。
-            DamageStep();
-            MoveStep();
-            ShotStep();
-           
+            Vector3 moveDirection = Vector3.zero;
 
-
-            ////KeyBord
-            ////プレイヤー移動
-            //if (is_moveable)
-            //{
-            //    //Keyboard
-            //    if (Input.GetKey(KeyCode.W))
-            //    {
-            //        transform.Translate(new Vector3(0, 0, move_speed * Time.deltaTime));
-            //    }
-            //    if (Input.GetKey(KeyCode.S))
-            //    {
-            //        transform.Translate(new Vector3(0, 0, -move_speed * Time.deltaTime));
-            //    }
-            //    if (Input.GetKey(KeyCode.A))
-            //    {
-            //        transform.Rotate(new Vector3(0, -rot_angle, 0));
-            //        rotation_Y -= rot_angle;
-            //        PlayerPrefs.SetFloat("Rot_Angle", rotation_Y);
-            //    }
-            //    if (Input.GetKey(KeyCode.D))
-            //    {
-            //        transform.Rotate(new Vector3(0, rot_angle, 0));
-            //        rotation_Y += rot_angle;
-            //        PlayerPrefs.SetFloat("Rot_Angle", rotation_Y);
-            //    }
-
-        }
-    }
-           
-                
-
-    //弾丸予測線
-                //Spaceキーを押し続けると弾丸予測線を描画する
-                //if (Input.GetKeyDown(KeyCode.Space))
-                //{
-                //    //予測線
-                //    //二つ方法(重力、三角関数で模擬放物線)
-                //    //重力
-                //    //移動禁止
-                //    is_moveable = false;
-                //    //照準中(予測線を描画するため)
-                //    is_aiming = true;
-                //}
-
-                ////弾丸発射
-                //if (Input.GetKeyUp(KeyCode.Space))
-                //{
-                //    //発射
-                //    //二つ方法(重力、三角関数で模擬放物線)
-                //    //重力
-                //    //発射した後で移動を許可する
-                //    is_moveable = true;
-                //    //照準済み
-                //    is_aiming = false;
-
-                //    //弾丸予測線の計算結果リストをクリア
-                //    for (int i = PredictionLine_List.Count - 1; i >= 0; i--)
-                //    {
-                //        Destroy(PredictionLine_List[i]);
-                //    }
-                //    PredictionLine_List = new List<GameObject>();
-
-                //    //弾丸生成
-                //    GameObject buttle = Instantiate(Buttet, transform.position, transform.rotation);
-                //    //弾丸の角度をプレイヤーと一致する
-                //    buttle.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
-                //    //弾丸位置はプレイヤーの前にする
-                //    buttle.transform.Translate(new Vector3(0, 0, bulletCreatePosOffset));
-                //}
-                //照準中のため、弾丸予測線を描画する
-                //発射角度も調整できる
-                //if (is_aiming)
-                //{
-                //    //発射角度を調整する
-                //    //仮設定 発射角度の範囲:0°~90°
-                //    if (Input.GetKey(KeyCode.UpArrow))
-                //    {
-                //        gun_rotAngle = (gun_rotAngle + gunBarrel_rotSpeed) <= 90.0f ? (gun_rotAngle + gunBarrel_rotSpeed) : 90.0f;
-                //    }
-                //    else if (Input.GetKey(KeyCode.DownArrow))
-                //    {
-                //        gun_rotAngle = (gun_rotAngle - gunBarrel_rotSpeed) > 0 ? (gun_rotAngle - gunBarrel_rotSpeed) : 0.0f;
-                //    }
-
-                //    //発射角度を保存する
-                //    PlayerPrefs.SetFloat("Bullet_Angle", gun_rotAngle);
-
-                //    //発射角度を調整したため、
-                //    //弾丸予測線の計算結果リストをクリアして再計算する必要
-                //    for (int i = PredictionLine_List.Count - 1; i >= 0; i--)
-                //    {
-                //        Destroy(PredictionLine_List[i]);
-                //    }
-                //    PredictionLine_List = new List<GameObject>();
-
-                //    //弾丸予測線の計算と描画する
-                //    //LineRenderモード(重力使わず)
-                //    if (predictionLine_RayMode)
-                //    {
-                //        if (pRay == null)
-                //        {
-                //            DrewPredictionRay();
-                //        }
-                //    }
-                //    else
-                //    {
-                //        //(重力を使う)
-                //        DrewPredictionLine();
-                //    }
-
-              //  }
-
-         
-
-        
-  
-        //弾丸予測線の計算と描画
-        void DrewPredictionLine()
-        {
-            //発射角度をラジアンにする
-            float angle_y = gun_rotAngle * Mathf.Deg2Rad;
-            //プレイヤー回転角度をラジアンにする
-            float angle_xz = transform.eulerAngles.y * Mathf.Deg2Rad;
-
-            //弾丸の発射速度をゲットする(Script「Bullet」で保存している)
-            float Bullet_Speed = PlayerPrefs.GetFloat("Bullet_Speed");
-
-            //弾丸予測線を計算する
-            for (int i = 0; i < PredictionLineNumber; i++)
+            if (GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward"))
             {
-                //時間間隔
-                float t = i * 0.05f;
+                moveDirection = transform.forward * move_speed * Time.deltaTime;
+            }
 
-                //横平面の位置(XZ座標)を計算する
-                float X = (bulletCreatePosOffset + Bullet_Speed * t) * Mathf.Cos(angle_y);
-                float x = X * Mathf.Sin(angle_xz) + transform.position.x;
-                float z = X * Mathf.Cos(angle_xz) + transform.position.z;
+            if (GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack"))
+            {
+                moveDirection = -transform.forward * move_speed * Time.deltaTime;
+            }
 
-                //重力と発射距離を合わせるため、計算する
-                float Bullet_Gravity = Physics2D.gravity.y;
-                //重力 < = 0 
-                if ((Physics2D.gravity.y + Bullet_RangeOffset) <= 0)
+            if (GetButton("Player", "MoveLeft") || GetButton("Player1", "MoveLeft"))
+            {
+                transform.Rotate(new Vector3(0, -rot_angle, 0));
+            }
+
+            if (GetButton("Player", "MoveRight") || GetButton("Player1", "MoveRight"))
+            {
+                transform.Rotate(new Vector3(0, rot_angle, 0));
+            }
+
+            if (moveGauge > moveGaugeThreshold)
+            {
+                rb.velocity = new Vector3(moveDirection.x, rb.velocity.y, moveDirection.z);
+            }
+
+            if (animator)
+            {
+                if (moveDirection != Vector3.zero)
                 {
-                    //発射距離を合わせた"重力"を計算する
-                    Bullet_Gravity += Bullet_RangeOffset;
-                    //発射距離を保存する(Script「Bullet」で計算する時に使うため)
-                    PlayerPrefs.SetFloat("Bullet_RangeOffset", Bullet_RangeOffset);
-                }
-
-                //縦方向のＹ座標を計算する
-                float y = (bulletCreatePosOffset + Bullet_Speed * t) * Mathf.Sin(angle_y) + 0.5f * Bullet_Gravity * t * t + transform.position.y;
-
-                //弾丸予測線を描画する
-                GameObject gb = Instantiate(PredictionLine, new Vector3(x, y, z), transform.rotation);
-
-                //弾丸予測線の計算結果リストに保存する
-                PredictionLine_List.Add(gb);
-            }
-        }
-
-
-        void MoveStep()
-        {
-            if (is_moveable)
-            {
-                // 移動ゲージの消費
-                if (GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward") ||
-                    GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack") ||
-                    GetButton("Player", "MoveLeft") || GetButton("Player1", "MoveLeft") ||
-                    GetButton("Player", "MoveRight") || GetButton("Player1", "MoveRight"))
-                {
-                    isMoving = true;
-                    moveGauge -= Time.deltaTime;  // 移動ゲージを減少
-                    moveGauge = Mathf.Clamp(moveGauge, 0.0f, 100.0f);
-
-                    if (moveGauge == 0.0f)
-                    {
-                        // 移動ゲージがゼロになったら移動を禁止
-                        is_moveable = false;
-                        isMoving = false;
-                    }
+                    animator.SetBool("Walk", true);
                 }
                 else
                 {
-                    isMoving = false;
-                }
-
-                // 移動方向ベクトルを初期化
-                Vector3 moveDirection = Vector3.zero;
-
-                if (GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward"))
-                {
-                    moveDirection = transform.forward * move_speed * Time.deltaTime;
-                }
-
-                if (GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack"))
-                {
-                    moveDirection = -transform.forward * move_speed * Time.deltaTime;
-                }
-
-                if (GetButton("Player", "MoveLeft") || GetButton("Player1", "MoveLeft"))
-                {
-                    transform.Rotate(new Vector3(0, -rot_angle, 0));
-                }
-
-                if (GetButton("Player", "MoveRight") || GetButton("Player1", "MoveRight"))
-                {
-                    transform.Rotate(new Vector3(0, rot_angle, 0));
-                }
-
-                // 移動ゲージが一定量以上ある場合のみ移動を許可
-                if (moveGauge > moveGaugeThreshold)
-                {
-                    rb.velocity = new Vector3(moveDirection.x, rb.velocity.y, moveDirection.z);
-
-                }
-
-                if (animator)
-                {
-                    if (moveDirection != Vector3.zero)
-                    {
-                        animator.SetBool("Walk", true);
-                    }
-                    else
-                    {
-                        animator.SetBool("Walk", false);
-                    }
+                    animator.SetBool("Walk", false);
                 }
             }
         }
+    }
 
-        bool CanMove(Vector3 moveDirection)
-        {
-            // プレイヤーの現在位置から移動先を計算
-            Vector3 newPosition = transform.position + moveDirection;
-
-            // Rayを可視化するために、Rayの開始点と終点を計算
-            Vector3 rayStart = transform.position;
-            Vector3 rayEnd = newPosition;
-
-            // Raycastを使用して移動先に壁があるかどうかをチェック
-            Ray ray = new Ray(rayStart, moveDirection);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, moveDirection.magnitude))
-            {
-                // 移動先に壁がある場合、移動を許可しない
-                Debug.DrawLine(rayStart, hit.point, Color.red); // Rayが衝突した部分を赤い線で表示
-                return false;
-            }
-
-            // Rayが衝突しない場合、移動を許可
-            Debug.DrawLine(rayStart, rayEnd, Color.green); // Rayの方向を緑の線で表示
-            return true;
-        }
-        void ShotStep()
-        {
-            //弾丸予測線
-            //Spaceキーを押し続けると弾丸予測線を描画する
-            if (GetButtonDown("Player", "Fire") || GetButtonDown("Player1", "Fire"))
-            {
-                //予測線
-                //二つ方法(重力、三角関数で模擬放物線)
-                //重力
-                //移動禁止
-                is_moveable = false;
-                //照準中(予測線を描画するため)
-                is_aiming = true;
-                energyballFlug = true;
-            }
-
-            //弾丸発射
-            if (GetButtonUp("Player", "Fire") || GetButtonUp("Player1", "Fire"))
-            {
-                //発射
-                //二つ方法(重力、三角関数で模擬放物線)
-                //重力
-                //発射した後で移動を許可する
-                is_moveable = true;
-                //照準済み
-                is_aiming = false;
-
-            
-                //弾丸生成
-                GameObject buttle = Instantiate(Bullet, transform.position, transform.rotation);
-            //親子関係を設定する
-            buttle.transform.parent = this.transform;
-            // 1フレーム後に親子関係を解除するコルーチンを呼び出す
-            StartCoroutine(UnparentAfterOneFrame(buttle.transform));
-            //弾丸の角度をプレイヤーと一致する
-            buttle.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
-                //弾丸位置はプレイヤーの前にする
-                buttle.transform.Translate(new Vector3(0, bulletCreatePosOffsetY, bulletCreatePosOffset));
-            if (pRay != null)
-            {
-                Destroy(pRay);
-                pRay = null;
-            }
-        }
-        //照準中のため、弾丸予測線を描画する
-        //発射角度も調整できる
-        if (is_aiming)
-            {
-                //発射角度を調整する
-                //仮設定 発射角度の範囲:0°~90°
-                if (GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward"))
-                {
-                    gun_rotAngle = (gun_rotAngle + gunBarrel_rotSpeed) <= 90.0f ? (gun_rotAngle + gunBarrel_rotSpeed) : 90.0f;
-                    if (90.0f > gun_rotAngle) Playercamera.transform.Rotate(new Vector3(-gun_rotAngle / x_angle, 0, 0));
-                }
-                else if (GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack"))
-                {
-                    gun_rotAngle = (gun_rotAngle - gunBarrel_rotSpeed) > 0 ? (gun_rotAngle - gunBarrel_rotSpeed) : 0.0f;
-                    if (0f < gun_rotAngle) Playercamera.transform.Rotate(new Vector3(gun_rotAngle / x_angle, 0, 0));
-                }
-
-                //発射角度を調整したため、
-                //弾丸予測線の計算結果リストをクリアして再計算する必要
-                for (int i = PredictionLine_List.Count - 1; i >= 0; i--)
-                {
-                    Destroy(PredictionLine_List[i]);
-                }
-                PredictionLine_List = new List<GameObject>();
-
-             //弾丸予測線の計算と描画する
-             //LineRenderモード(重力使わず)
-             if (predictionLine_RayMode)
-             {
-                if (pRay == null)
-                {
-                    DrewPredictionRay();
-                }
-             }
-             else
-             {
-                //(重力を使う)
-                DrewPredictionLine();
-             }
-            }
-        }
-
-        void DamageStep()
-        {
-
-
-        }
-       
-
-      public Camera GetMainCamera()
+    public Camera GetMainCamera()
     {
         return camera;
     }
 
-        //弾丸予測線の計算と描画(Ray型)
-        void DrewPredictionRay()
-        {
-            pRay = Instantiate(PredictionRay, transform.position, transform.rotation);
-            pRay.transform.parent = this.transform;
-        }
-    
-    int AreaNumber;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Area"))
         {
             AreaNumber = collision.gameObject.GetComponent<EreaNumbers>().AreaNumber;
-
             CurrentMap = AreaNumber;
         }
-  
-
-    }
-
-    IEnumerator UnparentAfterOneFrame(Transform child)
-    {
-        // 1フレーム待つ
-        yield return null;
-
-        // 親子関係を解除する
-        child.parent = null;
     }
 }

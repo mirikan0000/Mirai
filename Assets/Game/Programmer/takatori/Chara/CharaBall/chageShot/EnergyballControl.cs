@@ -72,10 +72,11 @@ public class EnergyballControl : MonoBehaviour
     void Update()
     {
         //ボタンを入力しているとき
-        if (Player.energyballFlug) Generate(); //エネルギー弾生成用メソッド
+      //  if (Player.energyballFlug) Generate(); 
+      //エネルギー弾生成用メソッド
 
         //ボタンを離したとき
-        else Shot(); //エネルギー弾発射用メソッド
+       // else Shot(); //エネルギー弾発射用メソッド
     }
 
     //エネルギー弾の生成処理

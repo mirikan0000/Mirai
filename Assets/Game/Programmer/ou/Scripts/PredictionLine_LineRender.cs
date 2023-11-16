@@ -9,7 +9,7 @@ public class PredictionLine_LineRender : MonoBehaviour
 
     private LineRenderer lineRender; // LineRenderer コンポーネント
     private List<Vector3> renderPoints; // 弾丸予測軌道の点のリスト
-    public PlayerManager_ BulletAngle_Owner;
+    public Weapon BulletAngle_Owner;
     public float offsetY;
     private void Awake()
     {
@@ -18,7 +18,7 @@ public class PredictionLine_LineRender : MonoBehaviour
     }
     private void Start()
     {
-        BulletAngle_Owner = GetComponentInParent<PlayerManager_>();
+        BulletAngle_Owner = GetComponentInParent<Weapon>();
         if (BulletAngle_Owner == null)
         {
             Debug.LogError("NotBulletAngle_Owner!!!!!!!!!!!!");
@@ -29,7 +29,7 @@ public class PredictionLine_LineRender : MonoBehaviour
         renderPoints = new List<Vector3>();
         renderPoints.Add(transform.position + new Vector3(0, offsetY, 0)); // 弾丸の発射位置をリストに追加
 
-        float bullet_angle = BulletAngle_Owner.gun_rotAngle; // 弾丸の射角を取得
+        float bullet_angle = BulletAngle_Owner.GetRotAngle(); // 弾丸の射角を取得
 
         bullet_angle *= Mathf.Deg2Rad; // 射角をラジアンに変換
         Vector3 initialVelocity = new Vector3(transform.forward.x, Mathf.Sin(bullet_angle), transform.forward.z);

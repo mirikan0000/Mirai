@@ -4,7 +4,7 @@ using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Missile : MonoBehaviour
+public class Missile : Weapon
 {
     [SerializeField]
     [Header("ミサイル用")]

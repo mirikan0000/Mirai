@@ -9,7 +9,7 @@ public class Bulletkari : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // プレイヤーにダメージを与える
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage,true);
             // 弾丸を消す
             Destroy(gameObject);
         }

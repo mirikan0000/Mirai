@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PenetratingBullet : MonoBehaviour
+public class PenetratingBullet : Weapon
 {
     bool isUpdateData = false;
     //”­Ë‹——£‚ğ’²®‚·‚é‚½‚ß
     float rangeOffset = 0.0f;
     //’eŠÛ‚ÌˆÚ“®‘¬“x
     public float move_Speed = 15.0f;
-    //’eŠÛ”­Ë‚Ì‰ñ“]Šp“x
-    float gun_rotAngle = 0.0f;
+
     //’eŠÛ”­Ë‚Ì‰Šú‘¬“x
     float move_SpeedZ = 0.0f;
     float move_SpeedY = 0.0f;

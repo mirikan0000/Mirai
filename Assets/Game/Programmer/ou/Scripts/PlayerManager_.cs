@@ -7,7 +7,7 @@ public class PlayerManager_ : MonoBehaviour
 {
     //ゲームは更新しているか(例えば：開始画面、クリア画面などではない状態)
     bool is_start;
-
+   
     //照準を合わせている(予測線)
     bool is_aiming;
     public bool energyballFlug;
@@ -173,10 +173,11 @@ private float lastFootstepTime = 0f;
         return false;
 
     }
-
+  
 
     void Update()
     {
+      
         if (is_start)
         {
 

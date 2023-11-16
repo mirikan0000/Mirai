@@ -14,6 +14,7 @@ public class NextScene : MonoBehaviour
     public GameObject Player1;
    public GameObject Player2;
     public GameObject FadeOutPanel;
+   
     // Start is called before the first frame update
     void Start()
     {

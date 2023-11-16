@@ -11,17 +11,21 @@ public class PlayerHealth : MonoBehaviour
     public string loadSceneName;
     public bool isEnd;
     public List<string> unLoadSceneNameList;
-   
+    public bool hitflog; //コメントシステム用のフラグ
 
     private void Start()
     {
         currentHP = maxHP; // 初期HPを設定
         isEnd = false;
     }
-
+    private void Update()
+    {
+        hitflog = false;
+    }
     public void TakeDamage(int damage)
     {
         currentHP -= damage; // ダメージを受ける
+        hitflog = true;
         if (currentHP <= 0)
         {
             Die(); // HPが0以下になったら死亡処理を実行

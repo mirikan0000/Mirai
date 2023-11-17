@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 885afed0e48e6774dbfe61de274015f9
+labels:
+- Building
+- Architecture
+- City
+- Tower
+- Town
+timeCreated: 1427654480
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: building
+  assetBundleVariant: 

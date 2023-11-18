@@ -56,6 +56,10 @@ public class PlayerManager_ : MonoBehaviour
     {
         isMoving = ismoveing;
     }
+    public bool GetIsMoving()
+    {
+        return isMoving;
+    }
     void Start()
     {
         is_start = true;

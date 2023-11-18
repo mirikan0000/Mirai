@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DropPlayer : MonoBehaviour
 {
+    public static DropPlayer Instance;
+
     [SerializeField]
     [Header("各種変数")]
     public float moveSpeed;          //移動速度
@@ -20,6 +22,18 @@ public class DropPlayer : MonoBehaviour
     Rigidbody rb;
     DropBox dropboxScript;           //補給箱のスクリプト
 
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {

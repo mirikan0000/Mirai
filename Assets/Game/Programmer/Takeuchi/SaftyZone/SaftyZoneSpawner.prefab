@@ -47,6 +47,9 @@ MonoBehaviour:
   saftyZoneObj: {fileID: 4519891403990973443, guid: a03fec64e95bdba4a815a94d94945b88, type: 3}
   saftyRangeA: {fileID: 6476936876649840854, guid: 304f680a66b22404581a83a35bead515, type: 3}
   saftyRangeB: {fileID: 2227987474602348500, guid: 3498165363323334c8802b5143d8f886, type: 3}
-  spawnCheck: 1
-  spawnType: 1
   delayTime: 3
+  spawnCheck: 1
+  reduStageCount: 3
+  magStageCount: 3
+  reduCount: 0
+  magCount: 0

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4874336645678078}
   - component: {fileID: 33908539851733754}
   - component: {fileID: 23942258691182898}
-  - component: {fileID: 64379987966632552}
   m_Layer: 0
   m_Name: urban_building_wall_brick
   m_TagString: Untagged
@@ -84,28 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64379987966632552
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075014726271408}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: a7b68ba23b425bd4c9c2778c82b83ede, type: 3}
 --- !u!1 &1114887876967610
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +94,6 @@ GameObject:
   - component: {fileID: 4614459829782234}
   - component: {fileID: 33368944727654470}
   - component: {fileID: 23815495291937166}
-  - component: {fileID: 64142514991785254}
   m_Layer: 0
   m_Name: urban_building_exterior_details
   m_TagString: Untagged
@@ -190,28 +166,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64142514991785254
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1114887876967610}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300006, guid: a7b68ba23b425bd4c9c2778c82b83ede, type: 3}
 --- !u!1 &1536341192468774
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +177,6 @@ GameObject:
   - component: {fileID: 4455868084032720}
   - component: {fileID: 33864329294427936}
   - component: {fileID: 23195054253183040}
-  - component: {fileID: 64266973334632088}
   m_Layer: 0
   m_Name: urban_building_ window_02
   m_TagString: Untagged
@@ -296,28 +249,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64266973334632088
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536341192468774}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300010, guid: a7b68ba23b425bd4c9c2778c82b83ede, type: 3}
 --- !u!1 &1662193748676618
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +260,6 @@ GameObject:
   - component: {fileID: 4681123612825692}
   - component: {fileID: 33635899964896960}
   - component: {fileID: 23058719854825672}
-  - component: {fileID: 64094826667475630}
   m_Layer: 0
   m_Name: urban_building_wall_white_roof
   m_TagString: Untagged
@@ -402,28 +332,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64094826667475630
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1662193748676618}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300012, guid: a7b68ba23b425bd4c9c2778c82b83ede, type: 3}
 --- !u!1 &1702995907207574
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +343,6 @@ GameObject:
   - component: {fileID: 4779331293754904}
   - component: {fileID: 33989069318820420}
   - component: {fileID: 23842237278840148}
-  - component: {fileID: 64744312617348372}
   m_Layer: 0
   m_Name: urban_building_base
   m_TagString: Untagged
@@ -508,28 +415,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64744312617348372
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1702995907207574}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300004, guid: a7b68ba23b425bd4c9c2778c82b83ede, type: 3}
 --- !u!1 &1727074719591130
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,7 +426,6 @@ GameObject:
   - component: {fileID: 4748875971515962}
   - component: {fileID: 33553320849821842}
   - component: {fileID: 23218364655523516}
-  - component: {fileID: 64726128844870604}
   m_Layer: 0
   m_Name: urban_building_doors
   m_TagString: Untagged
@@ -614,28 +498,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64726128844870604
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727074719591130}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: a7b68ba23b425bd4c9c2778c82b83ede, type: 3}
 --- !u!1 &1805417202168678
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,7 +509,6 @@ GameObject:
   - component: {fileID: 4426615068662540}
   - component: {fileID: 33326784983898646}
   - component: {fileID: 23241329919769482}
-  - component: {fileID: 64436656654641922}
   m_Layer: 0
   m_Name: urban_building_ window_01
   m_TagString: Untagged
@@ -720,28 +581,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64436656654641922
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805417202168678}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: a7b68ba23b425bd4c9c2778c82b83ede, type: 3}
 --- !u!1 &1891285924604176
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,6 +590,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4266527354399724}
+  - component: {fileID: 4083001987845474275}
   m_Layer: 0
   m_Name: urban_building_prefab
   m_TagString: Untagged
@@ -767,7 +607,7 @@ Transform:
   m_GameObject: {fileID: 1891285924604176}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0000047683716, y: 0, z: 0.000004053116}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -780,3 +620,24 @@ Transform:
   - {fileID: 4681123612825692}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4083001987845474275
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891285924604176}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.893936, y: 4.258784, z: 12.84435}
+  m_Center: {x: 0.05728068, y: 2.1293924, z: -0.0016081674}

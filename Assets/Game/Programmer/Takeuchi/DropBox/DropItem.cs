@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class DropItem : MonoBehaviour
 {
+    public enum ItemName
+    {
+        HealItem,SpeedUpItem,PierceBulletItem,ShieldItem
+    }
     [SerializeField]
-    [Header("äeéÌïœêî")]
-    private bool destroyFlag = false;
+    public ItemName itemName;
 
+
+    // Start is called before the first frame update
     void Start()
     {
         
@@ -16,17 +21,14 @@ public class DropItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (destroyFlag == true)
-        {
-            Destroy(this.gameObject);
-        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Player")
+        if (collision.gameObject.name == "Player1" || collision.gameObject.name == "Player2")
         {
-            destroyFlag = true;
+            Destroy(this.gameObject);
         }
     }
 }

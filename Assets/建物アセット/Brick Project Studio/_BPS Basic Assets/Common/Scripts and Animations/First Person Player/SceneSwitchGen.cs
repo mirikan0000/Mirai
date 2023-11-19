@@ -21,36 +21,37 @@ namespace SojaExiles
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                SceneManager.LoadScene("Structure_01");
+
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Structure_01");
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                SceneManager.LoadScene("Structure_02");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Structure_02");
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                SceneManager.LoadScene("Structure_03");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Structure_03");
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                SceneManager.LoadScene("Structure_04");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Structure_04");
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha5))
             {
-                SceneManager.LoadScene("Structure_05");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Structure_05");
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha6))
             {
-                SceneManager.LoadScene("Structure_06");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Structure_06");
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha7))
             {
-                SceneManager.LoadScene("Props Furniture Showcase");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Props Furniture Showcase");
             }
 
             if (Input.GetKeyDown(KeyCode.Escape))

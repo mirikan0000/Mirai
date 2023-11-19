@@ -20,7 +20,8 @@ public class CommentTrigger : MonoBehaviour
     private bool targetpositionStable;
     private PlayerManager_ targetplayermanager;
     private bool targetIsMovingValue;
-
+    [SerializeField] private DropPlayer DP;
+    [SerializeField] private PlayerHealth PH;
     private bool dropable = false;
 
     private string[] comments = new string[]
@@ -77,33 +78,33 @@ public class CommentTrigger : MonoBehaviour
             Debug.Log("物資来てる！");
         }
         //物資を取得した
-        if (DropPlayer.Instance.speedFlag == true)
+        if (DP.speedFlag == true)
         {
             commentManager.SetCommentText("速くなった！");
         }
-        if (DropPlayer.Instance.powerFlag == true)
+        if (DP.powerFlag == true)
         {
             commentManager.SetCommentText("強くなった！");
         }
         //敵が物資を取得した
-        DropPlayer dropPlayerComponent = targetObject.GetComponent<DropPlayer>();
+       
         // DropPlayerコンポーネントがアタッチされている場合、そのFlagにアクセス
-        if (dropPlayerComponent != null && dropPlayerComponent.speedFlag)
+        if (DP != null &&DP.speedFlag)
         {
             commentManager.SetCommentText("敵が速くなった！");
         }
-        if (dropPlayerComponent != null && dropPlayerComponent.powerFlag)
+        if (DP != null && DP.powerFlag)
         {
             commentManager.SetCommentText("敵が強くなった！");
         }
         //被弾
-        if (PlayerHealth.Instance.hitflog)
+        if (PH.hitflog)
         {
             commentManager.SetCommentText("ダメージを受けた！");
         }
-        PlayerHealth PlayerHealthComponent = targetObject.GetComponent<PlayerHealth>();
+        
         // DropPlayerコンポーネントがアタッチされている場合、そのFlagにアクセス
-        if (PlayerHealthComponent != null && PlayerHealthComponent.hitflog)
+        if (PH != null && PH.hitflog)
         {
             commentManager.SetCommentText("敵にダメージを与えた！");
         }

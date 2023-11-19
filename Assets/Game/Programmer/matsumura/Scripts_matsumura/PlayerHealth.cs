@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public static PlayerHealth Instance;
+
     [Header("体力ゲージ")]
     public int maxHP = 100; // 最大HP
     private int currentHP;  // 現在のHP
@@ -15,6 +17,19 @@ public class PlayerHealth : MonoBehaviour
     public bool isEnd;
     public List<string> unLoadSceneNameList;
     public bool hitflog; //コメントシステム用のフラグ
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {

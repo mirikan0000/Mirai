@@ -4,10 +4,24 @@ using UnityEngine;
 
 public class CommentTrigger : MonoBehaviour
 {
+    private PlayerManager_ playermanager;
+    private bool isMovingValue;
     public CommentManager commentManager;
 
     public Camera PlayerCamera;
     public GameObject targetObject;
+
+    public float timeThreshold = 5.0f; // 何秒間座標が変化しないかの閾値
+    private Vector3 lastPosition;      // 直前の座標
+    private float timer;               // 経過時間
+    private bool positionStable;       // 座標が一定時間変化していないかのフラグ
+
+    private Vector3 targetlastPosition;
+    private bool targetpositionStable;
+    private PlayerManager_ targetplayermanager;
+    private bool targetIsMovingValue;
+
+    private bool dropable = false;
 
     private string[] comments = new string[]
     {
@@ -19,12 +33,18 @@ public class CommentTrigger : MonoBehaviour
 
     void Start()
     {
-        //renderer = targetObject.GetComponent<Renderer>();
+        InitializePositionTracking();
+        playermanager = GetComponent<PlayerManager_>();
+        isMovingValue = playermanager.GetIsMoving();
+        targetplayermanager = targetObject.GetComponent<PlayerManager_>();
+        targetIsMovingValue = targetplayermanager.GetIsMoving();
     }
 
     void Update()
     {
         //RandomComment();
+
+        UpdatePosition();
 
         if (PlayerCamera != null && targetObject != null)
         {
@@ -40,7 +60,66 @@ public class CommentTrigger : MonoBehaviour
                 Debug.Log("エネミーを探して！");
             }
         }
+        //自プレイヤーが動いてない場合
+        if (positionStable)
+        {
+            commentManager.SetCommentText("動いてない！");
+        }
+        //敵プレイヤーが動いてない場合
+        if (targetpositionStable)
+        {
+            commentManager.SetCommentText("敵動いてない！");
+        }
+        //物資が出現した場合
+        if (dropable)
+        {
+            commentManager.SetCommentText("物資来てる！");
+            Debug.Log("物資来てる！");
+        }
+        //物資を取得した
+        if (DropPlayer.Instance.speedFlag == true)
+        {
+            commentManager.SetCommentText("速くなった！");
+        }
+        if (DropPlayer.Instance.powerFlag == true)
+        {
+            commentManager.SetCommentText("強くなった！");
+        }
+        //敵が物資を取得した
+        DropPlayer dropPlayerComponent = targetObject.GetComponent<DropPlayer>();
+        // DropPlayerコンポーネントがアタッチされている場合、そのFlagにアクセス
+        if (dropPlayerComponent != null && dropPlayerComponent.speedFlag)
+        {
+            commentManager.SetCommentText("敵が速くなった！");
+        }
+        if (dropPlayerComponent != null && dropPlayerComponent.powerFlag)
+        {
+            commentManager.SetCommentText("敵が強くなった！");
+        }
+        //被弾
+        if (PlayerHealth.Instance.hitflog)
+        {
+            commentManager.SetCommentText("ダメージを受けた！");
+        }
+        PlayerHealth PlayerHealthComponent = targetObject.GetComponent<PlayerHealth>();
+        // DropPlayerコンポーネントがアタッチされている場合、そのFlagにアクセス
+        if (PlayerHealthComponent != null && PlayerHealthComponent.hitflog)
+        {
+            commentManager.SetCommentText("敵にダメージを与えた！");
+        }
 
+        //移動エネルギーが切れた場合
+        if (!isMovingValue)
+        {
+            commentManager.SetCommentText("移動エネルギーが切れた！");
+        }
+        //敵の移動エネルギーが切れた場合
+        if (!targetIsMovingValue)
+        {
+            commentManager.SetCommentText("敵の移動エネルギーが切れた！");
+        }
+
+        //test
         if (Input.GetKeyDown(KeyCode.Q))
         {
             commentManager.SetCommentText("Qをおした");
@@ -69,5 +148,79 @@ public class CommentTrigger : MonoBehaviour
         }
 
         return false;
+    }
+
+    void InitializePositionTracking()
+    {
+        // 初期化時に座標とタイマーを設定
+        lastPosition = transform.position;
+        targetlastPosition = targetObject != null ? targetObject.transform.position : Vector3.zero;
+        timer = 0f;
+        positionStable = false;
+        targetpositionStable = false;
+    }
+
+    void UpdatePosition()
+    {
+        if (IsPositionStable())
+        {
+            // 一定時間座標が変化していない場合の処理
+            timer += Time.deltaTime;
+
+            if (timer >= timeThreshold && !positionStable)
+            {
+                // 一定時間経過したらフラグを立てる
+                positionStable = true;
+            }
+        }
+        else
+        {
+            // 座標が変化した場合はフラグをリセット
+            timer = 0f;
+            positionStable = false;
+
+            //物資が生成された場合のフラグ
+            GameObject dropper = GameObject.FindWithTag("Item");
+            if (dropper != null)
+            {
+                Debug.Log("！");
+                dropable = true;
+            }
+            dropable = false;
+        }
+
+        if (IsTargetPositionStable())
+        {
+            // 一定時間座標が変化していない場合の処理
+            timer += Time.deltaTime;
+
+            if (timer >= timeThreshold && !targetpositionStable)
+            {
+                // 一定時間経過したらフラグを立てる
+                targetpositionStable = true;
+            }
+        }
+        else
+        {
+            // 座標が変化した場合はフラグをリセット
+            timer = 0f;
+            targetpositionStable = false;
+        }
+
+        // 現在の座標を直前の座標として保存
+        lastPosition = transform.position;
+        targetlastPosition = targetObject.transform.position;
+    }
+
+    bool IsPositionStable()
+    {
+        // 現在の座標と直前の座標を比較し、一致しているか確認
+        return transform.position == lastPosition;
+    }
+
+    bool IsTargetPositionStable()
+    {
+        // targetObjectの座標が一定時間変化していないかを判定
+        return targetObject != null && targetObject.transform.position == targetlastPosition;
     }
 }

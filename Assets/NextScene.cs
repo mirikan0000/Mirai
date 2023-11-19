@@ -14,7 +14,13 @@ public class NextScene : MonoBehaviour
     public GameObject Player1;
    public GameObject Player2;
     public GameObject FadeOutPanel;
-   
+    // 他の変数の定義などがあれば追加
+    public GameLoop gameLoop;
+
+    public void SetGameLoopReference(GameLoop loop)
+    {
+        gameLoop = loop;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -27,52 +33,54 @@ public class NextScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDestroyScene)
+        if (gameLoop != null && gameLoop.IsGameFinished())
         {
-
-            // シーン削除
-            foreach (string unLoadSceneName in unLoadSceneNameList)
+            if (isDestroyScene)
             {
-                if (unLoadSceneName != loadSceneName)
+
+                // シーン削除
+                foreach (string unLoadSceneName in unLoadSceneNameList)
                 {
-                    foreach (UnityEngine.SceneManagement.Scene scene in UnityEngine.SceneManagement.SceneManager.GetAllScenes())
+                    if (unLoadSceneName != loadSceneName)
                     {
-                        if (scene.name == unLoadSceneName)
+                        foreach (UnityEngine.SceneManagement.Scene scene in UnityEngine.SceneManagement.SceneManager.GetAllScenes())
                         {
-                            Debug.Log("デストローイ！");
-                            SceneManager.Instance.DestroyScene(unLoadSceneName);
-                            //     SceneManager.Instance.ChangeScene();
+                            if (scene.name == unLoadSceneName)
+                            {
+                                Debug.Log("デストローイ！");
+                                SceneManager.Instance.DestroyScene(unLoadSceneName);
+                                //     SceneManager.Instance.ChangeScene();
+                            }
                         }
                     }
                 }
+
+                isDestroyScene = false;
+            }
+            if (Player1.GetComponent<PlayerHealth>().isEnd || Player2.GetComponent<PlayerHealth>().isEnd)
+            {
+                isFadeIn = true;
             }
 
-            isDestroyScene = false;
-        }
-        if (Player1.GetComponent<PlayerHealth>().isEnd || Player2.GetComponent<PlayerHealth>().isEnd)
-        {
-            isFadeIn = true;
-        }
+            if (isFadeIn)
+            {
+                FadeOutPanel.GetComponentInChildren<FadeOut>().Fadeout();
 
-        if (isFadeIn)
-        {
-            FadeOutPanel.GetComponentInChildren<FadeOut>().Fadeout();
-        
-        }
-        if (isFadeIn && !FadeOutPanel.GetComponentInChildren<FadeOut>().fadeout)
-        {
-            isFadeEnd = true;
-        }
-        if (isFadeEnd && !hasLoadedScene)
-        {
-            hasLoadedScene = true;
-            Debug.Log("once!!!");
-           // SceneManager.Instance.LoadScene(loadSceneName);
-            FadeOutPanel.GetComponent<LoadingScene>().LoadNextScene();
-            isDestroyScene = true;
-            SceneManager.Instance.ChangeScene();
-        }
+            }
+            if (isFadeIn && !FadeOutPanel.GetComponentInChildren<FadeOut>().fadeout)
+            {
+                isFadeEnd = true;
+            }
+            if (isFadeEnd && !hasLoadedScene)
+            {
+                hasLoadedScene = true;
+                Debug.Log("once!!!");
+                // SceneManager.Instance.LoadScene(loadSceneName);
+                FadeOutPanel.GetComponent<LoadingScene>().LoadNextScene();
+                isDestroyScene = true;
+                SceneManager.Instance.ChangeScene();
+            }
 
-       
+        }
     }
 }

@@ -18,19 +18,19 @@ public class PlayerHealth : MonoBehaviour
     public List<string> unLoadSceneNameList;
     public bool hitflog; //コメントシステム用のフラグ
 
-    void Awake()
+    public float GetCurrentHP()
     {
-        //if (Instance == null)
-        //{
-        //    Instance = this;
-        //    DontDestroyOnLoad(gameObject);
-        //}
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
+        return currentHP;
     }
-
+    public void SetCurrentHP(int currenthp)
+    {
+        currentHP = currenthp;
+    }
+    public float GetMaxHP()
+    {
+        return maxHP;
+    }
+    
     private void Start()
     {
         currentHP = maxHP; // 初期HPを設定
@@ -41,6 +41,10 @@ public class PlayerHealth : MonoBehaviour
     private void Update()
     {
         hitflog = false;
+        if (currentHP <= 0)
+        {
+            Die(); // HPが0以下になったら死亡処理を実行
+        }
     }
 
     public void TakeDamage(int damage, bool useArmor)
@@ -62,10 +66,7 @@ public class PlayerHealth : MonoBehaviour
 
         hitflog = true;
 
-        if (currentHP <= 0)
-        {
-            Die(); // HPが0以下になったら死亡処理を実行
-        }
+       
     }
 
     void Die()

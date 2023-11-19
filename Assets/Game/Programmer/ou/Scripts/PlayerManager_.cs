@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager_ : MonoBehaviour
 {
+    
     // ゲームは更新しているか（例：開始画面、クリア画面などではない状態）
     bool is_start;
 
@@ -13,7 +14,7 @@ public class PlayerManager_ : MonoBehaviour
     public int CurrentMap;
     [SerializeField] float rot_angle = 0.1f;
     public Camera camera;
-    bool is_moveable = true;
+    [SerializeField]private bool is_moveable = true;
 
     // ローカルマルチ設定
     private Dictionary<string, PlayerInput> playerInputDictionary = new Dictionary<string, PlayerInput>();
@@ -30,8 +31,6 @@ public class PlayerManager_ : MonoBehaviour
     }
     [Header("振動構造体配列")]
     public VibrationStruct[] vibrationStructArray;
-    private VibrationStruct vibrationStructNow;
-    private float vibrationTime;
     public bool isVibrationCannot;
     int AreaNumber;
 
@@ -39,19 +38,19 @@ public class PlayerManager_ : MonoBehaviour
     public Animator animator;
     public FootSteps footSteps;
     private Rigidbody rb;
-    private bool isSoundPlaying = false;
-    private float lastFootstepTime = 0f;
-    private float footstepInterval = 0.5f;
-
     // Playerの視点カメラ
     public GameObject Playercamera;
+    [SerializeField] private float recoveryDelay=5.0f;
+    [SerializeField] private float MaxDelay =5.0f;
+   // Playerの移動ゲージ
 
-    // Playerの移動ゲージ
-    public float moveGauge = 100.0f;
-    public float moveGaugeRate = 10.0f;
-    public float moveGaugeThreshold = 20.0f;
-    private float moveGaugeConsumptionRate = 10.0f;
-    private bool isMoving = false;
+   [SerializeField] private static float MaxFuel = 50f; // 最大燃料容量
+    [SerializeField] private float currentFuel = 0.0f; // 現在の燃料量
+    public float fuelRechargeRate = 5.0f; // 燃料の再充電速度
+    private float emptyFuel = 0.0f; // 空の燃料量
+    private float fuelConsumptionRate = 5.0f; // 燃料消費速度
+    [SerializeField] private bool isMoving = false; // 移動中かどうかのフラグ
+    [SerializeField] private bool OverHeat;
     public void SetisMoving(bool ismoveing)
     {
         isMoving = ismoveing;
@@ -63,7 +62,7 @@ public class PlayerManager_ : MonoBehaviour
     void Start()
     {
         is_start = true;
-
+        currentFuel=MaxFuel;
         foreach (PlayerInput playerInput in playerInputArray)
         {
             playerInputDictionary[playerInput.currentActionMap.name] = playerInput;
@@ -71,7 +70,6 @@ public class PlayerManager_ : MonoBehaviour
 
         if (animator) animator.SetBool("Walk", false);
 
-        vibrationTime = 99;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -118,70 +116,98 @@ public class PlayerManager_ : MonoBehaviour
 
     void MoveStep()
     {
-        if (!isMoving && moveGauge <= moveGaugeThreshold)
-        {
-            rb.velocity = Vector3.zero;
-        }
-
+      
         bool isMoveButtonDown = GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward") ||
-                                GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack") ||
-                                GetButton("Player", "MoveLeft") || GetButton("Player1", "MoveLeft") ||
-                                GetButton("Player", "MoveRight") || GetButton("Player1", "MoveRight");
+                            GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack") ||
+                            GetButton("Player", "MoveLeft") || GetButton("Player1", "MoveLeft") ||
+                            GetButton("Player", "MoveRight") || GetButton("Player1", "MoveRight");
 
-        if (isMoving)
+
+        // 移動開始条件
+        isMoving =  !OverHeat&&isMoveButtonDown && currentFuel > emptyFuel;
+  
+        // ゲージ回復
+        if (!isMoving && currentFuel <= MaxFuel)
         {
-            moveGauge -= moveGaugeConsumptionRate * Time.deltaTime;
-            moveGauge = Mathf.Max(moveGauge, moveGaugeThreshold);
+          
+
+            // ゲージが0になったら一定時間待機
+            if (currentFuel <= emptyFuel)
+            {
+                OverHeat = true;
+            }
+            if (OverHeat)
+            {
+               
+                if (recoveryDelay > 0.0f)
+                {
+                    currentFuel += fuelRechargeRate * Time.deltaTime;
+                    currentFuel = Mathf.Clamp(currentFuel, emptyFuel, MaxFuel);
+                    recoveryDelay -= Time.deltaTime;
+                    rb.velocity = Vector3.zero;
+              
+                }
+                else
+                {
+                    // ゲージが0になったら移動不可
+                        is_moveable = true;
+                        isMoving = true;
+                    recoveryDelay = MaxDelay;
+                    OverHeat = false;
+                }
+            }
+            if(OverHeat==false)
+            {
+                currentFuel += fuelRechargeRate * Time.deltaTime;
+                currentFuel = Mathf.Clamp(currentFuel, emptyFuel, MaxFuel);
+            }
+           
+
+
         }
-        else if (isMoveButtonDown && moveGauge > moveGaugeThreshold)
+       
+        // 移動中の処理
+        if (isMoving&&!OverHeat)
         {
-            isMoving = true;
+        currentFuel -= fuelConsumptionRate * Time.deltaTime;
+        currentFuel = Mathf.Max(currentFuel, emptyFuel);
+        }
+        // ゲージが0になったら移動不可
+        if (currentFuel == 0.0f)
+        {
+            is_moveable = false;
+            isMoving = false;
+        }
+   
+
+
+        // 移動可能な状態かどうか
+        if (is_moveable)
+    {
+        // 移動中の処理
+        if (isMoveButtonDown&&!OverHeat)
+        {
+            currentFuel -= Time.deltaTime;
+            currentFuel = Mathf.Clamp(currentFuel, 0.0f, MaxFuel);
         }
         else
         {
             isMoving = false;
         }
-
-        if (!isMoving && moveGauge < 100.0f)
-        {
-            moveGauge += moveGaugeRate * Time.deltaTime;
-            moveGauge = Mathf.Clamp(moveGauge, moveGaugeThreshold, 100.0f);
-        }
-
-        if (is_moveable)
-        {
-            if (GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward") ||
-                GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack") ||
-                GetButton("Player", "MoveLeft") || GetButton("Player1", "MoveLeft") ||
-                GetButton("Player", "MoveRight") || GetButton("Player1", "MoveRight"))
-            {
-                isMoving = true;
-                moveGauge -= Time.deltaTime;
-                moveGauge = Mathf.Clamp(moveGauge, 0.0f, 100.0f);
-
-                if (moveGauge == 0.0f)
-                {
-                    is_moveable = false;
-                    isMoving = false;
-                }
-            }
-            else
-            {
-                isMoving = false;
-            }
-
             Vector3 moveDirection = Vector3.zero;
 
+            // 移動方向の取得
             if (GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward"))
             {
-                moveDirection = transform.forward * move_speed * Time.deltaTime;
+                moveDirection = transform.forward * move_speed;
             }
 
             if (GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack"))
             {
-                moveDirection = -transform.forward * move_speed * Time.deltaTime;
+                moveDirection = -transform.forward * move_speed;
             }
 
+            // 左右の回転
             if (GetButton("Player", "MoveLeft") || GetButton("Player1", "MoveLeft"))
             {
                 transform.Rotate(new Vector3(0, -rot_angle, 0));
@@ -192,24 +218,20 @@ public class PlayerManager_ : MonoBehaviour
                 transform.Rotate(new Vector3(0, rot_angle, 0));
             }
 
-            if (moveGauge > moveGaugeThreshold)
+            // ゲージが一定以上なら速度を設定
+            if (currentFuel > emptyFuel)
             {
                 rb.velocity = new Vector3(moveDirection.x, rb.velocity.y, moveDirection.z);
             }
 
+            // アニメーションの設定
             if (animator)
             {
-                if (moveDirection != Vector3.zero)
-                {
-                    animator.SetBool("Walk", true);
-                }
-                else
-                {
-                    animator.SetBool("Walk", false);
-                }
+                animator.SetBool("Walk", moveDirection != Vector3.zero);
             }
         }
     }
+
 
     public Camera GetMainCamera()
     {

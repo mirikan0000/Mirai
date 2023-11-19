@@ -127,7 +127,7 @@ public class Zone2 : MonoBehaviour
             if (endReduFlag == false)
             {
                 //完了していたら親オブジェクトの変数を加算
-                parentSaftyZoneScript.zone2redu = true;
+                parentSaftyZoneScript.zone2ReduEnd = true;
                 endReduFlag = true;
 
                 //完了していたら拡大後位置設定用フラグをTrueにする
@@ -167,7 +167,7 @@ public class Zone2 : MonoBehaviour
             if (endMagFlag == false)
             {
                 //親オブジェクトの変数を加算
-                parentSaftyZoneScript.zone2mag = true;
+                parentSaftyZoneScript.zone2MagEnd = true;
 
                 endMagFlag = true;
             }

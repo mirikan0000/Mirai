@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3323088}
   - component: {fileID: 2303530}
   - component: {fileID: 9526170}
+  - component: {fileID: 9089559272224862122}
   m_Layer: 0
   m_Name: Building_Apartment_13
   m_TagString: Untagged
@@ -105,3 +106,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &9089559272224862122
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103238}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6.250113, y: 6.1369042, z: 6.5170035}
+  m_Center: {x: -0.00032055375, y: 3.013532, z: 0.002214074}

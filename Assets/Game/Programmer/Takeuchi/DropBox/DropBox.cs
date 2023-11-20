@@ -6,8 +6,10 @@ public class DropBox : MonoBehaviour
 {
     [SerializeField]
     [Header("生成するオブジェクト")]
-    public GameObject speedBox;  //スピードアップのオブジェクト
-    public GameObject powerBox;  //パワーアップのオブジェクト
+    public GameObject healItem;          //回復のオブジェクト
+    public GameObject speedUpItem;       //スピードアップのオブジェクト
+    public GameObject pierceBulletItem;  //貫通弾のオブジェクト
+    public GameObject shieldItem;        //シールドのオブジェクト
 
     [Header("補給箱生成用オブジェクト関係")]
     public GameObject dropperObj;  //補給箱を生成するオブジェクト
@@ -51,16 +53,22 @@ public class DropBox : MonoBehaviour
     private void DropRandomItem()
     {
         //生成するアイテムをランダムで決める
-        itemNum = Random.Range(1, 3);
+        itemNum = Random.Range(1, 5);
 
         //決まった値でアイテムを生成
         switch (itemNum)
         {
-            case 1:  //スピードアップのアイテムを生成
-                Instantiate(speedBox, this.gameObject.transform.position, Quaternion.identity);
+            case 1:  //回復のアイテムを生成
+                Instantiate(healItem, this.gameObject.transform.position, Quaternion.identity);
                 break;
-            case 2:  //パワーアップのアイテムを生成
-                Instantiate(powerBox, this.gameObject.transform.position, Quaternion.identity);
+            case 2:  //スピードアップのアイテムを生成
+                Instantiate(speedUpItem, this.gameObject.transform.position, Quaternion.identity);
+                break;
+            case 3:  //貫通弾のアイテムを生成
+                Instantiate(pierceBulletItem, this.gameObject.transform.position, Quaternion.identity);
+                break;
+            case 4:  //シールドのアイテムを生成
+                Instantiate(shieldItem, this.gameObject.transform.position, Quaternion.identity);
                 break;
         }
 

@@ -22,6 +22,8 @@ public class DropPlayer : MonoBehaviour
     Rigidbody rb;
     DropBox dropboxScript;           //補給箱のスクリプト
 
+    public GameObject shieldObj;
+
     void Awake()
     {
         //if (Instance == null)
@@ -85,6 +87,7 @@ public class DropPlayer : MonoBehaviour
     //補給箱に当たったときの処理
     private void OnCollisionEnter(Collision collision)
     {
+        
         //当たったオブジェクトがスピードアップのものだった時
         if (collision.gameObject.name == "DropBoxSpeed(Clone)")
         {
@@ -163,6 +166,13 @@ public class DropPlayer : MonoBehaviour
             {
                 dropboxScript.openFlag = true;
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            var parent = this.transform;
+
+            Instantiate(shieldObj, this.transform.position, Quaternion.identity, parent);
         }
     }
 }

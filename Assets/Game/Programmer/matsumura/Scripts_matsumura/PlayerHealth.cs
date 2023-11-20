@@ -8,6 +8,12 @@ public class PlayerHealth : MonoBehaviour
     [Header("体力ゲージ")]
     public int maxHP = 100; // 最大HP
     private int currentHP;  // 現在のHP
+
+    //11/20追加分
+    [SerializeField] private int healValeu;         //回復量
+    [SerializeField] private GameObject shieldObj;  //シールドのオブジェクト
+    private bool shieldFlag = false;
+
     [Header("アーマーゲージ")]
     public int maxArmor = 50; // 最大アーマー
     private int currentArmor; // 現在のアーマー
@@ -75,5 +81,28 @@ public class PlayerHealth : MonoBehaviour
         // この例ではプレイヤーオブジェクトを無効にします。
         gameObject.SetActive(false);
         isEnd = true;
+    }
+
+    //アイテム取得時処理
+    private void OnCollisionEnter(Collision collision)
+    {
+        //回復アイテムを取得した時
+        if (collision.gameObject.name == "HealItem(Clone)")
+        {
+            if (currentHP < maxHP)
+            {
+                currentHP = currentHP + healValeu;
+            }
+        }
+
+        //シールドアイテムを取得した時
+        if (collision.gameObject.name == "ShieldItem(Clone)")
+        {
+            shieldFlag = true;
+            //var parent = this.transform;
+
+            ////シールドを子オブジェクトとして生成
+            //Instantiate(shieldObj, this.gameObject.transform.position, Quaternion.identity, parent);
+        }
     }
 }

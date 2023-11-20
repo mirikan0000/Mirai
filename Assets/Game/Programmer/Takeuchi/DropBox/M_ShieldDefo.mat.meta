@@ -2,7 +2,11 @@ fileFormatVersion: 2
 guid: 82a8cbe34f46b464aa6acfcc47b555c2
 NativeFormatImporter:
   externalObjects: {}
+<<<<<<< HEAD
   mainObjectFileID: 2100000
+=======
+  mainObjectFileID: 0
+>>>>>>> origin/Takeuchi_DropBoxPlus
   userData: 
   assetBundleName: 
   assetBundleVariant: 

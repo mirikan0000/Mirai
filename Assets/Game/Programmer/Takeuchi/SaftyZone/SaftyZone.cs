@@ -148,16 +148,16 @@ public class SaftyZone : MonoBehaviour
         saftyZoneSpwnerScript = saftyZoneSpawner.GetComponent<CreateSaftyZone>();
 
         //各安置オブジェクトのスクリプト取得(子オブジェクト)
-        zone1Obj = transform.Find("SaftyZone1").gameObject;
+        zone1Obj = transform.Find("ChildSaftyZone1").gameObject;
         zone1Script = zone1Obj.GetComponent<Zone1>();
 
-        zone2Obj = transform.Find("SaftyZone2").gameObject;
+        zone2Obj = transform.Find("ChildSaftyZone2").gameObject;
         zone2Script=zone2Obj.GetComponent<Zone2>();
 
-        zone3Obj = transform.Find("SaftyZone3").gameObject;
+        zone3Obj = transform.Find("ChildSaftyZone3").gameObject;
         zone3Script=zone3Obj.GetComponent<Zone3>();
 
-        zone4Script=transform.Find("SaftyZone4").gameObject.GetComponent<Zone4>();
+        zone4Script=transform.Find("ChildSaftyZone4").gameObject.GetComponent<Zone4>();
         Debug.Log(zone4Script.preZone4pos);
     }
 

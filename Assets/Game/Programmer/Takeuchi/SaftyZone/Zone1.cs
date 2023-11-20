@@ -9,7 +9,7 @@ public class Zone1 : MonoBehaviour
     GameObject parentSaftyZoneObj;               //親オブジェクト
     SaftyZone parentSaftyZoneScript;             //親オブジェクトのスクリプト
     GameObject grandParentObj;                   //親の親オブジェクト
-    CreateSaftyZone grandParentScript;           //親の親オブジェクトのスクリプト
+    [SerializeField]private CreateSaftyZone grandParentScript;           //親の親オブジェクトのスクリプト
 
     [Header("移動用")]
     public Vector3 preZone1pos;                  //自身の初期位置

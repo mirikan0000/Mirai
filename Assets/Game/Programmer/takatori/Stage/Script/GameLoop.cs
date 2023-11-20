@@ -13,6 +13,11 @@ public class GameLoop : MonoBehaviour
     private int player1Wins = 0; // Player1の勝利数
     private int player2Wins = 0; // Player2の勝利数
 
+    
+    private void Start()
+    {
+     //  StartCoroutine(GameLoops());
+    }
     private IEnumerator GameLoops()
     {
         // ゲーム開始
@@ -30,6 +35,7 @@ public class GameLoop : MonoBehaviour
         if (m_GameWinner != null)
         {
             // ここで勝者画面などの処理を実行
+            //image画像を表示1P.ver,2P.verを表示
 
             // 一定時間停止してからゲームをリセット
             yield return new WaitForSeconds(3f);
@@ -38,9 +44,7 @@ public class GameLoop : MonoBehaviour
             if (nextSceneScript != null)
             {
                 nextSceneScript.SetGameLoopReference(this);
-            }
-
-            Application.LoadLevel(Application.loadedLevel);
+            }   
         }
         else
         {
@@ -48,32 +52,28 @@ public class GameLoop : MonoBehaviour
             StartCoroutine(GameLoops());
         }
     }
-
+    //ラウンド開始時の初期化処理を行うコルーチン
     private IEnumerator RoundStarting()
     {
         // ラウンド開始時の初期化処理などをここに追加
         Debug.Log("Round Starting...");
-
-        // 例：戦車のセットアップなど
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        //シーンの初期化
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
         // ラウンド表示
-        yield return new WaitForSeconds(2f);
 
-        
+
+       yield return null;
     }
-
+    //ゲームプレイ中の処理を行うコルーチン
     private IEnumerator RoundPlaying()
     {
-        // 戦車同士が撃ち合うなどのゲームプレイ中の処理をここに追加
-        Debug.Log("Round Playing...");
-
         // どちらかの戦車が消滅するまで待機
         while (!IsRoundOver())
         {
             yield return null;
         }
     }
-
+    //ラウンド終了時の処理を行うコルーチン
     private IEnumerator RoundEnding()
     {
         // ラウンド終了時の処理をここに追加

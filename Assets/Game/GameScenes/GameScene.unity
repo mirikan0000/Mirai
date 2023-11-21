@@ -7583,11 +7583,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5036176589770433824, guid: d47d304f8cf09fd40b95fe831d9d9d84, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.38
+      value: 6.3
       objectReference: {fileID: 0}
     - target: {fileID: 5036176589770433824, guid: d47d304f8cf09fd40b95fe831d9d9d84, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23
+      value: -10.9
       objectReference: {fileID: 0}
     - target: {fileID: 5036176589770433824, guid: d47d304f8cf09fd40b95fe831d9d9d84, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17863,7 +17863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 924950634172626897, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -250.9115
+      value: -256.3
       objectReference: {fileID: 0}
     - target: {fileID: 924950634172626897, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18439,7 +18439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5014123900920248108, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_Size.y
-      value: 6
+      value: 6.0626864
       objectReference: {fileID: 0}
     - target: {fileID: 5014123900920248108, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_Size.z
@@ -18447,7 +18447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5014123900920248108, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_Center.y
-      value: 2
+      value: 3.38
       objectReference: {fileID: 0}
     - target: {fileID: 7804566139116411643, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_Volume
@@ -18543,6 +18543,7 @@ PrefabInstance:
       objectReference: {fileID: 8150969197131227487}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 8801580595636730087, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 924950634172626897, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
@@ -18567,6 +18568,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 924950634172918707, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8150969197131227512}
+    - targetCorrespondingSourceObject: {fileID: 924950634172918707, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8150969197131227521}
   m_SourcePrefab: {fileID: 100100000, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
 --- !u!224 &5854390050586079501
 RectTransform:
@@ -18979,7 +18983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 924950634172626897, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -250.9115
+      value: -255.6
       objectReference: {fileID: 0}
     - target: {fileID: 924950634172626897, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19571,7 +19575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5014123900920248108, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_Center.y
-      value: 2
+      value: 3.38
       objectReference: {fileID: 0}
     - target: {fileID: 7804566139116411643, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_Volume
@@ -19701,6 +19705,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 924950634172918707, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6543601556174368181}
+    - targetCorrespondingSourceObject: {fileID: 924950634172918707, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6543601556174368190}
   m_SourcePrefab: {fileID: 100100000, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
 --- !u!114 &6543601556174368163 stripped
 MonoBehaviour:
@@ -19776,7 +19783,7 @@ MonoBehaviour:
   bullet1: {fileID: 7457614188605471436, guid: 3b4635d41d61ca149841265115d75589, type: 3}
   missileBullet: {fileID: 0}
   penetratingBullet: {fileID: 2027825812510260616, guid: 2a2b8c8b774b1d2429eda4087b2237a5, type: 3}
-  PlayerManager: {fileID: 6543601556174368174}
+  PlayerManager: {fileID: 6543601556174368190}
   Bullet_RangeOffset: 100
   bulletCreatePosOffsetZ: 50
   bulletCreatePosOffsetY: 25
@@ -19815,17 +19822,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c56295ea84fc64446a941c5780fe366b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6543601556174368174 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8801580595636730087, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
-  m_PrefabInstance: {fileID: 6543601556174368161}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3270741815190322771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c257e770a7cce3c4e9fc5e38d5123ee1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6543601556174368181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19850,6 +19846,35 @@ MonoBehaviour:
   powerFlag: 0
   openBoxFlag: 0
   shieldObj: {fileID: 0}
+--- !u!114 &6543601556174368190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270741815190322771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce9b170de159bf54f8034735ec563be5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  move_speed: 50
+  CurrentMap: 0
+  rot_angle: 1
+  camera: {fileID: 878550806}
+  is_moveable: 1
+  playerInputArray:
+  - {fileID: 6543601556174368163}
+  vibrationStructArray: []
+  isVibrationCannot: 0
+  animator: {fileID: 6543601556174368167}
+  footSteps: {fileID: 0}
+  recoveryDelay: 5
+  MaxDelay: 5
+  currentFuel: 0
+  fuelRechargeRate: 5
+  isMoving: 0
+  OverHeat: 0
 --- !u!1 &7838321005640438291 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7838321005184861708, guid: 31be9a0108848c14ea7ff66f4a180868, type: 3}
@@ -19914,7 +19939,7 @@ MonoBehaviour:
   bullet1: {fileID: 7457614188605471436, guid: 3b4635d41d61ca149841265115d75589, type: 3}
   missileBullet: {fileID: 0}
   penetratingBullet: {fileID: 2027825812510260616, guid: 2a2b8c8b774b1d2429eda4087b2237a5, type: 3}
-  PlayerManager: {fileID: 8150969197131227506}
+  PlayerManager: {fileID: 8150969197131227521}
   Bullet_RangeOffset: 100
   bulletCreatePosOffsetZ: 50
   bulletCreatePosOffsetY: 25
@@ -19953,17 +19978,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c56295ea84fc64446a941c5780fe366b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8150969197131227506 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8801580595636730087, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
-  m_PrefabInstance: {fileID: 5264104993213495858}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3270741815905861782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c257e770a7cce3c4e9fc5e38d5123ee1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8150969197131227512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19988,6 +20002,35 @@ MonoBehaviour:
   powerFlag: 0
   openBoxFlag: 0
   shieldObj: {fileID: 0}
+--- !u!114 &8150969197131227521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270741815905861782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce9b170de159bf54f8034735ec563be5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  move_speed: 50
+  CurrentMap: 0
+  rot_angle: 1
+  camera: {fileID: 1678366367}
+  is_moveable: 1
+  playerInputArray:
+  - {fileID: 8150969197131227487}
+  vibrationStructArray: []
+  isVibrationCannot: 0
+  animator: {fileID: 8150969197131227492}
+  footSteps: {fileID: 0}
+  recoveryDelay: 5
+  MaxDelay: 5
+  currentFuel: 0
+  fuelRechargeRate: 5
+  isMoving: 0
+  OverHeat: 0
 --- !u!114 &8577055613806882947
 MonoBehaviour:
   m_ObjectHideFlags: 0

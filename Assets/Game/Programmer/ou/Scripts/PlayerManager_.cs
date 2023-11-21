@@ -39,7 +39,7 @@ public class PlayerManager_ : MonoBehaviour
     public FootSteps footSteps;
     private Rigidbody rb;
     // Playerの視点カメラ
-    public GameObject Playercamera;
+  //  public GameObject Playercamera;
     [SerializeField] private float recoveryDelay=5.0f;
     [SerializeField] private float MaxDelay =5.0f;
    // Playerの移動ゲージ

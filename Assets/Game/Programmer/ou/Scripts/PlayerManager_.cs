@@ -49,6 +49,8 @@ public class PlayerManager_ : MonoBehaviour
     GameObject pRay;
     GameObject pShotUI;
 
+    UnityEngine.UI.Image shotImage;
+
     //’eŠÛ—\‘ªü‚ğ\¬‚·‚é‚½‚ß‚Ì•`‰æ”
     public int PredictionLineNumber = 66;
 
@@ -134,6 +136,8 @@ public class PlayerManager_ : MonoBehaviour
                 isShotting = true;
                 pShotUI = Instantiate(ShotTimeUI, transform.position, Quaternion.identity);
 
+                shotImage = pShotUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>();
+
                 //’eŠÛ—\‘ªü‚ÌŒvZŒ‹‰ÊƒŠƒXƒg‚ğƒNƒŠƒA
                 for (int i = PredictionLine_List.Count - 1; i >= 0; i--)
                 {
@@ -185,7 +189,8 @@ public class PlayerManager_ : MonoBehaviour
             if(isShotting)
             {
                 nowShotTime += Time.deltaTime;
-                pShotUI.transform.localScale = new Vector3(nowShotTime / maxShotTime, 1, 1);
+                //pShotUI.transform.localScale = new Vector3(nowShotTime / maxShotTime, 1, 1);
+                shotImage.fillAmount = nowShotTime / maxShotTime;
                 if (nowShotTime > maxShotTime)
                 {
                     nowShotTime = 0.0f;

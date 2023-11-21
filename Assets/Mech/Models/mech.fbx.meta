@@ -1296,8 +1296,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0
-        functionName: ShootBigCanonA
+      - time: 0.026143791
+        functionName: PlayBigCanonSoundA
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -1440,8 +1440,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0
-        functionName: ShootBigCanonB
+      - time: 0.026143791
+        functionName: PlayBigCanonSoundB
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -1584,8 +1584,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0
-        functionName: ShootSmallCanonA
+      - time: 0.026143791
+        functionName: PlaySmallCanonSoundA
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -1728,8 +1728,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0
-        functionName: ShootSmallCanonB
+      - time: 0.029411752
+        functionName: PlaySmallCanonSoundB
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -2146,14 +2146,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.5070154
+      - time: 0.48087162
         functionName: PlayFootstepSound
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 1
+      - time: 0.9738562
         functionName: PlayFootstepSound
         data: 
         objectReferenceParameter: {instanceID: 0}

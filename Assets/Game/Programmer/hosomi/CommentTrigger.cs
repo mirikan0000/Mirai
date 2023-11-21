@@ -24,27 +24,17 @@ public class CommentTrigger : MonoBehaviour
     [SerializeField] private PlayerHealth PH;
     private bool dropable = false;
 
-    private string[] comments = new string[]
-    {
-        "コメント1",
-        "コメント2",
-        "コメント3",
-    // 追加のコメントをここに記述
-    };
-
     void Start()
     {
         InitializePositionTracking();
-        playermanager = GetComponent<PlayerManager_>();
-        isMovingValue = playermanager.GetIsMoving();
-        targetplayermanager = targetObject.GetComponent<PlayerManager_>();
-        targetIsMovingValue = targetplayermanager.GetIsMoving();
+        //playermanager = GetComponent<PlayerManager_>();
+        //isMovingValue = playermanager.GetIsMoving();
+        //targetplayermanager = targetObject.GetComponent<PlayerManager_>();
+        //targetIsMovingValue = targetplayermanager.GetIsMoving();
     }
 
     void Update()
     {
-        //RandomComment();
-
         UpdatePosition();
 
         if (PlayerCamera != null && targetObject != null)
@@ -52,89 +42,70 @@ public class CommentTrigger : MonoBehaviour
             // カメラがオブジェクトを映しているかどうかを確認
             if (IsObjectVisibleInCamera())
             {
-                commentManager.SetCommentText("エネミーを発見しました！");
-                Debug.Log("エネミーを発見しました！");
+                commentManager.SetCommentTextWithWeight("エネミーを発見しました！", 9);
             }
             else
             {
-                commentManager.SetCommentText("エネミーを探して！");
-                Debug.Log("エネミーを探して！");
+                commentManager.SetCommentTextWithWeight("エネミーを探して！", 1);
             }
         }
         //自プレイヤーが動いてない場合
         if (positionStable)
         {
-            commentManager.SetCommentText("動いてない！");
+            commentManager.SetCommentTextWithWeight("動いてない！", 1);
         }
         //敵プレイヤーが動いてない場合
         if (targetpositionStable)
         {
-            commentManager.SetCommentText("敵動いてない！");
+            commentManager.SetCommentTextWithWeight("敵動いてない！", 2);
         }
         //物資が出現した場合
-        if (dropable)
-        {
-            commentManager.SetCommentText("物資来てる！");
-            Debug.Log("物資来てる！");
-        }
-        //物資を取得した
-        if (DP.speedFlag == true)
-        {
-            commentManager.SetCommentText("速くなった！");
-        }
-        if (DP.powerFlag == true)
-        {
-            commentManager.SetCommentText("強くなった！");
-        }
-        //敵が物資を取得した
-       
-        // DropPlayerコンポーネントがアタッチされている場合、そのFlagにアクセス
-        if (DP != null &&DP.speedFlag)
-        {
-            commentManager.SetCommentText("敵が速くなった！");
-        }
-        if (DP != null && DP.powerFlag)
-        {
-            commentManager.SetCommentText("敵が強くなった！");
-        }
-        //被弾
-        if (PH.hitflog)
-        {
-            commentManager.SetCommentText("ダメージを受けた！");
-        }
-        
-        // DropPlayerコンポーネントがアタッチされている場合、そのFlagにアクセス
-        if (PH != null && PH.hitflog)
-        {
-            commentManager.SetCommentText("敵にダメージを与えた！");
-        }
+        //if (dropable)
+        //{
+        //    commentManager.SetCommentText("物資来てる！");
+        //}
+        ////物資を取得した
+        //if (DP.speedFlag == true)
+        //{
+        //    commentManager.SetCommentText("速くなった！");
+        //}
+        //if (DP.powerFlag == true)
+        //{
+        //    commentManager.SetCommentText("強くなった！");
+        //}
+        ////敵が物資を取得した
+
+        //// DropPlayerコンポーネントがアタッチされている場合、そのFlagにアクセス
+        //if (DP != null && DP.speedFlag)
+        //{
+        //    commentManager.SetCommentText("敵が速くなった！");
+        //}
+        //if (DP != null && DP.powerFlag)
+        //{
+        //    commentManager.SetCommentText("敵が強くなった！");
+        //}
+        ////被弾
+        //if (PH.hitflog)
+        //{
+        //    commentManager.SetCommentText("ダメージを受けた！");
+        //}
+
+        //// DropPlayerコンポーネントがアタッチされている場合、そのFlagにアクセス
+        //if (PH != null && PH.hitflog)
+        //{
+        //    commentManager.SetCommentText("敵にダメージを与えた！");
+        //}
 
         //移動エネルギーが切れた場合
-        if (!isMovingValue)
-        {
-            commentManager.SetCommentText("移動エネルギーが切れた！");
-        }
-        //敵の移動エネルギーが切れた場合
-        if (!targetIsMovingValue)
-        {
-            commentManager.SetCommentText("敵の移動エネルギーが切れた！");
-        }
-
-        //test
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            commentManager.SetCommentText("Qをおした");
-            Debug.Log("ono");
-        }
-    }
-
-    void RandomComment()
-    {
-        // ランダムなコメントの選択
-        int randomIndex = Random.Range(0, comments.Length);
-        string selectedComment = comments[randomIndex];
-
-        commentManager.SetCommentText(selectedComment);
+        //if (!isMovingValue)
+        //{
+        //    commentManager.SetCommentText("移動エネルギーが切れた！");
+        //}
+        ////敵の移動エネルギーが切れた場合
+        //if (!targetIsMovingValue)
+        //{
+        //    commentManager.SetCommentText("敵の移動エネルギーが切れた！");
+        //}
     }
 
     private bool IsObjectVisibleInCamera()
@@ -184,7 +155,6 @@ public class CommentTrigger : MonoBehaviour
             GameObject dropper = GameObject.FindWithTag("Item");
             if (dropper != null)
             {
-                Debug.Log("！");
                 dropable = true;
             }
             dropable = false;

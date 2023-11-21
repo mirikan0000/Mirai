@@ -2,85 +2,68 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameLoop : MonoBehaviour
+public class GameLoop : SingletonMonoBehaviour<GameLoop>
 {
-    // 他のクラスや変数の定義などがあれば追加
     [SerializeField] private PlayerHealth Player1;
     [SerializeField] private PlayerHealth Player2;
     private object m_GameWinner;
-    private int roundCount = 0; // 現在のラウンド数
-    private int roundsToWin = 5; // 勝利に必要なラウンド数
-    private int player1Wins = 0; // Player1の勝利数
-    private int player2Wins = 0; // Player2の勝利数
-
-    
+    private int roundCount = 0;
+    private int roundsToWin = 5;
+    [SerializeField]  private int player1Wins = 0;
+    [SerializeField] private int player2Wins = 0;
+    private GameObject player1;
+    private GameObject player2;
+    public bool isRoundEnding = false;
     private void Start()
     {
-     //  StartCoroutine(GameLoops());
+        DontDestroyOnLoad(gameObject);
     }
-    private IEnumerator GameLoops()
-    {
-        // ゲーム開始
-        yield return StartCoroutine(RoundStarting());
 
-        // ラウンドごとのループ
-        while (!IsGameFinished())
+    private void Update()
+    {
+        if (player1!=null)
         {
-            Debug.Log("ラウンドループ");
-            yield return StartCoroutine(RoundPlaying());
-            yield return StartCoroutine(RoundEnding());
+            InitializePlayers();
+        }
+     GameLoops();
+    }
+
+    private void InitializePlayers()
+    {
+        
+        player1 = GameObject.FindGameObjectWithTag("Player1");
+        player2 = GameObject.FindGameObjectWithTag("Player2");
+
+        if (player1 != null && player1.GetComponent<PlayerHealth>() != null)
+        {
+            Player1 = player1.GetComponent<PlayerHealth>();
+        }
+        if (player2 != null && player2.GetComponent<PlayerHealth>() != null)
+        {
+            Player2 = player2.GetComponent<PlayerHealth>();
+        }
+        isRoundEnding = false;
+    }
+    public void GameLoops()
+    {
+        if (!isRoundEnding && IsRoundOver())
+        {
+            isRoundEnding = true;
+            RoundEnding();
         }
 
-        // 勝者が確定したときの処理
-        if (m_GameWinner != null)
+        if (IsGameFinished())
         {
             // ここで勝者画面などの処理を実行
-            //image画像を表示1P.ver,2P.verを表示
-
-            // 一定時間停止してからゲームをリセット
-            yield return new WaitForSeconds(3f);
-            // NextSceneにGameLoopの参照を渡す
-            NextScene nextSceneScript = FindObjectOfType<NextScene>();
-            if (nextSceneScript != null)
-            {
-                nextSceneScript.SetGameLoopReference(this);
-            }   
-        }
-        else
-        {
-            // ゲームが終了していない場合、次のラウンドへ
-            StartCoroutine(GameLoops());
+            // image画像を表示1P.ver,2P.verを表示
+            UnityEngine.SceneManagement.SceneManager.LoadScene(3);
         }
     }
-    //ラウンド開始時の初期化処理を行うコルーチン
-    private IEnumerator RoundStarting()
+
+
+
+    public void RoundEnding()
     {
-        // ラウンド開始時の初期化処理などをここに追加
-        Debug.Log("Round Starting...");
-        //シーンの初期化
-        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
-        // ラウンド表示
-
-
-       yield return null;
-    }
-    //ゲームプレイ中の処理を行うコルーチン
-    private IEnumerator RoundPlaying()
-    {
-        // どちらかの戦車が消滅するまで待機
-        while (!IsRoundOver())
-        {
-            yield return null;
-        }
-    }
-    //ラウンド終了時の処理を行うコルーチン
-    private IEnumerator RoundEnding()
-    {
-        // ラウンド終了時の処理をここに追加
-        Debug.Log("Round Ending...");
-
-        // 例：勝者の表示など
-
         // 勝者ごとに勝利数を増やす
         if (Player1.GetCurrentHP() <= 0)
         {
@@ -90,22 +73,17 @@ public class GameLoop : MonoBehaviour
         {
             player1Wins++;
         }
-
-        // 一定時間停止してから次のラウンドへ
-        yield return new WaitForSeconds(3f);
+            InitializePlayers();
     }
 
-    // 勝者が確定したかどうかの判定
     public bool IsGameFinished()
     {
-        // 例：5ラウンド先取で勝者が確定する場合
         return player1Wins >= roundsToWin || player2Wins >= roundsToWin;
     }
 
-    // ラウンド終了条件の判定
-    private bool IsRoundOver()
+    public bool IsRoundOver()
     {
-        // 例：どちらかの戦車のHPが0になった場合
         return Player1.GetCurrentHP() <= 0 || Player2.GetCurrentHP() <= 0;
     }
+  
 }

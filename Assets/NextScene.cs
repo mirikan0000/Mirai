@@ -17,13 +17,12 @@ public class NextScene : MonoBehaviour
     // ‘¼‚Ì•Ï”‚Ì’è‹`‚È‚Ç‚ª‚ ‚ê‚Î’Ç‰Á
     public GameLoop gameLoop;
 
-    public void SetGameLoopReference(GameLoop loop)
-    {
-        gameLoop = loop;
-    }
+   
     // Start is called before the first frame update
     void Start()
     {
+        gameLoop =GameObject.FindGameObjectWithTag("GameLoop").GetComponent<GameLoop>();
+        
         // ‰Šú’l‚Ífalse‚Éİ’è
         isFadeIn = false;
         hasLoadedScene = false;
@@ -33,6 +32,7 @@ public class NextScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (gameLoop != null && gameLoop.IsGameFinished())
         {
             if (isDestroyScene)

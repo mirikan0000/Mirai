@@ -79,7 +79,7 @@ public class PlayerHealth : MonoBehaviour
     {
         // 死亡時の処理をここに記述（例：ゲームオーバー画面の表示など）
         // この例ではプレイヤーオブジェクトを無効にします。
-        gameObject.SetActive(false);
+      //  gameObject.SetActive(false);
         isEnd = true;
     }
 

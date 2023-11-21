@@ -18098,6 +18098,30 @@ PrefabInstance:
       propertyPath: m_NeverAutoSwitchControlSchemes
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4361797540127855307, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: BigCanonSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 37025960c61b77245872d410c9640b6b, type: 3}
+    - target: {fileID: 4361797540127855307, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: BigCanonSoundA
+      value: 
+      objectReference: {fileID: 8300000, guid: 37025960c61b77245872d410c9640b6b, type: 3}
+    - target: {fileID: 4361797540127855307, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: BigCanonSoundB
+      value: 
+      objectReference: {fileID: 8300000, guid: 37025960c61b77245872d410c9640b6b, type: 3}
+    - target: {fileID: 4361797540127855307, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: SmallCanonSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d2ffe810fa89ef4fad702cafd3838a7, type: 3}
+    - target: {fileID: 4361797540127855307, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: SmallCanonSoundA
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d2ffe810fa89ef4fad702cafd3838a7, type: 3}
+    - target: {fileID: 4361797540127855307, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: SmallCanonSoundB
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d2ffe810fa89ef4fad702cafd3838a7, type: 3}
     - target: {fileID: 5014123900920248108, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_Size.x
       value: 3
@@ -18115,8 +18139,12 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7804566139116411643, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804566139116411643, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_Volume
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7804566139116411643, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: MinDistance
@@ -18130,6 +18158,10 @@ PrefabInstance:
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8200259296961846790, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: audioSourceA
+      value: 
+      objectReference: {fileID: 8150969197131227518}
     - target: {fileID: 8801580595636730087, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: Bullet
       value: 
@@ -18208,6 +18240,7 @@ PrefabInstance:
       objectReference: {fileID: 8150969197131227487}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 4361797540127855307, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 924950634172626897, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
@@ -18221,7 +18254,7 @@ PrefabInstance:
       addedObject: {fileID: 1504922933}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 924950634172918707, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
-      insertIndex: 7
+      insertIndex: 6
       addedObject: {fileID: 8150969197131227502}
     - targetCorrespondingSourceObject: {fileID: 924950634172918707, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       insertIndex: -1
@@ -19222,6 +19255,30 @@ PrefabInstance:
       propertyPath: m_NeverAutoSwitchControlSchemes
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4361797540127855307, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: BigCanonSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 37025960c61b77245872d410c9640b6b, type: 3}
+    - target: {fileID: 4361797540127855307, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: BigCanonSoundA
+      value: 
+      objectReference: {fileID: 8300000, guid: 37025960c61b77245872d410c9640b6b, type: 3}
+    - target: {fileID: 4361797540127855307, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: BigCanonSoundB
+      value: 
+      objectReference: {fileID: 8300000, guid: 37025960c61b77245872d410c9640b6b, type: 3}
+    - target: {fileID: 4361797540127855307, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: SmallCanonSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d2ffe810fa89ef4fad702cafd3838a7, type: 3}
+    - target: {fileID: 4361797540127855307, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: SmallCanonSoundA
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d2ffe810fa89ef4fad702cafd3838a7, type: 3}
+    - target: {fileID: 4361797540127855307, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: SmallCanonSoundB
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d2ffe810fa89ef4fad702cafd3838a7, type: 3}
     - target: {fileID: 5014123900920248108, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_Size.x
       value: 3
@@ -19239,8 +19296,12 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7804566139116411643, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804566139116411643, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_Volume
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7804566139116411643, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_PlayOnAwake
@@ -19338,7 +19399,8 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 3.19
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4361797540127855307, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 924950634172626897, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
@@ -19352,10 +19414,10 @@ PrefabInstance:
       addedObject: {fileID: 699935309}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 924950634172918707, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
-      insertIndex: 7
+      insertIndex: 6
       addedObject: {fileID: 6543601556174368169}
     - targetCorrespondingSourceObject: {fileID: 924950634172918707, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
-      insertIndex: 8
+      insertIndex: 7
       addedObject: {fileID: 6543601556174368170}
     - targetCorrespondingSourceObject: {fileID: 924950634172918707, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       insertIndex: -1
@@ -19651,6 +19713,11 @@ MonoBehaviour:
   speedFlag: 0
   powerFlag: 0
   openBoxFlag: 0
+--- !u!82 &8150969197131227518 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7804566139116411643, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+  m_PrefabInstance: {fileID: 5264104993213495858}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8577055613806882947
 MonoBehaviour:
   m_ObjectHideFlags: 0

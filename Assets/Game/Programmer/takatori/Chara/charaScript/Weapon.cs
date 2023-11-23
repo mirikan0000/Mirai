@@ -49,6 +49,10 @@ public class Weapon:MonoBehaviour
     List<GameObject> PredictionLine_List = new List<GameObject>();
     bool flog_Missile;
     bool penetoratBullet;
+
+    [Header("初期弾数")] [SerializeField] private int bulletsRemaining = 5; // 初期弾数
+    private bool isReloading = false;
+    [Header("再装填時間")] [SerializeField] private float reloadTime = 2.0f; // 再装填にかかる時間
     /// <summary>
     /// ボタンを押した瞬間
     /// ※ActionMaps名,Actions名は「InputActionControls」を確認
@@ -153,22 +157,32 @@ public class Weapon:MonoBehaviour
             //照準済み
             is_aiming = false;
 
-
-            //  弾丸生成
-           weapon= Instantiate(weapon, transform.position, transform.rotation);
-            //  親子関係を設定する
-            weapon.transform.parent = this.transform;
-            //   1フレーム後に親子関係を解除するコルーチンを呼び出す
-            StartCoroutine(UnparentAfterOneFrame(weapon.transform));
-            //  弾丸の角度をプレイヤーと一致する
-            weapon.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
-            //   弾丸位置はプレイヤーの前にする
-            weapon.transform.Translate(new Vector3(0, bulletCreatePosOffsetY, bulletCreatePosOffsetZ));
-           
-            if (pRay != null)
+            // 弾数がある場合のみ発射できるようにする
+            if (bulletsRemaining > 0)
             {
-                Destroy(pRay);
-                pRay = null;
+                // 弾数を減らす
+                bulletsRemaining--;
+                //  弾丸生成
+                weapon = Instantiate(weapon, transform.position, transform.rotation);
+                //  親子関係を設定する
+                weapon.transform.parent = this.transform;
+                //   1フレーム後に親子関係を解除するコルーチンを呼び出す
+                StartCoroutine(UnparentAfterOneFrame(weapon.transform));
+                //  弾丸の角度をプレイヤーと一致する
+                weapon.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
+                //   弾丸位置はプレイヤーの前にする
+                weapon.transform.Translate(new Vector3(0, bulletCreatePosOffsetY, bulletCreatePosOffsetZ));
+
+                if (pRay != null)
+                {
+                    Destroy(pRay);
+                    pRay = null;
+                }
+                // 弾数がなくなったら再装填を始める
+                if (bulletsRemaining == 0 && !isReloading)
+                {
+                    StartCoroutine(Reload());
+                }
             }
         }
         // 照準中のため、弾丸予測線を描画する
@@ -214,7 +228,13 @@ public class Weapon:MonoBehaviour
             }
         }
     }
-  
+    IEnumerator Reload()
+    {
+        isReloading = true;
+        yield return new WaitForSeconds(reloadTime);
+        bulletsRemaining = 5; // 初期弾数に再設定
+        isReloading = false;
+    }
     void DrewPredictionLine()
     {
         //発射角度をラジアンにする

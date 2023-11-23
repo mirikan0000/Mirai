@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9197211319356889254}
   m_Layer: 0
   m_Name: SaftyZone3
-  m_TagString: Untagged
+  m_TagString: Anti
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 3566330398270465481}
   m_Layer: 0
   m_Name: SaftyZone1
-  m_TagString: Untagged
+  m_TagString: Anti
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -278,13 +278,14 @@ GameObject:
   - component: {fileID: 1663950494820461707}
   - component: {fileID: 3235483607973713904}
   - component: {fileID: 5923012141302252880}
-  m_Layer: 0
+  - component: {fileID: 6293433147276168041}
+  m_Layer: 3
   m_Name: FakeSaftyZone
-  m_TagString: Untagged
+  m_TagString: Anti
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6105170159631530335
 Transform:
   m_ObjectHideFlags: 0
@@ -371,6 +372,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6293433147276168041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3934012578311438345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91d585dc8bbd5bf41aa6f047c93a88e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setScaleFlag: 0
+  moveFlag: 0
+  postReduScale1: {x: 0, y: 0, z: 0}
+  postReduScale2: {x: 0, y: 0, z: 0}
+  postReduScale3: {x: 0, y: 0, z: 0}
+  postReduScale4: {x: 0, y: 0, z: 0}
+  postReduScale5: {x: 0, y: 0, z: 0}
+  postReduScale6: {x: 0, y: 0, z: 0}
+  postMagScale1: {x: 0, y: 0, z: 0}
+  postMagScale2: {x: 0, y: 0, z: 0}
+  postMagScale3: {x: 0, y: 0, z: 0}
+  postMagScale4: {x: 0, y: 0, z: 0}
+  postMagScale5: {x: 0, y: 0, z: 0}
+  postMagScale6: {x: 0, y: 0, z: 0}
+  preScale: {x: 0, y: 0, z: 0}
 --- !u!1 &4083272022969701945
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +414,7 @@ GameObject:
   - component: {fileID: 5145329166087841836}
   m_Layer: 0
   m_Name: SaftyZone4
-  m_TagString: Untagged
+  m_TagString: Anti
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -516,7 +544,7 @@ GameObject:
   - component: {fileID: 2794396044822127101}
   m_Layer: 0
   m_Name: SaftyZoneObj
-  m_TagString: Untagged
+  m_TagString: Anti
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -556,24 +584,25 @@ MonoBehaviour:
   reducationFlag: 0
   magnificationFlag: 0
   destroyFlag: 0
-  maxReduStage: 5
+  maxReduStage: 6
   maxMagStage: 5
   nowReduStage: 0
   nowMagStage: 0
   nextReduStage: 0
   nextMagStage: 0
+  redu0DelayTime: 5
   redu1DelayTime: 6
-  redu2DelayTime: 6
-  redu3DelayTime: 6
-  redu4DelayTime: 6
-  redu5DelayTime: 6
-  redu6DelayTime: 6
+  redu2DelayTime: 7
+  redu3DelayTime: 8
+  redu4DelayTime: 9
+  redu5DelayTime: 9
+  redu6DelayTime: 9
   mag1DelayTime: 6
-  mag2DelayTime: 6
-  mag3DelayTime: 6
-  mag4DelayTime: 6
-  mag5DelayTime: 6
-  mag6DelayTime: 6
+  mag2DelayTime: 7
+  mag3DelayTime: 7
+  mag4DelayTime: 7
+  mag5DelayTime: 7
+  mag6DelayTime: 7
   zone1NowReduStage: 0
   zone2NowReduStage: 0
   zone3NowReduStage: 0
@@ -605,7 +634,7 @@ GameObject:
   - component: {fileID: 1467865584883745620}
   m_Layer: 0
   m_Name: SaftyZone2
-  m_TagString: Untagged
+  m_TagString: Anti
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

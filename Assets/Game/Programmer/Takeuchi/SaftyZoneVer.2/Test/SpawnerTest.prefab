@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &484528797462871764
+--- !u!1 &8862581163023546810
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2459987580071117130}
-  - component: {fileID: 7770136840699830265}
+  - component: {fileID: 5818774442642255047}
+  - component: {fileID: 5373261338193986486}
   m_Layer: 0
-  m_Name: SaftyZoneSpawner
+  m_Name: SpawnerTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2459987580071117130
+--- !u!4 &5818774442642255047
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484528797462871764}
+  m_GameObject: {fileID: 8862581163023546810}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7770136840699830265
+--- !u!114 &5373261338193986486
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484528797462871764}
+  m_GameObject: {fileID: 8862581163023546810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbbce4026665f5942b497d9c559df3a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 141e0e6370624244a8ef0d568031a69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saftyZoneObj: {fileID: 4519891403990973443, guid: a03fec64e95bdba4a815a94d94945b88, type: 3}
-  saftyRangeA: {fileID: 6476936876649840854, guid: 304f680a66b22404581a83a35bead515, type: 3}
-  saftyRangeB: {fileID: 2227987474602348500, guid: 3498165363323334c8802b5143d8f886, type: 3}
-  delayTime: 3
-  spawnCheck: 1
-  reduStageCount: 3
-  magStageCount: 3
-  reduCount: 0
-  magCount: 0
+  saftyZonebj: {fileID: 2926694152759327058, guid: 303669671db940f4a811f7d2fbde4120, type: 3}
+  rangeA: {fileID: 6476936876649840854, guid: 304f680a66b22404581a83a35bead515, type: 3}
+  rangeB: {fileID: 2227987474602348500, guid: 3498165363323334c8802b5143d8f886, type: 3}
+  spawnDelayTime: 5
+  spawnFlag: 0

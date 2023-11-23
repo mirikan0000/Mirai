@@ -64,7 +64,6 @@ public class SaftyZoneV2 : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("生まれた");
         //変数初期化
         VariableInitialize();
 
@@ -93,7 +92,7 @@ public class SaftyZoneV2 : MonoBehaviour
     private void VariableInitialize()
     {
         timer = 0.0f;
-        nowReduStage = 1.0f;
+        nowReduStage = 0.0f;
         nowMagStage = 0.0f;
         zone1NowReduStage = 0.0f;
         zone2NowReduStage = 0.0f;
@@ -116,6 +115,7 @@ public class SaftyZoneV2 : MonoBehaviour
     private void FlagInitialize()
     {
         reducationFlag = false;
+        reducationFlag = true;
         magnificationFlag = false;
         destroyFlag = false;
 
@@ -135,14 +135,14 @@ public class SaftyZoneV2 : MonoBehaviour
     {
         //各子オブジェクトの現在縮小段階に応じて縮小回数を加算
         if(zone1NowReduStage == 0.0f && zone2NowReduStage == 0.0f &&
-            zone3NowReduStage == 0.0f && zone4NowReduStage == 0.0f && nowReduStage == 1.0f)
+            zone3NowReduStage == 0.0f && zone4NowReduStage == 0.0f && nowReduStage == 0.0f)
         {
             //第一安置の待ち時間
             timer += Time.deltaTime;
 
             if (timer > redu1DelayTime)
             {
-                reducationFlag = true;
+                nowReduStage = 1.0f;
 
                 timer = 0.0f;
             }
@@ -150,6 +150,9 @@ public class SaftyZoneV2 : MonoBehaviour
         else if(zone1NowReduStage==1.0f&&zone2NowReduStage==1.0f&&
             zone3NowReduStage == 1.0f && zone4NowReduStage == 1.0f)
         {
+            //第二安置の予報
+            nextReduStage = 2.0f;
+
             //第二安置の待ち時間
             timer += Time.deltaTime;
 
@@ -163,6 +166,9 @@ public class SaftyZoneV2 : MonoBehaviour
         else if(zone1NowReduStage==2.0f&&zone2NowReduStage==2.0f&&
             zone3NowReduStage == 2.0f && zone4NowReduStage == 2.0f)
         {
+            //第三安置の予報
+            nextReduStage = 3.0f;
+
             //第三安置の待ち時間
             timer += Time.deltaTime;
 
@@ -176,6 +182,9 @@ public class SaftyZoneV2 : MonoBehaviour
         else if(zone1NowReduStage==3.0f&&zone2NowReduStage==3.0f&&
             zone3NowReduStage == 3.0f && zone4NowReduStage == 3.0f)
         {
+            //第四安置の予報
+            nextReduStage = 4.0f;
+
             //第四安置の待ち時間
             timer += Time.deltaTime;
 
@@ -189,6 +198,9 @@ public class SaftyZoneV2 : MonoBehaviour
         else if (zone1NowReduStage == 4.0f && zone2NowReduStage == 4.0f &&
             zone3NowReduStage == 4.0f && zone4NowReduStage == 4.0f)
         {
+            //第五安置の予報
+            nextReduStage = 5.0f;
+
             //第五安置の待ち時間
             timer += Time.deltaTime;
 
@@ -202,6 +214,9 @@ public class SaftyZoneV2 : MonoBehaviour
         else if (zone1NowReduStage == 5.0f && zone2NowReduStage == 5.0f &&
             zone3NowReduStage == 5.0f && zone4NowReduStage == 5.0f)
         {
+            //第六安置の予報
+            nextReduStage = 6.0f;
+
             //第六安置の待ち時間
             timer += Time.deltaTime;
 
@@ -212,7 +227,7 @@ public class SaftyZoneV2 : MonoBehaviour
                 timer = 0.0f;
             }
         }
-        else if(zone1NowReduStage==6.0f&&zone2NowReduStage==6.0f&&
+        else if(zone1NowReduStage == 6.0f && zone2NowReduStage == 6.0f &&
             zone3NowReduStage == 6.0f && zone3NowReduStage == 6.0f)
         {
             nowReduStage = 7.0f;
@@ -236,13 +251,14 @@ public class SaftyZoneV2 : MonoBehaviour
     {
         //各子オブジェクトの現在縮小段階に応じて縮小回数を加算
         if(zone1NowMagStage == 0.0f && zone2NowMagStage == 0.0f &&
-            zone3NowMagStage == 0.0f && zone4NowMagStage == 0.0f && nowMagStage == 1.0f)
+            zone3NowMagStage == 0.0f && zone4NowMagStage == 0.0f && nowMagStage == 0.0f&& reducationFlag == false)
         {
             //安置第一拡大の待ち時間
             timer += Time.deltaTime;
 
             if (timer > mag1DelayTime)
             {
+                nowMagStage = 1.0f;
                 magnificationFlag = true;
 
                 timer = 0.0f;
@@ -343,7 +359,7 @@ public class SaftyZoneV2 : MonoBehaviour
                 nowReduStage = 0.0f;
 
                 //現在の拡大回数を１に
-                nowMagStage = 1.0f;
+                //nowMagStage = 1.0f;
             }
         }
     }

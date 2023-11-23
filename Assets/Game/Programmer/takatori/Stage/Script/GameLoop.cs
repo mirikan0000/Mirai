@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class GameLoop : SingletonMonoBehaviour<GameLoop>
 {
-    [SerializeField] private PlayerHealth Player1;
-    [SerializeField] private PlayerHealth Player2;
+    private PlayerHealth Player1;
+    private PlayerHealth Player2;
     private object m_GameWinner;
     private int roundCount = 0;
     private int roundsToWin = 5;
     [SerializeField]  private int player1Wins = 0;
     [SerializeField] private int player2Wins = 0;
-    private GameObject player1;
-    private GameObject player2;
-    public bool isRoundEnding = false;
+    [SerializeField] private GameObject player1;
+    [SerializeField] private GameObject player2;
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
@@ -21,34 +20,20 @@ public class GameLoop : SingletonMonoBehaviour<GameLoop>
 
     private void Update()
     {
-        if (player1!=null)
+        if (player1==null||player2==null)
         {
             InitializePlayers();
         }
-     GameLoops();
-    }
-
-    private void InitializePlayers()
-    {
-        
-        player1 = GameObject.FindGameObjectWithTag("Player1");
-        player2 = GameObject.FindGameObjectWithTag("Player2");
-
-        if (player1 != null && player1.GetComponent<PlayerHealth>() != null)
+        if (player1 != null || player2 != null)
         {
-            Player1 = player1.GetComponent<PlayerHealth>();
+            GameLoops();
         }
-        if (player2 != null && player2.GetComponent<PlayerHealth>() != null)
-        {
-            Player2 = player2.GetComponent<PlayerHealth>();
-        }
-        isRoundEnding = false;
+    
     }
     public void GameLoops()
     {
-        if (!isRoundEnding && IsRoundOver())
+        if (IsRoundOver())
         {
-            isRoundEnding = true;
             RoundEnding();
         }
 
@@ -73,7 +58,7 @@ public class GameLoop : SingletonMonoBehaviour<GameLoop>
         {
             player1Wins++;
         }
-            InitializePlayers();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
 
     public bool IsGameFinished()
@@ -85,5 +70,22 @@ public class GameLoop : SingletonMonoBehaviour<GameLoop>
     {
         return Player1.GetCurrentHP() <= 0 || Player2.GetCurrentHP() <= 0;
     }
-  
+    private void InitializePlayers()
+    {
+
+        player1 = GameObject.FindGameObjectWithTag("Player1");
+        player2 = GameObject.FindGameObjectWithTag("Player2");
+
+        if (player1 != null)
+        {
+            Debug.Log("GetPlayer1");
+            Player1 = player1.GetComponent<PlayerHealth>();
+        }
+        if (player2 != null)
+        {
+            Player2 = player2.GetComponent<PlayerHealth>();
+            Debug.Log("GetPlayer2");
+        }
+       
+    }
 }

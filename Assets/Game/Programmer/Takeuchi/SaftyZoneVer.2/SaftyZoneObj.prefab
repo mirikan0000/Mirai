@@ -279,9 +279,9 @@ GameObject:
   - component: {fileID: 3235483607973713904}
   - component: {fileID: 5923012141302252880}
   - component: {fileID: 6293433147276168041}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: FakeSaftyZone
-  m_TagString: Anti
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -590,7 +590,6 @@ MonoBehaviour:
   nowMagStage: 0
   nextReduStage: 0
   nextMagStage: 0
-  redu0DelayTime: 5
   redu1DelayTime: 6
   redu2DelayTime: 7
   redu3DelayTime: 8

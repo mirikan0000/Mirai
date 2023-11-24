@@ -8,17 +8,15 @@ public class DropPlayer : MonoBehaviour
 
     [SerializeField]
     [Header("各種変数")]
+    public float maxHealth;          //プレイヤーの最大HP
+    public float nowHealth;         //プレイヤーの現在のHP
     public float moveSpeed;          //移動速度
     public float defaultSpeed;       //元の移動速度
-    public float power;              //攻撃力
-    public float defaultPawer;       //元の攻撃力
     public float speedTimer;         //スピードアップの時間
     public float speedLimit;         //スピードアップの限界時間
-    public float powerTimer;         //パワーアップの時間
-    public float powerLimit;         //パワーアップの限界時間
     public bool speedFlag = false;   //スピードアップしているか
-    public bool powerFlag = false;   //パワーアップしているか
     public bool openBoxFlag = false; //補給箱を開けるためのフラグ
+    private bool shieldFlag;         //シールドを取得しているか
     Rigidbody rb;
     DropBox dropboxScript;           //補給箱のスクリプト
 
@@ -41,9 +39,9 @@ public class DropPlayer : MonoBehaviour
     {
         //各種変数初期化
         moveSpeed = defaultSpeed;
-        power = defaultPawer;
         speedTimer = 0.0f;
-        powerTimer = 0.0f;
+        nowHealth = maxHealth;
+        shieldFlag = false;
 
         //RigidBody取得
         rb = GetComponent<Rigidbody>();
@@ -66,42 +64,37 @@ public class DropPlayer : MonoBehaviour
             }
         }
 
-        //パワーアップ
-        if (powerFlag == true)
-        {
-            powerTimer += Time.deltaTime;
-
-            power = 300.0f;
-
-            if (powerTimer > powerLimit)
-            {
-                powerFlag = false;
-                power = defaultPawer;
-                powerTimer = 0.0f;
-            }
-        }
-
         PlayerMove();
     }
 
     //補給箱に当たったときの処理
     private void OnCollisionEnter(Collision collision)
     {
-        
         //当たったオブジェクトがスピードアップのものだった時
-        if (collision.gameObject.name == "DropBoxSpeed(Clone)")
+        if (collision.gameObject.name == "SpeedUpItem(Clone)")
         {
             //移動速度UP
             speedFlag = true;
             speedTimer = 0.0f;
-            Debug.Log("加速！！");
+            Debug.Log("加速");
         }
-        else if (collision.gameObject.name == "DropBoxPower(Clone)")
+        else if (collision.gameObject.name == "HealItem(Clone)")
         {
-            //攻撃力UP
-            powerFlag = true;
-            powerTimer = 0.0f;
-            Debug.Log("攻撃力アップ！！");
+            nowHealth = maxHealth;
+            Debug.Log("回復");
+        }
+        else if (collision.gameObject.name == "PierceBulletItem(Clone)")
+        {
+            Debug.Log("貫通弾取得");
+        }
+        else if (collision.gameObject.name == "ShieldItem(Clone)")
+        {
+            shieldFlag = true;
+            Debug.Log("シールド取得");
+        }
+        else if (collision.gameObject.name == "DropBox(Clone)")
+        {
+            nowHealth -= 2;
         }
     }
 
@@ -159,6 +152,19 @@ public class DropPlayer : MonoBehaviour
             transform.position += new Vector3(-moveSpeed * Time.deltaTime, 0.0f, 0.0f);
         }
 
+        //左右回転
+        //右回転
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.eulerAngles = new Vector3(0.0f, -50 * Time.deltaTime, 0.0f);
+        }
+
+        //左回転
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.eulerAngles += new Vector3(0.0f, 50 * Time.deltaTime, 0.0f);
+        }
+
         //物資を開ける
         if (openBoxFlag == true)
         {
@@ -168,11 +174,15 @@ public class DropPlayer : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.O))
+        //シールド展開
+        if (shieldFlag == true)
         {
-            var parent = this.transform;
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                var parent = this.transform;
 
-            Instantiate(shieldObj, this.transform.position, Quaternion.identity, parent);
+                Instantiate(shieldObj, this.transform.position, Quaternion.identity, parent);
+            }
         }
     }
 }

@@ -30,5 +30,11 @@ public class DropItem : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        //テスト用
+        if (collision.gameObject.name == "Player")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

@@ -11,9 +11,9 @@ public class DropBox : MonoBehaviour
     public GameObject pierceBulletItem;  //貫通弾のオブジェクト
     public GameObject shieldItem;        //シールドのオブジェクト
 
-    [Header("補給箱生成用オブジェクト関係")]
-    public GameObject dropperObj;  //補給箱を生成するオブジェクト
-    private Dropper dropperScript; //補給箱を生成するオブジェクトのスクリプト
+    [Header("親オブジェクト＆スクリプト")]
+    private GameObject parentObj;  //補給箱を生成するオブジェクト
+    private Dropper parentScript; //補給箱を生成するオブジェクトのスクリプト
 
     [Header("各種変数")]
     public bool openFlag = false;     //アイテム生成用のフラグ
@@ -26,8 +26,8 @@ public class DropBox : MonoBehaviour
         itemNum = 0;
 
         //補給箱を生成するオブジェクトのスクリプトを取得
-        dropperObj = GameObject.Find("EmpObjDropper");
-        dropperScript = dropperObj.GetComponent<Dropper>();
+        parentObj = this.transform.parent.gameObject;
+        parentScript = parentObj.GetComponent<Dropper>();
     }
 
     
@@ -35,14 +35,14 @@ public class DropBox : MonoBehaviour
     {
         if (openFlag == true)
         {
-            //ランダムで強化アイテムを生成
+            //ランダムでアイテムを生成
             DropRandomItem();
         }
 
         if (destroyFlag == true)
         {
             //補給箱を生成するオブジェクトの現在生成数を-1
-            dropperScript.dropCount--;
+            parentScript.dropCount = parentScript.dropCount - 1;
 
             //オブジェクト破壊
             Destroy(this.gameObject);

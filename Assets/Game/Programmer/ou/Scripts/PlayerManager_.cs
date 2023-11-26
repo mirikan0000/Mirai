@@ -113,87 +113,73 @@ public class PlayerManager_ : MonoBehaviour
             MoveStep();
         }
     }
-
     void MoveStep()
     {
-      
         bool isMoveButtonDown = GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward") ||
-                            GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack") ||
-                            GetButton("Player", "MoveLeft") || GetButton("Player1", "MoveLeft") ||
-                            GetButton("Player", "MoveRight") || GetButton("Player1", "MoveRight");
-
+                                GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack");
 
         // 移動開始条件
-        isMoving =  !OverHeat&&isMoveButtonDown && currentFuel > emptyFuel;
-  
+        isMoving = !OverHeat && isMoveButtonDown && currentFuel > emptyFuel;
+
         // ゲージ回復
         if (!isMoving && currentFuel <= MaxFuel)
         {
-          
-
-            // ゲージが0になったら一定時間待機
+            // ゲージが0になったら一定時間移動がゆっくりになる
             if (currentFuel <= emptyFuel)
             {
                 OverHeat = true;
             }
             if (OverHeat)
             {
-               
                 if (recoveryDelay > 0.0f)
                 {
                     currentFuel += fuelRechargeRate * Time.deltaTime;
                     currentFuel = Mathf.Clamp(currentFuel, emptyFuel, MaxFuel);
                     recoveryDelay -= Time.deltaTime;
-                    rb.velocity = Vector3.zero;
-              
+                   // rb.velocity = Vector3.zero;
                 }
                 else
                 {
-                    // ゲージが0になったら移動不可
-                        is_moveable = true;
-                        isMoving = true;
+                    is_moveable = true;
+                    isMoving = true;
                     recoveryDelay = MaxDelay;
                     OverHeat = false;
                 }
             }
-            if(OverHeat==false)
+            if (OverHeat == false)
             {
                 currentFuel += fuelRechargeRate * Time.deltaTime;
                 currentFuel = Mathf.Clamp(currentFuel, emptyFuel, MaxFuel);
             }
-           
-
-
         }
-       
+
         // 移動中の処理
-        if (isMoving&&!OverHeat)
+        if (isMoving && !OverHeat)
         {
-        currentFuel -= fuelConsumptionRate * Time.deltaTime;
-        currentFuel = Mathf.Max(currentFuel, emptyFuel);
+            currentFuel -= fuelConsumptionRate * Time.deltaTime;
+            currentFuel = Mathf.Max(currentFuel, emptyFuel);
         }
+
         // ゲージが0になったら移動不可
         if (currentFuel == 0.0f)
         {
             is_moveable = false;
             isMoving = false;
         }
-   
-
 
         // 移動可能な状態かどうか
-        if (is_moveable)
-    {
-        // 移動中の処理
-        if (isMoveButtonDown&&!OverHeat)
-        {
-            currentFuel -= Time.deltaTime;
-            currentFuel = Mathf.Clamp(currentFuel, 0.0f, MaxFuel);
-        }
-        else
-        {
-            isMoving = false;
-        }
+    
+            // 移動中の処理
+            if (isMoveButtonDown && !OverHeat)
+            {
+                currentFuel -= Time.deltaTime;
+                currentFuel = Mathf.Clamp(currentFuel, 0.0f, MaxFuel);
+            }
+            else
+            {
+                isMoving = false;
+            }
+
             Vector3 moveDirection = Vector3.zero;
 
             // 移動方向の取得
@@ -207,31 +193,37 @@ public class PlayerManager_ : MonoBehaviour
                 moveDirection = -transform.forward * move_speed;
             }
 
-            // 左右の回転
-            if (GetButton("Player", "MoveLeft") || GetButton("Player1", "MoveLeft"))
-            {
-                transform.Rotate(new Vector3(0, -rot_angle, 0));
-            }
-
-            if (GetButton("Player", "MoveRight") || GetButton("Player1", "MoveRight"))
-            {
-                transform.Rotate(new Vector3(0, rot_angle, 0));
-            }
-
             // ゲージが一定以上なら速度を設定
             if (currentFuel > emptyFuel)
             {
                 rb.velocity = new Vector3(moveDirection.x, rb.velocity.y, moveDirection.z);
             }
+        if (OverHeat)
+        {
+            // 燃料がない場合、速度を半分にする
+            rb.velocity = new Vector3(moveDirection.x * 0.5f, rb.velocity.y, moveDirection.z * 0.5f);
 
-            // アニメーションの設定
-            if (animator)
+        }
+
+
+        // アニメーションの設定
+        if (animator)
             {
                 animator.SetBool("Walk", moveDirection != Vector3.zero);
             }
+        
+
+        // 左右の回転
+        if (GetButton("Player", "MoveLeft") || GetButton("Player1", "MoveLeft"))
+        {
+            transform.Rotate(new Vector3(0, -rot_angle, 0));
+        }
+
+        if (GetButton("Player", "MoveRight") || GetButton("Player1", "MoveRight"))
+        {
+            transform.Rotate(new Vector3(0, rot_angle, 0));
         }
     }
-
 
     public Camera GetMainCamera()
     {

@@ -49,8 +49,8 @@ public class Weapon:MonoBehaviour
     List<GameObject> PredictionLine_List = new List<GameObject>();
     bool flog_Missile;
     bool penetoratBullet;
-
-    [Header("‰Šú’e”")] [SerializeField] private int bulletsRemaining = 5; // ‰Šú’e”
+    [Header("‰Šú’e”")] [SerializeField] private int bulletsMax = 5; 
+    [Header("Œ»İ‚Ì’e”")] [SerializeField] private int bulletsRemaining = 5; 
     private bool isReloading = false;
     [Header("Ä‘•“UŠÔ")] [SerializeField] private float reloadTime = 2.0f; // Ä‘•“U‚É‚©‚©‚éŠÔ
     /// <summary>
@@ -99,6 +99,14 @@ public class Weapon:MonoBehaviour
     public float GetRotAngle()
     {
         return gun_rotAngle;
+    }
+    public int GetbulletsMax()
+    {
+        return bulletsMax;
+    }
+    public int GetbulletsRemaining()
+    {
+        return bulletsRemaining;
     }
     private void Start()
     {

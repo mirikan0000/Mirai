@@ -18950,7 +18950,7 @@ PrefabInstance:
       objectReference: {fileID: 1678366367}
     - target: {fileID: 4257105962622737068, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: 
+      value: Gamepad
       objectReference: {fileID: 0}
     - target: {fileID: 4257105962622737068, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
@@ -19090,6 +19090,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 924950634172918707, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       insertIndex: 5
       addedObject: {fileID: 8150969197131227502}
+    - targetCorrespondingSourceObject: {fileID: 924950634172918707, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 8150969197131227530}
     - targetCorrespondingSourceObject: {fileID: 924950634172918707, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8150969197131227501}
@@ -20091,7 +20094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4257105962622737068, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: 
+      value: Gamepad
       objectReference: {fileID: 0}
     - target: {fileID: 4257105962622737068, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
@@ -20229,9 +20232,12 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 924950634172918707, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       insertIndex: 7
-      addedObject: {fileID: 6543601556174368169}
+      addedObject: {fileID: 6543601556174368199}
     - targetCorrespondingSourceObject: {fileID: 924950634172918707, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       insertIndex: 8
+      addedObject: {fileID: 6543601556174368169}
+    - targetCorrespondingSourceObject: {fileID: 924950634172918707, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
+      insertIndex: 9
       addedObject: {fileID: 6543601556174368170}
     - targetCorrespondingSourceObject: {fileID: 924950634172918707, guid: 7ccaa1c0a48b3184db1e84be4c7eaa01, type: 3}
       insertIndex: -1
@@ -20402,7 +20408,57 @@ MonoBehaviour:
   is_moveable: 1
   playerInputArray:
   - {fileID: 6543601556174368163}
-  vibrationStructArray: []
+  vibrationStructArray:
+  - name: Shot
+    valueLeft:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    valueRight:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    speed: 10
   isVibrationCannot: 0
   animator: {fileID: 6543601556174368167}
   footSteps: {fileID: 0}
@@ -20413,6 +20469,18 @@ MonoBehaviour:
   isMoving: 0
   OverHeat: 0
   itemSlotUI: {fileID: 1958532686}
+--- !u!114 &6543601556174368199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270741815190322771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d7fd94c0eb39f428d2022fa4b15677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7838321005640438291 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7838321005184861708, guid: 31be9a0108848c14ea7ff66f4a180868, type: 3}
@@ -20559,7 +20627,66 @@ MonoBehaviour:
   is_moveable: 1
   playerInputArray:
   - {fileID: 8150969197131227487}
-  vibrationStructArray: []
+  vibrationStructArray:
+  - name: Shot
+    valueLeft:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1.6421608
+        outSlope: 1.6421608
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.4495786
+        value: 0.73828036
+        inSlope: 1.0588253
+        outSlope: 1.0588253
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0.47548962
+        outSlope: 0.47548962
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    valueRight:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    speed: 10
   isVibrationCannot: 0
   animator: {fileID: 8150969197131227492}
   footSteps: {fileID: 0}
@@ -20570,6 +20697,18 @@ MonoBehaviour:
   isMoving: 0
   OverHeat: 0
   itemSlotUI: {fileID: 89384678}
+--- !u!114 &8150969197131227530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270741815905861782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d7fd94c0eb39f428d2022fa4b15677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8577055613806882947
 MonoBehaviour:
   m_ObjectHideFlags: 0

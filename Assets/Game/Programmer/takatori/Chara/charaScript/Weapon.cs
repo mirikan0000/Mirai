@@ -66,7 +66,7 @@ public class Weapon:MonoBehaviour
             return playerInput.actions[actionsName].WasPressedThisFrame();
         }
 
-        Debug.Log("“ü—Íó•t¸”s" + actionMapsName + actionsName);
+      //  Debug.Log("“ü—Íó•t¸”s" + actionMapsName + actionsName);
         return false;
     }
     public bool GetButton(string actionMapsName, string actionsName)
@@ -78,7 +78,7 @@ public class Weapon:MonoBehaviour
             return playerInput.actions[actionsName].IsPressed();
         }
 
-        Debug.Log("ActionMap‚ª‘¶İ‚µ‚È‚¢" + actionMapsName + actionsName);
+       // Debug.Log("ActionMap‚ª‘¶İ‚µ‚È‚¢" + actionMapsName + actionsName);
         return false;
     }
     /// <summary>
@@ -92,7 +92,7 @@ public class Weapon:MonoBehaviour
             return playerInput.actions[actionsName].WasReleasedThisFrame();
         }
 
-        Debug.Log("ActionMap‚ª‘¶İ‚µ‚È‚¢" + actionMapsName + actionsName);
+      //  Debug.Log("ActionMap‚ª‘¶İ‚µ‚È‚¢" + actionMapsName + actionsName);
         return false;
 
     }

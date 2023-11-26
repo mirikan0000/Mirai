@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using System;
 public class PlayerManager_ : MonoBehaviour
 {
     
@@ -20,7 +20,7 @@ public class PlayerManager_ : MonoBehaviour
     private Dictionary<string, PlayerInput> playerInputDictionary = new Dictionary<string, PlayerInput>();
     public PlayerInput[] playerInputArray;
 
-    // U“®
+    // U“®////////////////////////////////////
     [System.Serializable]
     public struct VibrationStruct
     {
@@ -31,7 +31,14 @@ public class PlayerManager_ : MonoBehaviour
     }
     [Header("U“®\‘¢‘Ì”z—ñ")]
     public VibrationStruct[] vibrationStructArray;
+    private VibrationStruct vibrationStructNow;
+    // U“®ŠÔ
+    private float vibrationTime;
+
     public bool isVibrationCannot;
+
+
+
     int AreaNumber;
 
     // ƒAƒjƒ[ƒVƒ‡ƒ“
@@ -82,7 +89,6 @@ public class PlayerManager_ : MonoBehaviour
             return playerInput.actions[actionsName].WasPressedThisFrame();
         }
 
-        Debug.Log("“ü—Íó•t¸”s" + actionMapsName + actionsName);
         return false;
     }
 
@@ -93,7 +99,7 @@ public class PlayerManager_ : MonoBehaviour
             return playerInput.actions[actionsName].IsPressed();
         }
 
-        Debug.Log("ActionMap‚ª‘¶İ‚µ‚È‚¢" + actionMapsName + actionsName);
+
         return false;
     }
 
@@ -104,10 +110,47 @@ public class PlayerManager_ : MonoBehaviour
             return playerInput.actions[actionsName].WasReleasedThisFrame();
         }
 
-        Debug.Log("ActionMap‚ª‘¶İ‚µ‚È‚¢" + actionMapsName + actionsName);
+     
         return false;
     }
+    /// <summary>
+    /// U“®ŠJn
+    /// </summary>
+    public float SetVibration(string _vibrationName)
+    {
+        Gamepad gamepad = Gamepad.current;
+        if (gamepad == null)
+        {
+            Debug.Log("NotGamePad");
+            return 0;
+        }
 
+        VibrationStruct vibrationStruct = Array.Find(vibrationStructArray, a => a.name == _vibrationName);
+        if (!string.IsNullOrEmpty(vibrationStruct.name)) // C³: ‹ó‚Å‚È‚¢‚±‚Æ‚ğŠm”F
+        {
+            vibrationStructNow = vibrationStruct; // C³: Array.Find ‚ğg‚í‚¸‚É’¼Ú‘ã“ü
+        }
+        else
+        {
+            Debug.LogError("NotvibrationStruct!!");
+        }
+        vibrationTime = 100;
+
+        return 0;
+    }
+    /// <summary>
+    /// U“®’â~
+    /// </summary>
+    public void StopVibration()
+    {
+        Gamepad gamepad = Gamepad.current;
+        if (gamepad == null)
+        {
+            return;
+        }
+        gamepad.SetMotorSpeeds(0, 0);
+        vibrationTime = 99;
+    }
     void Update()
     {
         if (is_start)
@@ -122,10 +165,20 @@ public class PlayerManager_ : MonoBehaviour
        if( GetButtonDown("Player", "RightChange")|| GetButtonDown("Player1", "RightChange"))
         {
             itemSlotUI.ChangeRightItem();
+            SetVibration(vibrationStructArray[0].name);
+        }
+        if (GetButtonUp("Player", "RightChange") || GetButtonUp("Player1", "RightChange"))
+        {
+          //  StopVibration();
         }
         if (GetButtonDown("Player", "LeftChange")|| GetButtonDown("Player1", "LeftChange"))
         {
             itemSlotUI.ChangeLeftItem();
+            SetVibration(vibrationStructArray[0].name);
+        }
+        if (GetButtonUp("Player", "LeftChange") || GetButtonUp("Player1", "LeftChange"))
+        {
+        //    StopVibration();
         }
     }
     void MoveStep()

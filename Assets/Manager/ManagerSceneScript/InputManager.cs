@@ -61,61 +61,9 @@ public class InputManager : SingletonMonoBehaviour<InputManager>
             if (endOperateInputTime <= 0)
             {
                 SetStopActionMap("UI", false);
-                SetStopActionMap("Cursor", false);
+
             }
         }
-
-        //bool isStageTransition = false;
-
-        //GameObject[] playerObjArray = GameObject.FindGameObjectsWithTag("Player");
-        //UnityEngine.SceneManagement.Scene[] nowSceneArray = UnityEngine.SceneManagement.SceneManager.GetAllScenes();
-
-            // コントローラーを使ってる時,キーボード入力があった場合
-            //if (isUseGamepad)
-            //{
-            //    if (GetButtonDown("Judge", "AnyKeyboard") || MathF.Abs(GetStick("Judge", "MoveMouse").x) >= 20.0f || MathF.Abs(GetStick("Judge", "MoveMouse").y) >= 20.0f)
-            //    {
-            //        UnityEngine.SceneManagement.Scene[] sceneArray = UnityEngine.SceneManagement.SceneManager.GetAllScenes();
-            //        bool isSceneChange = true;
-            //        foreach (UnityEngine.SceneManagement.Scene scene in sceneArray)
-            //        {
-            //            if (scene.name == "s_Operate")
-            //            {
-            //                isSceneChange = false;
-            //            }
-            //        }
-            //        if (isSceneChange)
-            //        {
-            //            SceneManager.Instance.LoadScene("s_Operate");
-            //            SceneManager.Instance.ChangeScene();
-            //        }
-            //    }
-            //}
-            //// キーボードを使ってる時,コントローラー入力があった場合
-            //else
-            //{
-            //    if (GetButtonDown("Judge", "AnyGamepad") || MathF.Abs(GetStick("Judge", "MoveGamepad").x) >= 0.5f || MathF.Abs(GetStick("Judge", "MoveGamepad").y) >= 0.5f)
-            //    {
-            //        UnityEngine.SceneManagement.Scene[] sceneArray = UnityEngine.SceneManagement.SceneManager.GetAllScenes();
-            //        bool isSceneChange = true;
-            //        foreach (UnityEngine.SceneManagement.Scene scene in sceneArray)
-            //        {
-            //            if (scene.name == "s_Operate")
-            //            {
-            //                isSceneChange = false;
-            //            }
-            //        }
-            //        if (isSceneChange)
-            //        {
-            //            SceneManager.Instance.LoadScene("s_Operate");
-            //            SceneManager.Instance.ChangeScene();
-            //        }
-            //    }
-            //}
-       // }
-
-      //  Debug.Log("isVibrationCannot" + isVibrationCannot);
-
         // 振動処理
         Gamepad gamepad = Gamepad.current;
         if (gamepad == null)

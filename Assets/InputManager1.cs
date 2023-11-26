@@ -89,6 +89,24 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightChange"",
+                    ""type"": ""Button"",
+                    ""id"": ""ad6f1f61-a64b-4907-9d64-67da07d56bf6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftChange"",
+                    ""type"": ""Button"",
+                    ""id"": ""a7340b57-f69f-4aa5-9995-52f59e620823"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -419,6 +437,72 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MoveLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43059785-9d3a-4ee3-a133-ded45f897ad5"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5009f20-db05-403b-9d74-a95ed2a2d76e"",
+                    ""path"": ""<SwitchProControllerHID>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""371e5b9f-1b80-44d4-905a-53f222994473"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""97ea76b1-374e-4828-80ee-2291a5254e76"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b98002e-cd49-4bd5-981a-b69c95b10e81"",
+                    ""path"": ""<SwitchProControllerHID>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ede9d370-84a1-4a31-991b-3ab757662309"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftChange"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1017,6 +1101,24 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightChange"",
+                    ""type"": ""Button"",
+                    ""id"": ""b88c13a4-3a3d-4db2-8fa2-c71a938fbd73"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftChange"",
+                    ""type"": ""Button"",
+                    ""id"": ""841d344f-5693-4002-a676-9b11837d46bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1327,6 +1429,72 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                     ""action"": ""MoveLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""baa9fb2c-0660-487c-b6d8-1da24270e835"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6bffce1-24ce-4c1b-80ef-3aa448cb61a0"",
+                    ""path"": ""<SwitchProControllerHID>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d19d4487-0804-4038-9929-bc7d610d0db8"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aaa6f1d4-c4eb-4d84-8934-9d2e75370477"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96eeff52-9356-41d1-95ee-f7e14dcc01f6"",
+                    ""path"": ""<SwitchProControllerHID>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""070e9057-d7a1-44e4-93b2-d4e6a68c3906"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1403,6 +1571,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         m_Player_MoveBack = m_Player.FindAction("MoveBack", throwIfNotFound: true);
         m_Player_MoveRight = m_Player.FindAction("MoveRight", throwIfNotFound: true);
         m_Player_MoveLeft = m_Player.FindAction("MoveLeft", throwIfNotFound: true);
+        m_Player_RightChange = m_Player.FindAction("RightChange", throwIfNotFound: true);
+        m_Player_LeftChange = m_Player.FindAction("LeftChange", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1424,6 +1594,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         m_Player1_MoveBack = m_Player1.FindAction("MoveBack", throwIfNotFound: true);
         m_Player1_MoveRight = m_Player1.FindAction("MoveRight", throwIfNotFound: true);
         m_Player1_MoveLeft = m_Player1.FindAction("MoveLeft", throwIfNotFound: true);
+        m_Player1_RightChange = m_Player1.FindAction("RightChange", throwIfNotFound: true);
+        m_Player1_LeftChange = m_Player1.FindAction("LeftChange", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1492,6 +1664,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MoveBack;
     private readonly InputAction m_Player_MoveRight;
     private readonly InputAction m_Player_MoveLeft;
+    private readonly InputAction m_Player_RightChange;
+    private readonly InputAction m_Player_LeftChange;
     public struct PlayerActions
     {
         private @InputManage1 m_Wrapper;
@@ -1503,6 +1677,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         public InputAction @MoveBack => m_Wrapper.m_Player_MoveBack;
         public InputAction @MoveRight => m_Wrapper.m_Player_MoveRight;
         public InputAction @MoveLeft => m_Wrapper.m_Player_MoveLeft;
+        public InputAction @RightChange => m_Wrapper.m_Player_RightChange;
+        public InputAction @LeftChange => m_Wrapper.m_Player_LeftChange;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1533,6 +1709,12 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
             @MoveLeft.started += instance.OnMoveLeft;
             @MoveLeft.performed += instance.OnMoveLeft;
             @MoveLeft.canceled += instance.OnMoveLeft;
+            @RightChange.started += instance.OnRightChange;
+            @RightChange.performed += instance.OnRightChange;
+            @RightChange.canceled += instance.OnRightChange;
+            @LeftChange.started += instance.OnLeftChange;
+            @LeftChange.performed += instance.OnLeftChange;
+            @LeftChange.canceled += instance.OnLeftChange;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1558,6 +1740,12 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
             @MoveLeft.started -= instance.OnMoveLeft;
             @MoveLeft.performed -= instance.OnMoveLeft;
             @MoveLeft.canceled -= instance.OnMoveLeft;
+            @RightChange.started -= instance.OnRightChange;
+            @RightChange.performed -= instance.OnRightChange;
+            @RightChange.canceled -= instance.OnRightChange;
+            @LeftChange.started -= instance.OnLeftChange;
+            @LeftChange.performed -= instance.OnLeftChange;
+            @LeftChange.canceled -= instance.OnLeftChange;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1704,6 +1892,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player1_MoveBack;
     private readonly InputAction m_Player1_MoveRight;
     private readonly InputAction m_Player1_MoveLeft;
+    private readonly InputAction m_Player1_RightChange;
+    private readonly InputAction m_Player1_LeftChange;
     public struct Player1Actions
     {
         private @InputManage1 m_Wrapper;
@@ -1715,6 +1905,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         public InputAction @MoveBack => m_Wrapper.m_Player1_MoveBack;
         public InputAction @MoveRight => m_Wrapper.m_Player1_MoveRight;
         public InputAction @MoveLeft => m_Wrapper.m_Player1_MoveLeft;
+        public InputAction @RightChange => m_Wrapper.m_Player1_RightChange;
+        public InputAction @LeftChange => m_Wrapper.m_Player1_LeftChange;
         public InputActionMap Get() { return m_Wrapper.m_Player1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1745,6 +1937,12 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
             @MoveLeft.started += instance.OnMoveLeft;
             @MoveLeft.performed += instance.OnMoveLeft;
             @MoveLeft.canceled += instance.OnMoveLeft;
+            @RightChange.started += instance.OnRightChange;
+            @RightChange.performed += instance.OnRightChange;
+            @RightChange.canceled += instance.OnRightChange;
+            @LeftChange.started += instance.OnLeftChange;
+            @LeftChange.performed += instance.OnLeftChange;
+            @LeftChange.canceled += instance.OnLeftChange;
         }
 
         private void UnregisterCallbacks(IPlayer1Actions instance)
@@ -1770,6 +1968,12 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
             @MoveLeft.started -= instance.OnMoveLeft;
             @MoveLeft.performed -= instance.OnMoveLeft;
             @MoveLeft.canceled -= instance.OnMoveLeft;
+            @RightChange.started -= instance.OnRightChange;
+            @RightChange.performed -= instance.OnRightChange;
+            @RightChange.canceled -= instance.OnRightChange;
+            @LeftChange.started -= instance.OnLeftChange;
+            @LeftChange.performed -= instance.OnLeftChange;
+            @LeftChange.canceled -= instance.OnLeftChange;
         }
 
         public void RemoveCallbacks(IPlayer1Actions instance)
@@ -1841,6 +2045,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         void OnMoveBack(InputAction.CallbackContext context);
         void OnMoveRight(InputAction.CallbackContext context);
         void OnMoveLeft(InputAction.CallbackContext context);
+        void OnRightChange(InputAction.CallbackContext context);
+        void OnLeftChange(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1864,5 +2070,7 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         void OnMoveBack(InputAction.CallbackContext context);
         void OnMoveRight(InputAction.CallbackContext context);
         void OnMoveLeft(InputAction.CallbackContext context);
+        void OnRightChange(InputAction.CallbackContext context);
+        void OnLeftChange(InputAction.CallbackContext context);
     }
 }

@@ -51,6 +51,8 @@ public class PlayerManager_ : MonoBehaviour
     private float fuelConsumptionRate = 5.0f; // 燃料消費速度
     [SerializeField] private bool isMoving = false; // 移動中かどうかのフラグ
     [SerializeField] private bool OverHeat;
+
+    [Header("アイテムUI")] [SerializeField] private ItemSlotUI itemSlotUI;
     public void SetisMoving(bool ismoveing)
     {
         isMoving = ismoveing;
@@ -110,7 +112,20 @@ public class PlayerManager_ : MonoBehaviour
     {
         if (is_start)
         {
+            itemStep();
             MoveStep();
+            
+        }
+    }
+    void itemStep()
+    {
+       if( GetButtonDown("Player", "RightChange")|| GetButtonDown("Player1", "RightChange"))
+        {
+            itemSlotUI.ChangeRightItem();
+        }
+        if (GetButtonDown("Player", "LeftChange")|| GetButtonDown("Player1", "LeftChange"))
+        {
+            itemSlotUI.ChangeLeftItem();
         }
     }
     void MoveStep()

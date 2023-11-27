@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Game/Programmer/takatori/UI/DamageEffect.anim.meta
 guid: a375935405717314e92c05b48fd7ec83
 NativeFormatImporter:
+========
+guid: 47d52545a0a86274c91b52f80d18d453
+DefaultImporter:
+>>>>>>>> origin/hosomi_comfix2:Assets/Game/Programmer/hosomi_/cameratest.unity.meta
   externalObjects: {}
   mainObjectFileID: 7400000
   userData: 

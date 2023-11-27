@@ -50,8 +50,9 @@ public class PlayerManager_ : MonoBehaviour
     [SerializeField] private float MaxDelay =5.0f;
    // Player‚ÌˆÚ“®ƒQ[ƒW
 
-   [SerializeField] private static float MaxFuel = 50f; // Å‘å”R—¿—e—Ê
+    [SerializeField] private static float MaxFuel = 50f; // Å‘å”R—¿—e—Ê
     [SerializeField] private float currentFuel = 0.0f; // Œ»İ‚Ì”R—¿—Ê
+    [SerializeField] private Transform targettransform;
     public float fuelRechargeRate = 5.0f; // ”R—¿‚ÌÄ[“d‘¬“x
     private float emptyFuel = 0.0f; // ‹ó‚Ì”R—¿—Ê
     private float fuelConsumptionRate = 5.0f; // ”R—¿Á”ï‘¬“x
@@ -182,6 +183,7 @@ public class PlayerManager_ : MonoBehaviour
     }
     void MoveStep()
     {
+        //targettransform.localRotation( new Vector3(int x,-90 / (currentFuel / MaxFuel),z)) = ;
         bool isMoveButtonDown = GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward") ||
                                 GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack");
 

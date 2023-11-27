@@ -183,7 +183,7 @@ public class PlayerManager_ : MonoBehaviour
     }
     void MoveStep()
     {
-        //targettransform.localRotation( new Vector3(int x,-90 / (currentFuel / MaxFuel),z)) = ;
+        //targettransform.localRotation=new Vector3(2f,2f,2f) ;
         bool isMoveButtonDown = GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward") ||
                                 GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack");
 

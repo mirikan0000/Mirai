@@ -29,6 +29,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private PlayerSound hitSE;
     [SerializeField]
     private GameObject PlayerOBJ;
+    [SerializeField] private GameObject animationUI;
     public float GetCurrentHP()
     {
         return currentHP;
@@ -74,6 +75,7 @@ public class PlayerHealth : MonoBehaviour
             currentHP -= damage;
             hitSE.PlayHitSE();
             StartCoroutine(Blink());
+            animationUI.GetComponent<Animation>().Play();
         }
 
         hitflog = true;

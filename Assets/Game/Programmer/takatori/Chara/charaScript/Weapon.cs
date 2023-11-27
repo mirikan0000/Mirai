@@ -15,10 +15,12 @@ public class Weapon:MonoBehaviour
     [SerializeField] private Missile missileBullet;
     [SerializeField] private PenetratingBullet penetratingBullet;
     [SerializeField] private PlayerManager_ PlayerManager;
+    [SerializeField]
+    private PlayerSound BulletSE;//弾のSE
     //発射角度の調整速度(回転)
     float gunBarrel_rotSpeed = 0.5f;
     //今の発射角度(砲塔アセットがないため、一旦記録する)
-    protected float gun_rotAngle = 0.0f;
+    [SerializeField] protected float gun_rotAngle = 0.0f;
     [Range(0f, 100f)] // 0から100の範囲で変更可能
     public float Bullet_RangeOffset = 0;
     // 発射位置を調整する変数(プレイヤーの中ではなくて、前で発射するため)
@@ -180,7 +182,7 @@ public class Weapon:MonoBehaviour
                 weapon.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
                 //   弾丸位置はプレイヤーの前にする
                 weapon.transform.Translate(new Vector3(0, bulletCreatePosOffsetY, bulletCreatePosOffsetZ));
-
+                BulletSE.PlaySmallCanonSoundB();
                 if (pRay != null)
                 {
                     Destroy(pRay);

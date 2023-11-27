@@ -43,7 +43,6 @@ public class PlayerManager_ : MonoBehaviour
 
     // アニメーション
     public Animator animator;
-    public FootSteps footSteps;
     private Rigidbody rb;
     // Playerの視点カメラ
   //  public GameObject Playercamera;

@@ -14,15 +14,10 @@ public class PredictionLine_LineRender : MonoBehaviour
     private void Awake()
     {
         lineRender = GetComponent<LineRenderer>(); // LineRenderer コンポーネントを取得
-       
     }
     private void Start()
     {
         BulletAngle_Owner = GetComponentInParent<Weapon>();
-        if (BulletAngle_Owner == null)
-        {
-            Debug.LogError("NotBulletAngle_Owner!!!!!!!!!!!!");
-        }
     }
     void Update()
     {
@@ -32,7 +27,7 @@ public class PredictionLine_LineRender : MonoBehaviour
         float bullet_angle = BulletAngle_Owner.GetRotAngle(); // 弾丸の射角を取得
 
         bullet_angle *= Mathf.Deg2Rad; // 射角をラジアンに変換
-        Vector3 initialVelocity = new Vector3(transform.forward.x, Mathf.Sin(bullet_angle), transform.forward.z);
+        Vector3 initialVelocity = new Vector3(transform.forward.x, bullet_angle, transform.forward.z);
         initialVelocity = initialVelocity.normalized * maxDistance; // 初速度ベクトルを調整
 
         renderPoints.AddRange(GetRenderPoints(transform.position, initialVelocity,

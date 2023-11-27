@@ -18,7 +18,8 @@ public class PlayerSound : MonoBehaviour
     AudioClip SmallCanonSoundA;
     [SerializeField]
     AudioClip SmallCanonSoundB;
-
+    [SerializeField]
+    AudioClip hitSE;
 
     public void PlayFootstepSound()
     {
@@ -39,6 +40,10 @@ public class PlayerSound : MonoBehaviour
     public void PlaySmallCanonSoundB()
     {
         audioSourceB.PlayOneShot(SmallCanonSoundB);
+    }
+    public void PlayHitSE()
+    {
+        audioSourceB.PlayOneShot(hitSE);
     }
 
 }

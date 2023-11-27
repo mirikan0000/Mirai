@@ -114,6 +114,9 @@ MonoBehaviour:
   x_angle: 1000
   energyballFlug: 0
   PredictionLineNumber: 66
+  bulletsMax: 5
+  bulletsRemaining: 5
+  reloadTime: 2
   move_Speed: 50
   Image_Bullet: {fileID: 6599643969727365114, guid: 6026886966c19b748b97e415061ce468, type: 3}
   DestroyTime: 20
@@ -221,7 +224,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9184420584360872255}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5c9a5f0b49299842a7952fdd853af01, type: 3}
   m_Name: 

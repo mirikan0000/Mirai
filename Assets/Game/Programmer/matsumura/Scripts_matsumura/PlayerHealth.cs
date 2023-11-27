@@ -24,6 +24,8 @@ public class PlayerHealth : MonoBehaviour
     public List<string> unLoadSceneNameList;
     public bool hitflog; //コメントシステム用のフラグ
 
+    //Playerのヒットを確認してSEと赤いヒットエフェクトを出す。
+    [SerializeField] private PlayerSound hitSE;
     public float GetCurrentHP()
     {
         return currentHP;
@@ -43,7 +45,6 @@ public class PlayerHealth : MonoBehaviour
         currentArmor = maxArmor; // 初期アーマーを設定
         isEnd = false;
     }
-
     private void Update()
     {
         hitflog = false;
@@ -52,7 +53,6 @@ public class PlayerHealth : MonoBehaviour
             Die(); // HPが0以下になったら死亡処理を実行
         }
     }
-
     public void TakeDamage(int damage, bool useArmor)
     {
         if (useArmor && currentArmor > 0)
@@ -63,16 +63,16 @@ public class PlayerHealth : MonoBehaviour
 
             currentArmor = remainingArmor;
             currentHP -= damageToHealth;
+           
         }
         else
         {
             // アーマーを使わない場合またはアーマーがない場合は直接HPを削る
             currentHP -= damage;
+            hitSE.PlayHitSE();
         }
 
         hitflog = true;
-
-       
     }
 
     void Die()

@@ -6,15 +6,15 @@ public class BulletSound : MonoBehaviour
 {
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Positive Butten 7"))
         {
             GetComponent<AudioSource>().Play();
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetButton("Positive Butten 7"))
         {
             GetComponent<AudioSource>().Stop();
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetButtonUp("Positive Butten 7"))
         {
             GetComponent<AudioSource>().Play();
         }

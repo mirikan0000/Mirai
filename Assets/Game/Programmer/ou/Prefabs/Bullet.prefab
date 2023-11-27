@@ -104,6 +104,8 @@ MonoBehaviour:
   missileBullet: {fileID: 0}
   penetratingBullet: {fileID: 0}
   PlayerManager: {fileID: 0}
+  BulletSE: {fileID: 0}
+  gun_rotAngle: 0
   Bullet_RangeOffset: 0
   bulletCreatePosOffsetZ: 1
   bulletCreatePosOffsetY: 25
@@ -224,7 +226,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9184420584360872255}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5c9a5f0b49299842a7952fdd853af01, type: 3}
   m_Name: 

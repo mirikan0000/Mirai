@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +27,8 @@ public class PlayerHealth : MonoBehaviour
 
     //Playerのヒットを確認してSEと赤いヒットエフェクトを出す。
     [SerializeField] private PlayerSound hitSE;
+    [SerializeField]
+    private GameObject PlayerOBJ;
     public float GetCurrentHP()
     {
         return currentHP;
@@ -70,6 +73,7 @@ public class PlayerHealth : MonoBehaviour
             // アーマーを使わない場合またはアーマーがない場合は直接HPを削る
             currentHP -= damage;
             hitSE.PlayHitSE();
+            StartCoroutine(Blink());
         }
 
         hitflog = true;
@@ -104,5 +108,24 @@ public class PlayerHealth : MonoBehaviour
             ////シールドを子オブジェクトとして生成
             //Instantiate(shieldObj, this.gameObject.transform.position, Quaternion.identity, parent);
         }
+    }
+    // 追加: 点滅処理のコルーチン
+    private IEnumerator Blink()
+    {
+        float blinkDuration = 1f; // 点滅の期間（秒）
+        float blinkSpeed = 5f; // 点滅の速さ
+
+        float startTime = Time.time;
+
+        while (Time.time - startTime < blinkDuration)
+        {
+            PlayerOBJ.GetComponent<Renderer>().material.color = Color.red;
+            yield return new WaitForSeconds(1f / blinkSpeed);
+
+            PlayerOBJ.GetComponent<Renderer>().material.color =Color.white;
+            yield return new WaitForSeconds(1f / blinkSpeed);
+        }
+
+        hitflog = false; // 点滅終了後、フラグをリセット
     }
 }

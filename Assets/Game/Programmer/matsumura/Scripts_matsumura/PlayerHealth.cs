@@ -10,10 +10,8 @@ public class PlayerHealth : MonoBehaviour
     public int maxHP = 100; // 最大HP
     private int currentHP;  // 現在のHP
 
-    //11/20追加分
+    private Fragreceiver fragreceiver;
     [SerializeField] private int healValeu;         //回復量
-    [SerializeField] private GameObject shieldObj;  //シールドのオブジェクト
-    private bool shieldFlag = false;
 
     [Header("アーマーゲージ")]
     public int maxArmor = 50; // 最大アーマー
@@ -48,6 +46,8 @@ public class PlayerHealth : MonoBehaviour
         currentHP = maxHP; // 初期HPを設定
         currentArmor = maxArmor; // 初期アーマーを設定
         isEnd = false;
+
+        fragreceiver = GetComponent<Fragreceiver>();
     }
     private void Update()
     {
@@ -56,6 +56,12 @@ public class PlayerHealth : MonoBehaviour
         {
             Die(); // HPが0以下になったら死亡処理を実行
         }
+
+        //回復処理
+        HealPlayer();
+
+        //アーマー回復処理
+        ArmorHeal();
     }
     public void TakeDamage(int damage, bool useArmor)
     {
@@ -89,28 +95,6 @@ public class PlayerHealth : MonoBehaviour
         isEnd = true;
     }
 
-    //アイテム取得時処理
-    private void OnCollisionEnter(Collision collision)
-    {
-        //回復アイテムを取得した時
-        if (collision.gameObject.name == "HealItem(Clone)")
-        {
-            if (currentHP < maxHP)
-            {
-                currentHP = currentHP + healValeu;
-            }
-        }
-
-        //シールドアイテムを取得した時
-        if (collision.gameObject.name == "ShieldItem(Clone)")
-        {
-            shieldFlag = true;
-            //var parent = this.transform;
-
-            ////シールドを子オブジェクトとして生成
-            //Instantiate(shieldObj, this.gameObject.transform.position, Quaternion.identity, parent);
-        }
-    }
     // 追加: 点滅処理のコルーチン
     private IEnumerator Blink()
     {
@@ -129,5 +113,27 @@ public class PlayerHealth : MonoBehaviour
         }
 
         hitflog = false; // 点滅終了後、フラグをリセット
+    }
+
+    //回復処理
+    private void HealPlayer()
+    {
+        if (fragreceiver.healItemFlag == true)
+        {
+            currentHP = currentHP + healValeu;
+
+            fragreceiver.healItemFlag = false;
+        }
+    }
+
+    //アーマー回復処理
+    private void ArmorHeal()
+    {
+        if (fragreceiver.shieldItemFlag == true)
+        {
+            currentArmor = maxArmor;
+
+            fragreceiver.shieldItemFlag = false;
+        }
     }
 }

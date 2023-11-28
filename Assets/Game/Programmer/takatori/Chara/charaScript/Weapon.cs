@@ -123,7 +123,7 @@ public class Weapon:MonoBehaviour
     }
     void Update()
     {
-        if (penetoratBullet)
+        if (fragreceiver.pierceBulletItemFlag == true)
         {
            weapon= penetratingBullet;
         }

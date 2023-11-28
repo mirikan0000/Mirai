@@ -60,7 +60,16 @@ public class PlayerManager_ : MonoBehaviour
     [SerializeField] private bool OverHeat;
 
     [Header("アイテムUI")] [SerializeField] private ItemSlotUI itemSlotUI;
+<<<<<<< HEAD
     [SerializeField] private Weapon weapon;
+=======
+
+    [Header("アイテム取得時用")]
+    private Fragreceiver fragreceiver;  //フラグ管理用のスクリプト
+    private float speedUpTimerLimit;    //スピードアップしていられる時間
+    private float speedTimer;           //スピードアップ時間計測用
+
+>>>>>>> origin/Takeuchi_GetHealItem
     public void SetisMoving(bool ismoveing)
     {
         isMoving = ismoveing;
@@ -90,6 +99,9 @@ public class PlayerManager_ : MonoBehaviour
         if (animator) animator.SetBool("Walk", false);
 
         rb = GetComponent<Rigidbody>();
+
+        fragreceiver = GetComponent<Fragreceiver>();
+        speedTimer = 0.0f;
     }
 
     public bool GetButtonDown(string actionMapsName, string actionsName)
@@ -172,6 +184,9 @@ public class PlayerManager_ : MonoBehaviour
             }
 
         }
+
+        //スピードアップ
+        SpeedUP();
     }
     void itemStep()
     {
@@ -318,6 +333,23 @@ public class PlayerManager_ : MonoBehaviour
         {
             AreaNumber = collision.gameObject.GetComponent<EreaNumbers>().AreaNumber;
             CurrentMap = AreaNumber;
+        }
+    }
+
+    //スピ―ドアップ処理
+    private void SpeedUP()
+    {
+        if (fragreceiver.speedUpItemFlag == true)
+        {
+            move_speed = 10.0f;
+
+            speedTimer += Time.deltaTime;
+
+            if (speedTimer > speedUpTimerLimit)
+            {
+                move_speed = 5.0f;
+                fragreceiver.speedUpItemFlag = false;
+            }
         }
     }
 }

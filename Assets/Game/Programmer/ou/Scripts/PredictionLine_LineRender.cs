@@ -22,16 +22,13 @@ public class PredictionLine_LineRender : MonoBehaviour
     void Update()
     {
         renderPoints = new List<Vector3>();
-        renderPoints.Add(transform.position + new Vector3(0, offsetY, 0)); // 弾丸の発射位置をリストに追加
-
+        renderPoints.Add(transform.position + new Vector3(0, offsetY, 0)); //プレイヤーの座標をコピーした座標
         float bullet_angle = BulletAngle_Owner.GetRotAngle(); // 弾丸の射角を取得
-
         bullet_angle *= Mathf.Deg2Rad; // 射角をラジアンに変換
-        Vector3 initialVelocity = new Vector3(transform.forward.x, bullet_angle, transform.forward.z);
-        initialVelocity = initialVelocity.normalized * maxDistance; // 初速度ベクトルを調整
-
-        renderPoints.AddRange(GetRenderPoints(transform.position, initialVelocity,
-            maxDistance, maxReflectTimes)); // 弾丸予測軌道の点を計算しリストに追加
+        Vector3 initialVelocity = transform.forward;
+        initialVelocity.y　=　Mathf.Sin(bullet_angle);
+        renderPoints.AddRange(GetRenderPoints(transform.position + new Vector3(0, offsetY, 0), 
+            initialVelocity,maxDistance, maxReflectTimes)); // 弾丸予測軌道の点を計算しリストに追加
 
         lineRender.positionCount = renderPoints.Count; // LineRenderer の点の数を設定
         lineRender.SetPositions(renderPoints.ToArray()); // LineRenderer に予測軌道の点を設定
@@ -42,7 +39,6 @@ public class PredictionLine_LineRender : MonoBehaviour
     private List<Vector3> GetRenderPoints(Vector3 start, Vector3 dir, float dis, int times)
     {
         var hitPosList = new List<Vector3>(); // 衝突点のリスト
-
         while (dis > 0 && times > 0)
         {
             RaycastHit hit;
@@ -62,10 +58,9 @@ public class PredictionLine_LineRender : MonoBehaviour
         if (hitPosList.Count <= 1)
         {
             Vector3 point;
-            point = start + dir * 10; // 仮の点を計算しリストに追加
+            point = start + dir * dis; // 仮の点を計算しリストに追加
             hitPosList.Add(point);
         }
-
         return hitPosList; // 計算された衝突点リストを返す
     }
 }

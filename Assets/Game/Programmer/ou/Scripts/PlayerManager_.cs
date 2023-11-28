@@ -60,6 +60,7 @@ public class PlayerManager_ : MonoBehaviour
     [SerializeField] private bool OverHeat;
 
     [Header("ƒAƒCƒeƒ€UI")] [SerializeField] private ItemSlotUI itemSlotUI;
+    [SerializeField] private Weapon weapon;
     public void SetisMoving(bool ismoveing)
     {
         isMoving = ismoveing;
@@ -68,10 +69,19 @@ public class PlayerManager_ : MonoBehaviour
     {
         return isMoving;
     }
+    public float GetcurrentFuel()
+    {
+        return currentFuel;
+    }
+    public float GetMaxFuel()
+    {
+        return MaxFuel;
+    }
     void Start()
     {
         is_start = true;
         currentFuel=MaxFuel;
+        
         foreach (PlayerInput playerInput in playerInputArray)
         {
             playerInputDictionary[playerInput.currentActionMap.name] = playerInput;
@@ -156,8 +166,11 @@ public class PlayerManager_ : MonoBehaviour
         if (is_start)
         {
             itemStep();
-            MoveStep();
-            
+            if (!weapon.is_aiming)
+            {
+                MoveStep();
+            }
+
         }
     }
     void itemStep()

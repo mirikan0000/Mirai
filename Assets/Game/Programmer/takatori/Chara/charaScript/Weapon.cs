@@ -40,7 +40,7 @@ public class Weapon:MonoBehaviour
     //ƒJƒƒ‰‚ÌƒAƒ“ƒOƒ‹
     public float x_angle = 1000;
     //Æ€‚ğ‡‚í‚¹‚Ä‚¢‚é(—\‘ªü)
-    bool is_aiming;
+   public bool is_aiming;
     public bool energyballFlug;
     
     //—\‘ªüGameObject‚ğ•Û‘¶‚·‚é

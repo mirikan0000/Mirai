@@ -60,16 +60,16 @@ public class PlayerManager_ : MonoBehaviour
     [SerializeField] private bool OverHeat;
 
     [Header("アイテムUI")] [SerializeField] private ItemSlotUI itemSlotUI;
-<<<<<<< HEAD
+
     [SerializeField] private Weapon weapon;
-=======
+
 
     [Header("アイテム取得時用")]
     private Fragreceiver fragreceiver;  //フラグ管理用のスクリプト
     private float speedUpTimerLimit;    //スピードアップしていられる時間
     private float speedTimer;           //スピードアップ時間計測用
 
->>>>>>> origin/Takeuchi_GetHealItem
+//>>>>>>> origin/Takeuchi_GetHealItem
     public void SetisMoving(bool ismoveing)
     {
         isMoving = ismoveing;

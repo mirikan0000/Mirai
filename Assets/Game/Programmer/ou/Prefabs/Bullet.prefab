@@ -114,13 +114,14 @@ MonoBehaviour:
   PredictionLine: {fileID: 0}
   PredictionRay: {fileID: 0}
   x_angle: 1000
+  is_aiming: 0
   energyballFlug: 0
   PredictionLineNumber: 66
   bulletsMax: 5
   bulletsRemaining: 5
   reloadTime: 2
   move_Speed: 50
-  Image_Bullet: {fileID: 6599643969727365114, guid: 6026886966c19b748b97e415061ce468, type: 3}
+  Image_Bullet: {fileID: 6781851708240563016, guid: 8b606c4fdeb09604e92738d35df652e7, type: 3}
   DestroyTime: 20
   damage: 20
 --- !u!82 &3328521566516891295

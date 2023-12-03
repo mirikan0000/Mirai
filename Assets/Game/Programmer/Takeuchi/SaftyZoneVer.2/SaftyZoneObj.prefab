@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8732802732354643244}
   - component: {fileID: 9070117752299391265}
   - component: {fileID: 9197211319356889254}
+  - component: {fileID: 3068794190801183693}
   m_Layer: 9
   m_Name: SaftyZone3
   m_TagString: Anti
@@ -133,6 +134,18 @@ MonoBehaviour:
   zone3PostMagPos5: {x: 0, y: 0, z: 0}
   zone3PostMagPos6: {x: 0, y: 0, z: 0}
   zone3NowPos: {x: 0, y: 0, z: 0}
+--- !u!114 &3068794190801183693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2564827437143475261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf7b69a75d58e34282595c469c75f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2568092033524695370
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,6 +159,7 @@ GameObject:
   - component: {fileID: 3814872970646311795}
   - component: {fileID: 6922390489347321331}
   - component: {fileID: 3566330398270465481}
+  - component: {fileID: 8531094910848595268}
   m_Layer: 9
   m_Name: SaftyZone1
   m_TagString: Anti
@@ -266,6 +280,18 @@ MonoBehaviour:
   zone1PostMagPos5: {x: 0, y: 0, z: 0}
   zone1PostMagPos6: {x: 0, y: 0, z: 0}
   zone1NowPos: {x: 0, y: 0, z: 0}
+--- !u!114 &8531094910848595268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2568092033524695370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf7b69a75d58e34282595c469c75f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3934012578311438345
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,6 +438,7 @@ GameObject:
   - component: {fileID: 3260741852158280060}
   - component: {fileID: 7921925674948515283}
   - component: {fileID: 5145329166087841836}
+  - component: {fileID: 2744499831265517971}
   m_Layer: 9
   m_Name: SaftyZone4
   m_TagString: Anti
@@ -532,6 +559,18 @@ MonoBehaviour:
   zone4PostMagPos5: {x: 0, y: 0, z: 0}
   zone4PostMagPos6: {x: 0, y: 0, z: 0}
   zone4NowPos: {x: 0, y: 0, z: 0}
+--- !u!114 &2744499831265517971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4083272022969701945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf7b69a75d58e34282595c469c75f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5708402160379185005
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,6 +670,7 @@ GameObject:
   - component: {fileID: 4673040497323551435}
   - component: {fileID: 6086975863369392540}
   - component: {fileID: 1467865584883745620}
+  - component: {fileID: 6155172837132655341}
   m_Layer: 9
   m_Name: SaftyZone2
   m_TagString: Anti
@@ -751,3 +791,15 @@ MonoBehaviour:
   zone2PostMagPos5: {x: 0, y: 0, z: 0}
   zone2PostMagPos6: {x: 0, y: 0, z: 0}
   zone2NowPos: {x: 0, y: 0, z: 0}
+--- !u!114 &6155172837132655341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9217756138126921627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf7b69a75d58e34282595c469c75f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

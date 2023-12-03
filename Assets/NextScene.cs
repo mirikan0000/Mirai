@@ -16,13 +16,13 @@ public class NextScene : MonoBehaviour
     public GameObject FadeOutPanel;
     // ‘¼‚Ì•Ï”‚Ì’è‹`‚È‚Ç‚ª‚ ‚ê‚Î’Ç‰Á
     public GameLoop gameLoop;
-
+    public GameCount gameCount;
    
     // Start is called before the first frame update
     void Start()
     {
         gameLoop =GameObject.FindGameObjectWithTag("GameLoop").GetComponent<GameLoop>();
-        
+        gameCount= GameObject.FindGameObjectWithTag("GameCount").GetComponent<GameCount>();
         // ‰Šú’l‚Ífalse‚Éİ’è
         isFadeIn = false;
         hasLoadedScene = false;
@@ -33,7 +33,7 @@ public class NextScene : MonoBehaviour
     void Update()
     {
         
-        if (gameLoop != null && gameLoop.IsGameFinished())
+        if (gameLoop != null && gameCount.IsGameFinished())
         {
             if (isDestroyScene)
             {

@@ -107,6 +107,24 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AngleUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""55400472-858a-48e8-8f1d-1efbf653b935"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AngleDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e8e7ed6-8b18-425c-aaf3-461903cf7ed1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -503,6 +521,50 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LeftChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a0174b6-da07-43e3-baf9-4b84a49d247c"",
+                    ""path"": ""<SwitchProControllerHID>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AngleUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b28a650-6767-4d98-8a1e-7454921b3911"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AngleUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b5e8a3f9-babb-4fa6-9b03-7ef424c64bb7"",
+                    ""path"": ""<SwitchProControllerHID>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AngleDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""79df5048-e876-4012-ac14-4bb3a04623fd"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AngleDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1119,6 +1181,24 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AngleUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""8c10d7de-e49e-4b2a-ae57-355a2c0d231f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AngleDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""11ec9073-4348-4f04-8f33-652c08988298"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1495,6 +1575,50 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                     ""action"": ""LeftChange"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5638161d-7893-4157-9749-c0f840cdc36a"",
+                    ""path"": ""<SwitchProControllerHID>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AngleUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88bd91af-3921-467a-8326-3567a9c0f3f4"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AngleUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6f8b1d58-dce8-4af0-a7a0-a9932b6cf6e0"",
+                    ""path"": ""<SwitchProControllerHID>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AngleDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6be3f847-34b0-4c7b-9321-bcb77df08321"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AngleDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1573,6 +1697,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         m_Player_MoveLeft = m_Player.FindAction("MoveLeft", throwIfNotFound: true);
         m_Player_RightChange = m_Player.FindAction("RightChange", throwIfNotFound: true);
         m_Player_LeftChange = m_Player.FindAction("LeftChange", throwIfNotFound: true);
+        m_Player_AngleUp = m_Player.FindAction("AngleUp", throwIfNotFound: true);
+        m_Player_AngleDown = m_Player.FindAction("AngleDown", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1596,6 +1722,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         m_Player1_MoveLeft = m_Player1.FindAction("MoveLeft", throwIfNotFound: true);
         m_Player1_RightChange = m_Player1.FindAction("RightChange", throwIfNotFound: true);
         m_Player1_LeftChange = m_Player1.FindAction("LeftChange", throwIfNotFound: true);
+        m_Player1_AngleUp = m_Player1.FindAction("AngleUp", throwIfNotFound: true);
+        m_Player1_AngleDown = m_Player1.FindAction("AngleDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1666,6 +1794,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MoveLeft;
     private readonly InputAction m_Player_RightChange;
     private readonly InputAction m_Player_LeftChange;
+    private readonly InputAction m_Player_AngleUp;
+    private readonly InputAction m_Player_AngleDown;
     public struct PlayerActions
     {
         private @InputManage1 m_Wrapper;
@@ -1679,6 +1809,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         public InputAction @MoveLeft => m_Wrapper.m_Player_MoveLeft;
         public InputAction @RightChange => m_Wrapper.m_Player_RightChange;
         public InputAction @LeftChange => m_Wrapper.m_Player_LeftChange;
+        public InputAction @AngleUp => m_Wrapper.m_Player_AngleUp;
+        public InputAction @AngleDown => m_Wrapper.m_Player_AngleDown;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1715,6 +1847,12 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
             @LeftChange.started += instance.OnLeftChange;
             @LeftChange.performed += instance.OnLeftChange;
             @LeftChange.canceled += instance.OnLeftChange;
+            @AngleUp.started += instance.OnAngleUp;
+            @AngleUp.performed += instance.OnAngleUp;
+            @AngleUp.canceled += instance.OnAngleUp;
+            @AngleDown.started += instance.OnAngleDown;
+            @AngleDown.performed += instance.OnAngleDown;
+            @AngleDown.canceled += instance.OnAngleDown;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1746,6 +1884,12 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
             @LeftChange.started -= instance.OnLeftChange;
             @LeftChange.performed -= instance.OnLeftChange;
             @LeftChange.canceled -= instance.OnLeftChange;
+            @AngleUp.started -= instance.OnAngleUp;
+            @AngleUp.performed -= instance.OnAngleUp;
+            @AngleUp.canceled -= instance.OnAngleUp;
+            @AngleDown.started -= instance.OnAngleDown;
+            @AngleDown.performed -= instance.OnAngleDown;
+            @AngleDown.canceled -= instance.OnAngleDown;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1894,6 +2038,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player1_MoveLeft;
     private readonly InputAction m_Player1_RightChange;
     private readonly InputAction m_Player1_LeftChange;
+    private readonly InputAction m_Player1_AngleUp;
+    private readonly InputAction m_Player1_AngleDown;
     public struct Player1Actions
     {
         private @InputManage1 m_Wrapper;
@@ -1907,6 +2053,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         public InputAction @MoveLeft => m_Wrapper.m_Player1_MoveLeft;
         public InputAction @RightChange => m_Wrapper.m_Player1_RightChange;
         public InputAction @LeftChange => m_Wrapper.m_Player1_LeftChange;
+        public InputAction @AngleUp => m_Wrapper.m_Player1_AngleUp;
+        public InputAction @AngleDown => m_Wrapper.m_Player1_AngleDown;
         public InputActionMap Get() { return m_Wrapper.m_Player1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1943,6 +2091,12 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
             @LeftChange.started += instance.OnLeftChange;
             @LeftChange.performed += instance.OnLeftChange;
             @LeftChange.canceled += instance.OnLeftChange;
+            @AngleUp.started += instance.OnAngleUp;
+            @AngleUp.performed += instance.OnAngleUp;
+            @AngleUp.canceled += instance.OnAngleUp;
+            @AngleDown.started += instance.OnAngleDown;
+            @AngleDown.performed += instance.OnAngleDown;
+            @AngleDown.canceled += instance.OnAngleDown;
         }
 
         private void UnregisterCallbacks(IPlayer1Actions instance)
@@ -1974,6 +2128,12 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
             @LeftChange.started -= instance.OnLeftChange;
             @LeftChange.performed -= instance.OnLeftChange;
             @LeftChange.canceled -= instance.OnLeftChange;
+            @AngleUp.started -= instance.OnAngleUp;
+            @AngleUp.performed -= instance.OnAngleUp;
+            @AngleUp.canceled -= instance.OnAngleUp;
+            @AngleDown.started -= instance.OnAngleDown;
+            @AngleDown.performed -= instance.OnAngleDown;
+            @AngleDown.canceled -= instance.OnAngleDown;
         }
 
         public void RemoveCallbacks(IPlayer1Actions instance)
@@ -2047,6 +2207,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         void OnMoveLeft(InputAction.CallbackContext context);
         void OnRightChange(InputAction.CallbackContext context);
         void OnLeftChange(InputAction.CallbackContext context);
+        void OnAngleUp(InputAction.CallbackContext context);
+        void OnAngleDown(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -2072,5 +2234,7 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         void OnMoveLeft(InputAction.CallbackContext context);
         void OnRightChange(InputAction.CallbackContext context);
         void OnLeftChange(InputAction.CallbackContext context);
+        void OnAngleUp(InputAction.CallbackContext context);
+        void OnAngleDown(InputAction.CallbackContext context);
     }
 }

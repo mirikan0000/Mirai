@@ -14917,12 +14917,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4249193243889634029, guid: e63960be125f14240bbb2f6a3b2bceb0, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249193243889634029, guid: e63960be125f14240bbb2f6a3b2bceb0, type: 3}
+      propertyPath: m_Color.g
+      value: 0.2510445
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249193243889634029, guid: e63960be125f14240bbb2f6a3b2bceb0, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249193243889634029, guid: e63960be125f14240bbb2f6a3b2bceb0, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 4249193243889634029, guid: e63960be125f14240bbb2f6a3b2bceb0, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249193243889634029, guid: e63960be125f14240bbb2f6a3b2bceb0, type: 3}
       propertyPath: m_FontData.m_MinSize
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4249193243889634029, guid: e63960be125f14240bbb2f6a3b2bceb0, type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 8
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4273688639968032135, guid: e63960be125f14240bbb2f6a3b2bceb0, type: 3}
       propertyPath: m_Name

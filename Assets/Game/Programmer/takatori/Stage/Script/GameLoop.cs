@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameLoop : SingletonMonoBehaviour<GameLoop>
 {
@@ -13,9 +14,12 @@ public class GameLoop : SingletonMonoBehaviour<GameLoop>
     [SerializeField] private int player2Wins = 0;
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
+    [SerializeField] private Image image;
+    [SerializeField] private Animation anim;
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
+   
     }
 
     private void Update()
@@ -78,14 +82,23 @@ public class GameLoop : SingletonMonoBehaviour<GameLoop>
 
         if (player1 != null)
         {
-            Debug.Log("GetPlayer1");
             Player1 = player1.GetComponent<PlayerHealth>();
         }
         if (player2 != null)
         {
             Player2 = player2.GetComponent<PlayerHealth>();
-            Debug.Log("GetPlayer2");
         }
-       
+        // イメージのアニメーションを再生
+        //anim.Play("YourAnimationName");
+        //// アニメーションの長さを取得して終了時に呼ぶメソッドをセット
+        //float animationLength = anim.GetClip("YourAnimationName").length;
+        //Invoke("OnAnimationFinished", animationLength);
+        // 時間を停止
+        Time.timeScale = 0.0f;
+    }
+    private void OnAnimationFinished()
+    {
+        // アニメーションが終わったら時間を元に戻す
+        Time.timeScale = 1.0f;
     }
 }

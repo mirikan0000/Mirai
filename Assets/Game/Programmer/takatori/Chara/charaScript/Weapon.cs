@@ -219,26 +219,7 @@ public class Weapon:MonoBehaviour
             {
                 // íeêîÇå∏ÇÁÇ∑
                 bulletsRemaining--;
-                ////íeÇ™Ç†ÇÈÇ©Ç«Ç§Ç©
-                //Bullet bullet = GetInactiveBullet();
-                //Missile missileBullet = GetInactiveMissileBullet();
-                //PenetratingBullet penetratingBullet = GetInactivePenetratingBullet();
-                //if (bullet != null)
-                //{
-                //    bullet = Instantiate(bullet, transform.position, transform.rotation);
-                //}
-
-                //if (missileBullet != null)
-                //{
-                //    //  É~ÉTÉCÉãê∂ê¨
-                //    missileBullet = Instantiate(missileBullet, transform.position, transform.rotation);
-                //}
-
-                //if (penetratingBullet != null)
-                //{
-                //    //  ä—í íeê∂ê¨
-                //    penetratingBullet = Instantiate(penetratingBullet, transform.position, transform.rotation);
-                //}
+         
 
                 //  íeä€ê∂ê¨
                 weapon = Instantiate(weapon, transform.position, transform.rotation);
@@ -273,12 +254,12 @@ public class Weapon:MonoBehaviour
 
             //î≠éÀäpìxÇí≤êÆÇ∑ÇÈ
             //âºê›íË î≠éÀäpìxÇÃîÕàÕ:0Åã~90Åã
-            if (GetButton("Player", "MoveForward") || GetButton("Player1", "MoveForward"))
+            if (GetButton("Player", "AngleUp") || GetButton("Player1", "AngleUp"))
             {
                 gun_rotAngle = (gun_rotAngle + gunBarrel_rotSpeed) <= 90.0f ? (gun_rotAngle + gunBarrel_rotSpeed) : 90.0f;
                 if (90.0f > gun_rotAngle) Playercamera.transform.Rotate(new Vector3(-gun_rotAngle / x_angle, 0, 0));
             }
-            else if (GetButton("Player", "MoveBack") || GetButton("Player1", "MoveBack"))
+            else if (GetButton("Player", "AngleDown") || GetButton("Player1", "AngleDown"))
             {
                 gun_rotAngle = (gun_rotAngle - gunBarrel_rotSpeed) > 0 ? (gun_rotAngle - gunBarrel_rotSpeed) : 0.0f;
                 if (0f < gun_rotAngle) Playercamera.transform.Rotate(new Vector3(gun_rotAngle / x_angle, 0, 0));

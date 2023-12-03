@@ -9,11 +9,15 @@ public class Weapon:MonoBehaviour
     public PlayerInput[] playerInputArray;
     //予測線の描画モード
     public bool predictionLine_RayMode = true;
-    [SerializeField] private Weapon weapon;
+    [SerializeField] private ItemSlotUI itemSlotUI;
+    [SerializeField] private Weapon weapon=null;
     [SerializeField] private Fragreceiver fragreceiver;
     [SerializeField]private Bullet bullet1;
     [SerializeField] private Missile missileBullet;
     [SerializeField] private PenetratingBullet penetratingBullet;
+    private List<Bullet> bulletPool = new List<Bullet>();
+    private List<Missile> missileBulletPool = new List<Missile>();
+    private List<PenetratingBullet> penetratingBulletPool = new List<PenetratingBullet>();
     [SerializeField] private PlayerManager_ PlayerManager;
     [SerializeField]
     private PlayerSound BulletSE;//弾のSE
@@ -50,11 +54,16 @@ public class Weapon:MonoBehaviour
     //弾丸予測線の計算結果リスト(描画位置を保存する)
     List<GameObject> PredictionLine_List = new List<GameObject>();
     bool flog_Missile;
-    bool penetoratBullet;
+    bool flog_penetoratBullet;
+    bool flog_normalBullet;
     [Header("初期弾数")] [SerializeField] private int bulletsMax = 5; 
     [Header("現在の弾数")] [SerializeField] private int bulletsRemaining = 5; 
     private bool isReloading = false;
     [Header("再装填時間")] [SerializeField] private float reloadTime = 2.0f; // 再装填にかかる時間
+
+   
+    private bool isActive;
+
     /// <summary>
     /// ボタンを押した瞬間
     /// ※ActionMaps名,Actions名は「InputActionControls」を確認
@@ -110,35 +119,73 @@ public class Weapon:MonoBehaviour
     {
         return bulletsRemaining;
     }
+
+ 
     private void Start()
     {
-       flog_Missile=fragreceiver.misileflog;
-       penetoratBullet = fragreceiver.penetratBulletflog;
-        
+        weapon = bullet1;
+        flog_Missile =fragreceiver.misileflog;
+        flog_penetoratBullet = fragreceiver.penetratBulletflog;
+        flog_normalBullet = fragreceiver.normalBullet;
         foreach (PlayerInput playerInput in playerInputArray)
         {
             playerInputDictionary[playerInput.currentActionMap.name] = playerInput;
         }
 
+        // 各弾のプールに初期量の弾を生成しておく
+      //  for (int i = 0; i < 10; i++)
+        //{
+        //    Bullet bullet = InstantiateBullet();
+        //    bullet.gameObject.SetActive(false);
+        //    bulletPool.Add(bullet);
+
+        //    Missile missileBullet = InstantiateMissileBullet();
+        //    missileBullet.gameObject.SetActive(false);
+        //    missileBulletPool.Add(missileBullet);
+
+        //    PenetratingBullet penetratingBullet = InstantiatePenetratingBullet();
+        //    penetratingBullet.gameObject.SetActive(false);
+        //    penetratingBulletPool.Add(penetratingBullet);
+        //}
     }
     void Update()
     {
-        if (fragreceiver.pierceBulletItemFlag == true)
-        {
-           weapon= penetratingBullet;
-        }
-        else if (flog_Missile)
-        {
-            weapon = missileBullet;
-        }
-        else
-        {
-            weapon = bullet1;
-        }
+        // アイテムスロットから現在選択されているアイテムを取得
+        int selectedSlotIndex = itemSlotUI.GetCurrentSlotIndex();
+        Debug.Log("選ばれている番号"+selectedSlotIndex);
+        // 武器の切り替え
+        SwitchWeapon(selectedSlotIndex);
+
         Shot();
     }
-   
 
+    void SwitchWeapon(int weaponNumber)
+    {
+        // 武器の切り替え処理
+        switch (weaponNumber)
+        {
+            case 0:
+                weapon = bullet1;
+                flog_penetoratBullet = false;
+                flog_Missile = false;
+                flog_normalBullet = true;
+                break;
+            case 1:
+                weapon = missileBullet;
+                flog_penetoratBullet = false;
+                flog_Missile = true;
+                flog_normalBullet = false;
+                break;
+            case 2:
+                weapon = penetratingBullet;
+                flog_penetoratBullet = true;
+                flog_Missile = false;
+                flog_normalBullet = false;
+                break;
+            default:
+                break;
+        }
+    }
     void Shot()
     {
 
@@ -172,6 +219,27 @@ public class Weapon:MonoBehaviour
             {
                 // 弾数を減らす
                 bulletsRemaining--;
+                ////弾があるかどうか
+                //Bullet bullet = GetInactiveBullet();
+                //Missile missileBullet = GetInactiveMissileBullet();
+                //PenetratingBullet penetratingBullet = GetInactivePenetratingBullet();
+                //if (bullet != null)
+                //{
+                //    bullet = Instantiate(bullet, transform.position, transform.rotation);
+                //}
+
+                //if (missileBullet != null)
+                //{
+                //    //  ミサイル生成
+                //    missileBullet = Instantiate(missileBullet, transform.position, transform.rotation);
+                //}
+
+                //if (penetratingBullet != null)
+                //{
+                //    //  貫通弾生成
+                //    penetratingBullet = Instantiate(penetratingBullet, transform.position, transform.rotation);
+                //}
+
                 //  弾丸生成
                 weapon = Instantiate(weapon, transform.position, transform.rotation);
                 //  親子関係を設定する
@@ -182,7 +250,9 @@ public class Weapon:MonoBehaviour
                 weapon.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
                 //   弾丸位置はプレイヤーの前にする
                 weapon.transform.Translate(new Vector3(0, bulletCreatePosOffsetY, bulletCreatePosOffsetZ));
+               //SEを鳴らす
                 BulletSE.PlaySmallCanonSoundB();
+                //レイを消す
                 if (pRay != null)
                 {
                     Destroy(pRay);
@@ -243,6 +313,36 @@ public class Weapon:MonoBehaviour
         isReloading = true;
         yield return new WaitForSeconds(reloadTime);
         bulletsRemaining = 5; // 初期弾数に再設定
+                              // 弾をプールに戻す
+        foreach (Bullet bullet in bulletPool)
+        {
+            if (bullet.gameObject.activeSelf)
+            {
+                bullet.gameObject.SetActive(false);
+                bulletPool.Add(bullet);
+            }
+        }
+
+        // ミサイル弾をプールに戻す
+        foreach (Missile missileBullet in missileBulletPool)
+        {
+            missileBullet.gameObject.SetActive(false);
+            if (missileBullet.gameObject.activeSelf)
+            {
+                missileBullet.gameObject.SetActive(false);
+                missileBulletPool.Add(missileBullet);
+            }
+        }
+
+        // 貫通弾をプールに戻す
+        foreach (PenetratingBullet penetratingBullet in penetratingBulletPool)
+        {
+            if (penetratingBullet.gameObject.activeSelf)
+            {
+                penetratingBullet.gameObject.SetActive(false);
+                penetratingBulletPool.Add(penetratingBullet);
+            }
+        }
         isReloading = false;
     }
     void DrewPredictionLine()
@@ -305,6 +405,77 @@ public class Weapon:MonoBehaviour
         {
             child.parent = null;
         }
+    }
+
+
+    //弾の管理
+    Bullet GetInactiveBullet()
+    {
+        foreach (Bullet bullet in bulletPool)
+        {
+            if (!bullet.gameObject.activeInHierarchy)
+            {
+                return bullet;
+            }
+        }
+
+        // プール内に使用可能な弾がない場合は新しく生成してプールに追加する
+        Bullet newBullet = InstantiateBullet();
+        bulletPool.Add(newBullet);
+
+        return newBullet;
+    }
+
+    Missile GetInactiveMissileBullet()
+    {
+        foreach (Missile missileBullet in missileBulletPool)
+        {
+            if (!missileBullet.gameObject.activeInHierarchy)
+            {
+                return missileBullet;
+            }
+        }
+
+        // プール内に使用可能な弾がない場合は新しく生成してプールに追加する
+        Missile newMissileBullet = InstantiateMissileBullet();
+        missileBulletPool.Add(newMissileBullet);
+
+        return newMissileBullet;
+    }
+
+    PenetratingBullet GetInactivePenetratingBullet()
+    {
+        foreach (PenetratingBullet penetratingBullet in penetratingBulletPool)
+        {
+            if (!penetratingBullet.gameObject.activeInHierarchy)
+            {
+                return penetratingBullet;
+            }
+        }
+
+        // プール内に使用可能な弾がない場合は新しく生成してプールに追加する
+        PenetratingBullet newPenetratingBullet = InstantiatePenetratingBullet();
+        penetratingBulletPool.Add(newPenetratingBullet);
+
+        return newPenetratingBullet;
+    }
+
+    Bullet InstantiateBullet()
+    {
+        // 弾の新しいインスタンスを生成する
+        return Instantiate(bullet1);
+    }
+
+    Missile InstantiateMissileBullet()
+    {
+        // 弾の新しいインスタンスを生成する
+        return Instantiate(missileBullet);
+    }
+
+    PenetratingBullet InstantiatePenetratingBullet()
+    {
+        // 弾の新しいインスタンスを生成する
+        return Instantiate(penetratingBullet);
     }
 }
 

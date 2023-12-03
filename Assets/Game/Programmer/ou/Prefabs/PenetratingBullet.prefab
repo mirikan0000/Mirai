@@ -31,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.06, y: 0.053795815, z: 0.23}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9184420584360872255}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4409591475305109703, guid: 2f2d9f54809613243afefbd5e7331fd0, type: 3}
 --- !u!23 &3076142590003076248
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f61dc97f484abb142a47c467ee7363f3, type: 2}
+  - {fileID: 2100000, guid: 555b94fc9a4ff0b47a0c483cc5a50fc9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,19 +146,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491d3b56771c91d429a79d02a95d92f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInputArray: []
   predictionLine_RayMode: 1
+  itemSlotUI: {fileID: 0}
   weapon: {fileID: 0}
+  fragreceiver: {fileID: 0}
   bullet1: {fileID: 0}
-  missile: {fileID: 0}
+  missileBullet: {fileID: 0}
   penetratingBullet: {fileID: 0}
+  PlayerManager: {fileID: 0}
+  BulletSE: {fileID: 0}
   gun_rotAngle: 0
   Bullet_RangeOffset: 0
-  bulletCreatePosOffset: 1
+  bulletCreatePosOffsetZ: 1
   bulletCreatePosOffsetY: 25
   ChageShot: {fileID: 0}
+  Playercamera: {fileID: 0}
   PredictionLine: {fileID: 0}
   PredictionRay: {fileID: 0}
   x_angle: 1000
+  is_aiming: 0
   energyballFlug: 0
   PredictionLineNumber: 66
+  bulletsMax: 5
+  bulletsRemaining: 5
+  reloadTime: 2
   move_Speed: 15

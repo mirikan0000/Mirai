@@ -52,4 +52,20 @@ public class ItemSlotUI : MonoBehaviour
         image2.sprite = itemSprites[index2];
         image3.sprite = itemSprites[index3];
     }
+    public int GetCurrentSlotIndex()
+    {
+        if (itemSprites == null || itemSprites.Length == 0)
+        {
+            Debug.LogError("itemSprites is not initialized or empty.");
+            return -1; // エラーの場合は適切なエラー値を返す
+        }
+
+        int itemCount = itemSprites.Length;
+
+        // ボタンが押された回数を使って順番を決定
+        int selectedIndex = Mathf.Abs(buttonPushCount) % itemCount;
+
+        // selectedIndex を返す
+        return selectedIndex;
+    }
 }

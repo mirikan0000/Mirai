@@ -8,7 +8,7 @@ public class Fragreceiver : MonoBehaviour
     public bool armorflog;
     public bool Hpflog;
     public bool penetratBulletflog;
-
+    public bool normalBullet;
     //補給物資取得用
     public bool speedUpItemFlag;       //スピードアップのアイテムを取得しているか
     public bool healItemFlag;          //回復のアイテムを取得しているか

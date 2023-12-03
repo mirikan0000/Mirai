@@ -21679,7 +21679,8 @@ MonoBehaviour:
   playerInputArray:
   - {fileID: 6543601556174368163}
   predictionLine_RayMode: 1
-  weapon: {fileID: 6543601556174368169}
+  itemSlotUI: {fileID: 1958532686}
+  weapon: {fileID: 0}
   fragreceiver: {fileID: 6543601556174368170}
   bullet1: {fileID: 7457614188605471436, guid: 3b4635d41d61ca149841265115d75589, type: 3}
   missileBullet: {fileID: 5770600178301455432, guid: 71a28e078a3a44f45b223435a2b96ca6, type: 3}
@@ -21717,6 +21718,7 @@ MonoBehaviour:
   armorflog: 0
   Hpflog: 0
   penetratBulletflog: 0
+  normalBullet: 0
   speedUpItemFlag: 0
   healItemFlag: 0
   shieldItemFlag: 0
@@ -21940,6 +21942,7 @@ MonoBehaviour:
   playerInputArray:
   - {fileID: 8150969197131227487}
   predictionLine_RayMode: 1
+  itemSlotUI: {fileID: 89384678}
   weapon: {fileID: 8150969197131227502}
   fragreceiver: {fileID: 8150969197131227503}
   bullet1: {fileID: 7457614188605471436, guid: 3b4635d41d61ca149841265115d75589, type: 3}
@@ -21978,6 +21981,7 @@ MonoBehaviour:
   armorflog: 0
   Hpflog: 0
   penetratBulletflog: 0
+  normalBullet: 0
   speedUpItemFlag: 0
   healItemFlag: 0
   shieldItemFlag: 0

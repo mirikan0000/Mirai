@@ -1,27 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AntiHit : MonoBehaviour
 {
-    // OnTriggerEnterは、他のColliderがこのColliderに触れると呼ばれます
-    private void OnTriggerEnter(Collider other)
+    [Range(0, 100)] [SerializeField] [Header("フィールドダメージ")] private int FieldDamage = 1;
+    [SerializeField] private PlayerHealth playerHealth1P;
+    [SerializeField] private PlayerHealth playerHealth2P;
+
+    // 前回ダメージを与えた時間
+    private float lastDamageTime;
+
+    private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player1")|| other.CompareTag("Player2")) // もし他のColliderが"Player"タグを持っていたら
+        if (other.CompareTag("Player1"))
         {
-            Debug.Log("Playerがトリガーに入りました！");
+            TryApplyDamage(playerHealth1P);
+        }
+        else if (other.CompareTag("Player2"))
+        {
+            TryApplyDamage(playerHealth2P);
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        playerHealth1P = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerHealth>();
+        playerHealth2P = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerHealth>();
+        lastDamageTime = Time.time; // ゲーム開始時に初期化
     }
 
-    // Update is called once per frame
-    void Update()
+    void TryApplyDamage(PlayerHealth playerHealth)
     {
-        
+        // 5秒ごとにダメージを与える
+        if (Time.time - lastDamageTime >= 5f)
+        {
+            // ダメージを与える
+            playerHealth.TakeDamage(FieldDamage, false);
+
+            // 前回ダメージを与えた時間を更新
+            lastDamageTime = Time.time;
+        }
     }
 }

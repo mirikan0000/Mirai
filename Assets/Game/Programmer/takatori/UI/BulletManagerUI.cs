@@ -10,20 +10,40 @@ public class BulletManagerUI : MonoBehaviour
     private int bulletMaxUI;
     private int bulletsRemainingUI;
 
-    [Header("UIの右側の数字リスト")] [SerializeField] private List<Image> imagesRight;
-    [Header("UIの右側の数字リスト")] [SerializeField] private List<Image> imagesLeft;
+    [Header("UIの右側の数字リスト")] [SerializeField] private List<Sprite> imagesRight;
+    [Header("UIの左側の数字リスト")] [SerializeField] private List<Sprite> imagesLeft;
+    [SerializeField] private Image NorMalBUllet_rightDigitImage;
+    [SerializeField] private Image NormalBUllet_leftDigitImage;
+
+    //[SerializeField] private Image MissileBUllet_rightDigitImage;
+    //[SerializeField] private Image MissileBUllet_leftDigitImage;
+
+    //[SerializeField] private Image PenetoratingBUllet_rightDigitImage;
+    //[SerializeField] private Image PenetoratingBUllet_leftDigitImage;
+
     void Start()
     {
         bulletMaxUI = weapon.GetbulletsMax();
         bulletsRemainingUI = weapon.GetbulletsRemaining();
-    }
-    void Update()
-    {
+
         UpdateUI();
     }
+
+    void Update()
+    {
+        // ここで必要なら更新処理を追加
+    }
+
     private void UpdateUI()
     {
         bulletsRemainingUI = weapon.GetbulletsRemaining();
 
+        // バレットの残弾数を右側と左側に分ける
+        int rightDigit = bulletsRemainingUI % 10;
+        int leftDigit = bulletsRemainingUI / 10;
+
+        // 画像を表示する
+        NorMalBUllet_rightDigitImage.sprite = imagesRight[rightDigit];
+        NormalBUllet_leftDigitImage.sprite = imagesLeft[leftDigit];
     }
 }

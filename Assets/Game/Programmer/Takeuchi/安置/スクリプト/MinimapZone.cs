@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class FakeSaftyZone : MonoBehaviour
+public class MinimapZone : MonoBehaviour
 {
     [SerializeField]
     [Header("拡縮用")]
@@ -31,7 +31,7 @@ public class FakeSaftyZone : MonoBehaviour
 
     [Header("オブジェクト取得用")]
     private GameObject parentObj;      //親オブジェクト
-    private SaftyZoneV2 parentScript;  //親オブジェクトのスクリプト
+    private SaftyZoneObjV3 parentScript;  //親オブジェクトのスクリプト
 
     void Start()
     {
@@ -51,7 +51,7 @@ public class FakeSaftyZone : MonoBehaviour
         //目標サイズを設定
         if (setScaleFlag == true)
         {
-            SetPostReduScale();
+            SetPostScale();
         }
 
     }
@@ -91,7 +91,7 @@ public class FakeSaftyZone : MonoBehaviour
     {
         //親オブジェクト取得
         parentObj = transform.parent.gameObject;
-        parentScript = parentObj.GetComponent<SaftyZoneV2>();
+        parentScript = parentObj.GetComponent<SaftyZoneObjV3>();
     }
 
     //初期サイズ取得
@@ -104,7 +104,7 @@ public class FakeSaftyZone : MonoBehaviour
     }
 
     //目標サイズを設定
-    private void SetPostReduScale()
+    private void SetPostScale()
     {
         //縮小回数によって目標位置を設定
         switch (parentScript.maxReduStage)
@@ -120,7 +120,7 @@ public class FakeSaftyZone : MonoBehaviour
                 break;
             case 2.0f:  //二回の時
                 //縮小目標位置
-                postReduScale1 = new Vector3(5.0f, preScaley, 5.0f);
+                postReduScale1 = new Vector3(3.0f, preScaley, 3.0f);
                 postReduScale2 = new Vector3(1.0f, preScaley, 1.0f);
 
                 //拡大目標位置
@@ -131,8 +131,8 @@ public class FakeSaftyZone : MonoBehaviour
                 break;
             case 3.0f:  //三回の時
                 //縮小目標位置
-                postReduScale1 = new Vector3(6.4f, preScaley, 6.4f);
-                postReduScale2 = new Vector3(3.8f, preScaley, 3.8f);
+                postReduScale1 = new Vector3(3.7f, preScaley, 3.7f);
+                postReduScale2 = new Vector3(2.4f, preScaley, 2.4f);
                 postReduScale3 = new Vector3(1.0f, preScaley, 1.0f);
 
                 //拡大目標位置
@@ -144,9 +144,9 @@ public class FakeSaftyZone : MonoBehaviour
                 break;
             case 4.0f:  //四回の時
                 //縮小目標位置
-                postReduScale1 = new Vector3(7.0f, preScaley, 7.0f);
-                postReduScale2 = new Vector3(5.0f, preScaley, 5.0f);
-                postReduScale3 = new Vector3(3.0f, preScaley, 3.0f);
+                postReduScale1 = new Vector3(4.0f, preScaley, 4.0f);
+                postReduScale2 = new Vector3(3.0f, preScaley, 3.0f);
+                postReduScale3 = new Vector3(2.0f, preScaley, 2.0f);
                 postReduScale4 = new Vector3(1.0f, preScaley, 1.0f);
 
                 //拡大目標位置
@@ -159,10 +159,10 @@ public class FakeSaftyZone : MonoBehaviour
                 break;
             case 5.0f:  //五回の時
                 //縮小目標位置
-                postReduScale1 = new Vector3(7.4f, preScaley, 7.4f);
-                postReduScale2 = new Vector3(5.8f, preScaley, 5.8f);
-                postReduScale3 = new Vector3(4.2f, preScaley, 4.2f);
-                postReduScale4 = new Vector3(2.6f, preScaley, 2.6f);
+                postReduScale1 = new Vector3(4.2f, preScaley, 4.2f);
+                postReduScale2 = new Vector3(3.4f, preScaley, 3.4f);
+                postReduScale3 = new Vector3(2.6f, preScaley, 2.6f);
+                postReduScale4 = new Vector3(1.8f, preScaley, 1.8f);
                 postReduScale5 = new Vector3(1.0f, preScaley, 1.0f);
 
                 //拡大目標位置
@@ -176,11 +176,11 @@ public class FakeSaftyZone : MonoBehaviour
                 break;
             case 6.0f:  //六回の時
                 //縮小目標位置
-                postReduScale1 = new Vector3(7.7f, preScaley, 7.7f);
-                postReduScale2 = new Vector3(6.4f, preScaley, 6.4f);
-                postReduScale3 = new Vector3(5.1f, preScaley, 5.1f);
-                postReduScale4 = new Vector3(3.8f, preScaley, 3.8f);
-                postReduScale5 = new Vector3(2.5f, preScaley, 2.5f);
+                postReduScale1 = new Vector3(4.3f, preScaley, 4.3f);
+                postReduScale2 = new Vector3(3.6f, preScaley, 3.6f);
+                postReduScale3 = new Vector3(2.9f, preScaley, 2.9f);
+                postReduScale4 = new Vector3(2.2f, preScaley, 2.2f);
+                postReduScale5 = new Vector3(1.6f, preScaley, 1.6f);
                 postReduScale6 = new Vector3(1.0f, preScaley, 1.0f);
 
                 //拡大目標位置

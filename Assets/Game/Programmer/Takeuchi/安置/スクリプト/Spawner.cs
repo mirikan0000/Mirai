@@ -15,6 +15,7 @@ public class Spawner : MonoBehaviour
     private Vector3 spawnPos;       //生成する座標
     private float timer;            //待ち時間計測用
 
+    public bool spawnType;  //中心かランダムか
     void Start()
     {
         //変数初期化
@@ -24,11 +25,22 @@ public class Spawner : MonoBehaviour
 
     void Update()
     {
-        //生成用フラグがTrueなら安置生成
-        if (spawnFlag == true)
+        if (spawnType == true)
         {
-            //安置生成
-            SpawnSaftyZone();
+            //生成用フラグがTrueなら安置生成
+            if (spawnFlag == true)
+            {
+                //安置生成
+                SpawnSaftyZone();
+            }
+        }
+        else
+        {
+            if (spawnFlag == true)
+            {
+                //安置生成(中心)
+                CenterSpawn();
+            }
         }
     }
 
@@ -56,6 +68,25 @@ public class Spawner : MonoBehaviour
             spawnFlag = false;
 
             //待ち時間を初期化
+            timer = 0.0f;
+        }
+    }
+
+    //安置を中心に生成
+    private void CenterSpawn()
+    {
+        var parent = this.transform;
+
+        spawnPos = this.transform.position;
+
+        timer += Time.deltaTime;
+
+        if(timer> spawnDelayTime)
+        {
+            Instantiate(saftyZonebj, spawnPos, Quaternion.identity, parent);
+
+            spawnFlag = false;
+
             timer = 0.0f;
         }
     }

@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141e0e6370624244a8ef0d568031a69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saftyZonebj: {fileID: 5708402160379185005, guid: 80254c60f8d3ba6409887987ece582bd, type: 3}
+  saftyZonebj: {fileID: 1087545797228163567, guid: 8602d0a1a2b17b04996fd8209eb3a684, type: 3}
   rangeA: {fileID: 6476936876649840854, guid: 304f680a66b22404581a83a35bead515, type: 3}
   rangeB: {fileID: 2227987474602348500, guid: 3498165363323334c8802b5143d8f886, type: 3}
   spawnDelayTime: 0
   spawnFlag: 0
+  spawnType: 0

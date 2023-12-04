@@ -146,6 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf7b69a75d58e34282595c469c75f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FieldDamage: 5
+  playerHealth1P: {fileID: 0}
+  playerHealth2P: {fileID: 0}
 --- !u!1 &2568092033524695370
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,6 +295,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf7b69a75d58e34282595c469c75f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FieldDamage: 5
+  playerHealth1P: {fileID: 0}
+  playerHealth2P: {fileID: 0}
 --- !u!1 &3934012578311438345
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +577,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf7b69a75d58e34282595c469c75f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FieldDamage: 5
+  playerHealth1P: {fileID: 0}
+  playerHealth2P: {fileID: 0}
 --- !u!1 &5708402160379185005
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,3 +812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf7b69a75d58e34282595c469c75f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FieldDamage: 5
+  playerHealth1P: {fileID: 0}
+  playerHealth2P: {fileID: 0}

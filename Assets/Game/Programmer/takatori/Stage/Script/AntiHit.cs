@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class AntiHit : MonoBehaviour
 {
-    [Range(0, 100)] [SerializeField] [Header("フィールドダメージ")] private int FieldDamage = 1;
+    [Range(0, 100)] [SerializeField] [Header("フィールドダメージ")] private int FieldDamage = 5;
     [SerializeField] private PlayerHealth playerHealth1P;
     [SerializeField] private PlayerHealth playerHealth2P;
 
     // 前回ダメージを与えた時間
     private float lastDamageTime;
+
 
     private void OnTriggerStay(Collider other)
     {

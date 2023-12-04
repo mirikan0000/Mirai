@@ -10,8 +10,8 @@ public class BulletManagerUI : MonoBehaviour
     private int bulletMaxUI;
     private int bulletsRemainingUI;
 
-    [Header("UIの左側の数字")] [SerializeField]private TextMeshProUGUI BulletsumLeftImage;
-    [Header("UIの右側の数字")] [SerializeField]private TextMeshProUGUI BulletMaxRightImage;
+    [Header("UIの右側の数字リスト")] [SerializeField] private List<Image> imagesRight;
+    [Header("UIの右側の数字リスト")] [SerializeField] private List<Image> imagesLeft;
     void Start()
     {
         bulletMaxUI = weapon.GetbulletsMax();
@@ -24,7 +24,6 @@ public class BulletManagerUI : MonoBehaviour
     private void UpdateUI()
     {
         bulletsRemainingUI = weapon.GetbulletsRemaining();
-        BulletsumLeftImage.text = bulletsRemainingUI.ToString();
-        BulletMaxRightImage.text = bulletMaxUI.ToString();
+
     }
 }

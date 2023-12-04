@@ -2,32 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChildZone2 : MonoBehaviour
+public class LeftZone : MonoBehaviour
 {
     [SerializeField]
     [Header("安置移動用")]
-    public float zone2MoveSpeed;  //安置の移動速度
-    public Vector3 pre2Pos;       //安置の初期位置
+    public float zone1MoveSpeed;  //安置の移動速度
+    public Vector3 pre1Pos;       //安置の初期位置
     //安置の目標位置(縮小用)
-    public Vector3 zone2PostReduPos1;
-    public Vector3 zone2PostReduPos2;
-    public Vector3 zone2PostReduPos3;
-    public Vector3 zone2PostReduPos4;
-    public Vector3 zone2PostReduPos5;
-    public Vector3 zone2PostReduPos6;
+    public Vector3 zone1PostReduPos1;
+    public Vector3 zone1PostReduPos2;
+    public Vector3 zone1PostReduPos3;
+    public Vector3 zone1PostReduPos4;
+    public Vector3 zone1PostReduPos5;
+    public Vector3 zone1PostReduPos6;
     //安置の目標位置(拡大用)
-    public Vector3 zone2PostMagPos1;
-    public Vector3 zone2PostMagPos2;
-    public Vector3 zone2PostMagPos3;
-    public Vector3 zone2PostMagPos4;
-    public Vector3 zone2PostMagPos5;
-    public Vector3 zone2PostMagPos6;
-    public Vector3 zone2NowPos;        //現在位置
+    public Vector3 zone1PostMagPos1;
+    public Vector3 zone1PostMagPos2;
+    public Vector3 zone1PostMagPos3;
+    public Vector3 zone1PostMagPos4;
+    public Vector3 zone1PostMagPos5;
+    public Vector3 zone1PostMagPos6;
+    public Vector3 zone1NowPos;        //現在位置
 
     private bool setPosFlag;             //安置の目標位置設定用フラグ
-    private Vector3 preZone2Pos;         //安置の初期位置
+    private Vector3 preZone1Pos;         //安置の初期位置
     private float prePosx, prePosy, prePosz;
-    private Vector3 nowZone2Pos;         //安置の現在位置
+    private Vector3 nowZone1Pos;         //安置の現在位置
     private float nowPosx, nowPosy, nowPosz;
     private float maxDistance = 600.0f;  //最大移動量
     private float reduDistance;          //縮小時移動量
@@ -36,7 +36,7 @@ public class ChildZone2 : MonoBehaviour
 
     [Header("オブジェクト＆スクリプト取得用")]
     private GameObject parentObj;        //親オブジェクト
-    private SaftyZoneV2 parentScript;  //親オブジェクトのスクリプト
+    private SaftyZoneObjV3 parentScript;  //親オブジェクトのスクリプト
 
     void Start()
     {
@@ -44,7 +44,7 @@ public class ChildZone2 : MonoBehaviour
         VariableInitialize();
     }
 
-
+    
     void Update()
     {
         //縮小
@@ -74,11 +74,11 @@ public class ChildZone2 : MonoBehaviour
     private void VariableInitialize()
     {
         //安置の初期位置取得
-        preZone2Pos = this.transform.position;
-        prePosx = Mathf.Floor(preZone2Pos.x);
-        prePosy = Mathf.Floor(preZone2Pos.y);
-        prePosz = Mathf.Floor(preZone2Pos.z);
-        pre2Pos = new Vector3(prePosx, prePosy, prePosz);
+        preZone1Pos = this.transform.position;
+        prePosx = Mathf.Floor(preZone1Pos.x);
+        prePosy = Mathf.Floor(preZone1Pos.y);
+        prePosz = Mathf.Floor(preZone1Pos.z);
+        pre1Pos = new Vector3(prePosx, prePosy, prePosz);
 
         //目標位置設定用フラグ初期化
         setPosFlag = true;
@@ -88,7 +88,7 @@ public class ChildZone2 : MonoBehaviour
 
         //親オブジェクト＆スクリプト取得
         parentObj = transform.parent.gameObject;
-        parentScript = parentObj.GetComponent<SaftyZoneV2>();
+        parentScript = parentObj.GetComponent<SaftyZoneObjV3>();
 
         //安置の移動量を設定
         SetMoveDistance();
@@ -101,15 +101,15 @@ public class ChildZone2 : MonoBehaviour
     private void GetNowPos()
     {
         //現在位置を取得
-        nowZone2Pos = this.gameObject.transform.position;
+        nowZone1Pos = this.gameObject.transform.position;
 
         //取得した座標を小数点以下切り捨て
-        nowPosx = Mathf.Floor(nowZone2Pos.x);
-        nowPosy = Mathf.Floor(nowZone2Pos.y);
-        nowPosz = Mathf.Floor(nowZone2Pos.z);
+        nowPosx = Mathf.Floor(nowZone1Pos.x);
+        nowPosy = Mathf.Floor(nowZone1Pos.y);
+        nowPosz = Mathf.Floor(nowZone1Pos.z);
 
         //現在位置設定
-        zone2NowPos = new Vector3(nowPosx, nowPosy, nowPosz);
+        zone1NowPos = new Vector3(nowPosx, nowPosy, nowPosz);
     }
 
     //移動量を設定
@@ -132,110 +132,110 @@ public class ChildZone2 : MonoBehaviour
             {
                 case 1:  //縮小回数が一回の時
                     //一段階目の縮小目標地点設定
-                    zone2PostReduPos1 = new Vector3(pre2Pos.x - reduDistance, pre2Pos.y, pre2Pos.z);
+                    zone1PostReduPos1 = new Vector3(pre1Pos.x + reduDistance, pre1Pos.y, pre1Pos.z);
 
                     //一段階目の拡大目標地点設定
-                    zone2PostMagPos1 = new Vector3(zone2PostReduPos1.x + reduDistance, zone2PostReduPos1.y, zone2PostReduPos1.z);
+                    zone1PostMagPos1 = new Vector3(zone1PostReduPos1.x - reduDistance, zone1PostReduPos1.y, zone1PostReduPos1.z);
                     break;
 
                 case 2:  //縮小回数が二回の時
                     //一段階目の縮小目標地点設定
-                    zone2PostReduPos1 = new Vector3(pre2Pos.x - reduDistance, pre2Pos.y, pre2Pos.z);
+                    zone1PostReduPos1 = new Vector3(pre1Pos.x + reduDistance, pre1Pos.y, pre1Pos.z);
                     //二段階目の目標視点を設定
-                    zone2PostReduPos2 = new Vector3(zone2PostReduPos1.x - reduDistance, zone2PostReduPos1.y, zone2PostReduPos1.z);
+                    zone1PostReduPos2 = new Vector3(zone1PostReduPos1.x + reduDistance, zone1PostReduPos1.y, zone1PostReduPos1.z);
 
                     //一段階目の拡大目標地点設定
-                    zone2PostMagPos1 = new Vector3(zone2PostReduPos2.x + reduDistance, zone2PostReduPos2.y, zone2PostReduPos2.z);
+                    zone1PostMagPos1 = new Vector3(zone1PostReduPos2.x - reduDistance, zone1PostReduPos2.y, zone1PostReduPos2.z);
                     //二段階目の拡大目標地点設定
-                    zone2PostMagPos2 = new Vector3(zone2PostMagPos1.x + reduDistance, zone2PostMagPos1.y, zone2PostMagPos1.z);
+                    zone1PostMagPos2 = new Vector3(zone1PostMagPos1.x - reduDistance, zone1PostMagPos1.y, zone1PostMagPos1.z);
                     break;
 
                 case 3:  //縮小回数が三回の時
                     //一段階目の縮小目標地点設定
-                    zone2PostReduPos1 = new Vector3(pre2Pos.x - reduDistance, pre2Pos.y, pre2Pos.z);
+                    zone1PostReduPos1 = new Vector3(pre1Pos.x + reduDistance, pre1Pos.y, pre1Pos.z);
                     //二段階目の目標視点を設定
-                    zone2PostReduPos2 = new Vector3(zone2PostReduPos1.x - reduDistance, zone2PostReduPos1.y, zone2PostReduPos1.z);
+                    zone1PostReduPos2 = new Vector3(zone1PostReduPos1.x + reduDistance, zone1PostReduPos1.y, zone1PostReduPos1.z);
                     //三段階目の目標視点を設定
-                    zone2PostReduPos3 = new Vector3(zone2PostReduPos2.x - reduDistance, zone2PostReduPos2.y, zone2PostReduPos2.z);
+                    zone1PostReduPos3 = new Vector3(zone1PostReduPos2.x + reduDistance, zone1PostReduPos2.y, zone1PostReduPos2.z);
 
                     //一段階目の拡大目標地点設定
-                    zone2PostMagPos1 = new Vector3(zone2PostReduPos3.x + reduDistance, zone2PostReduPos3.y, zone2PostReduPos3.z);
+                    zone1PostMagPos1 = new Vector3(zone1PostReduPos3.x - reduDistance, zone1PostReduPos3.y, zone1PostReduPos3.z);
                     //二段階目の拡大目標地点設定
-                    zone2PostMagPos2 = new Vector3(zone2PostMagPos1.x + reduDistance, zone2PostMagPos1.y, zone2PostMagPos1.z);
+                    zone1PostMagPos2 = new Vector3(zone1PostMagPos1.x - reduDistance, zone1PostMagPos1.y, zone1PostMagPos1.z);
                     //三段階目の拡大目標地点設定
-                    zone2PostMagPos3 = new Vector3(zone2PostMagPos2.x + reduDistance, zone2PostMagPos2.y, zone2PostMagPos2.z);
+                    zone1PostMagPos3 = new Vector3(zone1PostMagPos2.x - reduDistance, zone1PostMagPos2.y, zone1PostMagPos2.z);
                     break;
 
                 case 4:  //縮小回数が四回の時
                     //一段階目の縮小目標地点設定
-                    zone2PostReduPos1 = new Vector3(pre2Pos.x - reduDistance, pre2Pos.y, pre2Pos.z);
+                    zone1PostReduPos1 = new Vector3(pre1Pos.x + reduDistance, pre1Pos.y, pre1Pos.z);
                     //二段階目の目標視点を設定
-                    zone2PostReduPos2 = new Vector3(zone2PostReduPos1.x - reduDistance, zone2PostReduPos1.y, zone2PostReduPos1.z);
+                    zone1PostReduPos2 = new Vector3(zone1PostReduPos1.x + reduDistance, zone1PostReduPos1.y, zone1PostReduPos1.z);
                     //三段階目の目標視点を設定
-                    zone2PostReduPos3 = new Vector3(zone2PostReduPos2.x - reduDistance, zone2PostReduPos2.y, zone2PostReduPos2.z);
+                    zone1PostReduPos3 = new Vector3(zone1PostReduPos2.x + reduDistance, zone1PostReduPos2.y, zone1PostReduPos2.z);
                     //四段階目の目標視点を設定
-                    zone2PostReduPos4 = new Vector3(zone2PostReduPos3.x - reduDistance, zone2PostReduPos3.y, zone2PostReduPos3.z);
+                    zone1PostReduPos4 = new Vector3(zone1PostReduPos3.x + reduDistance, zone1PostReduPos3.y, zone1PostReduPos3.z);
 
                     //一段階目の拡大目標地点設定
-                    zone2PostMagPos1 = new Vector3(zone2PostReduPos4.x + reduDistance, zone2PostReduPos4.y, zone2PostReduPos4.z);
+                    zone1PostMagPos1 = new Vector3(zone1PostReduPos4.x - reduDistance, zone1PostReduPos4.y, zone1PostReduPos4.z);
                     //二段階目の拡大目標地点設定
-                    zone2PostMagPos2 = new Vector3(zone2PostMagPos1.x + reduDistance, zone2PostMagPos1.y, zone2PostMagPos1.z);
+                    zone1PostMagPos2 = new Vector3(zone1PostMagPos1.x - reduDistance, zone1PostMagPos1.y, zone1PostMagPos1.z);
                     //三段階目の拡大目標地点設定
-                    zone2PostMagPos3 = new Vector3(zone2PostMagPos2.x + reduDistance, zone2PostMagPos2.y, zone2PostMagPos2.z);
+                    zone1PostMagPos3 = new Vector3(zone1PostMagPos2.x - reduDistance, zone1PostMagPos2.y, zone1PostMagPos2.z);
                     //四段階目の拡大目標地点設定
-                    zone2PostMagPos4 = new Vector3(zone2PostMagPos3.x + reduDistance, zone2PostMagPos3.y, zone2PostMagPos3.z);
+                    zone1PostMagPos4 = new Vector3(zone1PostMagPos3.x - reduDistance, zone1PostMagPos3.y, zone1PostMagPos3.z);
                     break;
 
                 case 5:  //縮小回数が五回の時
                     //一段階目の縮小目標地点設定
-                    zone2PostReduPos1 = new Vector3(pre2Pos.x - reduDistance, pre2Pos.y, pre2Pos.z);
+                    zone1PostReduPos1 = new Vector3(pre1Pos.x + reduDistance, pre1Pos.y, pre1Pos.z);
                     //二段階目の目標視点を設定
-                    zone2PostReduPos2 = new Vector3(zone2PostReduPos1.x - reduDistance, zone2PostReduPos1.y, zone2PostReduPos1.z);
+                    zone1PostReduPos2 = new Vector3(zone1PostReduPos1.x + reduDistance, zone1PostReduPos1.y, zone1PostReduPos1.z);
                     //三段階目の目標視点を設定
-                    zone2PostReduPos3 = new Vector3(zone2PostReduPos2.x - reduDistance, zone2PostReduPos2.y, zone2PostReduPos2.z);
+                    zone1PostReduPos3 = new Vector3(zone1PostReduPos2.x + reduDistance, zone1PostReduPos2.y, zone1PostReduPos2.z);
                     //四段階目の目標視点を設定
-                    zone2PostReduPos4 = new Vector3(zone2PostReduPos3.x - reduDistance, zone2PostReduPos3.y, zone2PostReduPos3.z);
+                    zone1PostReduPos4 = new Vector3(zone1PostReduPos3.x + reduDistance, zone1PostReduPos3.y, zone1PostReduPos3.z);
                     //五段階目の目標視点を設定
-                    zone2PostReduPos5 = new Vector3(zone2PostReduPos4.x - reduDistance, zone2PostReduPos4.y, zone2PostReduPos4.z);
+                    zone1PostReduPos5 = new Vector3(zone1PostReduPos4.x + reduDistance, zone1PostReduPos4.y, zone1PostReduPos4.z);
 
                     //一段階目の拡大目標地点設定
-                    zone2PostMagPos1 = new Vector3(zone2PostReduPos5.x + reduDistance, zone2PostReduPos5.y, zone2PostReduPos5.z);
+                    zone1PostMagPos1 = new Vector3(zone1PostReduPos5.x - reduDistance, zone1PostReduPos5.y, zone1PostReduPos5.z);
                     //二段階目の拡大目標地点設定
-                    zone2PostMagPos2 = new Vector3(zone2PostMagPos1.x + reduDistance, zone2PostMagPos1.y, zone2PostMagPos1.z);
+                    zone1PostMagPos2 = new Vector3(zone1PostMagPos1.x - reduDistance, zone1PostMagPos1.y, zone1PostMagPos1.z);
                     //三段階目の拡大目標地点設定
-                    zone2PostMagPos3 = new Vector3(zone2PostMagPos2.x + reduDistance, zone2PostMagPos2.y, zone2PostMagPos2.z);
+                    zone1PostMagPos3 = new Vector3(zone1PostMagPos2.x - reduDistance, zone1PostMagPos2.y, zone1PostMagPos2.z);
                     //四段階目の拡大目標地点設定
-                    zone2PostMagPos4 = new Vector3(zone2PostMagPos3.x + reduDistance, zone2PostMagPos3.y, zone2PostMagPos3.z);
+                    zone1PostMagPos4 = new Vector3(zone1PostMagPos3.x - reduDistance, zone1PostMagPos3.y, zone1PostMagPos3.z);
                     //五段階目の拡大目標地点設定
-                    zone2PostMagPos5 = new Vector3(zone2PostMagPos4.x + reduDistance, zone2PostMagPos4.y, zone2PostMagPos4.z);
+                    zone1PostMagPos5 = new Vector3(zone1PostMagPos4.x - reduDistance, zone1PostMagPos4.y, zone1PostMagPos4.z);
                     break;
 
                 case 6:  //縮小回数が六回の時
                     //一段階目の縮小目標地点設定
-                    zone2PostReduPos1 = new Vector3(pre2Pos.x - reduDistance, pre2Pos.y, pre2Pos.z);
+                    zone1PostReduPos1 = new Vector3(pre1Pos.x + reduDistance, pre1Pos.y, pre1Pos.z);
                     //二段階目の目標視点を設定
-                    zone2PostReduPos2 = new Vector3(zone2PostReduPos1.x - reduDistance, zone2PostReduPos1.y, zone2PostReduPos1.z);
+                    zone1PostReduPos2 = new Vector3(zone1PostReduPos1.x + reduDistance, zone1PostReduPos1.y, zone1PostReduPos1.z);
                     //三段階目の目標視点を設定
-                    zone2PostReduPos3 = new Vector3(zone2PostReduPos2.x - reduDistance, zone2PostReduPos2.y, zone2PostReduPos2.z);
+                    zone1PostReduPos3 = new Vector3(zone1PostReduPos2.x + reduDistance, zone1PostReduPos2.y, zone1PostReduPos2.z);
                     //四段階目の目標視点を設定
-                    zone2PostReduPos4 = new Vector3(zone2PostReduPos3.x - reduDistance, zone2PostReduPos3.y, zone2PostReduPos3.z);
+                    zone1PostReduPos4 = new Vector3(zone1PostReduPos3.x + reduDistance, zone1PostReduPos3.y, zone1PostReduPos3.z);
                     //五段階目の目標視点を設定
-                    zone2PostReduPos5 = new Vector3(zone2PostReduPos4.x - reduDistance, zone2PostReduPos4.y, zone2PostReduPos4.z);
+                    zone1PostReduPos5 = new Vector3(zone1PostReduPos4.x + reduDistance, zone1PostReduPos4.y, zone1PostReduPos4.z);
                     //六段階目の目標視点を設定
-                    zone2PostReduPos6 = new Vector3(zone2PostReduPos5.x - reduDistance, zone2PostReduPos5.y, zone2PostReduPos5.z);
+                    zone1PostReduPos6 = new Vector3(zone1PostReduPos5.x + reduDistance, zone1PostReduPos5.y, zone1PostReduPos5.z);
 
                     //一段階目の拡大目標地点設定
-                    zone2PostMagPos1 = new Vector3(zone2PostReduPos6.x + reduDistance, zone2PostReduPos6.y, zone2PostReduPos6.z);
+                    zone1PostMagPos1 = new Vector3(zone1PostReduPos6.x - reduDistance, zone1PostReduPos6.y, zone1PostReduPos6.z);
                     //二段階目の拡大目標地点設定
-                    zone2PostMagPos2 = new Vector3(zone2PostMagPos1.x + reduDistance, zone2PostMagPos1.y, zone2PostMagPos1.z);
+                    zone1PostMagPos2 = new Vector3(zone1PostMagPos1.x - reduDistance, zone1PostMagPos1.y, zone1PostMagPos1.z);
                     //三段階目の拡大目標地点設定
-                    zone2PostMagPos3 = new Vector3(zone2PostMagPos2.x + reduDistance, zone2PostMagPos2.y, zone2PostMagPos2.z);
+                    zone1PostMagPos3 = new Vector3(zone1PostMagPos2.x - reduDistance, zone1PostMagPos2.y, zone1PostMagPos2.z);
                     //四段階目の拡大目標地点設定
-                    zone2PostMagPos4 = new Vector3(zone2PostMagPos3.x + reduDistance, zone2PostMagPos3.y, zone2PostMagPos3.z);
+                    zone1PostMagPos4 = new Vector3(zone1PostMagPos3.x - reduDistance, zone1PostMagPos3.y, zone1PostMagPos3.z);
                     //五段階目の拡大目標地点設定
-                    zone2PostMagPos5 = new Vector3(zone2PostMagPos4.x + reduDistance, zone2PostMagPos4.y, zone2PostMagPos4.z);
+                    zone1PostMagPos5 = new Vector3(zone1PostMagPos4.x - reduDistance, zone1PostMagPos4.y, zone1PostMagPos4.z);
                     //六段階目の拡大目標地点設定
-                    zone2PostMagPos6 = new Vector3(zone2PostMagPos5.x + reduDistance, zone2PostMagPos5.y, zone2PostMagPos5.z);
+                    zone1PostMagPos6 = new Vector3(zone1PostMagPos5.x - reduDistance, zone1PostMagPos5.y, zone1PostMagPos5.z);
                     break;
             }
 
@@ -251,22 +251,22 @@ public class ChildZone2 : MonoBehaviour
         switch (parentScript.nowReduStage)
         {
             case 1.0f:  //一回目の縮小
-                transform.position = Vector3.MoveTowards(transform.position, zone2PostReduPos1, zone2MoveSpeed);
+                transform.position = Vector3.MoveTowards(transform.position, zone1PostReduPos1, zone1MoveSpeed);
                 break;
             case 2.0f:  //二回目の縮小
-                transform.position = Vector3.MoveTowards(transform.position, zone2PostReduPos2, zone2MoveSpeed);
+                transform.position = Vector3.MoveTowards(transform.position, zone1PostReduPos2, zone1MoveSpeed);
                 break;
             case 3.0f:  //三回目の縮小
-                transform.position = Vector3.MoveTowards(transform.position, zone2PostReduPos3, zone2MoveSpeed);
+                transform.position = Vector3.MoveTowards(transform.position, zone1PostReduPos3, zone1MoveSpeed);
                 break;
             case 4.0f:  //四回目の縮小
-                transform.position = Vector3.MoveTowards(transform.position, zone2PostReduPos4, zone2MoveSpeed);
+                transform.position = Vector3.MoveTowards(transform.position, zone1PostReduPos4, zone1MoveSpeed);
                 break;
             case 5.0f:  //五回目の縮小
-                transform.position = Vector3.MoveTowards(transform.position, zone2PostReduPos5, zone2MoveSpeed);
+                transform.position = Vector3.MoveTowards(transform.position, zone1PostReduPos5, zone1MoveSpeed);
                 break;
             case 6.0f:  //六回目の縮小
-                transform.position = Vector3.MoveTowards(transform.position, zone2PostReduPos6, zone2MoveSpeed);
+                transform.position = Vector3.MoveTowards(transform.position, zone1PostReduPos6, zone1MoveSpeed);
                 break;
         }
     }
@@ -282,78 +282,78 @@ public class ChildZone2 : MonoBehaviour
         {
             case 1.0f:  //一回目の縮小チェック
                 //現在位置と目標位置の距離を計算
-                dis = Vector3.Distance(zone2NowPos, zone2PostReduPos1);
+                dis = Vector3.Distance(zone1NowPos, zone1PostReduPos1);
 
                 //縮小完了しているか(誤差１まで許容)
                 if (dis <= 1.0f)
                 {
                     //親スクリプトの変数加算
-                    parentScript.zone2NowReduStage = 1.0f;
+                    parentScript.zone1NowReduStage = 1.0f;
 
                     dis = 0.0f;
                 }
                 break;
             case 2.0f:  //二回目の縮小チェック
                 //現在位置と目標位置の距離を計算
-                dis = Vector3.Distance(zone2NowPos, zone2PostReduPos2);
+                dis = Vector3.Distance(zone1NowPos, zone1PostReduPos2);
 
                 //縮小完了しているか(誤差１まで許容)
                 if (dis <= 1.0f)
                 {
                     //親スクリプトの変数加算
-                    parentScript.zone2NowReduStage = 2.0f;
+                    parentScript.zone1NowReduStage = 2.0f;
 
                     dis = 0.0f;
                 }
                 break;
             case 3.0f:  //三回目の縮小チェック
                 //現在位置と目標位置の距離を計算
-                dis = Vector3.Distance(zone2NowPos, zone2PostReduPos3);
+                dis = Vector3.Distance(zone1NowPos, zone1PostReduPos3);
 
                 //縮小完了しているか(誤差１まで許容)
                 if (dis <= 1.0f)
                 {
                     //親スクリプトの変数加算
-                    parentScript.zone2NowReduStage = 3.0f;
+                    parentScript.zone1NowReduStage = 3.0f;
 
                     dis = 0.0f;
                 }
                 break;
             case 4.0f:  //四回目の縮小チェック
                 //現在位置と目標位置の距離を計算
-                dis = Vector3.Distance(zone2NowPos, zone2PostReduPos4);
+                dis = Vector3.Distance(zone1NowPos, zone1PostReduPos4);
 
                 //縮小完了しているか(誤差１まで許容)
                 if (dis <= 1.0f)
                 {
                     //親スクリプトの変数加算
-                    parentScript.zone2NowReduStage = 4.0f;
+                    parentScript.zone1NowReduStage = 4.0f;
 
                     dis = 0.0f;
                 }
                 break;
             case 5.0f:  //五回目の縮小チェック
                 //現在位置と目標位置の距離を計算
-                dis = Vector3.Distance(zone2NowPos, zone2PostReduPos5);
+                dis = Vector3.Distance(zone1NowPos, zone1PostReduPos5);
 
                 //縮小完了しているか(誤差１まで許容)
                 if (dis <= 1.0f)
                 {
                     //親スクリプトの変数加算
-                    parentScript.zone2NowReduStage = 5.0f;
+                    parentScript.zone1NowReduStage = 5.0f;
 
                     dis = 0.0f;
                 }
                 break;
             case 6.0f:  //六回目の縮小チェック
                 //現在位置と目標位置の距離を計算
-                dis = Vector3.Distance(zone2NowPos, zone2PostReduPos6);
+                dis = Vector3.Distance(zone1NowPos, zone1PostReduPos6);
 
                 //縮小完了しているか(誤差１まで許容)
                 if (dis <= 1.0f)
                 {
                     //親スクリプトの変数加算
-                    parentScript.zone2NowReduStage = 6.0f;
+                    parentScript.zone1NowReduStage = 6.0f;
 
                     dis = 0.0f;
                 }
@@ -368,22 +368,22 @@ public class ChildZone2 : MonoBehaviour
         switch (parentScript.nowMagStage)
         {
             case 1.0f:  //一回目の拡大
-                transform.position = Vector3.MoveTowards(transform.position, zone2PostMagPos1, zone2MoveSpeed);
+                transform.position = Vector3.MoveTowards(transform.position, zone1PostMagPos1, zone1MoveSpeed);
                 break;
             case 2.0f:  //二回目の拡大
-                transform.position = Vector3.MoveTowards(transform.position, zone2PostMagPos2, zone2MoveSpeed);
+                transform.position = Vector3.MoveTowards(transform.position, zone1PostMagPos2, zone1MoveSpeed);
                 break;
             case 3.0f:  //三回目の拡大
-                transform.position = Vector3.MoveTowards(transform.position, zone2PostMagPos3, zone2MoveSpeed);
+                transform.position = Vector3.MoveTowards(transform.position, zone1PostMagPos3, zone1MoveSpeed);
                 break;
             case 4.0f:  //四回目の拡大
-                transform.position = Vector3.MoveTowards(transform.position, zone2PostMagPos4, zone2MoveSpeed);
+                transform.position = Vector3.MoveTowards(transform.position, zone1PostMagPos4, zone1MoveSpeed);
                 break;
             case 5.0f:  //五回目の拡大
-                transform.position = Vector3.MoveTowards(transform.position, zone2PostMagPos5, zone2MoveSpeed);
+                transform.position = Vector3.MoveTowards(transform.position, zone1PostMagPos5, zone1MoveSpeed);
                 break;
             case 6.0f:  //六回目の拡大
-                transform.position = Vector3.MoveTowards(transform.position, zone2PostMagPos6, zone2MoveSpeed);
+                transform.position = Vector3.MoveTowards(transform.position, zone1PostMagPos6, zone1MoveSpeed);
                 break;
         }
     }
@@ -399,78 +399,78 @@ public class ChildZone2 : MonoBehaviour
         {
             case 1.0f:  //一回目の拡大チェック
                 //現在位置と目標位置の距離を計算
-                dis = Vector3.Distance(nowZone2Pos, zone2PostMagPos1);
+                dis = Vector3.Distance(nowZone1Pos, zone1PostMagPos1);
 
                 //縮小完了しているか(誤差１まで許容)
                 if (dis <= 1.0f)
                 {
                     //親スクリプトの変数加算
-                    parentScript.zone2NowMagStage = 1.0f;
+                    parentScript.zone1NowMagStage = 1.0f;
 
                     dis = 0.0f;
                 }
                 break;
             case 2.0f:  //二回目の拡大チェック
                 //現在位置と目標位置の距離を計算
-                dis = Vector3.Distance(nowZone2Pos, zone2PostMagPos2);
+                dis = Vector3.Distance(nowZone1Pos, zone1PostMagPos2);
 
                 //縮小完了しているか(誤差１まで許容)
                 if (dis <= 1.0f)
                 {
                     //親スクリプトの変数加算
-                    parentScript.zone2NowMagStage = 2.0f;
+                    parentScript.zone1NowMagStage = 2.0f;
 
                     dis = 0.0f;
                 }
                 break;
             case 3.0f:  //三回目の拡大チェック
                 //現在位置と目標位置の距離を計算
-                dis = Vector3.Distance(nowZone2Pos, zone2PostMagPos3);
+                dis = Vector3.Distance(nowZone1Pos, zone1PostMagPos3);
 
                 //縮小完了しているか(誤差１まで許容)
                 if (dis <= 1.0f)
                 {
                     //親スクリプトの変数加算
-                    parentScript.zone2NowMagStage = 3.0f;
+                    parentScript.zone1NowMagStage = 3.0f;
 
                     dis = 0.0f;
                 }
                 break;
             case 4.0f:  //四回目の拡大チェック
                 //現在位置と目標位置の距離を計算
-                dis = Vector3.Distance(nowZone2Pos, zone2PostMagPos4);
+                dis = Vector3.Distance(nowZone1Pos, zone1PostMagPos4);
 
                 //縮小完了しているか(誤差１まで許容)
                 if (dis <= 1.0f)
                 {
                     //親スクリプトの変数加算
-                    parentScript.zone2NowMagStage = 4.0f;
+                    parentScript.zone1NowMagStage = 4.0f;
 
                     dis = 0.0f;
                 }
                 break;
             case 5.0f:  //五回目の拡大チェック
                 //現在位置と目標位置の距離を計算
-                dis = Vector3.Distance(nowZone2Pos, zone2PostMagPos5);
+                dis = Vector3.Distance(nowZone1Pos, zone1PostMagPos5);
 
                 //縮小完了しているか(誤差１まで許容)
                 if (dis <= 1.0f)
                 {
                     //親スクリプトの変数加算
-                    parentScript.zone2NowMagStage = 5.0f;
+                    parentScript.zone1NowMagStage = 5.0f;
 
                     dis = 0.0f;
                 }
                 break;
             case 6.0f:  //六回目の拡大チェック
                 //現在位置と目標位置の距離を計算
-                dis = Vector3.Distance(nowZone2Pos, zone2PostMagPos6);
+                dis = Vector3.Distance(nowZone1Pos, zone1PostMagPos6);
 
                 //縮小完了しているか(誤差１まで許容)
                 if (dis <= 1.0f)
                 {
                     //親スクリプトの変数加算
-                    parentScript.zone2NowMagStage = 6.0f;
+                    parentScript.zone1NowMagStage = 6.0f;
 
                     dis = 0.0f;
                 }

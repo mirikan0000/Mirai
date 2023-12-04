@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChildZone3 : MonoBehaviour
+public class BackZone : MonoBehaviour
 {
     [SerializeField]
     [Header("安置移動用")]
@@ -36,7 +36,7 @@ public class ChildZone3 : MonoBehaviour
 
     [Header("オブジェクト＆スクリプト取得用")]
     private GameObject parentObj;        //親オブジェクト
-    private SaftyZoneV2 parentScript;  //親オブジェクトのスクリプト
+    private SaftyZoneObjV3 parentScript;  //親オブジェクトのスクリプト
 
     void Start()
     {
@@ -88,7 +88,7 @@ public class ChildZone3 : MonoBehaviour
 
         //親オブジェクト＆スクリプト取得
         parentObj = transform.parent.gameObject;
-        parentScript = parentObj.GetComponent<SaftyZoneV2>();
+        parentScript = parentObj.GetComponent<SaftyZoneObjV3>();
 
         //安置の移動量を設定
         SetMoveDistance();

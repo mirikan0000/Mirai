@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaftyZoneV2 : MonoBehaviour
+public class SaftyZoneObjV3 : MonoBehaviour
 {
     [SerializeField]
     [Header("à¿íuägèkóp")]

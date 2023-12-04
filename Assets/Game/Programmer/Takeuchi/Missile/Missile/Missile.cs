@@ -23,6 +23,8 @@ public class Missile : Weapon
     public NavMeshAgent missile;   //ナビメッシュ取得用
     public int missileShootor;     //誰がミサイルを生成したのか
 
+    public float heightValue;   //ナビメッシュからの高さ
+
     [Header("親オブジェクト取得用")]
     public GameObject parentPlayerObj;  //ミサイルを発射したPlayerのオブジェクト
 
@@ -37,7 +39,7 @@ public class Missile : Weapon
         missileHomingTime = 0.0f;
 
         //ナビメッシュ取得
-        missile = gameObject.GetComponent<NavMeshAgent>();
+        missile = GetComponent<NavMeshAgent>();
 
         //音声ファイル取得
         explosionSE = GetComponent<AudioSource>();
@@ -115,7 +117,10 @@ public class Missile : Weapon
                     //ミサイルの追尾時間が最大になるまで敵に向かって飛ばす(AINavigation使用)
                     if (missileHomingTime < missileMaxHomingTime)
                     {
-                        missile.destination = targetObj.transform.position;
+                        missile.SetDestination(targetObj.transform.position);
+
+                        //高さを変更して飛ばす
+                        ChangeMissileHeight();
                     }
                     else  //最大になったら爆発
                     {
@@ -129,6 +134,29 @@ public class Missile : Weapon
             Debug.Log("敵が設定されていません");
         }
         
+    }
+
+    //ミサイルの高さを調整
+    private void ChangeMissileHeight()
+    {
+        Vector3 newPos = transform.position;
+        newPos.y = GetNavMeshHeight() + heightValue;
+        transform.position = newPos;
+    }
+
+    //ナビメッシュの高さを取得
+    private float GetNavMeshHeight()
+    {
+        NavMeshHit hit;
+
+        if(NavMesh.SamplePosition(transform.position,out hit, 10.0f, NavMesh.AllAreas))
+        {
+            return hit.position.y;
+        }
+        else
+        {
+            return 0.0f;
+        }
     }
 
     //敵を補足する
@@ -164,18 +192,18 @@ public class Missile : Weapon
         //親オブジェクト取得
         parentPlayerObj = transform.parent.gameObject;
 
-        //親オブジェクトのスクリプトを取得
+        
         if (parentPlayerObj != null)  //Nullチェック
         {
             //生成した親オブジェクトの名前で飛行状態かの判定
             //誰が発射したのかも判定
-            if (parentPlayerObj.gameObject.name == "Player1")
+            if (parentPlayerObj.gameObject.name == "1P")
             {
                 missileShootor = 1;
                 missileFireCheck = true;
                 
             }
-            else if (parentPlayerObj.gameObject.name == "Player2")
+            else if (parentPlayerObj.gameObject.name == "2P")
             {
                 missileShootor = 2;
                 missileFireCheck = true;

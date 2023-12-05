@@ -15,11 +15,6 @@ public class BulletManagerUI : MonoBehaviour
     [SerializeField] private Image NorMalBUllet_rightDigitImage;
     [SerializeField] private Image NormalBUllet_leftDigitImage;
 
-    //[SerializeField] private Image MissileBUllet_rightDigitImage;
-    //[SerializeField] private Image MissileBUllet_leftDigitImage;
-
-    //[SerializeField] private Image PenetoratingBUllet_rightDigitImage;
-    //[SerializeField] private Image PenetoratingBUllet_leftDigitImage;
 
     void Start()
     {
@@ -32,6 +27,7 @@ public class BulletManagerUI : MonoBehaviour
     void Update()
     {
         // ここで必要なら更新処理を追加
+        UpdateUI();
     }
 
     private void UpdateUI()

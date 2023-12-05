@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4762985151071882822}
   - component: {fileID: 4424150595576563502}
   - component: {fileID: 4941922398669824342}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BackZone
   m_TagString: Anti
   m_Icon: {fileID: 0}
@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 6995700372682036410}
   - component: {fileID: 9106521700627201505}
   - component: {fileID: 5575231477409860712}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightZone
   m_TagString: Anti
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 6041766241800618347}
   - component: {fileID: 1639079272223617146}
   - component: {fileID: 7315288153581762643}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FrontZone
   m_TagString: Anti
   m_Icon: {fileID: 0}
@@ -609,7 +609,7 @@ GameObject:
   - component: {fileID: 5011089218233452238}
   - component: {fileID: 8834031910031926131}
   - component: {fileID: 4164478499101457632}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftZone
   m_TagString: Anti
   m_Icon: {fileID: 0}

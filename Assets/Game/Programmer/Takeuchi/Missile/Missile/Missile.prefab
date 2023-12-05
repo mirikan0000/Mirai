@@ -170,7 +170,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 10, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4322753737773611914}
@@ -241,7 +241,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -380,7 +380,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -334000983
   m_Radius: 0.5
-  m_Speed: 10
+  m_Speed: 50
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -429,13 +429,13 @@ MonoBehaviour:
   bulletsMax: 5
   bulletsRemaining: 5
   reloadTime: 2
-  flyingSpeed: 100
+  flyingSpeed: 1000
   missileMaxLifeTime: 100
   missileLifeTime: 0
   missileMaxHomingTime: 10
   missileHomingTime: 0
-  missileMode: 1
   missileFireCheck: 0
+  missileDamage: 50
   player1Obj: {fileID: 0}
   player2Obj: {fileID: 0}
   targetObj: {fileID: 0}

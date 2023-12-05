@@ -26,9 +26,9 @@ public class CreateMap : MonoBehaviour
             }
         }
 
-        //Navmeshê∂ê¨
-        surface = GetComponent<NavMeshSurface>();
-        surface.BuildNavMesh();
+        ////Navmeshê∂ê¨
+        //surface = GetComponent<NavMeshSurface>();
+        //surface.BuildNavMesh();
     }
 
     // Update is called once per frame

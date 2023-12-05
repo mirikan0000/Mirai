@@ -13,8 +13,9 @@ public class Missile : Weapon
     public float missileLifeTime;               //ミサイルの飛行時間
     public float missileMaxHomingTime = 10.0f;  //ミサイルの最大追尾時間
     public float missileHomingTime;             //ミサイルの追尾時間
-    public int missileMode;                     //追尾か追尾じゃないか
     public bool missileFireCheck = false;       //ミサイルが発射されたかどうか
+
+    public int missileDamage = 50;  //ミサイルのダメージ
 
     [Header("追尾用")]
     public GameObject player1Obj;  //Player1のオブジェクト
@@ -59,10 +60,21 @@ public class Missile : Weapon
     }
 
     //当たったら爆発エフェクト&爆発音再生&ミサイル削除
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-         //爆発エフェクト再生&破壊
-        SpawnEffectAndSEAndDestroy();
+        if (collision.gameObject.tag != "Anti")
+        {
+            //プレイヤーに当たっていたらダメージを与える
+            if (collision.gameObject.CompareTag("Player1") || collision.gameObject.CompareTag("Player2"))
+            {
+                collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(missileDamage, collision.gameObject.GetComponent<PlayerHealth>().armorflog);
+            }
+
+            //爆発エフェクト再生&破壊
+            SpawnEffectAndSEAndDestroy();
+        }
+
+        
     }
 
     //爆発エフェクト再生
@@ -100,33 +112,17 @@ public class Missile : Weapon
     {
         if (targetObj != null)  //ターゲットが設定されているか
         {
-            switch (missileMode)
+            //ミサイルの追尾時間が最大になるまで敵に向かって飛ばす(AINavigation使用)
+            if (missileHomingTime < missileMaxHomingTime)
             {
-                case 0:
-                    //ミサイルの飛行時間が最大になるまで飛ばす
-                    if (missileLifeTime < missileMaxLifeTime)
-                    {
-                        
-                    }
-                    else  //最大になったら爆発
-                    {
-                        SpawnEffectAndSEAndDestroy();
-                    }
-                    break;
-                case 1:
-                    //ミサイルの追尾時間が最大になるまで敵に向かって飛ばす(AINavigation使用)
-                    if (missileHomingTime < missileMaxHomingTime)
-                    {
-                        missile.SetDestination(targetObj.transform.position);
+                missile.SetDestination(targetObj.transform.position);
 
-                        //高さを変更して飛ばす
-                        ChangeMissileHeight();
-                    }
-                    else  //最大になったら爆発
-                    {
-                        SpawnEffectAndSEAndDestroy();
-                    }
-                    break;
+                //高さを変更して飛ばす
+                ChangeMissileHeight();
+            }
+            else  //最大になったら爆発
+            {
+                SpawnEffectAndSEAndDestroy();
             }
         }
         else

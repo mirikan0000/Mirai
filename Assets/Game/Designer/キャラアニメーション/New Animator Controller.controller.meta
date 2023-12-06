@@ -1,14 +1,8 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Game/Designer/キャラアニメーション/New Animator Controller.controller.meta
 guid: 15f621cb094cf96419d898bb8b4485ba
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 9100000
-========
-guid: 3c0f5926c892377449f568a8967306bf
-DefaultImporter:
-  externalObjects: {}
->>>>>>>> parent of ea72aee (勝敗のエフェクトの追加、タグ追加):Assets/Game/Programmer/lighting/tokita_light.unitypackage.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 

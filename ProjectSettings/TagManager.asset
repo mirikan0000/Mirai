@@ -16,6 +16,10 @@ TagManager:
   - GameLoop
   - Lound
   - GameCount
+  - effect1
+  - effect2
+  - effect3
+  - effect4
   layers:
   - Default
   - TransparentFX

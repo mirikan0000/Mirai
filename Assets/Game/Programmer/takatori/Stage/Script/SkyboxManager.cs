@@ -1,18 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SkyboxManager : SingletonMonoBehaviour<SkyboxManager>
 {
     public Material morningSkybox;
+    public Material daySkybox;
     public Material nightSkybox;
 
-    private const float secondsInDay = 24 * 60 * 60; // 1“ú‚Ì•b”
+    private const float secondsInDay = 300f; // 1“ú‚Ì•b”
 
     public void UpdateSkybox(float seconds)
     {
         // ‚±‚±‚ÅŠÔ‚É‰‚¶‚ÄƒXƒJƒCƒ{ƒbƒNƒX‚ğØ‚è‘Ö‚¦‚éƒƒWƒbƒN‚ğÀ‘•
         float t = seconds / secondsInDay; // 0‚©‚ç1‚Ì”ÍˆÍ‚É³‹K‰»
-        RenderSettings.skybox = (t < 0.5f) ? morningSkybox : nightSkybox;
+
+        // ‰æ‘œ‚Ì‘JˆÚ‚ğŠŠ‚ç‚©‚É‚·‚é
+        float smoothT = Mathf.SmoothStep(0f, 1f, t);
+
+        if (t < 0.25f)
+        {
+            // ’©‚©‚ç’‹‚Ö‚Ì‘JˆÚ
+            RenderSettings.skybox = morningSkybox;
+        }
+        else if (t < 0.75f)
+        {
+            // ’‹‚©‚ç–é‚Ö‚Ì‘JˆÚ
+            RenderSettings.skybox = daySkybox;
+        }
+        else
+        {
+            // –é‚©‚ç’©‚Ö‚Ì‘JˆÚ
+            RenderSettings.skybox = nightSkybox;
+        }
+
+        // ‰æ‘œ‚Ì‘JˆÚ‚ğŠŠ‚ç‚©‚É‚·‚é
+        RenderSettings.skybox.SetFloat("_Blend", smoothT);
     }
 }

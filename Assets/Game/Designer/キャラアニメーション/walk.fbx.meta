@@ -3,7 +3,27 @@ guid: ba966c748e8df8a48ab1c9690d28f288
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Atama_tx
+    second: {fileID: 2100000, guid: e6c76be48d8ff104fa688acd20fd802b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gun_tx
+    second: {fileID: 2100000, guid: 35388474338e17c478a92b847b0f0b29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Karada_tx
+    second: {fileID: 2100000, guid: dddc7a455cbaa444aa3fbec8c93b5d1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tanku_tx
+    second: {fileID: 2100000, guid: fb960863bc7b55e48ae2a244cb1af92e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

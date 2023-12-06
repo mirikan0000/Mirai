@@ -25,8 +25,8 @@ public class PlayerHealth : MonoBehaviour
 
     //Playerのヒットを確認してSEと赤いヒットエフェクトを出す。
     [SerializeField] private PlayerSound hitSE;
-    [SerializeField]
-    private GameObject PlayerOBJ;
+  //  [SerializeField]
+//    private GameObject PlayerOBJ;
     [SerializeField] private GameObject animationUI;
     public float GetCurrentHP()
     {
@@ -105,10 +105,10 @@ public class PlayerHealth : MonoBehaviour
 
         while (Time.time - startTime < blinkDuration)
         {
-            PlayerOBJ.GetComponent<Renderer>().material.color = Color.red;
+           // PlayerOBJ.GetComponent<Renderer>().material.color = Color.red;
             yield return new WaitForSeconds(1f / blinkSpeed);
 
-            PlayerOBJ.GetComponent<Renderer>().material.color =Color.white;
+           // PlayerOBJ.GetComponent<Renderer>().material.color =Color.white;
             yield return new WaitForSeconds(1f / blinkSpeed);
         }
 

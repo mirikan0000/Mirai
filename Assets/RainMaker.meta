@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/RainMaker.meta
 guid: 10207b2f1d182fa44a13a25647129abd
+========
+guid: f831ba24f60173a4a970e5ba1c79b114
+>>>>>>>> origin/Matsumura_obj:Assets/Game/Programmer/matsumura/オブジェクト.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

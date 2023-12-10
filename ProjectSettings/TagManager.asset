@@ -20,6 +20,7 @@ TagManager:
   - effect2
   - effect3
   - effect4
+  - penetrait
   layers:
   - Default
   - TransparentFX

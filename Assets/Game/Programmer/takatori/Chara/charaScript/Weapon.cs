@@ -46,7 +46,7 @@ public class Weapon:MonoBehaviour
     //照準を合わせている(予測線)
    public bool is_aiming;
     public bool energyballFlug;
-    
+    private bool canShoot = true;
     //予測線GameObjectを保存する
     GameObject pRay;
     //弾丸予測線を構成するための描画数
@@ -63,7 +63,8 @@ public class Weapon:MonoBehaviour
 
    
     private bool isActive;
-
+    public float shotCooldown = 3.0f;
+    [SerializeField] private float lastShotTime = 0f;
     /// <summary>
     /// ボタンを押した瞬間
     /// ※ActionMaps名,Actions名は「InputActionControls」を確認
@@ -132,21 +133,7 @@ public class Weapon:MonoBehaviour
             playerInputDictionary[playerInput.currentActionMap.name] = playerInput;
         }
 
-        // 各弾のプールに初期量の弾を生成しておく
-      //  for (int i = 0; i < 10; i++)
-        //{
-        //    Bullet bullet = InstantiateBullet();
-        //    bullet.gameObject.SetActive(false);
-        //    bulletPool.Add(bullet);
-
-        //    Missile missileBullet = InstantiateMissileBullet();
-        //    missileBullet.gameObject.SetActive(false);
-        //    missileBulletPool.Add(missileBullet);
-
-        //    PenetratingBullet penetratingBullet = InstantiatePenetratingBullet();
-        //    penetratingBullet.gameObject.SetActive(false);
-        //    penetratingBulletPool.Add(penetratingBullet);
-        //}
+ 
     }
     void Update()
     {
@@ -155,8 +142,13 @@ public class Weapon:MonoBehaviour
         Debug.Log("選ばれている番号"+selectedSlotIndex);
         // 武器の切り替え
         SwitchWeapon(selectedSlotIndex);
+        if (canShoot)
+        {
+            Shot();
+        }
+    
 
-        Shot();
+
     }
 
     void SwitchWeapon(int weaponNumber)
@@ -188,69 +180,70 @@ public class Weapon:MonoBehaviour
     }
     void Shot()
     {
-
-        //弾丸予測線
-        //Spaceキーを押し続けると弾丸予測線を描画する
-        if (GetButtonDown("Player", "Fire") || GetButtonDown("Player1", "Fire"))
-        {
-            //予測線
-            //二つ方法(重力、三角関数で模擬放物線)
-            //重力
-            //移動禁止
-            PlayerManager.SetisMoving(false);
-            //照準中(予測線を描画するため)
-            is_aiming = true;
-            energyballFlug = true;
-
-            if (PlayerManager.animator != null)
+       
+            //弾丸予測線
+            //Spaceキーを押し続けると弾丸予測線を描画する
+            if (GetButtonDown("Player", "Fire") || GetButtonDown("Player1", "Fire"))
             {
-                PlayerManager.animator.SetBool("ShotStanby", true);
-            }
-        }
 
-        //弾丸発射
-        if (GetButtonUp("Player", "Fire") || GetButtonUp("Player1", "Fire"))
-        {
-            PlayerManager.SetisMoving(false);
-            //照準済み
-            is_aiming = false;
-            if (PlayerManager.animator != null)
-            {
-                PlayerManager.animator.SetBool("ShotStanby", false);
-                PlayerManager.animator.SetBool("Shot", true);
-            }
-            // 弾数がある場合のみ発射できるようにする
-            if (bulletsRemaining > 0)
-            {
-                // 弾数を減らす
-                bulletsRemaining--;
-         
+                PlayerManager.SetisMoving(false);
+                //照準中(予測線を描画するため)
+                is_aiming = true;
+                energyballFlug = true;
 
-                //  弾丸生成
-                weapon = Instantiate(weapon, transform.position, transform.rotation);
-                //  親子関係を設定する
-                weapon.transform.parent = this.transform;
-                //   1フレーム後に親子関係を解除するコルーチンを呼び出す
-                StartCoroutine(UnparentAfterOneFrame(weapon.transform));
-                //  弾丸の角度をプレイヤーと一致する
-                weapon.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
-                //   弾丸位置はプレイヤーの前にする
-                weapon.transform.Translate(new Vector3(0, bulletCreatePosOffsetY, bulletCreatePosOffsetZ));
-               //SEを鳴らす
-                BulletSE.PlaySmallCanonSoundB();
-                //レイを消す
-                if (pRay != null)
+                if (PlayerManager.animator != null)
                 {
-                    Destroy(pRay);
-                    pRay = null;
-                }
-                // 弾数がなくなったら再装填を始める
-                if (bulletsRemaining == 0 && !isReloading)
-                {
-                    StartCoroutine(Reload());
+                    PlayerManager.animator.SetBool("ShotStanby", true);
                 }
             }
-        }
+
+            //弾丸発射
+            if (GetButtonUp("Player", "Fire") || GetButtonUp("Player1", "Fire"))
+            {
+                
+                PlayerManager.SetisMoving(false);
+                //照準済み
+                is_aiming = false;
+                if (PlayerManager.animator != null)
+                {
+                    PlayerManager.animator.SetBool("ShotStanby", false);
+                    PlayerManager.animator.SetBool("Shot", true);
+                }
+                // 弾数がある場合のみ発射できるようにする
+                if (canShoot&&bulletsRemaining > 0)
+                {
+                    StartCoroutine(ShootCooldown());
+                    // 弾数を減らす
+                    bulletsRemaining--;
+
+
+                    //  弾丸生成
+                    weapon = Instantiate(weapon, transform.position, transform.rotation);
+                    //  親子関係を設定する
+                    weapon.transform.parent = this.transform;
+                    //   1フレーム後に親子関係を解除するコルーチンを呼び出す
+                    StartCoroutine(UnparentAfterOneFrame(weapon.transform));
+                    //  弾丸の角度をプレイヤーと一致する
+                    weapon.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
+                    //   弾丸位置はプレイヤーの前にする
+                    weapon.transform.Translate(new Vector3(0, bulletCreatePosOffsetY, bulletCreatePosOffsetZ));
+                    //SEを鳴らす
+                    BulletSE.PlaySmallCanonSoundB();
+                    //レイを消す
+                    if (pRay != null)
+                    {
+                        Destroy(pRay);
+                        pRay = null;
+                    }
+                    // 弾数がなくなったら再装填を始める
+                    if (bulletsRemaining == 0 && !isReloading)
+                    {
+                        StartCoroutine(Reload());
+                    }
+                }
+            }
+        
+       
         // 照準中のため、弾丸予測線を描画する
         //発射角度も調整できる
         if (is_aiming)
@@ -463,6 +456,13 @@ public class Weapon:MonoBehaviour
         // 弾の新しいインスタンスを生成する
         return Instantiate(penetratingBullet);
     }
+    IEnumerator ShootCooldown()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(shotCooldown);
+        canShoot = true;
+    }
+
 }
 
 

@@ -10,7 +10,7 @@ public class PlayerManager_ : MonoBehaviour
     bool is_start;
 
     [Header("プレイヤーの移動速度")]
-    public float move_speed = 5.0f;
+    public float move_speed = 1.0f;
     public int CurrentMap;
     [SerializeField] float rot_angle = 0.1f;
     public Camera camera;
@@ -43,6 +43,8 @@ public class PlayerManager_ : MonoBehaviour
 
     // アニメーション
     public Animator animator;
+    [Header("アニメーション速度の同期")]
+    [SerializeField] private float animationSpeedMultiplier = 1.0f;
     private Rigidbody rb;
     // Playerの視点カメラ
   //  public GameObject Playercamera;
@@ -102,6 +104,12 @@ public class PlayerManager_ : MonoBehaviour
 
         fragreceiver = GetComponent<Fragreceiver>();
         speedTimer = 0.0f;
+        if (animator)
+        {
+            animator.SetBool("Walk", false);
+            // アニメーターの速度を同期させるためのパラメータを設定
+            animator.SetFloat("Speed", 0.0f);
+        }
     }
 
     public bool GetButtonDown(string actionMapsName, string actionsName)
@@ -295,6 +303,13 @@ public class PlayerManager_ : MonoBehaviour
             {
                 rb.velocity = new Vector3(moveDirection.x, rb.velocity.y, moveDirection.z);
             }
+        // アニメーション速度を同期
+        if (animator)
+        {
+            float animationSpeed = move_speed * animationSpeedMultiplier;
+            animator.SetFloat("Speed", isMoving ? animationSpeed : 0.0f);
+        }
+
         if (OverHeat)
         {
             // 燃料がない場合、速度を半分にする
@@ -305,9 +320,9 @@ public class PlayerManager_ : MonoBehaviour
 
         // アニメーションの設定
         if (animator)
-            {
+        {
                 animator.SetBool("Walk", moveDirection != Vector3.zero);
-            }
+        }
         
 
         // 左右の回転
@@ -335,7 +350,7 @@ public class PlayerManager_ : MonoBehaviour
             CurrentMap = AreaNumber;
         }
     }
-
+ 
     //スピ―ドアップ処理
     private void SpeedUP()
     {

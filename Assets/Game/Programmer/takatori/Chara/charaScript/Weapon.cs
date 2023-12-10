@@ -201,19 +201,24 @@ public class Weapon:MonoBehaviour
             //Æ€’†(—\‘ªü‚ð•`‰æ‚·‚é‚½‚ß)
             is_aiming = true;
             energyballFlug = true;
+
+            if (PlayerManager.animator != null)
+            {
+                PlayerManager.animator.SetBool("ShotStanby", true);
+            }
         }
 
         //’eŠÛ”­ŽË
         if (GetButtonUp("Player", "Fire") || GetButtonUp("Player1", "Fire"))
         {
-            //”­ŽË
-            //“ñ‚Â•û–@(d—ÍAŽOŠpŠÖ”‚Å–Í‹[•ú•¨ü)
-            //d—Í
-            //”­ŽË‚µ‚½Œã‚ÅˆÚ“®‚ð‹–‰Â‚·‚é
             PlayerManager.SetisMoving(false);
             //Æ€Ï‚Ý
             is_aiming = false;
-
+            if (PlayerManager.animator != null)
+            {
+                PlayerManager.animator.SetBool("ShotStanby", false);
+                PlayerManager.animator.SetBool("Shot", true);
+            }
             // ’e”‚ª‚ ‚éê‡‚Ì‚Ý”­ŽË‚Å‚«‚é‚æ‚¤‚É‚·‚é
             if (bulletsRemaining > 0)
             {

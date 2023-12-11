@@ -11,13 +11,7 @@ public class PlayerSound : MonoBehaviour
     [SerializeField]
     AudioClip footstepSound;
     [SerializeField]
-    AudioClip BigCanonSoundA;
-    [SerializeField]
-    AudioClip BigCanonSoundB;
-    [SerializeField]
-    AudioClip SmallCanonSoundA;
-    [SerializeField]
-    AudioClip SmallCanonSoundB;
+    AudioClip CanonSound;
     [SerializeField]
     AudioClip hitSE;
 
@@ -25,22 +19,10 @@ public class PlayerSound : MonoBehaviour
     {
         audioSourceA.PlayOneShot(footstepSound);
     }
-    public void PlayBigCanonSoundA()
+    public void PlayCanonSound()
     {
-        audioSourceB.PlayOneShot(BigCanonSoundA);
-    }
-    public void PlayBigCanonSoundB()
-    {
-        audioSourceB.PlayOneShot(BigCanonSoundB);
-    }
-    public void PlaySmallCanonSoundA()
-    {
-        audioSourceB.PlayOneShot(SmallCanonSoundA);
-    }
-    public void PlaySmallCanonSoundB()
-    {
-        audioSourceB.PlayOneShot(SmallCanonSoundB);
-    }
+        audioSourceB.PlayOneShot(CanonSound);
+    }   
     public void PlayHitSE()
     {
         audioSourceB.PlayOneShot(hitSE);

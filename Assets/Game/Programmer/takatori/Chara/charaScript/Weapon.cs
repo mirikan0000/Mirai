@@ -228,7 +228,7 @@ public class Weapon:MonoBehaviour
                     //   弾丸位置はプレイヤーの前にする
                     weapon.transform.Translate(new Vector3(0, bulletCreatePosOffsetY, bulletCreatePosOffsetZ));
                     //SEを鳴らす
-                    BulletSE.PlaySmallCanonSoundB();
+                    BulletSE.PlayCanonSound();
                     //レイを消す
                     if (pRay != null)
                     {

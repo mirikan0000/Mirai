@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 // ベースのWeaponクラス
 public class Weapon:MonoBehaviour
 {
@@ -65,6 +66,11 @@ public class Weapon:MonoBehaviour
     private bool isActive;
     public float shotCooldown = 3.0f;
     [SerializeField] private float lastShotTime = 0f;
+
+    [SerializeField] private Image reloadFillImage;
+
+    //リロードカウントの左と右
+  
     /// <summary>
     /// ボタンを押した瞬間
     /// ※ActionMaps名,Actions名は「InputActionControls」を確認
@@ -290,8 +296,34 @@ public class Weapon:MonoBehaviour
     IEnumerator Reload()
     {
         isReloading = true;
-        yield return new WaitForSeconds(reloadTime);
-        bulletsRemaining = 5; // 初期弾数に再設定
+        isReloading = true;
+
+        // リロードの開始時に reloadFillImage を 100% にリセット
+        reloadFillImage.fillAmount = 1.0f;
+
+        // リロード時間までの経過時間をカウント
+        float elapsedTime = 0.0f;
+        while (elapsedTime < reloadTime)
+        {
+            // リロード進捗に合わせて FillAmount を更新
+            float fillAmount = 1.0f - (elapsedTime / reloadTime);
+            reloadFillImage.fillAmount = fillAmount;
+
+            // 経過時間を更新
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        // リロードが完了したときに reloadFillImage を 0% にリセット
+        reloadFillImage.fillAmount = 0.0f;
+
+        // 弾薬を補充
+        bulletsRemaining = bulletsMax;
+
+        isReloading = false;
+    
+    bulletsRemaining = 5; // 初期弾数に再設定
                               // 弾をプールに戻す
         foreach (Bullet bullet in bulletPool)
         {

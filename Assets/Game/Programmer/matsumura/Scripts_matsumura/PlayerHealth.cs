@@ -22,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
     public bool isEnd;
     public List<string> unLoadSceneNameList;
     public bool hitflog; //コメントシステム用のフラグ
+    public int cameraShakerIndex; //プレイヤーごとのカメラの識別
 
     //Playerのヒットを確認してSEと赤いヒットエフェクトを出す。
     [SerializeField] private PlayerSound hitSE;
@@ -84,6 +85,7 @@ public class PlayerHealth : MonoBehaviour
             animationUI.GetComponent<Animation>().Play();
         }
 
+        CameraShaker.GetInstance(cameraShakerIndex)?.ShakeCamera(5, 0.5f);
         hitflog = true;
     }
 

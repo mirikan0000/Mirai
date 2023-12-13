@@ -1,40 +1,77 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class CommentTrigger : MonoBehaviour
 {
+    public Camera PlayerCamera;
+    private Vector3 lastPosition;       // 直前の座標
+    private bool positionStable;        // 座標が一定時間変化していないかのフラグ
     private PlayerManager_ playermanager;
     private bool isMovingValue;
+    private DropPlayer dropplayer;
+    private bool dropplayerFlag;
+    private PlayerHealth playerhealth;
+    private bool playerhealthFlag;
+    private Weapon weapon;
+    private bool reloadflag;
+
     public CommentManager commentManager;
 
-    public Camera PlayerCamera;
-    public GameObject targetObject;
-
     public float timeThreshold = 5.0f; // 何秒間座標が変化しないかの閾値
-    private Vector3 lastPosition;      // 直前の座標
     private float timer;               // 経過時間
-    private bool positionStable;       // 座標が一定時間変化していないかのフラグ
 
+    public GameObject targetObject;
     private Vector3 targetlastPosition;
     private bool targetpositionStable;
     private PlayerManager_ targetplayermanager;
     private bool targetIsMovingValue;
-    [SerializeField] private DropPlayer DP;
-    [SerializeField] private PlayerHealth PH;
+    private DropPlayer targetdropplayer;
+    private bool targetdropplayerFlag;
+    private PlayerHealth targetplayerhealth;
+    private bool targetplayerhealthFlag;
+
     private bool dropable = false;
+
+    private static readonly string[] FIND = new string[] { "あれ敵じゃない？", "敵おったな", "ちゃんと画面見てる？" };
+    private static readonly string[] SEARCH = new string[] { "敵どこ？", "こっちから見えないな" };
+    private static readonly string[] STAY = new string[] { "エンスト？", "おもんな", "相手の方行くわー", "戦略だろ", "ブロックしろ", "加藤純二最強!!" };
+    private static readonly string[] ENEMYSTAY = new string[] { "相手動いてないな", "敵ビビッて動かんやんw" };
+    private static readonly string[] SUPPLIES = new string[] { "ケアパケきた！", "ケアパケどこ？", "物資探しに行こ！" };
+    private static readonly string[] NOTMOVE = new string[] { "ゲージ見ろ", "相手に位置伝えるわw", "適度に止まるといいですよ" };
+    private static readonly string[] ENEMTNOTMOVE = new string[] { "相手ガス欠してるよ", "ガス欠とかギャグやろw", "チャンスや潰せw" };
+    private static readonly string[] UPGRADE = new string[] { "中身えぐ", "勝ったな" };
+    private static readonly string[] ENEMYUPGRADE = new string[] { "物資とられた？", "相手強くなった" };
+    private static readonly string[] HIT = new string[] { "今の避けろよ", "痛くね？", "まだ勝てる", "終わった" };
+    private static readonly string[] ENEMYHIT = new string[] { "うっま", "これはやってる", "ナイス！", "いいね", "やるやん", "おおおおおおおお" };
+    private static readonly string[] SPAWNER = new string[] { "次の安置は？", "エリア見よ" };
+    private static readonly string[] RELOAD = new string[] { "弾込めて！", "ナイスリロード", "弾大事にしよ" };
 
     void Start()
     {
         InitializePositionTracking();
-        //playermanager = GetComponent<PlayerManager_>();
-        //isMovingValue = playermanager.GetIsMoving();
-        //targetplayermanager = targetObject.GetComponent<PlayerManager_>();
-        //targetIsMovingValue = targetplayermanager.GetIsMoving();
+        playermanager = GetComponent<PlayerManager_>();
+        dropplayer = GetComponent<DropPlayer>();
+        playerhealth = GetComponent<PlayerHealth>();
+        weapon = GetComponent<Weapon>();
+
+        targetplayermanager = targetObject.GetComponent<PlayerManager_>();
+        targetdropplayer = targetObject.GetComponent<DropPlayer>();
+        targetplayerhealth = targetObject.GetComponent<PlayerHealth>();
     }
 
     void Update()
     {
+        isMovingValue = playermanager.GetIsMoving();
+        dropplayerFlag = dropplayer.GetOpenBoxFlag();
+        playerhealthFlag = playerhealth.GetHitFlag();
+        reloadflag = weapon.GetReloadFlag();
+
+        targetIsMovingValue = targetplayermanager.GetIsMoving();
+        targetdropplayerFlag = targetdropplayer.GetOpenBoxFlag();
+        targetplayerhealthFlag = targetplayerhealth.GetHitFlag();
+
         UpdatePosition();
 
         if (PlayerCamera != null && targetObject != null)
@@ -42,70 +79,80 @@ public class CommentTrigger : MonoBehaviour
             // カメラがオブジェクトを映しているかどうかを確認
             if (IsObjectVisibleInCamera())
             {
-                commentManager.SetCommentTextWithWeight("エネミーを発見しました！", 9);
+                string find = FIND.ElementAt(Random.Range(0, FIND.Count()));
+                commentManager.SetCommentTextWithWeight(find, 2);
             }
             else
             {
-                commentManager.SetCommentTextWithWeight("エネミーを探して！", 1);
+                string search = SEARCH.ElementAt(Random.Range(0, SEARCH.Count()));
+                commentManager.SetCommentTextWithWeight(search, 1);
             }
         }
         //自プレイヤーが動いてない場合
         if (positionStable)
         {
-            commentManager.SetCommentTextWithWeight("動いてない！", 1);
+            string stay = STAY.ElementAt(Random.Range(0, STAY.Count()));
+            commentManager.SetCommentTextWithWeight(stay, 1);
         }
         //敵プレイヤーが動いてない場合
         if (targetpositionStable)
         {
-            commentManager.SetCommentTextWithWeight("敵動いてない！", 2);
+            string enemystay = ENEMYSTAY.ElementAt(Random.Range(0, ENEMYSTAY.Count()));
+            commentManager.SetCommentTextWithWeight(enemystay, 2);
         }
         //物資が出現した場合
-        //if (dropable)
-        //{
-        //    commentManager.SetCommentText("物資来てる！");
-        //}
-        ////物資を取得した
-        //if (DP.speedFlag == true)
-        //{
-        //    commentManager.SetCommentText("速くなった！");
-        //}
-        //if (DP.powerFlag == true)
-        //{
-        //    commentManager.SetCommentText("強くなった！");
-        //}
-        ////敵が物資を取得した
+        if (dropable)
+        {
+            string supplies = SUPPLIES.ElementAt(Random.Range(0, SUPPLIES.Count()));
+            commentManager.SetCommentTextWithWeight(supplies, 2);
+        }
+        //物資を取得した
+        if (dropplayerFlag)
+        {
+            string upgrade = UPGRADE.ElementAt(Random.Range(0, UPGRADE.Count()));
+            commentManager.SetCommentTextWithWeight(upgrade, 2);
+        }
 
-        //// DropPlayerコンポーネントがアタッチされている場合、そのFlagにアクセス
-        //if (DP != null && DP.speedFlag)
-        //{
-        //    commentManager.SetCommentText("敵が速くなった！");
-        //}
-        //if (DP != null && DP.powerFlag)
-        //{
-        //    commentManager.SetCommentText("敵が強くなった！");
-        //}
-        ////被弾
-        //if (PH.hitflog)
-        //{
-        //    commentManager.SetCommentText("ダメージを受けた！");
-        //}
+        //敵が物資を取得した
+        if (targetdropplayerFlag)
+        {
+            string enemyupgrade = ENEMYUPGRADE.ElementAt(Random.Range(0, ENEMYUPGRADE.Count()));
+            commentManager.SetCommentTextWithWeight(enemyupgrade, 2);
+        }
 
-        //// DropPlayerコンポーネントがアタッチされている場合、そのFlagにアクセス
-        //if (PH != null && PH.hitflog)
-        //{
-        //    commentManager.SetCommentText("敵にダメージを与えた！");
-        //}
+        //被弾
+        if (playerhealth)
+        {
+            string hit = HIT.ElementAt(Random.Range(0, HIT.Count()));
+            commentManager.SetCommentTextWithWeight(hit, 2);
+        }
+
+        //敵が被弾
+        if (targetplayerhealthFlag)
+        {
+            string enemyhit = ENEMYHIT.ElementAt(Random.Range(0, ENEMYHIT.Count()));
+            commentManager.SetCommentTextWithWeight(enemyhit, 2);
+        }
 
         //移動エネルギーが切れた場合
-        //if (!isMovingValue)
-        //{
-        //    commentManager.SetCommentText("移動エネルギーが切れた！");
-        //}
-        ////敵の移動エネルギーが切れた場合
-        //if (!targetIsMovingValue)
-        //{
-        //    commentManager.SetCommentText("敵の移動エネルギーが切れた！");
-        //}
+        if (!isMovingValue)
+        {
+            string notmove = NOTMOVE.ElementAt(Random.Range(0, NOTMOVE.Count()));
+            commentManager.SetCommentTextWithWeight(notmove, 2);
+        }
+        //敵の移動エネルギーが切れた場合
+        if (!targetIsMovingValue)
+        {
+            string enemynotmove = ENEMTNOTMOVE.ElementAt(Random.Range(0, ENEMTNOTMOVE.Count()));
+            commentManager.SetCommentTextWithWeight(enemynotmove, 2);
+        }
+
+        //リロード中
+        if (reloadflag)
+        {
+            string reload = RELOAD.ElementAt(Random.Range(0, RELOAD.Count()));
+            commentManager.SetCommentTextWithWeight(reload, 2);
+        }
     }
 
     private bool IsObjectVisibleInCamera()

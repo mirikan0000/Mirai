@@ -57,11 +57,6 @@ public class CommentManager : MonoBehaviour
         {
             situationStack = new Stack<WeightedComment>(situationStack.Where(comment => comment != commentToRemove));
         }
-
-        foreach (var weightedComment in situationStack)
-        {
-            Debug.Log("ÉRÉÅÉìÉg: " + weightedComment.Comment);
-        }
     }
 
     private bool IsCommentAlreadyInStack(WeightedComment weightedComment)

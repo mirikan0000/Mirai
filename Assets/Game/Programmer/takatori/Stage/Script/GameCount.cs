@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameCount : SingletonMonoBehaviour<GameCount>
 {
     public int roundCount = 0;
-    private int roundsToWin = 5;
+    public int roundsToWin = 5;
     public int player1Wins = 0;
     public int player2Wins = 0;
     // 別のクラスや方法を使用してデータを保存する

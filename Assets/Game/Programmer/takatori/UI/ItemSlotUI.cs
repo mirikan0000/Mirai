@@ -33,7 +33,6 @@ public class ItemSlotUI : MonoBehaviour
     {
         if (objects == null || objects.Length == 0)
         {
-            Debug.LogError("objects is not initialized or empty.");
             return;
         }
 
@@ -50,7 +49,6 @@ public class ItemSlotUI : MonoBehaviour
     {
         if (objects == null || objects.Length == 0)
         {
-            Debug.LogError("objects is not initialized or empty.");
             return;
         }
 
@@ -77,7 +75,6 @@ public class ItemSlotUI : MonoBehaviour
     {
         if (objects == null || objects.Length == 0)
         {
-            Debug.LogError("objects is not initialized or empty.");
             return -1;
         }
 

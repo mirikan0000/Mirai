@@ -185,7 +185,11 @@ public class PlayerManager_ : MonoBehaviour
     {
         if (is_start)
         {
-            itemStep();
+            if (!weapon.isReloading)
+            {
+                itemStep();
+            }
+            
             if (!weapon.is_aiming)
             {
                 MoveStep();

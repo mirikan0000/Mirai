@@ -20,6 +20,8 @@ public class Weapon:MonoBehaviour
     [SerializeField] private Weapon weapon=null;
     [SerializeField] private Fragreceiver fragreceiver;
     [SerializeField]private Bullet bullet1;
+    [SerializeField] private ThroughManager penetoraitManager;
+    [SerializeField] private MissileManager missileManager;
     [SerializeField] private Missile missileBullet;
     [SerializeField] private PenetratingBullet penetratingBullet;
     private List<Bullet> bulletPool = new List<Bullet>();
@@ -63,6 +65,7 @@ public class Weapon:MonoBehaviour
     bool flog_Missile;
     bool flog_penetoratBullet;
     bool flog_normalBullet;
+    private bool canSwitchWeapon = true;
     // 各武器の残弾数
     [Header("通常弾初期弾数")] [SerializeField] private int normalBulletsMax = 5;
     [Header("通常弾現在の弾数")] [SerializeField] public int normalBulletsRemaining = 5;
@@ -86,7 +89,7 @@ public class Weapon:MonoBehaviour
     [SerializeField] private Image reloadFillImageNormal;
     [SerializeField] private Image reloadFillImageMissile;
     [SerializeField] private Image reloadFillImagepenetrait;
-
+    private float currentReloadTime;
     //リロードカウントの左と右
 
     /// <summary>
@@ -161,46 +164,57 @@ public class Weapon:MonoBehaviour
     }
     void Update()
     {
-        // アイテムスロットから現在選択されているアイテムを取得
         int selectedSlotIndex = itemSlotUI.GetCurrentSlotIndex();
-        Debug.Log("選ばれている番号"+selectedSlotIndex);
-        // 武器の切り替え
-        SwitchWeapon(selectedSlotIndex);
-        if (canShoot)
+        if (isReloading)
         {
-            Shot();
+            canSwitchWeapon = false;
         }
-    
-
-
+        else
+        {
+            canSwitchWeapon = true;
+            // アイテムスロットから現在選択されているアイテムを取得
+            SwitchWeapon(selectedSlotIndex);
+            Weaponcase = (weaponcase)selectedSlotIndex;
+            if (canShoot)
+            {
+                Shot();
+            }
+        }
+   
+        // リロード中は武器の切り替えを禁止
+        
     }
 
     void SwitchWeapon(int weaponNumber)
     {
         // 武器の切り替え処理
-        switch (weaponNumber)
+        if (canSwitchWeapon)
         {
-            case 0:
-                weapon = bullet1;
-                flog_penetoratBullet = false;
-                flog_Missile = false;
-                flog_normalBullet = true;
-                break;
-            case 1:
-                weapon = missileBullet;
-                flog_penetoratBullet = false;
-                flog_Missile = true;
-                flog_normalBullet = false;
-                break;
-            case 2:
-                weapon = penetratingBullet;
-                flog_penetoratBullet = true;
-                flog_Missile = false;
-                flog_normalBullet = false;
-                break;
-            default:
-                break;
+            switch (weaponNumber)
+            {
+                case 0:
+                    weapon = bullet1;
+                    flog_penetoratBullet = false;
+                    flog_Missile = false;
+                    flog_normalBullet = true;
+                    break;
+                case 1:
+                    weapon = missileBullet;
+                    flog_penetoratBullet = false;
+                    flog_Missile = true;
+                    flog_normalBullet = false;
+                    break;
+                case 2:
+                    weapon = penetratingBullet;
+                    flog_penetoratBullet = true;
+                    flog_Missile = false;
+                    flog_normalBullet = false;
+                    break;
+                default:
+                    break;
+            }
         }
+           
     }
     void Shot()
     {
@@ -239,7 +253,7 @@ public class Weapon:MonoBehaviour
                 {
                     StartCoroutine(ShootCooldown());
                 int selectedSlotIndex = itemSlotUI.GetCurrentSlotIndex();
-                Weaponcase = (weaponcase)selectedSlotIndex;
+                
                 switch (Weaponcase)
                 {
                     case weaponcase.Normal:
@@ -258,10 +272,10 @@ public class Weapon:MonoBehaviour
                         pRay = null;
                     }
                     // 弾数がなくなったら再装填を始める
-                  if (normalBulletsRemaining ==0&&!isReloading)
-                {
+                 if ((penetratingBulletsRemaining == 0|| missileBulletsRemaining == 0 || normalBulletsRemaining ==0)&&!isReloading)
+                 {
                     StartCoroutine(Reload());
-                }
+                 }
             }
             }
         
@@ -313,9 +327,9 @@ public class Weapon:MonoBehaviour
     {
         isReloading = true;
        
-        reloadFillImageNormal.fillAmount = 1.0f;
+      //  reloadFillImageNormal.fillAmount = 1.0f;
         float reloadTime = 0.0f;
-       
+   
         switch (Weaponcase)
         {
             case weaponcase.Normal:
@@ -395,6 +409,8 @@ public class Weapon:MonoBehaviour
         {
             bulletPool.Remove(bullet);
         }
+      
+        
         List<Missile> bulletsToDisable2 = new List<Missile>();
         // ミサイル弾をプールに戻す
         foreach (Missile missileBullet in missileBulletPool)
@@ -410,6 +426,7 @@ public class Weapon:MonoBehaviour
         {
             missileBulletPool.Remove(bullet);
         }
+
         List<PenetratingBullet> bulletsToDisable3 = new List<PenetratingBullet>();
         // 貫通弾をプールに戻す
         foreach (PenetratingBullet penetratingBullet in penetratingBulletPool)
@@ -507,39 +524,7 @@ public class Weapon:MonoBehaviour
         return newBullet;
     }
 
-    Missile GetInactiveMissileBullet()
-    {
-        foreach (Missile missileBullet in missileBulletPool)
-        {
-            if (!missileBullet.gameObject.activeInHierarchy)
-            {
-                return missileBullet;
-            }
-        }
-
-        // プール内に使用可能な弾がない場合は新しく生成してプールに追加する
-        Missile newMissileBullet = InstantiateMissileBullet();
-        missileBulletPool.Add(newMissileBullet);
-
-        return newMissileBullet;
-    }
-
-    PenetratingBullet GetInactivePenetratingBullet()
-    {
-        foreach (PenetratingBullet penetratingBullet in penetratingBulletPool)
-        {
-            if (!penetratingBullet.gameObject.activeInHierarchy)
-            {
-                return penetratingBullet;
-            }
-        }
-
-        // プール内に使用可能な弾がない場合は新しく生成してプールに追加する
-        PenetratingBullet newPenetratingBullet = InstantiatePenetratingBullet();
-        penetratingBulletPool.Add(newPenetratingBullet);
-
-        return newPenetratingBullet;
-    }
+   
 
     Bullet InstantiateBullet()
     {
@@ -547,17 +532,6 @@ public class Weapon:MonoBehaviour
         return Instantiate(bullet1);
     }
 
-    Missile InstantiateMissileBullet()
-    {
-        // 弾の新しいインスタンスを生成する
-        return Instantiate(missileBullet);
-    }
-
-    PenetratingBullet InstantiatePenetratingBullet()
-    {
-        // 弾の新しいインスタンスを生成する
-        return Instantiate(penetratingBullet);
-    }
     IEnumerator ShootCooldown()
     {
         canShoot = false;
@@ -578,7 +552,7 @@ public class Weapon:MonoBehaviour
     {
         if (penetratingBulletsRemaining > 0)
         {
-            PenetratingBullet penetratingBullet = GetInactivePenetratingBullet();
+            PenetratingBullet penetratingBullet = penetoraitManager.CreatePb(this.transform.position, this.transform.rotation);
             ShootBullet(penetratingBullet);
             penetratingBulletsRemaining--;
         }
@@ -588,9 +562,22 @@ public class Weapon:MonoBehaviour
     {
         if (missileBulletsRemaining > 0)
         {
-            Missile missileBullet = GetInactiveMissileBullet();
-            ShootBullet(missileBullet);
-            missileBulletsRemaining--;
+            // ミサイルマネージャーからミサイルを取得
+            Missile missile = missileManager.CreateMissile(this.transform.position,this.transform.rotation);
+
+            if (missile != null)
+            {
+                // ミサイルを発射
+                missile.gameObject.SetActive(true);
+                missile.transform.parent = this.transform;
+                StartCoroutine(UnparentAfterOneFrame(missile.transform));
+                missile.transform.position = transform.position;
+                missile.transform.rotation = transform.rotation;
+                missile.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
+                missile.transform.Translate(new Vector3(0, bulletCreatePosOffsetY, bulletCreatePosOffsetZ));
+
+                missileBulletsRemaining--;
+            }
         }
     }
     void ShootBullet(Weapon bullet)

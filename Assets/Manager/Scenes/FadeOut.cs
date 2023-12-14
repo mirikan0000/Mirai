@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-public class FadeOut : MonoBehaviour
+public class TittleSceneFadeOut : MonoBehaviour
 {
 
     public GameObject Panelfade;   //フェードパネルの取得

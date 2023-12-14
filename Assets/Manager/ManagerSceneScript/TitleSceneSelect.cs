@@ -72,7 +72,7 @@ public class TitleSceneSelect : MonoBehaviour
             if (fade)
             {
          
-                panel.GetComponentInChildren<FadeOut>().Fadeout();
+                panel.GetComponentInChildren<TittleSceneFadeOut>().Fadeout();
             }
 
             if (InputManager.Instance.GetButtonDown("UI", "Click"))
@@ -80,8 +80,8 @@ public class TitleSceneSelect : MonoBehaviour
                
                 Debug.Log("ì«Ç›çûÇ›èoóàÇΩ");
                 fade = true;
-                panel.GetComponentInChildren<FadeOut>().Fadeout();
-                if (!panel.GetComponentInChildren<FadeOut>().fadeout)
+                panel.GetComponentInChildren<TittleSceneFadeOut>().Fadeout();
+                if (!panel.GetComponentInChildren<TittleSceneFadeOut>().fadeout)
                 {
                     Image imageComponent = panel.GetComponentInChildren<Image>();
 

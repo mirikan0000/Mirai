@@ -64,10 +64,10 @@ public class NextScene : MonoBehaviour
 
             if (isFadeIn)
             {
-                FadeOutPanel.GetComponentInChildren<FadeOut>().Fadeout();
+                FadeOutPanel.GetComponentInChildren<TittleSceneFadeOut>().Fadeout();
 
             }
-            if (isFadeIn && !FadeOutPanel.GetComponentInChildren<FadeOut>().fadeout)
+            if (isFadeIn && !FadeOutPanel.GetComponentInChildren<TittleSceneFadeOut>().fadeout)
             {
                 isFadeEnd = true;
             }

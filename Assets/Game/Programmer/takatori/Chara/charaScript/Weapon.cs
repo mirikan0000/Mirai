@@ -2,9 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 // ベースのWeaponクラス
 public class Weapon:MonoBehaviour
 {
+    public enum weaponcase{
+        Normal,
+        penetrait,
+        Missile
+    }
+   public weaponcase Weaponcase;
     private Dictionary<string, PlayerInput> playerInputDictionary = new Dictionary<string, PlayerInput>();
     public PlayerInput[] playerInputArray;
     //予測線の描画モード
@@ -13,6 +20,8 @@ public class Weapon:MonoBehaviour
     [SerializeField] private Weapon weapon=null;
     [SerializeField] private Fragreceiver fragreceiver;
     [SerializeField]private Bullet bullet1;
+    [SerializeField] private ThroughManager penetoraitManager;
+    [SerializeField] private MissileManager missileManager;
     [SerializeField] private Missile missileBullet;
     [SerializeField] private PenetratingBullet penetratingBullet;
     private List<Bullet> bulletPool = new List<Bullet>();
@@ -56,15 +65,33 @@ public class Weapon:MonoBehaviour
     bool flog_Missile;
     bool flog_penetoratBullet;
     bool flog_normalBullet;
-    [Header("初期弾数")] [SerializeField] private int bulletsMax = 5; 
-    [Header("現在の弾数")] [SerializeField] private int bulletsRemaining = 5; 
-    private bool isReloading = false;
-    [Header("再装填時間")] [SerializeField] private float reloadTime = 2.0f; // 再装填にかかる時間
+    private bool canSwitchWeapon = true;
+    // 各武器の残弾数
+    [Header("通常弾初期弾数")] [SerializeField] private int normalBulletsMax = 5;
+    [Header("通常弾現在の弾数")] [SerializeField] public int normalBulletsRemaining = 5;
 
-   
+    [Header("貫通弾初期弾数")] [SerializeField] private int penetratingBulletsMax = 1;
+    [Header("貫通弾現在の弾数")] [SerializeField] public int penetratingBulletsRemaining = 1;
+
+    [Header("ミサイル初期弾数")] [SerializeField] private int missileBulletsMax = 1;
+    [Header("ミサイル現在の弾数")] [SerializeField] public int missileBulletsRemaining = 1;
+
+    public bool isReloading = false;
+    [Header("再装填時間")] public float reloadTime = 9.0f; // 再装填にかかる時間
+    [Header("通常弾再装填時間")] public float normalReloadTime = 9.0f;
+    [Header("貫通弾再装填時間")] public float penetratingReloadTime = 9.0f;
+    [Header("ミサイル再装填時間")] public float missileReloadTime = 9.0f;
+    public float elapsedTime;
     private bool isActive;
     public float shotCooldown = 3.0f;
     [SerializeField] private float lastShotTime = 0f;
+
+    [SerializeField] private Image reloadFillImageNormal;
+    [SerializeField] private Image reloadFillImageMissile;
+    [SerializeField] private Image reloadFillImagepenetrait;
+    private float currentReloadTime;
+    //リロードカウントの左と右
+
     /// <summary>
     /// ボタンを押した瞬間
     /// ※ActionMaps名,Actions名は「InputActionControls」を確認
@@ -114,11 +141,11 @@ public class Weapon:MonoBehaviour
     }
     public int GetbulletsMax()
     {
-        return bulletsMax;
+        return normalBulletsMax;
     }
     public int GetbulletsRemaining()
     {
-        return bulletsRemaining;
+        return normalBulletsRemaining;
     }
 
  
@@ -137,46 +164,57 @@ public class Weapon:MonoBehaviour
     }
     void Update()
     {
-        // アイテムスロットから現在選択されているアイテムを取得
         int selectedSlotIndex = itemSlotUI.GetCurrentSlotIndex();
-        Debug.Log("選ばれている番号"+selectedSlotIndex);
-        // 武器の切り替え
-        SwitchWeapon(selectedSlotIndex);
-        if (canShoot)
+        if (isReloading)
         {
-            Shot();
+            canSwitchWeapon = false;
         }
-    
-
-
+        else
+        {
+            canSwitchWeapon = true;
+            // アイテムスロットから現在選択されているアイテムを取得
+            SwitchWeapon(selectedSlotIndex);
+            Weaponcase = (weaponcase)selectedSlotIndex;
+            if (canShoot)
+            {
+                Shot();
+            }
+        }
+   
+        // リロード中は武器の切り替えを禁止
+        
     }
 
     void SwitchWeapon(int weaponNumber)
     {
         // 武器の切り替え処理
-        switch (weaponNumber)
+        if (canSwitchWeapon)
         {
-            case 0:
-                weapon = bullet1;
-                flog_penetoratBullet = false;
-                flog_Missile = false;
-                flog_normalBullet = true;
-                break;
-            case 1:
-                weapon = missileBullet;
-                flog_penetoratBullet = false;
-                flog_Missile = true;
-                flog_normalBullet = false;
-                break;
-            case 2:
-                weapon = penetratingBullet;
-                flog_penetoratBullet = true;
-                flog_Missile = false;
-                flog_normalBullet = false;
-                break;
-            default:
-                break;
+            switch (weaponNumber)
+            {
+                case 0:
+                    weapon = bullet1;
+                    flog_penetoratBullet = false;
+                    flog_Missile = false;
+                    flog_normalBullet = true;
+                    break;
+                case 1:
+                    weapon = missileBullet;
+                    flog_penetoratBullet = false;
+                    flog_Missile = true;
+                    flog_normalBullet = false;
+                    break;
+                case 2:
+                    weapon = penetratingBullet;
+                    flog_penetoratBullet = true;
+                    flog_Missile = false;
+                    flog_normalBullet = false;
+                    break;
+                default:
+                    break;
+            }
         }
+           
     }
     void Shot()
     {
@@ -204,43 +242,41 @@ public class Weapon:MonoBehaviour
                 PlayerManager.SetisMoving(false);
                 //照準済み
                 is_aiming = false;
+
                 if (PlayerManager.animator != null)
                 {
                     PlayerManager.animator.SetBool("ShotStanby", false);
                     PlayerManager.animator.SetBool("Shot", true);
                 }
                 // 弾数がある場合のみ発射できるようにする
-                if (canShoot&&bulletsRemaining > 0)
+                if (canShoot)
                 {
                     StartCoroutine(ShootCooldown());
-                    // 弾数を減らす
-                    bulletsRemaining--;
-
-
-                    //  弾丸生成
-                    weapon = Instantiate(weapon, transform.position, transform.rotation);
-                    //  親子関係を設定する
-                    weapon.transform.parent = this.transform;
-                    //   1フレーム後に親子関係を解除するコルーチンを呼び出す
-                    StartCoroutine(UnparentAfterOneFrame(weapon.transform));
-                    //  弾丸の角度をプレイヤーと一致する
-                    weapon.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
-                    //   弾丸位置はプレイヤーの前にする
-                    weapon.transform.Translate(new Vector3(0, bulletCreatePosOffsetY, bulletCreatePosOffsetZ));
-                    //SEを鳴らす
-                    BulletSE.PlayCanonSound();
-                    //レイを消す
-                    if (pRay != null)
+                int selectedSlotIndex = itemSlotUI.GetCurrentSlotIndex();
+                
+                switch (Weaponcase)
+                {
+                    case weaponcase.Normal:
+                        ShootNormalBullet();
+                        break;
+                    case weaponcase.penetrait:
+                        ShootPenetratingBullet();
+                        break;
+                    case weaponcase.Missile:
+                        ShootMissileBullet();
+                        break;
+                }                  //レイを消す
+                if (pRay != null)
                     {
                         Destroy(pRay);
                         pRay = null;
                     }
                     // 弾数がなくなったら再装填を始める
-                    if (bulletsRemaining == 0 && !isReloading)
-                    {
-                        StartCoroutine(Reload());
-                    }
-                }
+                 if ((penetratingBulletsRemaining == 0|| missileBulletsRemaining == 0 || normalBulletsRemaining ==0)&&!isReloading)
+                 {
+                    StartCoroutine(Reload());
+                 }
+            }
             }
         
        
@@ -290,18 +326,92 @@ public class Weapon:MonoBehaviour
     IEnumerator Reload()
     {
         isReloading = true;
-        yield return new WaitForSeconds(reloadTime);
-        bulletsRemaining = 5; // 初期弾数に再設定
-                              // 弾をプールに戻す
+       
+      //  reloadFillImageNormal.fillAmount = 1.0f;
+        float reloadTime = 0.0f;
+   
+        switch (Weaponcase)
+        {
+            case weaponcase.Normal:
+                reloadTime = normalReloadTime;
+                reloadFillImageNormal.fillAmount = 1.0f;
+                break;
+            case weaponcase.Missile:
+                reloadTime = missileReloadTime;
+                reloadFillImageMissile.fillAmount = 1.0f;
+                break;
+            case weaponcase.penetrait:
+                reloadTime = penetratingReloadTime;
+                reloadFillImagepenetrait.fillAmount = 1.0f;
+                break;
+            default:
+                break;
+        }
+        // リロード時間までの経過時間をカウント
+        elapsedTime = 0.0f;
+        while (elapsedTime < reloadTime)
+        {
+            // リロード進捗に合わせて FillAmount を更新
+            float fillAmount = 1.0f - (elapsedTime / reloadTime);
+            switch (Weaponcase)
+            {
+                case weaponcase.Normal:
+                    reloadFillImageNormal.fillAmount = fillAmount;
+                    break;
+                case weaponcase.Missile:
+                    reloadFillImageMissile.fillAmount = fillAmount;
+                    break;
+                case weaponcase.penetrait:
+                    reloadFillImagepenetrait.fillAmount = fillAmount;
+                    break;
+                default:
+                    break;
+            }
+        // 経過時間を更新
+        elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        // リロードが完了したときに reloadFillImageNormal を 0% にリセット
+        reloadFillImageNormal.fillAmount = 0.0f;
+        reloadFillImageMissile.fillAmount = 0.0f;
+        reloadFillImagepenetrait.fillAmount = 0.0f;
+
+        // 弾薬を補充
+        switch (Weaponcase)
+        {
+            case weaponcase.Normal:
+                normalBulletsRemaining = normalBulletsMax;
+                break;
+            case weaponcase.Missile:
+                missileBulletsRemaining = missileBulletsMax;
+                break;
+            case weaponcase.penetrait:
+                penetratingBulletsRemaining = penetratingBulletsMax;
+                break;
+            default:
+                break;
+        }
+
+        List<Bullet> bulletsToDisable = new List<Bullet>();
+
         foreach (Bullet bullet in bulletPool)
         {
-            if (bullet.gameObject.activeSelf)
+            if (bullet != null && bullet.gameObject.activeSelf)
             {
                 bullet.gameObject.SetActive(false);
-                bulletPool.Add(bullet);
+                bulletsToDisable.Add(bullet);
             }
         }
 
+        foreach (Bullet bullet in bulletsToDisable)
+        {
+            bulletPool.Remove(bullet);
+        }
+      
+        
+        List<Missile> bulletsToDisable2 = new List<Missile>();
         // ミサイル弾をプールに戻す
         foreach (Missile missileBullet in missileBulletPool)
         {
@@ -312,7 +422,12 @@ public class Weapon:MonoBehaviour
                 missileBulletPool.Add(missileBullet);
             }
         }
+        foreach (Missile bullet in bulletsToDisable2)
+        {
+            missileBulletPool.Remove(bullet);
+        }
 
+        List<PenetratingBullet> bulletsToDisable3 = new List<PenetratingBullet>();
         // 貫通弾をプールに戻す
         foreach (PenetratingBullet penetratingBullet in penetratingBulletPool)
         {
@@ -321,6 +436,10 @@ public class Weapon:MonoBehaviour
                 penetratingBullet.gameObject.SetActive(false);
                 penetratingBulletPool.Add(penetratingBullet);
             }
+        }
+        foreach (PenetratingBullet bullet in bulletsToDisable3)
+        {
+            penetratingBulletPool.Remove(bullet);
         }
         isReloading = false;
     }
@@ -398,7 +517,7 @@ public class Weapon:MonoBehaviour
     {
         foreach (Bullet bullet in bulletPool)
         {
-            if (!bullet.gameObject.activeInHierarchy)
+            if (bullet != null && !bullet.gameObject.activeInHierarchy)
             {
                 return bullet;
             }
@@ -411,39 +530,7 @@ public class Weapon:MonoBehaviour
         return newBullet;
     }
 
-    Missile GetInactiveMissileBullet()
-    {
-        foreach (Missile missileBullet in missileBulletPool)
-        {
-            if (!missileBullet.gameObject.activeInHierarchy)
-            {
-                return missileBullet;
-            }
-        }
-
-        // プール内に使用可能な弾がない場合は新しく生成してプールに追加する
-        Missile newMissileBullet = InstantiateMissileBullet();
-        missileBulletPool.Add(newMissileBullet);
-
-        return newMissileBullet;
-    }
-
-    PenetratingBullet GetInactivePenetratingBullet()
-    {
-        foreach (PenetratingBullet penetratingBullet in penetratingBulletPool)
-        {
-            if (!penetratingBullet.gameObject.activeInHierarchy)
-            {
-                return penetratingBullet;
-            }
-        }
-
-        // プール内に使用可能な弾がない場合は新しく生成してプールに追加する
-        PenetratingBullet newPenetratingBullet = InstantiatePenetratingBullet();
-        penetratingBulletPool.Add(newPenetratingBullet);
-
-        return newPenetratingBullet;
-    }
+   
 
     Bullet InstantiateBullet()
     {
@@ -451,24 +538,66 @@ public class Weapon:MonoBehaviour
         return Instantiate(bullet1);
     }
 
-    Missile InstantiateMissileBullet()
-    {
-        // 弾の新しいインスタンスを生成する
-        return Instantiate(missileBullet);
-    }
-
-    PenetratingBullet InstantiatePenetratingBullet()
-    {
-        // 弾の新しいインスタンスを生成する
-        return Instantiate(penetratingBullet);
-    }
     IEnumerator ShootCooldown()
     {
         canShoot = false;
         yield return new WaitForSeconds(shotCooldown);
         canShoot = true;
     }
+    void ShootNormalBullet()
+    {
+        if (normalBulletsRemaining > 0)
+        {
+            Bullet bullet = GetInactiveBullet();
+            ShootBullet(bullet);
+            normalBulletsRemaining--;
+        }
+    }
+
+    void ShootPenetratingBullet()
+    {
+        if (penetratingBulletsRemaining > 0)
+        {
+            PenetratingBullet penetratingBullet = penetoraitManager.CreatePb(this.transform.position, this.transform.rotation);
+            ShootBullet(penetratingBullet);
+            penetratingBulletsRemaining--;
+        }
+    }
+
+    void ShootMissileBullet()
+    {
+        if (missileBulletsRemaining > 0)
+        {
+            // ミサイルマネージャーからミサイルを取得
+            Missile missile = missileManager.CreateMissile(this.transform.position,this.transform.rotation);
+
+            if (missile != null)
+            {
+                // ミサイルを発射
+                missile.gameObject.SetActive(true);
+                missile.transform.parent = this.transform;
+                StartCoroutine(UnparentAfterOneFrame(missile.transform));
+                missile.transform.position = transform.position;
+                missile.transform.rotation = transform.rotation;
+                missile.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
+                missile.transform.Translate(new Vector3(0, bulletCreatePosOffsetY, bulletCreatePosOffsetZ));
+
+                missileBulletsRemaining--;
+            }
+        }
+    }
+    void ShootBullet(Weapon bullet)
+    {
+        bullet.gameObject.SetActive(true);
+        //  親子関係を設定する
+        bullet.transform.parent = this.transform;
+        //   1フレーム後に親子関係を解除するコルーチンを呼び出す
+        StartCoroutine(UnparentAfterOneFrame(bullet.transform));
+        bullet.transform.position = transform.position;
+        bullet.transform.rotation = transform.rotation;
+        bullet.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
+        bullet.transform.Translate(new Vector3(0, bulletCreatePosOffsetY, bulletCreatePosOffsetZ));
+      
+    }
 
 }
-
-

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DropPlayer : MonoBehaviour
 {
-    public static DropPlayer Instance;
-
     [SerializeField]
     [Header("各種変数")]
     public float maxHealth;          //プレイヤーの最大HP
@@ -22,17 +20,9 @@ public class DropPlayer : MonoBehaviour
 
     public GameObject shieldObj;
 
-    void Awake()
+    public bool GetOpenBoxFlag()
     {
-        //if (Instance == null)
-        //{
-        //    Instance = this;
-        //    DontDestroyOnLoad(gameObject);
-        //}
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
+        return openBoxFlag;
     }
 
     void Start()

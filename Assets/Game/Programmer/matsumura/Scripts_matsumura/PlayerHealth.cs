@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public static PlayerHealth Instance;
-
     [Header("‘Ì—ÍƒQ[ƒW")]
     public int maxHP = 100; // Å‘åHP
     private int currentHP;  // Œ»İ‚ÌHP
@@ -36,6 +34,10 @@ public class PlayerHealth : MonoBehaviour
     public void SetCurrentHP(int currenthp)
     {
         currentHP = currenthp;
+    }
+    public bool GetHitFlag()
+    {
+        return hitflog;
     }
     public float GetMaxHP()
     {

@@ -324,6 +324,12 @@ public class Weapon:MonoBehaviour
         }
         isReloading = false;
     }
+
+    public bool GetReloadFlag()
+    {
+        return isReloading;
+    }
+
     void DrewPredictionLine()
     {
         //”­ŽËŠp“x‚ðƒ‰ƒWƒAƒ“‚É‚·‚é

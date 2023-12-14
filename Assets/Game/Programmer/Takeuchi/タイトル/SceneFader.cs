@@ -27,10 +27,7 @@ public class SceneFader : MonoBehaviour
 
     void Update()
     {
-        if (fadein == true)
-        {
-            CallCoroutine();
-        }
+
     }
 
     //画面をフェードアウト

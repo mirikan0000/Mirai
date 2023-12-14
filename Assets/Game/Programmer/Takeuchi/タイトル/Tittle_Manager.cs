@@ -32,27 +32,37 @@ public class Tittle_Manager : MonoBehaviour
     public Transform launchEffectPosLeft;
     public bool launchEffectSpawnFlag;
     public bool launchFlag;
+    public float launchedTimer;   //起動後の経過時間
 
     [Header("シーン遷移用")]
     [Header("フェードアウト用")]
     public Canvas canvas;           //フェードアウト用キャンバス
     public SceneFader canvasScript; //キャンバスについているスクリプト
     public bool sceneChangeFlag;
+    public bool sceneFadeFlag;
     public bool fadeEnd;
     public bool operationFlag;
     [Header("操作説明関係")]
-    public Image operationImage;  //操作説明用画像
+    public GameObject operationObj;  //操作説明用画像オブジェクト
+    public Image operationImage;     //操作説明用画像オブジェクトのImageコンポーネント
+    public float operationTimer;     //操作説明用画像表示までの経過時間
 
     void Start()
     {
         //フラグ初期化処理
         FlagInitialize();
 
-        //プレイヤーが起動エリアに入っている時間初期化
+        //経過時間初期化
         enterAreaEffectTimer = 0.0f;
+        launchedTimer = 0.0f;
+        operationTimer = 0.0f;
 
         //フェードアウト用スクリプト取得
         canvasScript = canvas.GetComponent<SceneFader>();
+
+        //操作説明用画像のコンポーネント取得
+        operationObj = GameObject.Find("Operarion");
+        operationImage = operationObj.GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -61,8 +71,11 @@ public class Tittle_Manager : MonoBehaviour
         //オブジェクト生成処理
         SpawnObject();
 
-        //シーン遷移処理
-        SceneFadeAndChange();
+        //シーンフェイド処理
+        SceneFade();
+
+        //操作説明用画像非表示とシーン遷移
+        HiddenOperationImageAndSceneChange();
     }
 
     //フラグ初期化処理
@@ -75,6 +88,7 @@ public class Tittle_Manager : MonoBehaviour
         launchEffectSpawnFlag = false;
         launchFlag = false;
         sceneChangeFlag = false;
+        sceneFadeFlag = false;
         fadeEnd = false;
         operationFlag = false;
     }
@@ -123,32 +137,47 @@ public class Tittle_Manager : MonoBehaviour
                 Instantiate(launchEffect, launchEffectPosRight.transform.position, Quaternion.identity, parent);
                 Instantiate(launchEffect, launchEffectPosLeft.transform.position, Quaternion.identity, parent);
                 launchEffectSpawnFlag = false;
+
+                launchFlag = true;
+            }
+        }
+
+        //起動からの経過時間計測
+        if (launchFlag == true)
+        {
+            launchedTimer += Time.deltaTime;
+
+            if (launchedTimer > 2.0f)
+            {
+                sceneFadeFlag = true;
+                launchedTimer = 0.0f;
+                launchFlag = false;
             }
         }
     }
 
-    //シーン遷移処理
-    private void SceneFadeAndChange()
+    //シーンフェイド処理
+    private void SceneFade()
     {
-        if (sceneChangeFlag == true)
+        if (sceneFadeFlag == true)
         {
             //フェードアウト
             canvasScript.CallCoroutine();
 
             if (fadeEnd == true)
             {
+                operationTimer += Time.deltaTime;
+
+                if (operationTimer > 1.0f)
+                {
+                    operationFlag = true;
+                    sceneFadeFlag = false;
+                    fadeEnd = false;
+                    operationTimer = 0.0f;
+                }
+
                 //操作説明画像表示
                 ShowOperatingInstructions();
-
-                if (operationFlag == true)
-                {
-                    //シーン遷移
-                    //SceneManager.LoadScene("GameScene");
-                    Debug.Log("シーン遷移");
-
-                    //シーン遷移繊維用フラグをFalse
-                    sceneChangeFlag = false;
-                }
             }
         }
     }
@@ -156,11 +185,40 @@ public class Tittle_Manager : MonoBehaviour
     //操作説明表示
     private void ShowOperatingInstructions()
     {
-        //操作説明スライドを画面に表示
+        if (operationFlag == true)
+        {
+            //操作説明スライドを画面に表示
+            operationImage.enabled = true;
+        }
 
-        //キー入力待ち
+        
+    }
 
-        //フェードアウト
-        canvasScript.CallCoroutine();
+    //操作説明用画像非表示とシーン遷移
+    private void HiddenOperationImageAndSceneChange()
+    {
+        if (operationFlag == true)
+        {
+            //キー入力待ち
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                //キー入力後画像を非表示にする
+                operationImage.enabled = false;
+                operationFlag = false;
+                sceneChangeFlag = true;
+                operationTimer = 0.0f;
+            }
+        }
+
+        if (sceneChangeFlag == true)
+        {
+            operationTimer += Time.deltaTime;
+
+            if (operationTimer > 1.0f)
+            {
+                //シーン遷移
+                Debug.Log("シーン遷移");
+            }
+        }
     }
 }

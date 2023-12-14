@@ -11,7 +11,7 @@ public class StageManager : MonoBehaviour
     public GameObject Panel;
     void Start()
     {
-        Panel.GetComponent<FadeOut>().fadein=true;   
+        Panel.GetComponent<TittleSceneFadeOut>().fadein=true;   
         ChangeStage();
     }
 

@@ -22,7 +22,6 @@ public class EnterAreaEffect : MonoBehaviour
         parentScript = parentObj.GetComponent<Tittle_Manager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         //プレイヤーが起動エリアから出たらエフェクト停止

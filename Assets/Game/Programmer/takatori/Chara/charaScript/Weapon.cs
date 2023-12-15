@@ -58,6 +58,10 @@ public class Weapon:MonoBehaviour
     private bool canShoot = true;
     //予測線GameObjectを保存する
     GameObject pRay;
+    //発射総時間
+    public float maxShotTime = 0.0f;
+    //今の発射時間
+    float nowShotTime = 0.0f;
     //弾丸予測線を構成するための描画数
     public int PredictionLineNumber = 66;
     //弾丸予測線の計算結果リスト(描画位置を保存する)
@@ -90,8 +94,7 @@ public class Weapon:MonoBehaviour
     [SerializeField] private Image reloadFillImageMissile;
     [SerializeField] private Image reloadFillImagepenetrait;
     private float currentReloadTime;
-    //リロードカウントの左と右
-
+    [SerializeField] private Image cooldownFillImage;
     /// <summary>
     /// ボタンを押した瞬間
     /// ※ActionMaps名,Actions名は「InputActionControls」を確認
@@ -180,9 +183,24 @@ public class Weapon:MonoBehaviour
                 Shot();
             }
         }
-   
+
         // リロード中は武器の切り替えを禁止
-        
+        if (!canShoot)
+        {
+            currentReloadTime += Time.deltaTime;
+
+            // FillAmountをクールダウン進捗に合わせて更新
+            float fillAmount = currentReloadTime / shotCooldown;
+            cooldownFillImage.fillAmount = fillAmount;
+
+
+        }
+        else
+        {
+            cooldownFillImage.fillAmount = 0;
+            currentReloadTime = 0;
+        }
+  
     }
 
     void SwitchWeapon(int weaponNumber)
@@ -242,41 +260,43 @@ public class Weapon:MonoBehaviour
                 PlayerManager.SetisMoving(false);
                 //照準済み
                 is_aiming = false;
+            //発射起動
 
-                if (PlayerManager.animator != null)
+            if (PlayerManager.animator != null)
                 {
                     PlayerManager.animator.SetBool("ShotStanby", false);
                     PlayerManager.animator.SetBool("Shot", true);
                 }
+    
                 // 弾数がある場合のみ発射できるようにする
                 if (canShoot)
                 {
                     StartCoroutine(ShootCooldown());
-                int selectedSlotIndex = itemSlotUI.GetCurrentSlotIndex();
-                
-                switch (Weaponcase)
-                {
-                    case weaponcase.Normal:
-                        ShootNormalBullet();
-                        break;
-                    case weaponcase.penetrait:
-                        ShootPenetratingBullet();
-                        break;
-                    case weaponcase.Missile:
-                        ShootMissileBullet();
-                        break;
-                }                  //レイを消す
-                if (pRay != null)
+
+                    switch (Weaponcase)
+                    {
+                        case weaponcase.Normal:
+                            ShootNormalBullet();
+                            break;
+                        case weaponcase.penetrait:
+                            ShootPenetratingBullet();
+                            break;
+                        case weaponcase.Missile:
+                            ShootMissileBullet();
+                            break;
+                    }                  //レイを消す
+                    if (pRay != null)
                     {
                         Destroy(pRay);
                         pRay = null;
                     }
                     // 弾数がなくなったら再装填を始める
-                 if ((penetratingBulletsRemaining == 0|| missileBulletsRemaining == 0 || normalBulletsRemaining ==0)&&!isReloading)
-                 {
-                    StartCoroutine(Reload());
-                 }
-            }
+                    if ((penetratingBulletsRemaining == 0 || missileBulletsRemaining == 0 || normalBulletsRemaining == 0) && !isReloading)
+                    {
+                        StartCoroutine(Reload());
+                    }
+                }
+             
             }
         
        
@@ -546,21 +566,24 @@ public class Weapon:MonoBehaviour
     }
     void ShootNormalBullet()
     {
-        if (normalBulletsRemaining > 0)
-        {
-            Bullet bullet = GetInactiveBullet();
-            ShootBullet(bullet);
-            normalBulletsRemaining--;
-        }
+            if (normalBulletsRemaining > 0)
+            {
+                Bullet bullet = GetInactiveBullet();
+                ShootBullet(bullet);
+                normalBulletsRemaining--;
+            }
+      
     }
 
     void ShootPenetratingBullet()
     {
         if (penetratingBulletsRemaining > 0)
         {
-            PenetratingBullet penetratingBullet = penetoraitManager.CreatePb(this.transform.position, this.transform.rotation);
-            ShootBullet(penetratingBullet);
-            penetratingBulletsRemaining--;
+
+                PenetratingBullet penetratingBullet = penetoraitManager.CreatePb(this.transform.position, this.transform.rotation);
+                ShootBullet(penetratingBullet);
+                penetratingBulletsRemaining--;
+            
         }
     }
 
@@ -568,22 +591,25 @@ public class Weapon:MonoBehaviour
     {
         if (missileBulletsRemaining > 0)
         {
-            // ミサイルマネージャーからミサイルを取得
-            Missile missile = missileManager.CreateMissile(this.transform.position,this.transform.rotation);
 
-            if (missile != null)
-            {
-                // ミサイルを発射
-                missile.gameObject.SetActive(true);
-                missile.transform.parent = this.transform;
-                StartCoroutine(UnparentAfterOneFrame(missile.transform));
-                missile.transform.position = transform.position;
-                missile.transform.rotation = transform.rotation;
-                missile.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
-                missile.transform.Translate(new Vector3(0, bulletCreatePosOffsetY, bulletCreatePosOffsetZ));
 
-                missileBulletsRemaining--;
-            }
+                // ミサイルマネージャーからミサイルを取得
+                Missile missile = missileManager.CreateMissile(this.transform.position, this.transform.rotation);
+
+                if (missile != null)
+                {
+                    // ミサイルを発射
+                    missile.gameObject.SetActive(true);
+                    missile.transform.parent = this.transform;
+                    StartCoroutine(UnparentAfterOneFrame(missile.transform));
+                    missile.transform.position = transform.position;
+                    missile.transform.rotation = transform.rotation;
+                    missile.transform.Rotate(new Vector3(-gun_rotAngle, 0, 0));
+                    missile.transform.Translate(new Vector3(0, bulletCreatePosOffsetY, bulletCreatePosOffsetZ));
+
+                    missileBulletsRemaining--;
+                }
+            
         }
     }
     void ShootBullet(Weapon bullet)

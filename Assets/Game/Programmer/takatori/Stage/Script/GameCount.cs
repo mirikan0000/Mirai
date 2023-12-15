@@ -6,8 +6,8 @@ public class GameCount : SingletonMonoBehaviour<GameCount>
 {
     public int roundCount = 0;
     public int roundsToWin = 5;
-    public int player1Wins = 0;
-    public int player2Wins = 0;
+    public int player1Wins = 2;
+    public int player2Wins = 2;
 
     // 勝利画像
     public GameObject player1WinImage;
@@ -96,7 +96,7 @@ public class GameCount : SingletonMonoBehaviour<GameCount>
     IEnumerator TransitionAfterDelay()
     {
         yield return new WaitForSeconds(5f); // 5秒待つ
-        UnityEngine.SceneManagement.SceneManager.LoadScene(4); // シーン遷移
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0); // シーン遷移
 
         // シーン遷移後、全ての画像とエフェクトを非アクティブにする
         player1WinImage.SetActive(false);
@@ -107,5 +107,8 @@ public class GameCount : SingletonMonoBehaviour<GameCount>
         winEffect2.SetActive(false);
         loseEffect1.SetActive(false);
         loseEffect2.SetActive(false);
-    }
+           player1Wins = 2;
+           player2Wins = 2;
+           roundCount = 0;
+}
 }

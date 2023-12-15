@@ -204,21 +204,23 @@ public class PlayerManager_ : MonoBehaviour
     {
        if( GetButtonDown("Player", "RightChange")|| GetButtonDown("Player1", "RightChange"))
         {
-            itemSlotUI.ChangeRightItem();
+            
             SetVibration(vibrationStructArray[0].name);
         }
         if (GetButtonUp("Player", "RightChange") || GetButtonUp("Player1", "RightChange"))
         {
-          //  StopVibration();
+            itemSlotUI.ChangeRightItem();
+            //  StopVibration();
         }
         if (GetButtonDown("Player", "LeftChange")|| GetButtonDown("Player1", "LeftChange"))
         {
-            itemSlotUI.ChangeLeftItem();
+            
             SetVibration(vibrationStructArray[0].name);
         }
         if (GetButtonUp("Player", "LeftChange") || GetButtonUp("Player1", "LeftChange"))
         {
-        //    StopVibration();
+            itemSlotUI.ChangeRightItem();
+            //    StopVibration();
         }
     }
     void MoveStep()

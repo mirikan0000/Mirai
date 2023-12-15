@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9184420584360872255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3886419734936140399}
+  - component: {fileID: 4484942503462155764}
+  - component: {fileID: 6053145556419060715}
+  - component: {fileID: 7457614188605471436}
+  m_Layer: 0
+  m_Name: Bullet1P
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3886419734936140399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9184420584360872255}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 25, y: 25, z: 25}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &4484942503462155764
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9184420584360872255}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &6053145556419060715
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9184420584360872255}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
+--- !u!114 &7457614188605471436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9184420584360872255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd691f88a5da2b64c9f828bfbbbae48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInputArray: []
+  predictionLine_RayMode: 1
+  itemSlotUI: {fileID: 0}
+  weapon: {fileID: 0}
+  fragreceiver: {fileID: 0}
+  bullet1: {fileID: 0}
+  missileBullet: {fileID: 0}
+  penetratingBullet: {fileID: 0}
+  PlayerManager: {fileID: 0}
+  BulletSE: {fileID: 0}
+  gun_rotAngle: 0
+  Bullet_RangeOffset: 0
+  bulletCreatePosOffsetZ: 1
+  bulletCreatePosOffsetY: 25
+  ChageShot: {fileID: 0}
+  Playercamera: {fileID: 0}
+  PredictionLine: {fileID: 0}
+  PredictionRay: {fileID: 0}
+  x_angle: 1000
+  is_aiming: 0
+  energyballFlug: 0
+  PredictionLineNumber: 66
+  bulletsMax: 5
+  bulletsRemaining: 5
+  reloadTime: 2
+  shotCooldown: 3
+  lastShotTime: 0
+  move_Speed: 50
+  Image_Bullet: {fileID: 6781851708240563016, guid: 8b606c4fdeb09604e92738d35df652e7, type: 3}
+  DestroyTime: 20
+  damage: 20

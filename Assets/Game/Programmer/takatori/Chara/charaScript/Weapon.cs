@@ -11,7 +11,8 @@ public class Weapon:MonoBehaviour
         penetrait,
         Missile
     }
-   public weaponcase Weaponcase;
+    private bool isButtonPressed = false;
+    public weaponcase Weaponcase;
     private Dictionary<string, PlayerInput> playerInputDictionary = new Dictionary<string, PlayerInput>();
     public PlayerInput[] playerInputArray;
     //ó\ë™ê¸ÇÃï`âÊÉÇÅ[Éh
@@ -168,7 +169,7 @@ public class Weapon:MonoBehaviour
     void Update()
     {
         int selectedSlotIndex = itemSlotUI.GetCurrentSlotIndex();
-        if (isReloading)
+        if (isReloading || isButtonPressed)
         {
             canSwitchWeapon = false;
         }
@@ -563,6 +564,7 @@ public class Weapon:MonoBehaviour
         canShoot = false;
         yield return new WaitForSeconds(shotCooldown);
         canShoot = true;
+
     }
     void ShootNormalBullet()
     {

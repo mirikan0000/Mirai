@@ -11,6 +11,7 @@ public class ItemSlotUI : MonoBehaviour
     {
         buttonPushCount = 0;
         RecordInitialPositions(); // 初期座標を記録
+     
         UpdateObjects();
     }
 
@@ -55,9 +56,10 @@ public class ItemSlotUI : MonoBehaviour
         int itemCount = objects.Length;
 
         // ボタンが押された回数を使って順番を決定
-        int index1 = Mathf.Abs(buttonPushCount) % itemCount;
-        int index2 = Mathf.Abs(buttonPushCount + 1) % itemCount;
-        int index3 = Mathf.Abs(buttonPushCount + 2) % itemCount;
+        // ボタンが押された回数を使って順番を決定
+        int index1 = ModuloWithNegative(buttonPushCount, itemCount);
+        int index2 = ModuloWithNegative(buttonPushCount + 1, itemCount);
+        int index3 = ModuloWithNegative(buttonPushCount + 2, itemCount);
 
         // 各オブジェクトの位置をずらした
         UpdateObjectPosition(objects[0], index1);
@@ -68,7 +70,10 @@ public class ItemSlotUI : MonoBehaviour
     // オブジェクトの位置を更新する関数
     private void UpdateObjectPosition(GameObject obj, int index)
     {
-        obj.transform.position = initialPositions[index];
+        if (index >= 0 && index < initialPositions.Length)
+        {
+            obj.transform.position = initialPositions[index];
+        }
     }
 
     public int GetCurrentSlotIndex()
@@ -81,5 +86,9 @@ public class ItemSlotUI : MonoBehaviour
         int itemCount = objects.Length;
         int selectedIndex = Mathf.Abs(buttonPushCount) % itemCount;
         return selectedIndex;
+    }
+    private int ModuloWithNegative(int a, int b)
+    {
+        return (a % b + b) % b;
     }
 }

@@ -97,7 +97,7 @@ public class GameLoop : SingletonMonoBehaviour<GameLoop>
             }
 
         }
-        Debug.Log("ラウンドカウント！"+count.roundCount);
+   
         // ラウンド数が配列の範囲内に収まるようにクランプ
         roundImage.sprite = roundSprites[count.roundCount];
     }

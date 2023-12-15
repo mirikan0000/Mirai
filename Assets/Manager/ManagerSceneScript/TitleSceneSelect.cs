@@ -78,7 +78,7 @@ public class TitleSceneSelect : MonoBehaviour
             if (InputManager.Instance.GetButtonDown("UI", "Click"))
             {
                
-                Debug.Log("読み込み出来た");
+             
                 fade = true;
                 panel.GetComponentInChildren<TittleSceneFadeOut>().Fadeout();
                 if (!panel.GetComponentInChildren<TittleSceneFadeOut>().fadeout)
@@ -103,40 +103,7 @@ public class TitleSceneSelect : MonoBehaviour
 
 
             }
-            // ステージ決定
-            //if (InputManager.Instance.GetButtonDown("UI", "Click"))
-            //{
-            //    Debug.Log("読み込み出来た");
-            //    // シーン読み込み
-            //    SceneManager.Instance.LoadScene(CautionSceneName);
-            //    // シーン変更
-            //    SceneManager.Instance.ChangeScene();
-            // ゲーム終了
-            //if (ButtonNo == 4)
-            //    {
-            //        // シーン読み込み
-            //        SceneManager.Instance.LoadScene(cautionSceneName);
-            //        // シーン変更
-            //        SceneManager.Instance.ChangeScene();
-            //        isLoad = true;
-
-            //    }
-            //    else
-            //    {
-            //        if (ButtonNo == 0)
-            //        {
-            //            BGMManager.Instance.Stop();
-            //        }
-
-            //        loadSceneName = loadSceneNameList[ButtonNo];
-            //        SceneManager.Instance.LoadScene(loadSceneName);
-
-            //        isLoad = true;
-            //        isPlayOtherScene = true;
-
-            //    }
-
-            // }
+   
             if (!isLoadChange)
             {
                 // シーン変更
@@ -147,8 +114,7 @@ public class TitleSceneSelect : MonoBehaviour
         }
         
 
-        // ゲームを終了
-        // 今読み込まれているシーンの中で、確認画面が既に読み込まれていたら
+   
 
         if (InputManager.Instance.GetButtonDown("UI", "Cancel") && !isLoad)
         {

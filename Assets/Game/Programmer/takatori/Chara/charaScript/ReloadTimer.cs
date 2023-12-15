@@ -31,8 +31,7 @@ public class ReloadTimer : MonoBehaviour
     {
         // リロード時間から秒数を取得（小数点以下も考慮）
         int seconds = Mathf.CeilToInt(remainingTime);
-        Debug.Log("リロード時間"+seconds);
-        // 右側の数字表示
+         // 右側の数字表示
         int rightDigit = seconds % 10;
 
         // リロード時間がゼロ以下の場合は右側の数字をゼロにする

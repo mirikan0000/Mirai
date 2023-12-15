@@ -86,16 +86,26 @@ public class GameCount : SingletonMonoBehaviour<GameCount>
         return player1Wins >= roundsToWin || player2Wins >= roundsToWin;
     }
 
-    IEnumerator TransitionAfterDelay()
-    {
-        yield return new WaitForSeconds(5f); // 5秒待つ
-        UnityEngine.SceneManagement.SceneManager.LoadScene(3); // シーン遷移
-    }
-
+ 
     // プレイヤーの頭上にエフェクトをアクティブ化する関数
     void ActivateEffectOnPlayer(GameObject effect, GameObject player)
     {
         Vector3 playerHeadPosition = player.transform.position + Vector3.up * 2f; // 頭上にするために適切な位置を計算
         Instantiate(effect, playerHeadPosition, Quaternion.identity);
+    }
+    IEnumerator TransitionAfterDelay()
+    {
+        yield return new WaitForSeconds(5f); // 5秒待つ
+        UnityEngine.SceneManagement.SceneManager.LoadScene(3); // シーン遷移
+
+        // シーン遷移後、全ての画像とエフェクトを非アクティブにする
+        player1WinImage.SetActive(false);
+        player2WinImage.SetActive(false);
+        player1LoseImage.SetActive(false);
+        player2LoseImage.SetActive(false);
+        winEffect1.SetActive(false);
+        winEffect2.SetActive(false);
+        loseEffect1.SetActive(false);
+        loseEffect2.SetActive(false);
     }
 }

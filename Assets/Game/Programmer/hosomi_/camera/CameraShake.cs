@@ -19,11 +19,17 @@ public class CameraShaker : MonoBehaviour
 
     public void ShakeCamera(float intensity, float time)
     {
-        CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
-            cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
-        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
-        shakeTimer = time;
+        if (cam!=null)
+        {
+            CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            if (cinemachineBasicMultiChannelPerlin != null)
+            {
+                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+                shakeTimer = time;
+            }
+        }
+        
+           
     }
 
     void Update()
@@ -35,8 +41,10 @@ public class CameraShaker : MonoBehaviour
             {
                 CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
                     cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
-                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
+                if (cinemachineBasicMultiChannelPerlin != null)
+                {
+                    cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
+                }
             }
         }
     }

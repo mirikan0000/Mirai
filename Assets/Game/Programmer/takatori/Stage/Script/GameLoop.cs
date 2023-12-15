@@ -55,7 +55,7 @@ public class GameLoop : SingletonMonoBehaviour<GameLoop>
         }
         count.roundCount++;
         UpdateRoundImage(); // ラウンドが終了したら Image を更新
-        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(3);
     }
 
   

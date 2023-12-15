@@ -96,7 +96,7 @@ public class GameCount : SingletonMonoBehaviour<GameCount>
     IEnumerator TransitionAfterDelay()
     {
         yield return new WaitForSeconds(5f); // 5秒待つ
-        UnityEngine.SceneManagement.SceneManager.LoadScene(3); // シーン遷移
+        UnityEngine.SceneManagement.SceneManager.LoadScene(4); // シーン遷移
 
         // シーン遷移後、全ての画像とエフェクトを非アクティブにする
         player1WinImage.SetActive(false);

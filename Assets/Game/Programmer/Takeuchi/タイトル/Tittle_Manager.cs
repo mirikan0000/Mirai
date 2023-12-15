@@ -46,7 +46,11 @@ public class Tittle_Manager : MonoBehaviour
     public GameObject operationObj;  //操作説明用画像オブジェクト
     public Image operationImage;     //操作説明用画像オブジェクトのImageコンポーネント
     public float operationTimer;     //操作説明用画像表示までの経過時間
-
+    [Header("ゲーム終了確認シーン名")]
+    public string CautionSceneName;
+    public bool isLoad;
+    [Header("次シーン遷移時_削除シーンリスト")]
+    public string unLoadSceneName;
     void Start()
     {
         //フラグ初期化処理
@@ -76,6 +80,10 @@ public class Tittle_Manager : MonoBehaviour
 
         //操作説明用画像非表示とシーン遷移
         HiddenOperationImageAndSceneChange();
+
+     
+    
+        
     }
 
     //フラグ初期化処理
@@ -186,9 +194,14 @@ public class Tittle_Manager : MonoBehaviour
     private void ShowOperatingInstructions()
     {
         if (operationFlag == true)
-        {
+        {       // シーン削除
+           SceneManager.Instance.DestroyScene(unLoadSceneName);
             //操作説明スライドを画面に表示
             operationImage.enabled = true;
+            SceneManager.Instance.LoadScene(CautionSceneName);
+            // シーン変更
+            SceneManager.Instance.ChangeScene();
+            isLoad = true;
         }
 
         
@@ -216,8 +229,10 @@ public class Tittle_Manager : MonoBehaviour
 
             if (operationTimer > 1.0f)
             {
-                //シーン遷移
-                Debug.Log("シーン遷移");
+                Debug.Log("コーションシーンネーム");
+                        // シーン読み込み
+                
+            
             }
         }
     }

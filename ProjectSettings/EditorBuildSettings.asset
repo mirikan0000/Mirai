@@ -12,13 +12,13 @@ EditorBuildSettings:
     path: Assets/Manager/ManagerScene.unity
     guid: 278dc0cfa3c7a0a4e9652ea4ddaa0ef9
   - enabled: 1
+    path: "Assets/Game/Programmer/Takeuchi/\u30BF\u30A4\u30C8\u30EB/Tittle.unity"
+    guid: cbfe8d4846b4f694e8c97ce441149e36
+  - enabled: 1
     path: Assets/Game/GameScenes/GameScene.unity
     guid: bb7bc0c48f5ae054984fb7026257df39
   - enabled: 1
     path: Assets/Game/OutGameScene/EndScene.unity
     guid: 3f97cd1537cfb864ba8710a98cdb06b7
-  - enabled: 1
-    path: "Assets/Game/Programmer/Takeuchi/\u30BF\u30A4\u30C8\u30EB/Tittle.unity"
-    guid: cbfe8d4846b4f694e8c97ce441149e36
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: bb85cf3334a03044895c54eccd02b0d6, type: 2}

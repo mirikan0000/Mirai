@@ -2007,7 +2007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e93d97b57d0a324a90a0412a3a2de17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabCube1: {fileID: 1309889642740058830, guid: 95a3d3fa8ab32ad4d92d2f4aaf532548, type: 3}
+  PrefabCube1: {fileID: 1806251563362813463, guid: 35b1931ae5cab284c8b4b28b261e75dd, type: 3}
   spawnTime: 10
 --- !u!4 &277083521
 Transform:
@@ -2553,7 +2553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d087f345eb4914fa2a5975b2613050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabCube: {fileID: 305331624305650594, guid: 548432a209387344399829608ab3d997, type: 3}
+  PrefabCube: {fileID: 1806251563362813463, guid: fcb45e41d8f730e4c9a81fa85131d6ab, type: 3}
   spawnTime: 10
 --- !u!4 &372755499
 Transform:

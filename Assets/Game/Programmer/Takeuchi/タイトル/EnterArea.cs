@@ -49,6 +49,8 @@ public class EnterArea : MonoBehaviour
         {
             if (other.gameObject.tag == "Player1")
             {
+                managerScript.playerMoveStopFlag = true;
+
                 enterTimer += Time.deltaTime;
 
                 if (enterTimer > enterTimerLimit)

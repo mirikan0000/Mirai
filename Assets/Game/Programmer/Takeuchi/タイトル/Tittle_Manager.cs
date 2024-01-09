@@ -18,6 +18,10 @@ public class Tittle_Manager : MonoBehaviour
     public Transform playerSpawnPos;
     public bool spawnPlayerFlag;
 
+    [Header("プレイヤーの移動関係")]
+    public bool playerTurnFlag;      //プレイヤーが曲がり角に到達したか
+    public bool playerMoveStopFlag;  //プレイヤーが最終目標地点に到達したか
+
     [Header("起動エリアに入った時のエフェクト関係")]
     public ParticleSystem enterAreaEffect;
     public Transform enterAreaEffectPos;
@@ -51,6 +55,7 @@ public class Tittle_Manager : MonoBehaviour
     public bool isLoad;
     [Header("次シーン遷移時_削除シーンリスト")]
     public string unLoadSceneName;
+
     void Start()
     {
         //フラグ初期化処理
@@ -80,10 +85,6 @@ public class Tittle_Manager : MonoBehaviour
 
         //操作説明用画像非表示とシーン遷移
         HiddenOperationImageAndSceneChange();
-
-     
-    
-        
     }
 
     //フラグ初期化処理
@@ -99,6 +100,8 @@ public class Tittle_Manager : MonoBehaviour
         sceneFadeFlag = false;
         fadeEnd = false;
         operationFlag = false;
+        playerTurnFlag = false;
+        playerMoveStopFlag = false;
     }
 
     //オブジェクト生成処理
@@ -203,8 +206,6 @@ public class Tittle_Manager : MonoBehaviour
             SceneManager.Instance.ChangeScene();
             isLoad = true;
         }
-
-        
     }
 
     //操作説明用画像非表示とシーン遷移
@@ -231,8 +232,6 @@ public class Tittle_Manager : MonoBehaviour
             {
                 Debug.Log("コーションシーンネーム");
                         // シーン読み込み
-                
-            
             }
         }
     }

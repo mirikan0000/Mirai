@@ -26,7 +26,11 @@ public class TitleSceneSelect : MonoBehaviour
     private bool isDestroyScene;
     private bool fade;
 
-  
+    private InputAction _pressAnyKeyAction = new InputAction(type: InputActionType.PassThrough, binding: "*/<Button>", interactions: "Press");
+
+    private void OnEnable() => _pressAnyKeyAction.Enable();
+    private void OnDisable() => _pressAnyKeyAction.Disable();
+
     void Start()
     {
         fade = false;
@@ -75,7 +79,7 @@ public class TitleSceneSelect : MonoBehaviour
                 panel.GetComponentInChildren<TittleSceneFadeOut>().Fadeout();
             }
 
-            if (InputManager.Instance.GetButtonDown("UI", "Click"))
+            if /*(InputManager.Instance.GetButtonDown("UI", "Click"))*/(_pressAnyKeyAction.triggered)
             {
                
              
@@ -116,7 +120,7 @@ public class TitleSceneSelect : MonoBehaviour
 
    
 
-        if (InputManager.Instance.GetButtonDown("UI", "Cancel") && !isLoad)
+        if (/*InputManager.Instance.GetButtonDown("UI", "Cancel")*/(_pressAnyKeyAction.triggered) && !isLoad)
         {
             if (!isLoad)
             {

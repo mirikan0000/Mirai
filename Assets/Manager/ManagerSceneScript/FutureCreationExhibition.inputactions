@@ -103,6 +103,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "RotateRight",
+                    "type": "Button",
+                    "id": "399c4d92-8710-4f29-8a63-597c6aa4ecd0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RotateLeft",
+                    "type": "Button",
+                    "id": "7b4e0551-f557-4c25-9255-b78b82fdcd51",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -384,7 +402,7 @@
                 {
                     "name": "",
                     "id": "32146d2e-57c4-46f0-8924-902edf87f842",
-                    "path": "<Gamepad>/rightStick/right",
+                    "path": "<SwitchProControllerHID>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -394,8 +412,8 @@
                 },
                 {
                     "name": "",
-                    "id": "0db919c2-2a48-41a8-8eea-85e2606c7bfa",
-                    "path": "<Gamepad>/rightStick/down",
+                    "id": "2c64595b-3f4f-46d4-b738-93286bc32bd2",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -417,7 +435,7 @@
                 {
                     "name": "",
                     "id": "dfe309d3-1500-409b-8784-75d7d4b84b7b",
-                    "path": "<Gamepad>/rightStick/left",
+                    "path": "<SwitchProControllerHID>/leftStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -427,8 +445,8 @@
                 },
                 {
                     "name": "",
-                    "id": "8fd1e23c-893a-4fdf-bc67-30daffb7f4b5",
-                    "path": "<Gamepad>/rightStick/up",
+                    "id": "86828401-d395-4fa3-a7ad-1f36e4144a41",
+                    "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -543,6 +561,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "AngleDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2ec08b27-b80a-45a3-a1fd-fa9b06cbe88a",
+                    "path": "<Gamepad>/rightStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "37dc8050-2ccd-4329-a39a-a7b38ad41b62",
+                    "path": "<Gamepad>/rightStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1177,6 +1217,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "RotateRight",
+                    "type": "Button",
+                    "id": "973111f0-63db-4e5d-9477-2b059b27a5c3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RotateLeft",
+                    "type": "Button",
+                    "id": "22771209-8b32-495f-aead-52529c46cc71",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1458,7 +1516,7 @@
                 {
                     "name": "",
                     "id": "befb01f6-a3a7-4f1c-9c2b-637582e91ccb",
-                    "path": "<Gamepad>/rightStick/right",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1480,7 +1538,7 @@
                 {
                     "name": "",
                     "id": "7702c657-4c3a-4e09-b30b-84ba50458380",
-                    "path": "<Gamepad>/rightStick/left",
+                    "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1595,6 +1653,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "AngleDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "87bf20aa-3fd7-4acd-be97-3ef2ea4720b3",
+                    "path": "<Gamepad>/rightStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5887b0f7-ae55-4c68-9f2a-28e394b46b13",
+                    "path": "<Gamepad>/rightStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

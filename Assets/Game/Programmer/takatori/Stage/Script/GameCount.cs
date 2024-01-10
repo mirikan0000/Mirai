@@ -1,7 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
+public class PlayerInputSettings
+{
+    public string controlScheme;
+    // 他に必要な設定があればここに追加
+}
 public class GameCount : SingletonMonoBehaviour<GameCount>
 {
     public int roundCount = 0;
@@ -27,12 +32,21 @@ public class GameCount : SingletonMonoBehaviour<GameCount>
     public GameObject player1;
     public GameObject player2;
     private bool gameFinished = false; // ゲーム終了フラグ
-    // 別のクラスや方法を使用してデータを保存する
+                                       // 別のクラスや方法を使用してデータを保存する
 
+    private PlayerInputSettings player1InputSettings;
+    private PlayerInputSettings player2InputSettings;
     // シーンを切り替える前にデータを保存
     void Start()
     {
+
         DontDestroyOnLoad(this.gameObject);
+        player1InputSettings = new PlayerInputSettings();
+        player1InputSettings.controlScheme = player1.GetComponent<PlayerInput>().currentControlScheme;
+
+        player2InputSettings = new PlayerInputSettings();
+        player2InputSettings.controlScheme = player2.GetComponent<PlayerInput>().currentControlScheme;
+        SavePlayerInputSettings(); // 新しく追加
     }
 
     // Update is called once per frame
@@ -110,5 +124,18 @@ public class GameCount : SingletonMonoBehaviour<GameCount>
            player1Wins = 2;
            player2Wins = 2;
            roundCount = 0;
-}
+    }
+    public void SavePlayerInputSettings()
+    {
+        // 保存するデータが増える場合はここに追加してください
+        player1InputSettings.controlScheme = player1.GetComponent<PlayerInput>().currentControlScheme;
+        player2InputSettings.controlScheme = player2.GetComponent<PlayerInput>().currentControlScheme;
+    }
+
+    private void RestorePlayerInputSettings()
+    {
+        // 復元するデータが増える場合はここに追加してください
+        player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(player1InputSettings.controlScheme);
+        player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme(player2InputSettings.controlScheme);
+    }
 }

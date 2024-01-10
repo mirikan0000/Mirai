@@ -125,6 +125,24 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RotateRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""399c4d92-8710-4f29-8a63-597c6aa4ecd0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RotateLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""7b4e0551-f557-4c25-9255-b78b82fdcd51"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -406,7 +424,7 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""32146d2e-57c4-46f0-8924-902edf87f842"",
-                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""path"": ""<SwitchProControllerHID>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -416,8 +434,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0db919c2-2a48-41a8-8eea-85e2606c7bfa"",
-                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""id"": ""2c64595b-3f4f-46d4-b738-93286bc32bd2"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -439,7 +457,7 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""dfe309d3-1500-409b-8784-75d7d4b84b7b"",
-                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""path"": ""<SwitchProControllerHID>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -449,8 +467,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8fd1e23c-893a-4fdf-bc67-30daffb7f4b5"",
-                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""id"": ""86828401-d395-4fa3-a7ad-1f36e4144a41"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -565,6 +583,28 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""AngleDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2ec08b27-b80a-45a3-a1fd-fa9b06cbe88a"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""37dc8050-2ccd-4329-a39a-a7b38ad41b62"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1199,6 +1239,24 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RotateRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""973111f0-63db-4e5d-9477-2b059b27a5c3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RotateLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""22771209-8b32-495f-aead-52529c46cc71"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1480,7 +1538,7 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""befb01f6-a3a7-4f1c-9c2b-637582e91ccb"",
-                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1502,7 +1560,7 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7702c657-4c3a-4e09-b30b-84ba50458380"",
-                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1619,6 +1677,28 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
                     ""action"": ""AngleDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87bf20aa-3fd7-4acd-be97-3ef2ea4720b3"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5887b0f7-ae55-4c68-9f2a-28e394b46b13"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1699,6 +1779,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         m_Player_LeftChange = m_Player.FindAction("LeftChange", throwIfNotFound: true);
         m_Player_AngleUp = m_Player.FindAction("AngleUp", throwIfNotFound: true);
         m_Player_AngleDown = m_Player.FindAction("AngleDown", throwIfNotFound: true);
+        m_Player_RotateRight = m_Player.FindAction("RotateRight", throwIfNotFound: true);
+        m_Player_RotateLeft = m_Player.FindAction("RotateLeft", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1724,6 +1806,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         m_Player1_LeftChange = m_Player1.FindAction("LeftChange", throwIfNotFound: true);
         m_Player1_AngleUp = m_Player1.FindAction("AngleUp", throwIfNotFound: true);
         m_Player1_AngleDown = m_Player1.FindAction("AngleDown", throwIfNotFound: true);
+        m_Player1_RotateRight = m_Player1.FindAction("RotateRight", throwIfNotFound: true);
+        m_Player1_RotateLeft = m_Player1.FindAction("RotateLeft", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1796,6 +1880,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LeftChange;
     private readonly InputAction m_Player_AngleUp;
     private readonly InputAction m_Player_AngleDown;
+    private readonly InputAction m_Player_RotateRight;
+    private readonly InputAction m_Player_RotateLeft;
     public struct PlayerActions
     {
         private @InputManage1 m_Wrapper;
@@ -1811,6 +1897,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         public InputAction @LeftChange => m_Wrapper.m_Player_LeftChange;
         public InputAction @AngleUp => m_Wrapper.m_Player_AngleUp;
         public InputAction @AngleDown => m_Wrapper.m_Player_AngleDown;
+        public InputAction @RotateRight => m_Wrapper.m_Player_RotateRight;
+        public InputAction @RotateLeft => m_Wrapper.m_Player_RotateLeft;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1853,6 +1941,12 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
             @AngleDown.started += instance.OnAngleDown;
             @AngleDown.performed += instance.OnAngleDown;
             @AngleDown.canceled += instance.OnAngleDown;
+            @RotateRight.started += instance.OnRotateRight;
+            @RotateRight.performed += instance.OnRotateRight;
+            @RotateRight.canceled += instance.OnRotateRight;
+            @RotateLeft.started += instance.OnRotateLeft;
+            @RotateLeft.performed += instance.OnRotateLeft;
+            @RotateLeft.canceled += instance.OnRotateLeft;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1890,6 +1984,12 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
             @AngleDown.started -= instance.OnAngleDown;
             @AngleDown.performed -= instance.OnAngleDown;
             @AngleDown.canceled -= instance.OnAngleDown;
+            @RotateRight.started -= instance.OnRotateRight;
+            @RotateRight.performed -= instance.OnRotateRight;
+            @RotateRight.canceled -= instance.OnRotateRight;
+            @RotateLeft.started -= instance.OnRotateLeft;
+            @RotateLeft.performed -= instance.OnRotateLeft;
+            @RotateLeft.canceled -= instance.OnRotateLeft;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -2040,6 +2140,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player1_LeftChange;
     private readonly InputAction m_Player1_AngleUp;
     private readonly InputAction m_Player1_AngleDown;
+    private readonly InputAction m_Player1_RotateRight;
+    private readonly InputAction m_Player1_RotateLeft;
     public struct Player1Actions
     {
         private @InputManage1 m_Wrapper;
@@ -2055,6 +2157,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         public InputAction @LeftChange => m_Wrapper.m_Player1_LeftChange;
         public InputAction @AngleUp => m_Wrapper.m_Player1_AngleUp;
         public InputAction @AngleDown => m_Wrapper.m_Player1_AngleDown;
+        public InputAction @RotateRight => m_Wrapper.m_Player1_RotateRight;
+        public InputAction @RotateLeft => m_Wrapper.m_Player1_RotateLeft;
         public InputActionMap Get() { return m_Wrapper.m_Player1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -2097,6 +2201,12 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
             @AngleDown.started += instance.OnAngleDown;
             @AngleDown.performed += instance.OnAngleDown;
             @AngleDown.canceled += instance.OnAngleDown;
+            @RotateRight.started += instance.OnRotateRight;
+            @RotateRight.performed += instance.OnRotateRight;
+            @RotateRight.canceled += instance.OnRotateRight;
+            @RotateLeft.started += instance.OnRotateLeft;
+            @RotateLeft.performed += instance.OnRotateLeft;
+            @RotateLeft.canceled += instance.OnRotateLeft;
         }
 
         private void UnregisterCallbacks(IPlayer1Actions instance)
@@ -2134,6 +2244,12 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
             @AngleDown.started -= instance.OnAngleDown;
             @AngleDown.performed -= instance.OnAngleDown;
             @AngleDown.canceled -= instance.OnAngleDown;
+            @RotateRight.started -= instance.OnRotateRight;
+            @RotateRight.performed -= instance.OnRotateRight;
+            @RotateRight.canceled -= instance.OnRotateRight;
+            @RotateLeft.started -= instance.OnRotateLeft;
+            @RotateLeft.performed -= instance.OnRotateLeft;
+            @RotateLeft.canceled -= instance.OnRotateLeft;
         }
 
         public void RemoveCallbacks(IPlayer1Actions instance)
@@ -2209,6 +2325,8 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         void OnLeftChange(InputAction.CallbackContext context);
         void OnAngleUp(InputAction.CallbackContext context);
         void OnAngleDown(InputAction.CallbackContext context);
+        void OnRotateRight(InputAction.CallbackContext context);
+        void OnRotateLeft(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -2236,5 +2354,7 @@ public partial class @InputManage1: IInputActionCollection2, IDisposable
         void OnLeftChange(InputAction.CallbackContext context);
         void OnAngleUp(InputAction.CallbackContext context);
         void OnAngleDown(InputAction.CallbackContext context);
+        void OnRotateRight(InputAction.CallbackContext context);
+        void OnRotateLeft(InputAction.CallbackContext context);
     }
 }

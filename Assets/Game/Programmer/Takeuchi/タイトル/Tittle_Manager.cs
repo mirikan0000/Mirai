@@ -193,15 +193,10 @@ public class Tittle_Manager : MonoBehaviour
     //操作説明表示
     private void ShowOperatingInstructions()
     {
+        
         if (operationFlag == true)
         {       // シーン削除
-           SceneManager.Instance.DestroyScene(unLoadSceneName);
-            //操作説明スライドを画面に表示
             operationImage.enabled = true;
-            SceneManager.Instance.LoadScene(CautionSceneName);
-            // シーン変更
-            SceneManager.Instance.ChangeScene();
-            isLoad = true;
         }
 
         
@@ -230,9 +225,14 @@ public class Tittle_Manager : MonoBehaviour
             if (operationTimer > 1.0f)
             {
                 Debug.Log("コーションシーンネーム");
-                        // シーン読み込み
-                
-            
+                // シーン読み込み
+                SceneManager.Instance.DestroyScene(unLoadSceneName);
+
+                SceneManager.Instance.LoadScene(CautionSceneName);
+                // シーン変更
+                SceneManager.Instance.ChangeScene();
+                isLoad = true;
+
             }
         }
     }

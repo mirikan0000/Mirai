@@ -293,6 +293,8 @@ MonoBehaviour:
   tPmoveSpeed: 1
   rot_angle: 0.5
   animator: {fileID: 0}
+  playerMoveFlag: 0
+  playerTurnFlag: 0
 --- !u!1001 &2564303041532995901
 PrefabInstance:
   m_ObjectHideFlags: 0
